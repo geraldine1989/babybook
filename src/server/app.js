@@ -1,4 +1,52 @@
 
+// ***************************
+// Transmission des données OK
+// *************************** vv
+
+const express = require('express')
+const app = express()
+const port = 8080
+
+app.get('/findAll', (req, res) => {
+  
+  function findAll() {
+    return new Promise(function(resolve, reject) {
+      
+      // MongoDB
+      const MongoClient = require('mongodb').MongoClient;
+      // Connection
+      MongoClient.connect("mongodb://localhost:27017/babybook", { useNewUrlParser: true }, function (error, db) {
+        if (error) throw error;
+
+        var database = db.db('babybook');
+        // requête
+        database.collection("parents").find().toArray(function (error, results) {
+          if (error) throw error;
+          resolve (results);
+          return results;
+        });
+      });
+
+      
+    }); 
+  }
+  // appel à la fonction
+  findAll()
+    .then(function(value) {
+      res.status(200);
+      res.send(value);
+    })
+    .catch(function(err) {
+      console.log('Caught an error!', err);
+    });
+
+})
+
+app.listen(port)
+
+// *************************** ^^
+
+
 // **********************
 // Création Collection OK
 // ********************** vv
@@ -35,28 +83,6 @@
 // });
 // *************************** ^^
 
-// *****
-// TESTS
-// ***** vv
-
-// requete
-// const getList = () => {
-//   const MongoClient = require('mongodb').MongoClient;
-//   MongoClient.connect("mongodb://localhost:27017/babybook", function (error, db) {
-//     if (error) throw error;
-    
-//     var database = db.db('babybook');
-    
-//     database.collection("parents").find({firstName: 'Toto'}).toArray(function (error, results) {
-//       if (error) throw error;
-      
-//       return list;
-//     });
-//   });
-// };
-// const list = getList();
-// console.log(list);
-
 /* Format des données en base :
 { _id: 5c40c870edb6bc09d8e4da1c,
   firstName: 'Toto',
@@ -64,41 +90,4 @@
   age: '12',
   email: 'toto@me.com' }
 */
-
-// server
-var http = require('http');
-var server = http.createServer(function(req, res) {
-
-  
-
-
-
-  const getList = () => {
-    const MongoClient = require('mongodb').MongoClient;
-    console.log('connection BASE');
-    MongoClient.connect("mongodb://localhost:27017/babybook", function (error, db) {
-      if (error) throw error;
-      
-      var database = db.db('babybook');
-      console.log('REQUETE');
-      database.collection("parents").find({firstName: 'Toto'}).toArray(function (error, results) {
-        if (error) throw error;
-        json = JSON.stringify(results);
-        console.log('json');
-        return json;
-      });
-    });
-  };
-
-  async function list() {
-    const theList = await getList();
-    return theList;
-  };
-  const maList = list();
-
-res.writeHead(200);
-
-res.end(maList);
-});
-server.listen(8080);
 
