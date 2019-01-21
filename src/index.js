@@ -9,13 +9,13 @@ import { Provider } from 'react-redux';
  * import : local
  */
 import store from 'src/store';
-import App from 'src/components/App';
+import InscriptionForm from 'src/components/InscriptionForm';
 
 /**
  * Render - Rendu d'un composant React dans le DOM
  */
 
-const rootComponent = <Provider store={store}><App /></Provider>;
+const rootComponent = <Provider store={store}><InscriptionForm /></Provider>;
 const target = document.getElementById('root');
 // 1 - Le composant à rendre
 // 2 - La cible dans le DOM
