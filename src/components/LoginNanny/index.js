@@ -28,6 +28,7 @@ const LoginNanny = () => (
         <Button type="submit">Se connecter</Button>
       </Form>
     </div>
+    <div id="legalnotices">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
   </div>
 );
 
