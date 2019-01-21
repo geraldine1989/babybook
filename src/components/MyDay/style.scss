@@ -1,0 +1,76 @@
+/* Container */
+#myday {
+  padding: 2em;
+  text-align: center;
+  margin: 2em;
+}
+
+/* Header */
+#header {
+  padding: 1em;
+  text-align: left;
+}
+
+/* Daily diary's title & date */
+#date {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+#title {
+  font-style: italic;
+  font-size: 1.1em;
+  padding: 2em;
+}
+
+/* Items' list */
+/* By id */
+#list {
+  margin: 1em auto;
+    div {
+    padding: 1em;
+  }
+}
+
+#bib-morning {
+  display: inline-block;
+}
+
+#sleep {
+  p:nth-of-type(3) {
+    color: grey;
+    font-style: italic;
+  }
+}
+
+/* By classname */
+.list-item {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.time {
+  font-weight: bold;
+  font-size: 1.3em;
+  color: grey;
+}
+
+.note {
+  font-size: 0.9em;
+}
+
+/* By element */
+input {
+  width: 30rem;
+}
+
+/* Particular notes */
+#particular-note {
+  font-size: 1.1em;
+    input {
+      height: 6rem;
+    }
+    input::placeholder {
+      font-size: 0.6em;
+    }
+}
