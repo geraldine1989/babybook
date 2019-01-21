@@ -5,7 +5,7 @@
 
 const express = require('express')
 const app = express()
-const port = 8080
+const port = 3000
 
 app.get('/findAll', (req, res) => {
   
