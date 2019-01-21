@@ -13,9 +13,13 @@ import 'semantic-ui-css/semantic.min.css';
 import store from 'src/store';
 import Home from 'src/components/Home';
 
+
 /**
  * Render - Rendu d'un composant React dans le DOM
  */
+
+
+/* const rootComponent = <Provider store={store}><App /><ParentsNav /></Provider>; */
 
 const rootComponent = (
   <Provider store={store}>
@@ -23,6 +27,7 @@ const rootComponent = (
       <Home />
     </Router>
   </Provider>);
+
 const target = document.getElementById('root');
 // 1 - Le composant à rendre
 // 2 - La cible dans le DOM
