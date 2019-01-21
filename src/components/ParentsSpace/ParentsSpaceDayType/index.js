@@ -47,6 +47,11 @@ const ParentsSpaceDayType = ({ handleAddItemInList, handleDeleteMyDayItem }) => 
       <Input placeholder="Note" value="" />
       <Icon name="check" size="big" onClick={handleAddItemInList} />
     </div>
+    <div id="group">
+      <p>Ajouter une note pour cette journée</p>
+      <Input />
+      <Icon name="plus" size="big" />
+    </div>
 
   </div>
 )};
