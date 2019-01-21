@@ -1,0 +1,175 @@
+#informations {
+    padding: 2em;
+
+        & h2 {
+            color: #2C1915;
+            margin: auto;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 2em;
+            padding: 0.8em;
+            margin-bottom: 1em;
+        }
+
+        & #enfant {
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            width: 80%;
+            margin-bottom: 2.5em;
+
+            & h3 {
+                width: 100%;
+                display: block;
+                color : #91D7D9;
+                font-size: 2em;
+                margin-bottom: 0.3em;            
+            }
+
+            & #child-info {
+                width: 100%;
+                border-radius: 25px;
+                border: 1px solid #C2DE89;
+                padding: 1em;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+
+                & .child-info-div {
+                    
+                    margin: 1em;
+                    font-size: 1em;
+                    font-weight: bold;
+
+                    & span {
+                       font-weight: normal;
+                    }
+                    
+                }
+            }
+        }
+
+        & #sante {
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            width: 80%;
+            margin-bottom: 3em;
+
+            & h3 {
+                width: 100%;
+                display: block;
+                color : #91D7D9;
+                font-size: 2em;
+                margin-bottom: 0.3em;            
+            }
+
+            & #sante-info {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                flex-wrap: wrap;
+
+                & .sante-info-div {
+                    
+                    padding: 1em;
+                    border-radius: 25px;
+                    display: block;
+                    flex-wrap: wrap;
+                    
+                    
+
+                    & h4 {
+                        text-align: center;
+                        margin-bottom: 1em;
+                        color: #2C1915;
+                        text-transform: uppercase;
+                        font-weight: bold;
+                    }
+
+                    & ul {
+                        
+                        &  li {
+                            list-style: disc; 
+                            color: #C2DE89;
+                            margin-bottom: 1em;
+
+                            & span {
+                                color: black;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        & #numeros {
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            width: 80%;
+
+            & h3 {
+                width: 100%;
+                display: block;
+                color : #2C1915;
+                font-size: 2em;
+                margin-bottom: 0.3em;            
+            }
+
+            & #numeros-div {
+                width: 100%;
+                background-color: #91D7D9;
+                padding: 2em;
+                border-radius: 25px;
+
+                & ul {
+                    & li {
+                        margin-bottom: 1em;
+                        & span {
+                            font-weight: bold;
+                        }
+                    }
+                    
+                }
+            }
+        }
+
+}
+
+
+/* Sur tous types d'écrans orientés verticalement */
+@media all and (orientation: portrait) {
+
+    #informations {
+        padding: 1em;
+        & #enfant {
+            width: 100vw;
+
+            & #child-info {
+                border: none;
+            }
+        }
+        & #sante {
+         width: 100vw;
+         }
+        & #numeros {
+         width: 100vw;
+         & #numeros-div {
+            background-color: white;
+            & ul {
+                & li {
+                    margin-bottom: 1em;
+                    & span {
+                        font-weight: bold;
+                        color: #91D7D9;
+                    }
+                }
+                
+            }
+            }           
+         } 
+    }
+   
+}

@@ -6,14 +6,20 @@ import React from 'react';
 /**
  * Local import
  */
-import Example from 'src/containers/Example';
+import Informations from 'src/components/Informations';
+import HeaderLogo from 'src/components/HeaderLogo';
+
 import './app.scss';
 
 /**
  * Code
  */
 const App = () => (
-  <Example />
+  <div>
+    <HeaderLogo />
+    <Informations />
+  </div>
+  
 );
 
 /**
