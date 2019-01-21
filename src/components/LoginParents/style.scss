@@ -1,0 +1,43 @@
+#page {
+  display: flex;
+  flex-direction: column;
+  padding-top : 2em;
+  width: 50%;
+  margin: auto;
+
+  & #title {
+    color : rgb(46, 95, 71);
+    font-size: 4em;
+  }
+
+  & h2 {
+    color: #2C1915;
+    margin: auto;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2.5em;
+    padding: 2em;
+
+  }
+
+  & #form {
+
+    align-items: center;
+   
+
+    & input {
+      padding: 1em;
+      margin: 0.5em;
+      justify-content: center;
+    }
+  
+    & button {
+      padding: 1em;
+      margin: 0.5em; 
+      align-self: center;
+      width: 100%;
+    }
+  }
+
+}
