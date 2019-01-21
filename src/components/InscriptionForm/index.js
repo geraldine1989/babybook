@@ -15,14 +15,15 @@ import 'semantic-ui-css/semantic.min.css';
  */
 const InscriptionForm = () => (
   <div id="page">
-    <h2 id="title">Inscription parents</h2>
+    <div id="title">Baby Book</div>
+    <h2 id="pagetitle">Inscription parents</h2>
     <div id="form">
       <Form>
         <Form.Field>
           <input type="text" placeholder="Identifiant" value="" />
         </Form.Field>
         <Form.Field>
-          <input type="text" placeholder="Adresse mail" value="" />
+          <input type="text" placeholder="Adresse email" value="" />
         </Form.Field>
         <Form.Field>
           <input type="text" placeholder="Mot de passe" value="" />
