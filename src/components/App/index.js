@@ -6,14 +6,14 @@ import React from 'react';
 /**
  * Local import
  */
-import Example from 'src/containers/Example';
+import MyDay from 'src/components/MyDay';
 import './app.scss';
 
 /**
  * Code
  */
 const App = () => (
-  <Example />
+  <MyDay />
 );
 
 /**
