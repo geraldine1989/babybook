@@ -11,7 +11,7 @@ import 'semantic-ui-css/semantic.min.css';
  * import : local
  */
 import store from 'src/store';
-import Home from 'src/components/Home';
+import ParentsSpaceDayType from 'src/components/ParentsSpace/ParentsSpaceDayType';
 
 /**
  * Render - Rendu d'un composant React dans le DOM
@@ -20,7 +20,7 @@ import Home from 'src/components/Home';
 const rootComponent = (
   <Provider store={store}>
     <Router >
-      <Home />
+      <ParentsSpaceDayType />
     </Router>
   </Provider>);
 const target = document.getElementById('root');
