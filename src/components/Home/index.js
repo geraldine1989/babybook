@@ -8,7 +8,6 @@ import { Menu, Icon, Button } from 'semantic-ui-react';
 /**
  * Local import
  */
-import Example from 'src/containers/Example';
 import './style.scss';
 
 /**
@@ -20,15 +19,17 @@ const Home = () => (
     <p>
       Texte de présentation du site BabyBook.
     </p>
-    <NavLink exact to="/login-parents">
-      <Button content="Connexion Parents" />
-    </NavLink>
-    <NavLink exact to="/login-nanny">
-      <Button content="Connexion Nanny" />
-    </NavLink>
-    <NavLink exact to="/inscription">
-      <Button content="Inscription" />
-    </NavLink>
+    <div id="nav">
+      <NavLink exact to="/login-parents">
+        <Button color="teal" content="Connexion Parents" />
+      </NavLink>
+      <NavLink exact to="/login-nanny">
+        <Button color="teal" content="Connexion Nanny" />
+      </NavLink>
+      <NavLink exact to="/inscription">
+        <Button color="teal" content="Inscription" />
+      </NavLink>
+    </div>
   </div>
 );
 
