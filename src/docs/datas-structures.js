@@ -1,3 +1,5 @@
+import { getMaxListeners } from "cluster";
+
 // users :
 let parents = {
   id: "parents",
@@ -41,7 +43,7 @@ let parents = {
                 {
                   name: "Biberon",
                   hour: "08:00",
-                  indic: "Mettre 3 dossettes avec 250 cl de lait",
+                  indic: "Mettre 3 dosettes avec 250 cl de lait",
                   note: "Tototounet a tout bu !!!",
                 },
               ],
@@ -62,10 +64,9 @@ let parents = {
   ],
 }
 
-// babies :
-let babies = {
-  id: "babies",
-  allBabies: [
-
-  ],
-}
+// emails inscrits :
+let emails = [
+  "toto@gmail.com",
+  "tata@gmail.com",
+  "titi@gamil.com",
+],

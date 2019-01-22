@@ -3,10 +3,11 @@
 /signup
 /login-parents
 /login-nanny
-/MyDay/Journal
-/MyDay/Infos
-/espace-parents/journée-type
+/my-day/journal
+/my-day/infos
+/espace-parents/journee-type
 /espace-parents/infos
 /espace-parents/contacts
+/mentions-legales
 /not-found
 */
