@@ -2,7 +2,7 @@
   padding: 2em;
 
       & h2 {
-          color: #2C1915;
+          color: #4c2e27;
           margin: auto;
           text-align: center;
           text-transform: uppercase;
@@ -29,22 +29,28 @@
 
           & #child-name {
               width: 100%;
-              border-radius: 25px;
-              border: 1px solid #C2DE89;
-              padding: 1em;
               display: flex;
               flex-wrap: wrap;
               flex-direction: column;
+
+              & .ui input {
+                border: 1px solid #C2DE89;
+                border-radius: 25px;
+                padding: 1em;
+              }
           }
 
           & #birthdate {
             width: 100%;
-            border-radius: 25px;
-            border: 1px solid #C2DE89;
-            padding: 1em;
             display: flex;
             flex-wrap: wrap;
             flex-direction: column;
+
+            & .ui input {
+              border: 1px solid #C2DE89;
+              border-radius: 25px;
+              padding: 1em;
+            } 
         }
 
       }
@@ -54,7 +60,7 @@
           display: flex;
           flex-wrap: wrap;
           width: 80%;
-          margin-bottom: 3em;
+          margin-bottom: 2.5em;
 
           & h3 {
               width: 100%;
@@ -62,6 +68,10 @@
               color : #91D7D9;
               font-size: 2em;
               margin-bottom: 0.3em;            
+          }
+
+          & .header {
+            color: #4c2e27;
           }
 
           & #cards {
@@ -121,18 +131,12 @@
 
           & #numeros-div {
               width: 100%;
-              padding: 2em;
-              border-radius: 25px;
-              border: 1px solid #C2DE89;
+             
 
-              & ul {
-                  & li {
-                      margin-bottom: 1em;
-                      & span {
-                          font-weight: bold;
-                      }
-                  }
-                  
+              & .ui input {
+                border: 1px solid #C2DE89;
+                border-radius: 25px;
+                padding: 1em;
               }
           }
       }
