@@ -1,0 +1,12 @@
+/*
+/home
+/signup
+/login-parents
+/login-nanny
+/MyDay/Journal
+/MyDay/Infos
+/espace-parents/journée-type
+/espace-parents/infos
+/espace-parents/contacts
+/not-found
+*/
