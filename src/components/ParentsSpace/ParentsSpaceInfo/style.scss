@@ -1,4 +1,4 @@
-#informations {
+#modif-informations {
   padding: 2em;
 
       & h2 {
@@ -12,7 +12,7 @@
           margin-bottom: 1em;
       }
 
-      & #child {
+      & #modif-child {
           margin: auto;
           display: flex;
           flex-wrap: wrap;
@@ -27,7 +27,7 @@
               margin-bottom: 0.3em;            
           }
 
-          & #child-name {
+          & #modif-child-name {
               width: 100%;
               display: flex;
               flex-wrap: wrap;
@@ -40,7 +40,7 @@
               }
           }
 
-          & #birthdate {
+          & #modif-birthdate {
             width: 100%;
             display: flex;
             flex-wrap: wrap;
@@ -55,7 +55,7 @@
 
       }
 
-      & #health {
+      & #modif-health {
           margin: auto;
           display: flex;
           flex-wrap: wrap;
@@ -87,7 +87,7 @@
                 display: block;
                 flex-wrap: wrap;
                 border: 1px solid #C2DE89;
-                margin: 1em;
+                //margin: 1em;
 
               }
 
@@ -98,7 +98,7 @@
                 display: block;
                 flex-wrap: wrap;
                 border: 1px solid #C2DE89;
-                margin: 1em;
+                //margin: 1em;
               }
 
               & #allergies {
@@ -108,13 +108,13 @@
                 display: block;
                 flex-wrap: wrap;
                 border: 1px solid #C2DE89;
-                margin: 1em;
+                //margin: 1em;
               }
               
           }
       }
 
-      & #numeros {
+      & #modif-numeros {
         margin: auto;
         display: flex;
         flex-wrap: wrap;
@@ -129,7 +129,7 @@
               margin-bottom: 0.3em;            
           }
 
-          & #numeros-div {
+          & #modif-numeros-div {
               width: 100%;
              
 
@@ -185,24 +185,3 @@
 }
 
 
-/* Sur tous types d'écrans orientés verticalement */
-@media all and (orientation: portrait) {
-
-  #informations {
-    padding: 1em;
-      & #child {
-          width: 100vw;
-
-          & #child-info {
-              border: none;
-          }
-      }
-      & #health {
-       width: 100vw;
-       }
-      & #numeros {
-       width: 100vw;         
-       } 
-  }
- 
-}

@@ -9,23 +9,23 @@ import 'semantic-ui-css/semantic.min.css';
 
 
 const ParentsSpaceInfo = () => (
-  <div id="informations">
-    <h2>Informations</h2>
-    <div id="child">
+  <div id="modif-informations">
+    <h2>Modification des informations</h2>
+    <div id="modif-child">
 
       <h3>Enfant</h3>
-      <Form id="child-name">
+      <Form id="modif-child-name">
         <Form.Input type="text" placeholder="Prénom de l'enfant" />
         <Form.Input type="text" placeholder="Nom de l'enfant" />
       </Form>
 
       <h3>Date de naissance</h3>
-      <Form id="birthdate">
-        <Form.Input placeholder="Jour" type="date" />
+      <Form id="modif-birthdate">
+        <Form.Input type="date" />
       </Form>
     </div>
 
-    <div id="health">
+    <div id="modif-health">
       <h3>Santé</h3>
       <div id="cards">
         <Card id="medecine">
@@ -90,9 +90,9 @@ const ParentsSpaceInfo = () => (
       </div>
     </div>
 
-    <div id="numeros">
+    <div id="modif-numeros">
       <h3>Numéros utiles</h3>
-      <div id="numeros-div">
+      <div id="modif-numeros-div">
         <Form id="child-contact">
           <Form.Input type="text" placeholder="Nom et prénom" />
           <Form.Input type="number" placeholder="Numéro de téléphone" />
