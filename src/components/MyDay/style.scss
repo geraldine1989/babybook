@@ -1,76 +1,93 @@
+@import 'src/styles/_vars.sass';
+
 /* Container */
 #myday {
   padding: 2em;
-  text-align: center;
-  margin: 2em;
+  margin: 0 auto;
+  max-width: 600px;
 }
 
-/* Header */
-#header {
+#general-contact {
   padding: 1em;
-  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 /* Daily diary's title & date */
 #date {
   font-weight: bold;
   font-size: 1.3em;
+  color: $brown;
+  text-align: center;
 }
 
 #title {
   font-style: italic;
   font-size: 1.1em;
   padding: 2em;
+  color: $blue;
+  text-align: center;
 }
 
 /* Items' list */
+
 /* By id */
 #list {
-  margin: 1em auto;
-    div {
-    padding: 1em;
-  }
-}
-
-#bib-morning {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
 }
 
 #sleep {
-  p:nth-of-type(3) {
+  span:nth-of-type(3) {
     color: grey;
     font-style: italic;
   }
 }
 
 /* By classname */
+.infos {
+  padding: 1em;
+}
+
 .list-item {
   font-weight: bold;
   font-size: 1.3em;
+  color: $brown;
 }
 
 .time {
   font-weight: bold;
   font-size: 1.3em;
-  color: grey;
+  color: $grey;
 }
 
 .note {
   font-size: 0.9em;
+  color: $blue;
+}
+
+.note-input {
+  margin: 0.5em auto;
+  width: 25rem;
 }
 
 /* By element */
-input {
-  width: 30rem;
+span {
+  padding: 0.5em;
+  position: left;
 }
 
 /* Particular notes */
 #particular-note {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
   font-size: 1.1em;
-    input {
-      height: 6rem;
-    }
-    input::placeholder {
-      font-size: 0.6em;
-    }
+  color: $brown;
+  padding: 1em;
+}
+
+#submit {
+  margin: 1em;
 }
