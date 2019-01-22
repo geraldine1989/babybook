@@ -8,14 +8,14 @@ import React from 'react';
  */
 import MyDay from 'src/components/MyDay';
 import Footer from 'src/components/Footer';
-import './app.scss';
 import 'semantic-ui-css/semantic.min.css';
+import './app.scss';
 
 /**
  * Code
  */
 const App = () => (
-  <div id="container">
+  <div id="app">
     <MyDay />
     <Footer />
   </div>

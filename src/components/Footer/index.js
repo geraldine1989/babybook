@@ -8,13 +8,12 @@ import React from 'react';
  */
 import LegalMentions from 'src/components/LegalMentions';
 import Contact from 'src/components/Contact';
-import './style.scss';
 
 /**
  * Code
  */
 const Footer = () => (
-  <div id="container">
+  <div id="footer">
     <LegalMentions />
     <Contact />
   </div>

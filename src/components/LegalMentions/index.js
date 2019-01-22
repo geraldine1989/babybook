@@ -3,8 +3,6 @@
 import React from 'react';
 import { Container, Header } from 'semantic-ui-react';
 
-import './style.scss';
-
 const LegalMentions = () => (
   <Container text>
     <Header as="h2">Mentions légales</Header>
