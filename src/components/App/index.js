@@ -26,8 +26,8 @@ import './app.scss';
 const App = () => (
   <div>
     <HeaderLogo />
-
-    <Informations />
+    <MainNav/>
+    <LoginParents />
   </div>
 
 );

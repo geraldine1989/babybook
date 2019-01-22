@@ -1,0 +1,30 @@
+#mainMenu{
+    margin: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #EEE9E6;
+}
+
+#mainNav {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.accodionTitle {
+    color:#4c2e27;
+    text-transform: uppercase;
+}
+
+.accordionContent {
+    & a {
+        color: #91D7D9;
+        list-style: none;
+        padding: 1em;
+        text-transform: uppercase;
+
+    }
+}
+
