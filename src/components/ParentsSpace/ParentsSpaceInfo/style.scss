@@ -1,0 +1,186 @@
+#modif-informations {
+  padding: 2em;
+
+      & h2 {
+          color: #4c2e27;
+          margin: auto;
+          text-align: center;
+          text-transform: uppercase;
+          font-weight: bold;
+          font-size: 2em;
+          padding: 0.8em;
+          margin-bottom: 1em;
+      }
+
+      & #modif-child {
+          margin: auto;
+          display: flex;
+          flex-wrap: wrap;
+          width: 80%;
+          margin-bottom: 2.5em;
+
+          & h3 {
+              width: 100%;
+              display: block;
+              color : #91D7D9;
+              font-size: 2em;
+              margin-bottom: 0.3em;            
+          }
+
+          & #modif-child-name {
+              width: 100%;
+              display: flex;
+              flex-wrap: wrap;
+              flex-direction: column;
+
+              & .ui input {
+                border: 1px solid #C2DE89;
+                border-radius: 25px;
+                padding: 1em;
+              }
+          }
+
+          & #modif-birthdate {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+
+            & .ui input {
+              border: 1px solid #C2DE89;
+              border-radius: 25px;
+              padding: 1em;
+            } 
+        }
+
+      }
+
+      & #modif-health {
+          margin: auto;
+          display: flex;
+          flex-wrap: wrap;
+          width: 80%;
+          margin-bottom: 2.5em;
+
+          & h3 {
+              width: 100%;
+              display: block;
+              color : #91D7D9;
+              font-size: 2em;
+              margin-bottom: 0.3em;            
+          }
+
+          & .header {
+            color: #4c2e27;
+          }
+
+          & #cards {
+              display: flex;
+              justify-content: space-between;
+              width: 100%;
+              flex-wrap: wrap;
+
+              & #medecine {
+                  
+                padding: 1em;
+                border-radius: 25px;
+                display: block;
+                flex-wrap: wrap;
+                border: 1px solid #C2DE89;
+                
+              }
+
+              & #vaccine {
+                  
+                padding: 1em;
+                border-radius: 25px;
+                display: block;
+                flex-wrap: wrap;
+                border: 1px solid #C2DE89;
+
+              }
+
+              & #allergies {
+                  
+                padding: 1em;
+                border-radius: 25px;
+                display: block;
+                flex-wrap: wrap;
+                border: 1px solid #C2DE89;
+                
+              }
+              
+          }
+      }
+
+      & #modif-numeros {
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        width: 80%;
+        margin-bottom: 2.5em;
+
+          & h3 {
+              width: 100%;
+              display: block;
+              color : #91D7D9;
+              font-size: 2em;
+              margin-bottom: 0.3em;            
+          }
+
+          & #modif-numeros-div {
+              width: 100%;
+             
+
+              & .ui input {
+                border: 1px solid #C2DE89;
+                border-radius: 25px;
+                padding: 1em;
+              }
+          }
+      }
+
+
+      & #save {
+        margin: auto;
+        padding: 0.5em;
+        display: flex;
+        justify-content: center;
+        
+        & Button {
+          background-color: #91D7D9;
+          color: #2C1915;
+          
+        }
+
+      }
+
+      & .delete-item {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0.5em;
+        justify-content: space-around;
+        align-items: baseline;
+          & Button {
+            margin: 1em;
+            background-color: #91D7D9;
+            color: #2C1915;
+          }
+      }
+
+      & .add-item {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0.5em;
+        justify-content: space-around;
+        align-items: baseline;
+          & Button {
+            margin: 0.5em;
+            background-color: #91D7D9;
+            color: #2C1915;
+          }
+      }
+
+}
+
+
