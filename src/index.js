@@ -11,7 +11,7 @@ import 'semantic-ui-css/semantic.min.css';
  * import : local
  */
 import store from 'src/store';
-import ParentsSpaceDayType from 'src/components/ParentsSpace/ParentsSpaceDayType';
+import ParentsSpaceInfo from 'src/components/ParentsSpace/ParentsSpaceInfo';
 
 
 /**
@@ -21,12 +21,14 @@ import ParentsSpaceDayType from 'src/components/ParentsSpace/ParentsSpaceDayType
 
 /* const rootComponent = <Provider store={store}><App /><ParentsNav /></Provider>; */
 
-const rootComponent = (
-  <Provider store={store}>
-    <Router >
-      <ParentsSpaceDayType />
-    </Router>
-  </Provider>);
+// const rootComponent = (
+//   <Provider store={store}>
+//     <Router >
+//       <ParentsSpaceDayType />
+//     </Router>
+//   </Provider>);
+
+const rootComponent = <Provider store={store}><ParentsSpaceInfo /></Provider>;
 
 const target = document.getElementById('root');
 // 1 - Le composant à rendre
