@@ -14,10 +14,10 @@ import 'semantic-ui-css/semantic.min.css';
  * Code
  */
 const LoginParents = () => (
-  <div id="page">
-    <div id="title">Baby Book</div>
-    <h2 id="pagetitle">Connexion parents</h2>
-    <div id="form">
+  <div id="pageLoginParents">
+    
+    <h2>Connexion parents</h2>
+    <div id="formLoginParents">
       <Form>
         <Form.Field>
           <input type="text" placeholder="Addresse Email" value="" />
@@ -28,7 +28,7 @@ const LoginParents = () => (
         <Button type="submit">Se connecter</Button>
       </Form>
     </div>
-    <div id="legalnotices">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+  
   </div>
 );
 
