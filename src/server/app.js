@@ -1,24 +1,26 @@
+var express = require('express');
+var app = express();
+const bodyParser = require('body-parser');
+const port = 3000;
+const baseUrl = "mongodb://localhost:27017/babybook";
+const MongoClient = require('mongodb').MongoClient;
 
-// ***************************
-// Transmission des données OK
-// *************************** vv
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
 
-const express = require('express')
-const app = express()
-const port = 3000
-
+/**
+ * Récupération : tout
+ */
 app.get('/findAll', (req, res) => {
   
   function findAll() {
     return new Promise(function(resolve, reject) {
       
-      // MongoDB
-      const MongoClient = require('mongodb').MongoClient;
       // Connection
-      MongoClient.connect("mongodb://localhost:27017/babybook", { useNewUrlParser: true }, function (error, db) {
+      MongoClient.connect(baseUrl, { useNewUrlParser: true }, function (error, db) {
         if (error) throw error;
+        const database = db.db('babybook');
 
-        var database = db.db('babybook');
         // requête
         database.collection("parents").find().toArray(function (error, results) {
           if (error) throw error;
@@ -26,8 +28,6 @@ app.get('/findAll', (req, res) => {
           return results;
         });
       });
-
-      
     }); 
   }
   // appel à la fonction
@@ -39,55 +39,53 @@ app.get('/findAll', (req, res) => {
     .catch(function(err) {
       console.log('Caught an error!', err);
     });
+})
+
+/**
+ * Inscription
+ */
+app.get('/signup', (req, res, next) => {
+  // récupération depuis la base de la liste de emails enregistrés
+  const emailSend = req.query;
+  console.log(emailSend);
+  function getEmails() {
+    return new Promise(function(resolve, reject) {
+      //connection
+      MongoClient.connect(baseUrl, { useNewUrlParser: true }, function (error, db) {
+        if (error) throw error;
+        const database = db.db('babybook');
+
+        database.collection('emails').find().toArray(function(error, results) {
+          if (error) throw error;
+          // result = JSON.stringify(results);
+          // console.log(result);
+          resolve (results);
+          return results;
+        });
+      });
+    });
+  }
+  getEmails()
+    .then(function(value) {
+      console.log(value);
+      // for (var key in value) {
+      //   console.log(value[key]);
+      //   if (emailSend === value[key]) {
+      //     res.send("l'email existe déjà.");
+      //   } else {
+      //     res.send('email valide');
+      //   }
+      // }
+      res.send(value);
+    })
+    .catch(function(err) {
+      console.log('Caught an error!', err);
+    });
+
+  // comparaison avec le mail envoyé en requête
+
 
 })
 
-app.listen(port)
-
-// *************************** ^^
-
-
-// **********************
-// Création Collection OK
-// ********************** vv
-
-// const MongoClient = require('mongodb').MongoClient;
-// MongoClient.connect("mongodb://localhost:27017/babybook", function(error, db) {
-//     if (error) return funcCallback(error);
-
-//     var database = db.db('babybook');
-//     database.createCollection('test', function(err, db) {
-//       if (err) throw err;
-//       console.log('collection créée.');
-
-//     });
-//     console.log("Connecté à la base de données 'babybook'");
-// });
-// ********************** ^^
-
-// **************************
-// Récupération Collection OK
-// ************************** vv
-
-// const MongoClient = require('mongodb').MongoClient;
-// MongoClient.connect("mongodb://localhost:27017/babybook", function (error, db) {
-//   if (error) throw error;
-
-//   var database = db.db('babybook');
-
-//   database.collection("parents").find().toArray(function (error, results) {
-//     if (error) throw error;
-//     console.log(results);
-
-//   });
-// });
-// *************************** ^^
-
-/* Format des données en base :
-{ _id: 5c40c870edb6bc09d8e4da1c,
-  firstName: 'Toto',
-  lastName: 'Dupont',
-  age: '12',
-  email: 'toto@me.com' }
-*/
-
+// le server écoute le port
+app.listen(port);

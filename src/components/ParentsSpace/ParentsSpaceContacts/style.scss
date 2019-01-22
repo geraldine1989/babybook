@@ -1,0 +1,24 @@
+#contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1em;
+}
+
+#contact-add {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end
+}
+
+.icon:hover {
+  cursor: pointer;
+}
+
+.table {
+  max-width: 80%;
+}
+
+label {
+  padding-left: 1em;
+}

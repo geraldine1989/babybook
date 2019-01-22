@@ -11,7 +11,8 @@ import 'semantic-ui-css/semantic.min.css';
  * import : local
  */
 import store from 'src/store';
-import App from './components/App';
+import ParentsSpaceContacts from 'src/components/ParentsSpace/ParentsSpaceContacts';
+import App from 'src/components/App';
 
 
 /**
@@ -26,9 +27,10 @@ const rootComponent = (
     <Router >
       <App/>
     </Router>
-  </Provider>);
-
-const target = document.getElementById('root');
+  </Provider>
 // 1 - Le composant à rendre
 // 2 - La cible dans le DOM
+)
+
+const target = document.getElementById('root');
 render(rootComponent, target);
