@@ -14,9 +14,9 @@ import 'semantic-ui-css/semantic.min.css';
  * Code
  */
 const InscriptionForm = () => (
-  <div id="page">
+  <div id="pageInscription">
     <h2 id="pagetitle">Inscription parents</h2>
-    <div id="form">
+    <div id="formInscription">
       <Form>
         <Form.Field>
           <input type="text" placeholder="Identifiant" value="" />

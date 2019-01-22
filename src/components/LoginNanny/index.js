@@ -14,10 +14,9 @@ import 'semantic-ui-css/semantic.min.css';
  * Code
  */
 const LoginNanny = () => (
-  <div id="page">
-    <div id="title">Baby Book</div>
-    <h2 id="pagetitle">Connexion nounou / baby-sitter</h2>
-    <div id="form">
+  <div id="pageLoginNanny">
+    <h2>Connexion nounou / baby-sitter</h2>
+    <div id="formLoginNanny">
       <Form>
         <Form.Field>
           <input type="text" placeholder="Addresse Email" value="" />
@@ -28,8 +27,7 @@ const LoginNanny = () => (
         <Button type="submit">Se connecter</Button>
       </Form>
     </div>
-    <div id="legalnotices">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-  </div>
+      </div>
 );
 
 /**

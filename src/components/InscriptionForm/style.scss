@@ -1,14 +1,10 @@
-#page {
+#pageInscription {
   display: flex;
   flex-direction: column;
   padding-top : 2em;
-  width: 50%;
+  width: 100%;
   margin: auto;
 
-  & #title {
-    color : rgb(46, 95, 71);
-    font-size: 4em;
-  }
 
   & h2 {
     color: #2C1915;
@@ -21,7 +17,7 @@
 
   }
 
-  & #form {
+  & #formInscription {
 
     align-items: center;
    
@@ -57,14 +53,14 @@
 }
 
 @media all and (orientation: portrait) {
-  #page {
+  #pageInscription {
     display: flex;
     
     flex-direction: column;
     padding-top : 2em;
     width: 90%;
     margin: auto;
-    
+        
   
   
     & h2 {
@@ -78,7 +74,7 @@
   
     }
   
-    & #form {
+    & #formInscription {
   
       align-items: center;
      
