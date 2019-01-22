@@ -15,21 +15,32 @@ import './style.scss';
  */
 const Home = () => (
   <div id="home">
-    <h1>Baby Book</h1>
-    <p>
-      Texte de présentation du site BabyBook.
-    </p>
+    
+    <h2>
+      Le journal de bébé pour le suivre pas à pas chaque jours.
+    </h2>
     <div id="nav">
-      <NavLink exact to="/login-parents">
-        <Button color="teal" content="Connexion Parents" />
+      <NavLink exact to="/login-parents" className="homeLink">
+        <Button color="teal" content="Connexion Parents" className="homeButton" />
       </NavLink>
-      <NavLink exact to="/login-nanny">
-        <Button color="teal" content="Connexion Nanny" />
+      <NavLink exact to="/login-nanny" className="homeLink">
+        <Button color="teal" content="Connexion Nanny" className="homeButton"/>
       </NavLink>
-      <NavLink exact to="/inscription">
-        <Button color="teal" content="Inscription" />
+      <NavLink exact to="/inscription" className="homeLink">
+        <Button color="teal" content="Inscription" className="homeButton" />
       </NavLink>
     </div>
+    
+
+    <div id="complements">
+      <p>
+        Parents, oragnisez une journée type pour faciliter les nounous et babysitters. 
+      </p>
+      <p> Parents et nounous indiquez vos notes personnelles pour la journée.</p>
+      <p> Ayez accès rapidement aux informations de santé de bébé</p>
+      <p> Nounous et babysitters, simplifiez-vous la vie en rapportant la journée de bébé d'un simple clic </p>
+    </div>
+
   </div>
 );
 

@@ -7,12 +7,15 @@ import React from 'react';
  * Local import
  */
 
-import Informations from 'src/components/Informations';
+
+import Home from 'src/components/Home';
 import HeaderLogo from 'src/components/HeaderLogo';
-import MyDay from 'src/components/MyDay';
+import MainNav from '../MainNav';
+import InscriptionForm from '../InscriptionForm';
 
 
 import './app.scss';
+
 
 /**
  * Code
@@ -20,8 +23,8 @@ import './app.scss';
 const App = () => (
   <div>
     <HeaderLogo />
-    <MyDay />
-    <Informations />
+    
+    <InscriptionForm />
   </div>
 
 );

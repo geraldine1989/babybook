@@ -11,7 +11,7 @@ import 'semantic-ui-css/semantic.min.css';
  * import : local
  */
 import store from 'src/store';
-import ParentsSpaceDayType from 'src/components/ParentsSpace/ParentsSpaceDayType';
+import App from './components/App';
 
 
 /**
@@ -24,7 +24,7 @@ import ParentsSpaceDayType from 'src/components/ParentsSpace/ParentsSpaceDayType
 const rootComponent = (
   <Provider store={store}>
     <Router >
-      <ParentsSpaceDayType />
+      <App/>
     </Router>
   </Provider>);
 

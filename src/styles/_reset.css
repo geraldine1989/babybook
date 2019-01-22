@@ -19,6 +19,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -28,6 +29,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
 	line-height: 1;
+	
 }
 ol, ul {
 	list-style: none;
@@ -59,11 +61,13 @@ label, button {
 }
 
 html {
-  box-sizing: border-box
+	box-sizing: border-box;
+	width: 100vw;
 }
 
 *, *::before, *::after {
-  box-sizing: inherit
+	box-sizing: border-box;
+	width: 100vw;
 }
 
 input, button {

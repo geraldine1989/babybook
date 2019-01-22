@@ -15,7 +15,6 @@ import 'semantic-ui-css/semantic.min.css';
  */
 const InscriptionForm = () => (
   <div id="page">
-    <div id="title">Baby Book</div>
     <h2 id="pagetitle">Inscription parents</h2>
     <div id="form">
       <Form>
@@ -37,7 +36,6 @@ const InscriptionForm = () => (
         <Button type="submit">S'inscrire</Button>
       </Form>
     </div>
-    <div id="legalnotices">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
   </div>
 );
 
