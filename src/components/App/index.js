@@ -15,6 +15,8 @@ import InscriptionForm from '../InscriptionForm';
 import LoginNanny from '../LoginNanny';
 import LoginParents from '../LoginParents';
 import Informations from '../Informations';
+import ParentsSpaceNav from '../ParentsSpace/ParentsNav';
+import ParentsSpaceContacts from '../ParentsSpace/ParentsSpaceContacts';
 
 
 import './app.scss';
@@ -26,8 +28,9 @@ import './app.scss';
 const App = () => (
   <div>
     <HeaderLogo />
-    <MainNav/>
-    <LoginParents />
+    <MainNav />
+    <ParentsSpaceNav />
+    <ParentsSpaceContacts />
   </div>
 
 );
