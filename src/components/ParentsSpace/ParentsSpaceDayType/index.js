@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Input, Icon, Button, Select } from 'semantic-ui-react';
+import { Input, Icon, Button, Form } from 'semantic-ui-react';
 
 /**
  * Local import
@@ -20,37 +20,53 @@ const ParentsSpaceDayType = ({ handleAddItemInList, handleDeleteMyDayItem }) => 
     <h3>Journée type prévue</h3>
     <ul>
       <li>
-        <Icon name="smile outline" size="big" />
-        <h4>Sieste</h4>
-        <h4>16h00</h4>
-        <p>Dort avec doudou</p>
-        <Icon name="close" size="big" onClick={handleDeleteMyDayItem} />
+        <Icon name="smile outline" />
+        <span>Sieste</span>
+        <span>16h00</span>
+        <span>Dort avec doudou</span>
+        <Icon name="delete" onClick={handleDeleteMyDayItem} />
       </li>
       <li>
-        <Icon name="smile outline" size="big" />
-        <h4>Sieste</h4>
-        <h4>16h00</h4>
-        <p>Dort avec doudou</p>
-        <Icon name="close" size="big" onClick={handleDeleteMyDayItem} />
+        <Icon name="smile outline" />
+        <span>Sieste</span>
+        <span>16h00</span>
+        <span>Dort avec doudou</span>
+        <Icon name="delete" onClick={handleDeleteMyDayItem} />
       </li>
       <li>
-        <Icon name="smile outline" size="big" />
-        <h4>Sieste</h4>
-        <h4>16h00</h4>
-        <p>Dort avec doudou</p>
-        <Icon name="close" size="big" onClick={handleDeleteMyDayItem} />
+        <Icon name="smile outline" />
+        <span>Sieste</span>
+        <span>16h00</span>
+        <span>Dort avec doudou</span>
+        <Icon name="delete" onClick={handleDeleteMyDayItem} />
       </li>
     </ul>
     <div id="add-item">
-      <Input placeholder="Titre" value="" />
-      <Input placeholder="Heure" value="" />
-      <Input placeholder="Note" value="" />
-      <Icon name="check" size="big" onClick={handleAddItemInList} />
+      <Form className="form-add-item">
+        <Form.Field>
+          <input placeholder="Titre" value="" />
+        </Form.Field>
+        <Form.Field>
+          <input placeholder="Heure" value="" />
+        </Form.Field>
+        <Form.Field>
+          <input placeholder="Note" value="" />
+        </Form.Field>
+        <Button icon type="submit">
+          <Icon name="add circle" onClick={handleAddItemInList} />
+        </Button>
+      </Form>
     </div>
-    <div id="group">
+    <div id="add-note">
       <p>Ajouter une note pour cette journée</p>
-      <Input />
-      <Icon name="plus" size="big" />
+      <Form className="form-add-note">
+        <Form.Field>
+          <input type="text" placeholder="Ajouter une note" />
+        </Form.Field>
+        <Button icon type="submit">
+          <Icon name="add circle" />
+        </Button>
+      </Form>
     </div>
 
   </div>
