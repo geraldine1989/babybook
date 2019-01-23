@@ -7,7 +7,7 @@ import { Form } from 'semantic-ui-react';
 /**
  * Local import
  */
-
+import './style.scss';
 
 /**
  * Code
@@ -20,7 +20,7 @@ const Contact = () => (
         <Form.Input fluid label="Nom" placeholder="Nom" />
       </Form.Group>
       <Form.TextArea autoHeight label="Votre message" placeholder="Quelle est votre question ?" />
-      <Form.Button color="teal">Envoyer</Form.Button>
+      <Form.Button color="teal" className="contact-button">Envoyer</Form.Button>
     </Form>
   </div>
 );

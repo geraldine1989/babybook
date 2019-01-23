@@ -11,7 +11,6 @@ import 'semantic-ui-css/semantic.min.css';
  * import : local
  */
 import store from 'src/store';
-import ParentsSpaceContacts from 'src/components/ParentsSpace/ParentsSpaceContacts';
 import App from 'src/components/App';
 
 

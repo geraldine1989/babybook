@@ -159,12 +159,14 @@
         display: flex;
         flex-wrap: wrap;
         padding: 0.5em;
-        justify-content: space-around;
         align-items: baseline;
+        justify-content: space-between;
+        
           & Button {
             margin: 1em;
             background-color: #91D7D9;
             color: #2C1915;
+            
           }
       }
 
@@ -172,7 +174,7 @@
         display: flex;
         flex-wrap: wrap;
         padding: 0.5em;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: baseline;
           & Button {
             margin: 0.5em;

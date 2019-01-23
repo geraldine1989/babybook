@@ -10,7 +10,6 @@ import 'semantic-ui-css/semantic.min.css';
 
 const ParentsSpaceInfo = () => (
   <div id="modif-informations">
-    <h2>Modification des informations</h2>
     <div id="modif-child">
 
       <h3>Enfant</h3>
