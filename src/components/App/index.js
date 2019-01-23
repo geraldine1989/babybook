@@ -32,7 +32,7 @@ const App = () => (
   <div>
     <HeaderLogo />
     <MainNav/>
-    <Error/>
+    <Informations />
     <Footer/>
 
   </div>
