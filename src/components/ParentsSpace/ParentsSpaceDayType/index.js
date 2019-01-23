@@ -9,6 +9,7 @@ import { Input, Icon, Button, Form } from 'semantic-ui-react';
  * Local import
  */
 import './style.scss';
+import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
 
 /**
  * Code

@@ -1,6 +1,6 @@
 /*
 /home
-/signup
+/inscription
 /login-parents
 /login-nanny
 /my-day/journal
@@ -9,5 +9,6 @@
 /espace-parents/infos
 /espace-parents/contacts
 /mentions-legales
+/contacts
 /not-found
 */
