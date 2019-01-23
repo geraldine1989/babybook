@@ -15,6 +15,7 @@ import InscriptionForm from '../InscriptionForm';
 import LoginNanny from '../LoginNanny';
 import LoginParents from '../LoginParents';
 import Informations from '../Informations';
+import MyDay from '../MyDay';
 
 
 import './app.scss';
@@ -26,10 +27,8 @@ import './app.scss';
 const App = () => (
   <div>
     <HeaderLogo />
-    <MainNav/>
-    <LoginParents />
+    <MyDay />
   </div>
-
 );
 
 /**

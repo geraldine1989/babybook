@@ -2,23 +2,26 @@
 
 /* Container */
 #myday {
-  padding: 2em;
   margin: 0 auto;
+  padding: 2em;
   max-width: 600px;
+  text-align: center;
 }
 
-#general-contact {
-  padding: 1em;
-  max-width: 600px;
-  margin: 0 auto;
-}
+// #general-contact {
+//   padding: 1em;
+//   max-width: 600px;
+//   margin: 0 auto;
+// }
 
 /* Daily diary's title & date */
+#intro {
+  text-align: center;
+}
+
 #date {
-  font-weight: bold;
   font-size: 1.3em;
   color: $brown;
-  text-align: center;
 }
 
 #title {
@@ -26,17 +29,18 @@
   font-size: 1.1em;
   padding: 2em;
   color: $blue;
-  text-align: center;
 }
 
 #note-parents {
-  text-align: center;
-  max-width: 100%;
-  border: 1px solid $green;
-  background-color: white;
+  max-width: 70%;
+  border: 2px solid $green;
   color: $brown;
-  border-radius: 1em;
-  margin-top: 0;
+  border-radius: 15px;
+  padding: 0.5em;
+  margin: 0 auto;
+  h3 {
+    margin-bottom: 0;
+  }
   p {
     color: $blue;
   }
@@ -49,6 +53,7 @@
   display: flex;
   flex-direction: column;
   align-content: space-between;
+  padding: 1em;
 }
 
 #sleep {
@@ -61,8 +66,9 @@
 /* By classname */
 .infos {
   padding: 1em;
-  flex: 0 1 auto;
+  float: left;
 }
+
 
 .list-item {
   font-weight: bold;
@@ -81,24 +87,23 @@
   color: $blue;
 }
 
-.note-input {
+input {
   margin: 0.5em auto;
-  width: 25rem;
-  height: 3rem;
-  border: 1.5px solid $green;
-  border-radius: 1em;
+  width: 50%;
+  height: 50%;
+  border-radius: 15px;
   padding: 0.5em;
-
+  border: 2px solid $green;
 }
 
 .add-button {
-  color: $green;
+  background-color: $green;
 }
 
 /* By element */
+
 span {
-  padding: 0.5em;
-  position: left;
+  padding: 0.5em 1em;
 }
 
 /* Particular notes */
@@ -111,7 +116,7 @@ span {
   padding: 1em;
   textarea {
     border: 1.5px solid $green;
-    border-radius: 1em;
+    border-radius: 15px;
     &::placeholder {
       text-align: center;
     }
@@ -122,8 +127,8 @@ span {
   margin: 1em;
   background-color: $blue;
   color: $brown;
-}
-
-* {
-  box-sizing: border-box;
+  border-radius: 50px;
+  &:hover {
+    background-color: $green;
+  }
 }

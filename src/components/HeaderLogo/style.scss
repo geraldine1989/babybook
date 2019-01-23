@@ -1,16 +1,13 @@
 #headerLogo {
-    padding: 3.5em;
-    background-color: #EEE9E6;
-    width: 100%;
-    
-    
-        & h2 {
-            color: #C2DE89;
-            font-size: 3em;
-
-            & .headerLogoB {
-                color: #2C1915;
-            }
-        }
-
+  padding: 3em;
+  background-color: #EEE9E6;
+  width: 100%;
+  & h2 {
+    color: #C2DE89;
+    font-size: 3em;
+    & .headerLogoB {
+      color: #2C1915;
+      padding: 0;
+    }
+  }
 }
