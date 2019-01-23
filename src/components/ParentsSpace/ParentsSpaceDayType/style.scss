@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 2em;
+  margin-top: 2em;
 }
 
 h3 {
@@ -11,14 +13,13 @@ h3 {
 ul {
   min-width: 400px;
   max-width: 80%;
-  width: 80%;
+  width: 50%;
 }
 li {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  border-radius: 25px;
-  border: 1px solid #91D7D9;
+  
   padding: 1em;
   margin-top: 0.5em;
 }
@@ -31,9 +32,9 @@ li {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin-top: 0.5em;
+  margin-top: 2em;
   max-width: 80%;
-  width: 80%;
+  width: 60%;
   
   & .form-add-item {
     display: flex;
@@ -47,14 +48,21 @@ li {
     }
     & input {
       width: 100%;
-      padding: 1em;
+      padding: 0.5em;
       justify-content: center;
-      border-radius: 25px;
-      border: 1px solid #91D7D9; 
+      border-radius: 5px;
+      border: 0.5px solid #C2DE89; 
+    }
+
+    & label {
+      color: #2C1915;
     }
     & Button {
-      background-color: #91D7D9;
-      color: #2C1915;
+      background-color: white;
+      color: #91D7D9;
+      border-radius: 25px;
+      margin-top: 1.5em;
+      border: 2px solid #91D7D9;
     }
   }
 }
@@ -68,31 +76,144 @@ li {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-top: 2em;
-  width: 80%;
+  margin-top: 3em;
+  width: 60%;
+  text-transform: uppercase;
+  
 
   & .form-add-note {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 80%;
-  width: 80%;
+  justify-content: center;
+  
+  width: 100%;
     & .field {
-      width: 90%;
+      width: 100%;
       margin: 0;
     }
     & input {
       width: 100%;
       padding: 1em;
       justify-content: center;
-      border-radius: 25px;
-      border: 1px solid #91D7D9; 
+      border-radius: 15px;
+      border: 1px solid #2C1915; 
     }
-
-    & Button {
-      background-color: #91D7D9;
+    & i {
       color: #2C1915;
+      background-color:#91D7D9;
+      border: 1px solid #2C1915;
+      border-top-right-radius: 15px; 
+      border-bottom-right-radius: 15px; 
+    }
+   
+  }
+}
+
+// format portable
+@media all and (orientation: portrait) {
+  #day-type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2em;
+    margin-top: 1em;
+  }
+  
+  ul {
+    min-width: 310px;
+    max-width: 80%;
+    width: 50%;
+  }
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    
+    padding: 1em;
+    margin-top: 0.5em;
+  }
+  
+  #btn {
+    margin-top: 1em;
+  }
+  
+  #add-item {
+    display: flex;
+    
+    margin-top: 2em;
+  
+    
+    & .form-add-item {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+
+      & .field {
+        width: 100%;
+        margin: 0;
+      }
+      & input {
+        width: 100%;
+        padding: 0.5em;
+        justify-content: center;
+        border-radius: 5px;
+        border: 0.5px solid #C2DE89; 
+        margin: 0.8em;
+      }
+  
+      & label {
+        color: #2C1915;
+      }
+      & Button {
+        background-color: white;
+        color: #91D7D9;
+        border-radius: 25px;
+        margin-top: 1em;
+        border: 2px solid #91D7D9;
+      }
     }
   }
+  
+  .icon:hover {
+    cursor: pointer;
+  }
+  
+  #add-note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 1.3em;
+    width: 90%;
+    margin-bottom: 3em;
+    text-transform: uppercase;
+    
+  
+    & .form-add-note {
+    display: flex;
+    justify-content: center;
+    
+    width: 100%;
+      & .field {
+        width: 100%;
+        margin: 0;
+      }
+      & input {
+        width: 100%;
+        padding: 1em;
+        justify-content: center;
+        border-radius: 15px;
+        border: 1px solid #2C1915; 
+      }
+      & i {
+        color: #2C1915;
+        background-color:#91D7D9;
+        border: 1px solid #2C1915;
+        border-top-right-radius: 15px; 
+        border-bottom-right-radius: 15px; 
+      }
+     
+    }
+  }
+  
 }

@@ -1,7 +1,9 @@
+
 #modif-informations {
   padding: 2em;
-  margin-bottom: 3em;
-
+  margin-bottom: 5em;
+  width: 80%;
+  margin: auto;
       & h2 {
           color: #4c2e27;
           margin: auto;
@@ -35,8 +37,8 @@
               flex-direction: column;
 
               & .ui input {
-                border: 1px solid #C2DE89;
-                border-radius: 25px;
+                border: 1px solid gray;
+                border-radius: 15px;
                 padding: 1em;
               }
           }
@@ -48,8 +50,8 @@
             flex-direction: column;
 
             & .ui input {
-              border: 1px solid #C2DE89;
-              border-radius: 25px;
+              border: 1px solid gray;
+              border-radius: 15px;
               padding: 1em;
             } 
         }
@@ -62,54 +64,72 @@
           flex-wrap: wrap;
           width: 80%;
           margin-bottom: 2.5em;
+          
 
           & h3 {
               width: 100%;
               display: block;
               color : #91D7D9;
               font-size: 2em;
-              margin-bottom: 0.3em;            
+              margin-bottom: 1em; 
+
           }
 
-          & .header {
-            color: #4c2e27;
-          }
+          
 
           & #cards {
               display: flex;
               justify-content: space-around;
+              align-items: baseline;
               width: 100%;
               flex-wrap: wrap;
               
-              
-
-              & #medecine {
-                  
-                padding: 1em;
-                border-radius: 25px;
-                display: block;
-                flex-wrap: wrap;
-                border: 1px solid #C2DE89;
+              & .add-sante {
                 
-              }
-
-              & #vaccine {
+                width: 100%;
+                & input {
+                  border: 1px solid gray;
+                  border-radius: 15px;
                   
-                padding: 1em;
-                border-radius: 25px;
-                display: block;
-                flex-wrap: wrap;
-                border: 1px solid #C2DE89;
-
+                }
               }
+              
+        
 
-              & #allergies {
-                  
-                padding: 1em;
-                border-radius: 25px;
-                display: block;
+              & .cards-item {
+                display: flex;
                 flex-wrap: wrap;
-                border: 1px solid #C2DE89;
+                width: 30%;
+                justify-content: center;
+
+                & .header {
+                  color: #4c2e27;
+                  text-align: center;
+                  font-size: 1em;
+                  text-transform: uppercase;
+                }
+
+                & .delete-item {
+                  display: flex;
+                  width: 100%;
+                  & li {
+                    display: flex;
+                    width: 100%;
+                    margin-bottom: 0.5em;
+                    margin-top: 0;
+                    padding: 0;
+
+                  }
+                }
+
+                & button {
+                  background-color: white;
+                  border: 2px solid #C2DE89;
+                  
+                  font-size: 0.7em;
+                  border-radius: 25px;
+                  color: #C2DE89;
+                }
                 
               }
               
@@ -136,8 +156,8 @@
              
 
               & .ui input {
-                border: 1px solid #C2DE89;
-                border-radius: 25px;
+                border: 1px solid gray;
+                border-radius: 15px;
                 padding: 1em;
               }
           }
@@ -149,11 +169,13 @@
         padding: 0.5em;
         display: flex;
         justify-content: center;
+        width: 100%;
+        margin-bottom: 2em;
         
         & Button {
-          background-color: #91D7D9;
+          background-color: #C2DE89;
           color: #2C1915;
-          
+          width: 50%;
         }
 
       }
@@ -167,7 +189,7 @@
         
           & Button {
             margin: 1em;
-            background-color: #91D7D9;
+            background-color: #C2DE89;
             color: #2C1915;
             
           }
@@ -181,7 +203,7 @@
         align-items: baseline;
           & Button {
             margin: 0.5em;
-            background-color: #91D7D9;
+            background-color: #C2DE89;
             color: #2C1915;
           }
       }
@@ -189,3 +211,217 @@
 }
 
 
+// format portable
+@media all and (orientation: portrait) {
+  #modif-informations {
+    padding: 1em;
+    margin-bottom: 5em;
+    width: 100%;
+    margin: auto;
+        & h2 {
+            color: #4c2e27;
+            margin: auto;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 2em;
+            padding: 0.8em;
+            margin-bottom: 1em;
+        }
+  
+        & #modif-child {
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            width: 80%;
+            margin-bottom: 2.5em;
+  
+            & h3 {
+                width: 100%;
+                display: block;
+                color : #91D7D9;
+                font-size: 2em;
+                margin-bottom: 0.3em;            
+            }
+  
+            & #modif-child-name {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+  
+                & .ui input {
+                  border: 1px solid gray;
+                  border-radius: 15px;
+                  padding: 1em;
+                }
+            }
+  
+            & #modif-birthdate {
+              width: 100%;
+              display: flex;
+              flex-wrap: wrap;
+              flex-direction: column;
+  
+              & .ui input {
+                border: 1px solid gray;
+                border-radius: 15px;
+                padding: 1em;
+              } 
+          }
+  
+        }
+  
+        & #modif-health {
+            margin: auto;
+            display: flex;
+            width: 100%;
+            margin-bottom: 1em;
+            
+  
+            & h3 {
+                width: 100%;
+                display: block;
+                color : #91D7D9;
+                font-size: 2em;
+                margin-bottom: 1em; 
+  
+            }
+  
+            
+  
+            & #cards {
+                display: flex;
+                justify-content: space-around;
+                align-items: baseline;
+                width: 100%;
+                flex-wrap: wrap;
+                
+                & .add-sante {
+                  
+                  width: 100%;
+                  & input {
+                    border: 1px solid gray;
+                    border-radius: 15px;
+                    
+                  }
+                }
+                
+          
+  
+                & .cards-item {
+                  display: flex;
+                  flex-wrap: wrap;
+                  width: 90%;
+                  justify-content: center;
+                  margin-bottom: 2em;
+  
+                  & .header {
+                    color: #4c2e27;
+                    text-align: center;
+                    font-size: 1em;
+                    text-transform: uppercase;
+                  }
+  
+                  & .delete-item {
+                    display: flex;
+                    width: 100%;
+                    & li {
+                      display: flex;
+                      width: 100%;
+                      margin-bottom: 0.5em;
+                      margin-top: 0;
+                      padding: 0;
+  
+                    }
+                  }
+  
+                  & button {
+                    background-color: white;
+                    border: 2px solid #C2DE89;
+                    
+                    font-size: 0.7em;
+                    border-radius: 25px;
+                    color: #C2DE89;
+                  }
+                  
+                }
+                
+            }
+        }
+  
+        & #modif-numeros {
+          margin: auto;
+          display: flex;
+          flex-wrap: wrap;
+          width: 90%;
+          margin-bottom: 2.5em;
+  
+            & h3 {
+                width: 100%;
+                display: block;
+                color : #91D7D9;
+                font-size: 2em;
+                margin-bottom: 0.3em;            
+            }
+  
+            & #modif-numeros-div {
+                width: 100%;
+               
+  
+                & .ui input {
+                  border: 1px solid gray;
+                  border-radius: 15px;
+                  padding: 1em;
+                }
+            }
+        }
+  
+  
+        & #save {
+          margin: auto;
+          padding: 0.5em;
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          margin-bottom: 2em;
+          
+          & Button {
+            background-color: #C2DE89;
+            color: #2C1915;
+            width: 50%;
+          }
+  
+        }
+  
+        & .delete-item {
+          display: flex;
+          flex-wrap: wrap;
+          padding: 0.5em;
+          align-items: baseline;
+          justify-content: space-between;
+          
+            & Button {
+              margin: 1em;
+              background-color: #C2DE89;
+              color: #2C1915;
+              
+            }
+        }
+  
+        & .add-item {
+          display: flex;
+          flex-wrap: wrap;
+          padding: 0.5em;
+          justify-content: space-between;
+          align-items: baseline;
+            & Button {
+              margin: 0.5em;
+              background-color: #C2DE89;
+              color: #2C1915;
+            }
+        }
+  
+  }
+  
+}
