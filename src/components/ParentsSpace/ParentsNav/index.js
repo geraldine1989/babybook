@@ -8,7 +8,7 @@ import './style.scss';
 
 
 export default class ParentsNav extends Component {
-  state = { activeItem: 'home' }
+  state = { activeItem: 'Modifier les infos' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -19,15 +19,18 @@ export default class ParentsNav extends Component {
       <div id="parentsNav">
       <h2>Espace parents</h2>
       <Menu secondary className="second-menu">
-        <Menu.Item name='Modification des infirmations' active={activeItem === 'home'} onClick={this.handleItemClick} />
+        <Menu.Item className="second-menu-item" name='Modifier journée type' active={activeItem === 'Modifier journée type'} onClick={this.handleItemClick} />
         <Menu.Item
-          name='messages'
-          active={activeItem === 'messages'}
+          className="second-menu-item"
+          name='Modifier les infos'
+          active={activeItem === 'Modifier les infos'}
           onClick={this.handleItemClick}
+        
         />
         <Menu.Item
-          name='friends'
-          active={activeItem === 'friends'}
+          className="second-menu-item"
+          name='Gestion contacts'
+          active={activeItem === 'Gestion contacts'}
           onClick={this.handleItemClick}
         />
       </Menu>

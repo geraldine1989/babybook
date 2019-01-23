@@ -1,0 +1,69 @@
+#error {
+  margin: auto;
+
+  & h2 {
+    color: #2C1915;
+    font-style: italic;
+    margin: auto;
+    margin: 2em;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2rem;
+    padding: 0.8em;
+    margin-bottom: 1rem;
+  }
+
+  & .back-button {
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    margin: auto;
+    margin-bottom: 3rem;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 5px;
+    padding: 1.5em;
+    margin-top: 3em;
+  
+  }
+
+}
+
+
+/* version portable */
+@media all and (orientation: portrait) {
+
+  #error {
+    margin: auto;
+  
+    & h2 {
+      color: #2C1915;
+      font-style: italic;
+      margin: auto;
+      margin: 1em;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 1em;
+      padding: 0.8em;
+      margin-bottom: 1rem;
+    }
+  
+    & .back-button {
+      display: flex;
+      justify-content: center;
+      width: 80%;
+      margin: auto;
+      margin-bottom: 1em;
+      border: 1px solid black;
+      background-color: white;
+      border-radius: 5px;
+      padding: 1.5em;
+      margin-top: 3em;
+    
+    }
+  
+  }
+
+}

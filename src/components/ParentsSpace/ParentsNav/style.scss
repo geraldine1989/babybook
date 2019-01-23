@@ -9,10 +9,25 @@
         font-size: 2em;
         padding: 0.8em;
         margin-bottom: 1em;
+        margin-top: 1em;
     }
 
     & .second-menu {
         display: flex;
         justify-content: center;
+        text-align: center;
+
+        & .second-menu-item {
+            width: 25%;
+            display: flex;
+            justify-content: center;
+            padding: 1em 0 1em 0;
+            font-size: 1em;
+        }
+
+        & .active {
+            border-bottom: 2px solid #4c2e27;
+            background-color: white;
+        }
     }
 }

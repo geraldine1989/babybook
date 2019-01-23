@@ -20,6 +20,7 @@ import LegalMentions from '../LegalMentions';
 import Contact from '../Contact';
 import ParentsNav from '../ParentsSpace/ParentsNav';
 import ParentsSpaceInfo from '../ParentsSpace/ParentsSpaceInfo';
+import Error from '../Error';
 
 import './app.scss';
 
@@ -31,8 +32,7 @@ const App = () => (
   <div>
     <HeaderLogo />
     <MainNav/>
-    <ParentsNav />
-    <ParentsSpaceInfo/>
+    <Error/>
     <Footer/>
 
   </div>

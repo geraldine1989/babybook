@@ -1,5 +1,6 @@
 #modif-informations {
   padding: 2em;
+  margin-bottom: 3em;
 
       & h2 {
           color: #4c2e27;
@@ -76,9 +77,11 @@
 
           & #cards {
               display: flex;
-              justify-content: space-between;
+              justify-content: space-around;
               width: 100%;
               flex-wrap: wrap;
+              
+              
 
               & #medecine {
                   
