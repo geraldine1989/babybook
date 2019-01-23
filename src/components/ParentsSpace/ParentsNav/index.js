@@ -19,7 +19,12 @@ export default class ParentsNav extends Component {
       <div id="parentsNav">
       <h2>Espace parents</h2>
       <Menu secondary className="second-menu">
-        <Menu.Item className="second-menu-item" name='Modifier journée type' active={activeItem === 'Modifier journée type'} onClick={this.handleItemClick} />
+        <Menu.Item 
+          className="second-menu-item"
+          name='Modifier journée type'
+          active={activeItem === 'Modifier journée type'}
+          onClick={this.handleItemClick}
+        />
         <Menu.Item
           className="second-menu-item"
           name='Modifier les infos'

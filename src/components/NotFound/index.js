@@ -12,15 +12,16 @@ import './style.scss';
 /**
  * Code
  */
-const Error = () => (
+const NotFound = () => (
   <div id="error">
     <h2>Oups... Il semblerait que cette page n'existe pas...</h2>
-    <button className="back-button"> Retour</button>
-
+    <NavLink exact to="/home">
+      <button className="back-button"> Retour</button>
+    </NavLink>
   </div>
 );
 
 /**
  * Export
  */
-export default Error;
+export default NotFound;

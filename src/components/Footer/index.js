@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
+import { NavLink, Switch, Route } from 'react-router-dom';
 /**
  * Local import
  */
@@ -16,11 +17,13 @@ import './style.scss';
  */
 const Footer = () => (
   <div id="footer">
-    
-    <div className="footer-elements"> <a className="a-elements" href="#"> Mentions Légales </a> </div>
-    <div className="footer-elements"> <a className="a-elements"  href="#"> Contacts </a> </div>
+    <NavLink exact to="mentions-legales">
+      <div className="footer-elements a-elements">Mentions Légales</div>
+    </NavLink>
+    <NavLink exact to="contact">
+      <div className="footer-elements a-elements">Contact</div>
+    </NavLink>
     <div className="footer-elements"> <Icon name='copyright outline'/> BabyBook </div>
-
   </div>
 );
 
