@@ -35,7 +35,7 @@ const App = () => (
     <HeaderLogo />
     <MainNav />
     <ParentsNav />
-    <ParentsSpaceDayType/>
+    <ParentsSpaceInfo/>
     <Footer/>
 
   </div>

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import PropsTypes from 'prop-types';
-import { Form, Button, Card, Icon } from 'semantic-ui-react';
+import { Form, Button, Card, Icon, Input } from 'semantic-ui-react';
 
 // Local imports
 import './style.scss';
@@ -27,65 +27,61 @@ const ParentsSpaceInfo = () => (
     <div id="modif-health">
       <h3>Santé</h3>
       <div id="cards">
-        <Card id="medecine">
-          <Card.Content header="Traitement en cours" />
+        <div className="cards-item">
+          <div className="header">Traitement en cours</div>
+            
           <div className="delete-item">
-            <Card.Content description="Doliprane" />
-            <Button icon type="submit">
+            <li>Doliprane <Button icon type="submit">
               <Icon name="delete" />
-            </Button>
-          </div>
-          <div className="delete-item">
-            <Card.Content description="Smecta" />
-            <Button icon type="submit">
+              </Button></li>
+            <li>Smecta <Button icon type="submit">
               <Icon name="delete" />
-            </Button>
+              </Button></li>
           </div>
-          <Form className="add-item">
-            <Form.Input type="text" placeholder="Médicament et posologie" />
-            <Button icon type="submit">
-              <Icon name="add circle" />
-            </Button>
+          
+          <Form className="add-sante">
+              <Form.Field>
+                <Input icon={{ name: 'add', link: true }} placeholder='Ajoutez un médicament' />
+              </Form.Field>
           </Form>
-        </Card>
+        </div>
 
-        <Card id="vaccine">
-          <Card.Content header="Vaccins" />
+        <div className="cards-item">
+          <div className="header">Vaccins</div>
+            
           <div className="delete-item">
-            <Card.Content description="Rubéole : fait le 03/02/2017" />
-            <Button icon type="submit">
+            <li>Rubéole : fait le 09/09/17 <Button icon type="submit">
               <Icon name="delete" />
-            </Button>
-          </div>
-          <div className="delete-item">
-            <Card.Content description="Rage : fait le 03/02/2017" />
-            <Button icon type="submit">
+              </Button></li>
+            <li>Rage : fait le 09/09/17 <Button icon type="submit">
               <Icon name="delete" />
-            </Button>
+              </Button></li>
           </div>
-          <Form className="add-item">
-            <Form.Input type="text" placeholder="Nom du vaccin et date" />
-            <Button icon type="submit">
-              <Icon name="add circle" />
-            </Button>
+          
+          <Form className="add-sante">
+              <Form.Field>
+                <Input icon={{ name: 'add', link: true }} placeholder='Ajoutez le vaccin et sa date' />
+              </Form.Field>
           </Form>
-        </Card>
+        </div>
 
-        <Card id="allergies">
-          <Card.Content header="Allergies" />
+        <div className="cards-item">
+          <div className="header">Allergies</div>
+            
           <div className="delete-item">
-            <Card.Content description="Cacahuète" />
-            <Button icon type="submit">
+            <li>Cacahuètes <Button icon type="submit">
               <Icon name="delete" />
-            </Button>
+              </Button></li>
+            
           </div>
-          <Form className="add-item">
-            <Form.Input type="text" placeholder="Nom de l'allergène" />
-            <Button icon type="submit">
-              <Icon name="add circle" />
-            </Button>
+          
+          <Form className="add-sante">
+              <Form.Field>
+                <Input icon={{ name: 'add', link: true }} placeholder='Ajoutez un allergene' />
+              </Form.Field>
           </Form>
-        </Card>
+
+        </div>
       </div>
     </div>
 
