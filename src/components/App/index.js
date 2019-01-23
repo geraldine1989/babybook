@@ -20,6 +20,8 @@ import LegalMentions from '../LegalMentions';
 import Contact from '../Contact';
 import ParentsNav from '../ParentsSpace/ParentsNav';
 import ParentsSpaceInfo from '../ParentsSpace/ParentsSpaceInfo';
+import ParentsSpaceDayType from '../ParentsSpace/ParentsSpaceDayType';
+import ParentsSpaceContacts from '../ParentsSpace/ParentsSpaceContacts';
 import Error from '../Error';
 
 import './app.scss';
@@ -31,8 +33,9 @@ import './app.scss';
 const App = () => (
   <div>
     <HeaderLogo />
-    <MainNav/>
-    <Error/>
+    <MainNav />
+    <ParentsNav />
+    <ParentsSpaceInfo/>
     <Footer/>
 
   </div>
