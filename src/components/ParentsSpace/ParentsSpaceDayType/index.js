@@ -9,6 +9,7 @@ import { Input, Icon, Button, Form } from 'semantic-ui-react';
  * Local import
  */
 import './style.scss';
+import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
 
 /**
  * Code
@@ -17,7 +18,6 @@ const ParentsSpaceDayType = ({ handleAddItemInList, handleDeleteMyDayItem }) => 
 
   return (
   <div id="day-type">
-    <h3>Journée type prévue</h3>
     <ul>
       <li>
         <Icon name="smile outline" />
@@ -41,19 +41,23 @@ const ParentsSpaceDayType = ({ handleAddItemInList, handleDeleteMyDayItem }) => 
         <Icon name="delete" onClick={handleDeleteMyDayItem} />
       </li>
     </ul>
+
     <div id="add-item">
       <Form className="form-add-item">
         <Form.Field>
+        <label> Titre </label>
           <input placeholder="Titre" value="" />
         </Form.Field>
         <Form.Field>
-          <input placeholder="Heure" value="" />
+        <label> Heure </label>
+          <input type="time" placeholder="Heure" value="" />
         </Form.Field>
         <Form.Field>
-          <input placeholder="Note" value="" />
+          <label> Note </label>
+          <input type="texte" placeholder="Note" value="" />
         </Form.Field>
         <Button icon type="submit">
-          <Icon name="add circle" onClick={handleAddItemInList} />
+          <Icon name="add" onClick={handleAddItemInList} />
         </Button>
       </Form>
     </div>
@@ -61,11 +65,8 @@ const ParentsSpaceDayType = ({ handleAddItemInList, handleDeleteMyDayItem }) => 
       <p>Ajouter une note pour cette journée</p>
       <Form className="form-add-note">
         <Form.Field>
-          <input type="text" placeholder="Ajouter une note" />
+            <Input icon={{ name: 'add', link: true }} placeholder='Ajoutez une note' />
         </Form.Field>
-        <Button icon type="submit">
-          <Icon name="add circle" />
-        </Button>
       </Form>
     </div>
 

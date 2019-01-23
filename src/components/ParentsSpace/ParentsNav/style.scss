@@ -23,11 +23,13 @@
             justify-content: center;
             padding: 1em 0 1em 0;
             font-size: 1em;
+            color: #2C1915;
         }
 
         & .active {
             border-bottom: 2px solid #4c2e27;
             background-color: white;
+            font-weight: bold;
         }
     }
 }

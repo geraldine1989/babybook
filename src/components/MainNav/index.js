@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Accordion } from 'semantic-ui-react'
+import { NavLink } from 'react-router-dom';
 
 //Local import
 import './style.scss';
 
-export default class AccordionExampleStandard extends Component {
+export default class MainNav extends Component {
   state = { activeIndex: -1 }
 
   handleClick = (e, titleProps) => {
@@ -20,25 +21,33 @@ export default class AccordionExampleStandard extends Component {
 
     return (
 
-        <div id="mainMenu">
-            <div id="mainNav"> 
-                <Accordion className="accodion">
-                    <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick} >
-                        <h3 className="accodionTitle">Menu</h3> 
-                    </Accordion.Title>
+      <div id="mainMenu">
+        <div id="mainNav">
+          <Accordion className="accodion">
+            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick} >
+                <h3 className="accodionTitle">Menu</h3> 
+            </Accordion.Title>
 
-                    <Accordion.Content active={activeIndex === 0}>
-                        <div className="accordionContent">
-                            <a href="#"> <li>Espace parents</li> </a>
-                            <a href="#"> <li>Journal</li> </a>
-                            <a href="#"> <li>Infos</li> </a>
-                            <a href="#"> <li>Se déconnecter de cet espace</li> </a>
-                        </div>
- 
-                    </Accordion.Content>
-                </Accordion>
-            </div>
-        </div>    
+            <Accordion.Content active={activeIndex === 0}>
+              <div className="accordionContent">
+                {/* <NavLink exact to="espace-parents" /> */}
+                  <div> <li>Espace parents</li> </div>
+                {/* </NavLink> */}
+                {/* <NavLink exact to="/espace-parents/journee-type" /> */}
+                  <div> <li>Journal</li> </div>
+                {/* </NavLink> */}
+                {/* <NavLink exact to="/espace-parents/infos" /> */}
+                  <div> <li>Infos</li> </div>
+                {/* </NavLink> */}
+                <NavLink exact to="home" />
+                  <div> <li>Se déconnecter de cet espace</li> </div>
+                {/* </NavLink> */}
+              </div>
+
+            </Accordion.Content>
+          </Accordion>
+        </div>
+      </div>
     )
   }
 }
