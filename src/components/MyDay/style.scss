@@ -14,7 +14,7 @@
 //   margin: 0 auto;
 // }
 
-/* Daily diary's title & date */
+/* Daily diary's title, date & parents' notes */
 #intro {
   text-align: center;
 }
@@ -52,7 +52,6 @@
 #list {
   display: flex;
   flex-direction: column;
-  align-content: space-between;
   padding: 1em;
 }
 
@@ -66,9 +65,9 @@
 /* By classname */
 .infos {
   padding: 1em;
+  margin: 0 auto;
   float: left;
 }
-
 
 .list-item {
   font-weight: bold;
@@ -87,6 +86,15 @@
   color: $blue;
 }
 
+.note-nanny {
+  color: $brown;
+}
+
+/* By element */
+span {
+  padding: 0.5em 1em;
+}
+
 input {
   margin: 0.5em auto;
   width: 50%;
@@ -94,16 +102,6 @@ input {
   border-radius: 15px;
   padding: 0.5em;
   border: 2px solid $green;
-}
-
-.add-button {
-  background-color: $green;
-}
-
-/* By element */
-
-span {
-  padding: 0.5em 1em;
 }
 
 /* Particular notes */
@@ -123,6 +121,10 @@ span {
   }
 }
 
+#particular-note-title {
+  font-weight: bold;
+}
+
 #submit {
   margin: 1em;
   background-color: $blue;
@@ -130,5 +132,18 @@ span {
   border-radius: 50px;
   &:hover {
     background-color: $green;
+  }
+}
+
+/* Media Queries */
+@media screen and (max-width: 425px) {
+  .infos {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.5em;
+  }
+
+  span {
+    padding: 0.5em;
   }
 }

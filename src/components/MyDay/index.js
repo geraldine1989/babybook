@@ -36,14 +36,14 @@ const MyDay = () => (
 
       <div id="bib-morning">
         <div className="infos">
-          <Button className="list-button" circular icon="coffee" />
+          <Button className="list-button" circular icon="utensils" />
           <span className="list-item">Biberon</span>
           <span className="time">8:00</span>
           <span className="note">Mettre 5 dosettes avec 150ml d'eau</span>
         </div>
         <form>
           <input placeholder="Ajouter une note..." />
-          <Button color="olive" circular icon={<Icon color="brown" name="add" />} className="add-button" />
+          <Button color="olive" circular icon={<Icon color="brown" name="add" />} />
         </form>
       </div>
 
@@ -56,7 +56,7 @@ const MyDay = () => (
         </div>
         <form>
           <input placeholder="Ajouter une note..." />
-          <Button color="olive" circular icon={<Icon color="brown" name="add" />} className="add-button" />
+          <Button color="olive" circular icon={<Icon color="brown" name="add" />} />
         </form>
       </div>
 
@@ -69,7 +69,7 @@ const MyDay = () => (
         </div>
         <form>
           <input placeholder="Ajouter une note..." />
-          <Button color="olive" circular icon={<Icon color="brown" name="add" />} className="add-button" />
+          <Button color="olive" circular icon={<Icon color="brown" name="add" />} />
         </form>
       </div>
 
@@ -82,12 +82,17 @@ const MyDay = () => (
         </div>
         <form>
           <input placeholder="Ajouter une note..." />
-          <Button color="olive" circular icon={<Icon color="brown" name="add" />} className="add-button" />
+          <Button color="olive" circular icon={<Icon color="brown" name="add" />} />
         </form>
+        <div className="note-nanny">
+          <p>
+            A refusé la compote.
+          </p>
+        </div>
       </div>
 
       <div id="particular-note">
-        <span>
+        <span id="particular-note-title">
         Notes complémentaires
         </span>
         <Form>
