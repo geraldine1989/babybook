@@ -2,7 +2,7 @@
  * Npm import
  */
 import React from 'react';
-import { Button, Input, TextArea, Form } from 'semantic-ui-react';
+import { Button, Input, TextArea, Form, Message, Icon } from 'semantic-ui-react';
 
 /**
  * Local import
@@ -23,6 +23,13 @@ const MyDay = () => (
       Journal de Lilou
     </div>
 
+    <Message id="note-parents">
+      <Message.Header>Indications des parents</Message.Header>
+      <p>
+        Pas d'indications particulières pour cette journée.
+      </p>
+    </Message>
+
     <div id="list">
 
       <div id="bib-morning">
@@ -32,7 +39,7 @@ const MyDay = () => (
           <span className="time">8:00</span>
           <span className="note">Mettre 5 dosettes avec 150ml d'eau</span>
         </div>
-        <Input className="note-input" placeholder="Ajouter une note..." />
+        <Input transparent className="note-input" icon={<Icon className="add-button" name="add" circular link />} placeholder="Ajouter une note..." />
       </div>
 
       <div id="bib-lunch">
@@ -42,7 +49,7 @@ const MyDay = () => (
           <span className="time">12:00</span>
           <span className="note">Mettre 3 dosettes avec 90ml d'eau</span>
         </div>
-        <Input className="note-input" placeholder="Ajouter une note..." />
+        <Input transparent className="note-input" icon={<Icon className="add-button" name="add" circular link />} placeholder="Ajouter une note..." />
       </div>
 
       <div id="sleep">
@@ -52,7 +59,7 @@ const MyDay = () => (
           <span className="time">13:30</span>
           <span className="note">Aucune note particulière</span>
         </div>
-        <Input className="note-input" placeholder="Ajouter une note..." />
+        <Input transparent className="note-input" icon={<Icon className="add-button" name="add" circular link />} placeholder="Ajouter une note..." />
       </div>
 
       <div id="bib-snack">
@@ -62,7 +69,7 @@ const MyDay = () => (
           <span className="time">16:00</span>
           <span className="note">Compote de pommes</span>
         </div>
-        <Input className="note-input" placeholder="Ajouter une note..." />
+        <Input transparent className="note-input" icon={<Icon className="add-button" name="add" circular link />} placeholder="Ajouter une note..." />
       </div>
 
       <div id="particular-note">
@@ -71,7 +78,7 @@ const MyDay = () => (
         </span>
         <Form>
           <TextArea autoHeight className="note-input" placeholder="Ajouter une note..." />
-          <Form.Button id="submit" color="teal">Envoyer</Form.Button>
+          <Form.Button id="submit">Ok !</Form.Button>
         </Form>
       </div>
     </div>
