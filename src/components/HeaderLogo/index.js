@@ -6,8 +6,6 @@ import { NavLink } from 'react-router-dom';
 
 // Local imports
 import './style.scss';
-import Informations from 'src/components/Informations'
-
 
 const HeaderLogo = () => (
   <NavLink exact to="/">
@@ -16,8 +14,5 @@ const HeaderLogo = () => (
     </div>
   </NavLink>
 );
-
-HeaderLogo.propTypes = {
-};
 
 export default HeaderLogo;
