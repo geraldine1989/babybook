@@ -43,7 +43,7 @@ const MyDay = () => (
         </div>
         <form>
           <input placeholder="Ajouter une note..." />
-          <Button color="olive" circular icon={<Icon color="brown" name="add" />} />
+          <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
         </form>
       </div>
 
@@ -56,7 +56,7 @@ const MyDay = () => (
         </div>
         <form>
           <input placeholder="Ajouter une note..." />
-          <Button color="olive" circular icon={<Icon color="brown" name="add" />} />
+          <Button className="add-task-button" circular icon={<Icon  name="add" />} />
         </form>
       </div>
 
@@ -69,7 +69,7 @@ const MyDay = () => (
         </div>
         <form>
           <input placeholder="Ajouter une note..." />
-          <Button color="olive" circular icon={<Icon color="brown" name="add" />} />
+          <Button className="add-task-button" circular icon={<Icon  name="add" />} />
         </form>
       </div>
 
@@ -82,7 +82,7 @@ const MyDay = () => (
         </div>
         <form>
           <input placeholder="Ajouter une note..." />
-          <Button color="olive" circular icon={<Icon color="brown" name="add" />} />
+          <Button className="add-task-button" circular icon={<Icon  name="add" />} />
         </form>
         <div className="note-nanny">
           <p>
