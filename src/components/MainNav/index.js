@@ -1,31 +1,58 @@
 import React, { Component } from 'react'
-import { Accordion } from 'semantic-ui-react'
+import { Accordion, Menu, Icon, Dropdown } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom';
 
 //Local import
 import './style.scss';
 
 export default class MainNav extends Component {
-  state = { activeIndex: -1 }
+  // state = { activeIndex: -1 }
 
-  handleClick = (e, titleProps) => {
-    const { index } = titleProps
-    const { activeIndex } = this.state
-    const newIndex = activeIndex === index ? -1 : index
+  // handleClick = (e, titleProps) => {
+  //   const { index } = titleProps
+  //   const { activeIndex } = this.state
+  //   const newIndex = activeIndex === index ? -1 : index
 
-    this.setState({ activeIndex: newIndex })
-  }
+  //   this.setState({ activeIndex: newIndex })
+  // }
 
   render() {
-    const { activeIndex } = this.state
+    // const { activeIndex } = this.state
 
     return (
 
       <div id="mainMenu">
         <div id="mainNav">
-          <Accordion className="accodion">
+        <Dropdown item text="menu" simple className="accordionTitle">
+        <Dropdown.Menu className="accordionContent">
+          <Dropdown.Item>
+            <NavLink exact to="/espace-parents" >
+              Espace Parents
+            </NavLink>
+          </Dropdown.Item>
+          <Dropdown.Item>
+            <NavLink exact to="/my-day/journal" >
+              Journal
+            </NavLink>
+          </Dropdown.Item>
+          <Dropdown.Item>
+            <NavLink exact to="/my-day/infos" >
+              Infos
+            </NavLink>
+          </Dropdown.Item>
+          <Dropdown.Item>
+            <NavLink exact to="/" >
+              Se déconnecter
+            </NavLink>
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+
+
+
+          {/* <Accordion className="accordion">
             <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick} >
-                <h3 className="accodionTitle">Menu</h3> 
+                <h3 className="accordionTitle">Menu</h3> 
             </Accordion.Title>
 
             <Accordion.Content active={activeIndex === 0}>
@@ -45,7 +72,7 @@ export default class MainNav extends Component {
               </div>
 
             </Accordion.Content>
-          </Accordion>
+          </Accordion> */}
         </div>
       </div>
     )
