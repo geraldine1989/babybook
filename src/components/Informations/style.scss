@@ -24,7 +24,7 @@
             & h3 {
                 width: 100%;
                 display: block;
-                color : #D7E8F2;
+                color : #4c2e27;
                 font-size: 2em;
                 margin-bottom: 0.3em;            
             }
@@ -62,7 +62,7 @@
             & h3 {
                 width: 100%;
                 display: block;
-                color : #D7E8F2;
+                color : #4c2e27;
                 font-size: 2em;
                 margin-bottom: 0.3em;            
             }
@@ -79,6 +79,7 @@
                     border-radius: 25px;
                     display: block;
                     flex-wrap: wrap;
+                    width: 
                     
                     
 
@@ -146,6 +147,9 @@
 
     #informations {
         padding: 1em;
+        margin: auto;
+        margin-bottom: 5rem;
+        
         & #enfant {
             width: 90vw;
 
@@ -155,17 +159,22 @@
         }
         & #sante {
          width: 90vw;
+         margin:0;
          }
         & #numeros {
          width: 90vw;
+         margin: auto;
          & #numeros-div {
+            margin-top: 1em;
             background-color: white;
+            padding: 0;
+            width: 100%;
             & ul {
                 & li {
                     margin-bottom: 1em;
                     & span {
                         font-weight: bold;
-                        color: #D7E8F2;
+                        color: #2C1915;
                     }
                 }
                 

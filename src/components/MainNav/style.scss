@@ -4,6 +4,7 @@
 }
 
 #mainNav {
+    padding: 1em;
     padding-left: 3.5em;
     width: 100%;
     text-align: left;
@@ -19,15 +20,17 @@
 
 .accordionContent {
     & a {
-        color: #D7E8F2;
+        color: #2C1915;
         list-style: none;
         padding: 1em;
         text-transform: uppercase;
+        
 
     }
 
     & a:hover {
         color: #4c2e27;
+        
     }
 }
 

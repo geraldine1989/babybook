@@ -32,7 +32,7 @@
         }
 
       & h3 {
-        color : #D7E8F2;
+        color : #4c2e27;
         font-size: 2em;
         font-style: italic;   
         padding: 0;        
@@ -180,7 +180,8 @@
       & .form-add-note-day{
         margin-bottom: 5rem;
         & input {
-          border: 1px solid gray;
+          border: 1px solid #D7E8F2;
+          background-color: #D7E8F2;
         }
 
         & input::placeholder {
@@ -189,8 +190,8 @@
 
         & i {
           color: write;
-          background-color: #D7E8F2;
-          border: 1px solid gray;
+          background-color:#D7E8F2;
+          border: 1px solid white;
         }
       }
     }  
@@ -297,14 +298,10 @@
             width: 90%;
             justify-items: flex-start;
             margin-right: 0.7em;
-            border: 1px solid #C2DE89;  
           }
           & .add-task-button {
-            background-color: white;
-                color: #D7E8F2;
                 border-radius: 25px;
                 margin-top: 1em;
-                border: 2px solid #D7E8F2;
           }
         }
       }   
@@ -316,7 +313,6 @@
   
       & #particular-note {
         width: 80%;
-        border-top: 1px solid gray;
   
         & #particular-note-title {
           padding: 1em;

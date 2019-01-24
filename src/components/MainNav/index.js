@@ -25,7 +25,7 @@ export default class MainNav extends Component {
         <div id="mainNav">
         <Dropdown item text="menu" simple className="accordionTitle">
         <Dropdown.Menu className="accordionContent">
-          <Dropdown.Item>
+          <Dropdown.Item >
             <NavLink exact to="/espace-parents/journee-type" >
               Espace Parents
             </NavLink>
