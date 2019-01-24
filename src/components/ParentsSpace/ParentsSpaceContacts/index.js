@@ -33,7 +33,7 @@ const ParentsSpaceContacts = ({ handleChangeNannyPassword, handleDeleteContact }
       <Button content="Modifier le code d'accès" onClick={handleChangeNannyPassword} />
       <h3>Gérer mes contacts</h3>
       <Table celled id="contact-table">
-        <Table.Header>
+        <Table.Header className="table-header">
           <Table.Row>
             <Table.HeaderCell width="3">Nom</Table.HeaderCell>
             <Table.HeaderCell width="5">Adresse mail</Table.HeaderCell>
@@ -63,8 +63,8 @@ const ParentsSpaceContacts = ({ handleChangeNannyPassword, handleDeleteContact }
       <div id="contact-add">
         <Input name="input-name" placeholder="Nom" value="" />
         <Input name="input-email" placeholder="Adresse mail" value="" />
-        <Button icon>
-          <Icon name="add circle" onClick={handleDeleteContact} />
+        <Button icon type="submit">
+          <Icon name="add" />
         </Button>
       </div>
     </div>

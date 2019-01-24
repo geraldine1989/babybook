@@ -6,6 +6,11 @@
   margin-top: 1em;
   width: 80%;
 
+  & Button {
+    background-color: white;
+    border: 1.3px solid #91D7D9;
+    
+  }
 
   & h3 {
     width: 100%;
@@ -28,9 +33,11 @@
     }
 
     & Button {
-      background-color: #91D7D9;
-      color: #2C1915;
-      
+      background-color: white;
+      color: #91D7D9;
+      border-radius: 25px;
+      margin-top: 1em;
+      border: 2px solid #91D7D9;
     } 
   }
   
@@ -39,6 +46,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: flex-start;
     width: 100%;
     
     & .ui.input {
@@ -53,9 +61,13 @@
 
 
     & Button {
-      background-color: #91D7D9;
-      color: #2C1915;
-    } 
+      background-color: white;
+      color: #91D7D9;
+      border-radius: 25px;
+      margin-top: 1em;
+      border: 2px solid #91D7D9;
+      margin-top: 0;
+    }
 
    
     
@@ -69,4 +81,103 @@
   & label {
     padding-left: 1em;
   }
+}
+
+
+@media all and (orientation: portrait) {
+  #contacts {
+    width: 90%;
+  
+    & Button {
+      background-color: white;
+      border: 1.3px solid #91D7D9;
+      
+    }
+  
+    & h3 {
+      width: 100%;
+      text-align: center;
+      display: block;
+      color : #91D7D9;
+      font-size: 2em;
+      margin-bottom: 0.3em;
+    
+    }
+  
+    & #contact-table {
+      padding: 1em;
+      border: none;
+      display: flex;
+      justify-content: center;
+
+      & .table-header {
+        display: none;
+      }
+
+      & tr {
+        width: 100%;
+        text-align: center;
+      }
+      
+      
+  
+      & .delete-contact {
+        text-align: center;
+        margin: 0;
+      }
+  
+      & Button {
+        background-color: white;
+        color: #91D7D9;
+        border-radius: 25px;
+        margin-top: 1em;
+        border: 2px solid #91D7D9;
+      } 
+    }
+    
+    & #contact-add {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+      margin-bottom: 5em;
+      
+      & .ui.input {
+        width: 90%;
+        margin: 1em;
+  
+        & input{
+          width: auto;
+          border: 1px solid #C2DE89;
+          border-radius: 25px;
+        }
+      }
+  
+  
+      & Button {
+        background-color: white;
+        color: #C2DE89;
+        border-radius: 25px;
+        margin-top: 1em;
+        border: 2px solid #C2DE89;
+        margin-top: 0;
+        margin-bottom: 2em;
+      }
+  
+     
+      
+    }
+    
+    & .icon:hover {
+      cursor: pointer;
+    }
+    
+    
+    & label {
+      padding-left: 1em;
+    }
+  }
+  
 }
