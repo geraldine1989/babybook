@@ -48,7 +48,7 @@ app.get('/findAll', (req, res) => {
 app.get('/signup', (req, res, next) => {
   // récupération depuis la base de la liste de emails enregistrés
   const emailSend = req.query;
-  console.log(emailSend);
+  // console.log(emailSend.email);
   function getEmails() {
     return new Promise(function(resolve, reject) {
       //connection
@@ -58,33 +58,33 @@ app.get('/signup', (req, res, next) => {
 
         database.collection('emails').find().toArray(function(error, results) {
           if (error) throw error;
-          // result = JSON.stringify(results);
-          // console.log(result);
-          resolve (results);
-          return results;
+          // console.log(results);
+          result = results[0];
+          resolve (result);
+          return result;
         });
       });
     });
   }
   getEmails()
     .then(function(value) {
-      console.log(value);
-      // for (var key in value) {
-      //   console.log(value[key]);
-      //   if (emailSend === value[key]) {
-      //     res.send("l'email existe déjà.");
-      //   } else {
-      //     res.send('email valide');
-      //   }
-      // }
-      res.send(value);
+      // console.log(value);
+      const validity = checkEmail(value) ? "L'email existe déjà" : "L'email est valide";
+      res.send(validity);
     })
     .catch(function(err) {
       console.log('Caught an error!', err);
     });
 
-  // comparaison avec le mail envoyé en requête
-
+const checkEmail = (value) => {
+  for (var key in value) {
+    // comparaison avec le mail envoyé en requête
+    if (value[key] === emailSend.email) {
+      return true;
+    }
+  }
+  return false;
+}
 
 })
 
