@@ -15,7 +15,6 @@ import LoginParents from 'src/components/LoginParents';
 import LoginNanny from 'src/components/LoginNanny';
 import MyDay from 'src/components/MyDay';
 import Informations from 'src/components/Informations';
-import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
 import ParentsSpaceDayType from 'src/components/ParentsSpace/ParentsSpaceDayType';
 import ParentsSpaceInfo from 'src/components/ParentsSpace/ParentsSpaceInfo';
 import ParentsSpaceContacts from 'src/components/ParentsSpace/ParentsSpaceContacts';
@@ -40,13 +39,10 @@ const App = () => (
       <Route exact path="/login-nanny" component={LoginNanny} />
       <Route exact path="/my-day/journal" component={MyDay} />
       <Route exact path="/my-day/infos" component={Informations} />
-      <Route exact path="/espace-parents" component={ParentsNav} />
-      <Switch>
-
+      <Route exact path="/espace-parents" component={ParentsSpaceDayType} />
       <Route exact path="/espace-parents/journee-type" component={ParentsSpaceDayType} />
       <Route exact path="/espace-parents/infos" component={ParentsSpaceInfo} />
       <Route exact path="/espace-parents/contacts" component={ParentsSpaceContacts} />
-      </Switch>
       <Route exact path="/mentions-legales" component={LegalMentions} />
       <Route exact path="/contact" component={Contact} />
       <Route exact path="/not-found" component={NotFound} />
