@@ -33,6 +33,7 @@ app.get('/findAll', (req, res) => {
   // appel à la fonction
   findAll()
     .then(function(value) {
+      console.log(value);
       res.status(200);
       res.send(value);
     })
@@ -55,7 +56,7 @@ app.get('/signup', (req, res, next) => {
         if (error) throw error;
         const database = db.db('babybook');
 
-        database.collection('emails').find().toArray(function(error, results) {
+        database.collection('emails').find().toObject(function(error, results) {
           if (error) throw error;
           // result = JSON.stringify(results);
           // console.log(result);
