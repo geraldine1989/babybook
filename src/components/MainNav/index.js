@@ -33,13 +33,13 @@ export default class MainNav extends Component {
                 <NavLink exact to="/espace-parents" >
                   <div> <li>Espace parents</li> </div>
                 </NavLink>
-                <NavLink exact to="/espace-parents/journee-type" >
+                <NavLink exact to="/my-day/journal" >
                   <div> <li>Journal</li> </div>
                 </NavLink>
-                <NavLink exact to="/espace-parents/infos" >
+                <NavLink exact to="/my-day/infos" >
                   <div> <li>Infos</li> </div>
                 </NavLink>
-                <NavLink exact to="home" >
+                <NavLink exact to="/" >
                   <div> <li>Se déconnecter de cet espace</li> </div>
                 </NavLink>
               </div>
