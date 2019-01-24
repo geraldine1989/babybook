@@ -56,7 +56,7 @@ app.get('/signup', (req, res, next) => {
         if (error) throw error;
         const database = db.db('babybook');
 
-        database.collection('emails').find().toObject(function(error, results) {
+        database.collection('emails').find().toArray(function(error, results) {
           if (error) throw error;
           // result = JSON.stringify(results);
           // console.log(result);
