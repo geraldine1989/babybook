@@ -1,19 +1,18 @@
 #mainMenu{
-    margin: auto;
     width: 100%;
-    display: flex;
-    justify-content: center;
     background-color: #EEE9E6;
 }
 
 #mainNav {
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    text-align: center;
+    padding-left: 3.5em;
+    width: 100%;
+    text-align: left;
 }
 
-.accodionTitle {
+.accordionTitle {
+    font-weight: 700;
+    font-size: 1.5em;
+    padding-bottom: .5em;
     color:#2C1915;
     text-transform: uppercase;
 }
