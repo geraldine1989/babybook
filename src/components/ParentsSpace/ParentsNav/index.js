@@ -10,10 +10,10 @@ import './style.scss';
 export default class ParentsNav extends Component {
   state = { activeItem: 'Modifier journée type' }
 
-  //handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
 
   render() {
-    const { activeClasseName } = this.state;
+    const { activeItem } = this.state;
 
     return (
       <div id="parentsNav">
