@@ -26,7 +26,7 @@ const LoginParents = () => (
         <Form.Field>
           <input type="text" placeholder="Code accès" value="" />
         </Form.Field>
-        <NavLink exact to="/espace-parents">
+        <NavLink exact to="/espace-parents/journee-type">
           <Button type="submit">Se connecter</Button>
         </NavLink>
       </Form>

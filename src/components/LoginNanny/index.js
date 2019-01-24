@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import { Form, Button } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
 
 /**
  * Local import
@@ -24,7 +25,9 @@ const LoginNanny = () => (
         <Form.Field>
           <input type="text" placeholder="Code accès" value="" />
         </Form.Field>
+        <NavLink exact to="/my-day/journal">
         <Button type="submit">Se connecter</Button>
+        </NavLink>
       </Form>
     </div>
       </div>
