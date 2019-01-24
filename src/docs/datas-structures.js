@@ -3,10 +3,11 @@ import { getMaxListeners } from "cluster";
 // users :
 let parents = {
   id: "parents",
-  allParents: [
+  parents: [
     {
       id: "1",
       email:"toto@gmail.com",
+      password: "password",
       firstName: "Toto",
       lastName: "Nomdefamille",
       mobileMom: "0612345678",
@@ -18,22 +19,26 @@ let parents = {
           firstName: "Tototounet",
           lastName: "FamilleToto",
           birthDate: "01-02-2018",
-          medics: [
+          health: [
             {
-              name: "doliprane",
-              qty: "1",
-            },
-          ],
-          vaccins: [
-            {
-              name: "vaccin machin",
-              date: "12/02/2018",
-            },
-          ],
-          allergies: [
-            {
-              name: "cacahuètes",
-            },
+              medics: [
+                {
+                  name: "doliprane",
+                  qty: "1",
+                },
+              ],
+              vaccins: [
+                {
+                  name: "vaccin machin",
+                  date: "12/02/2018",
+                },
+              ],
+              allergies: [
+                {
+                  name: "cacahuètes",
+                },
+              ],
+            }
           ],
           myDay: [
             {
@@ -57,6 +62,11 @@ let parents = {
               ],
               nannyNote: "Très bonne journée. Peinture sur les murs. S'est fait les dents sur un pied de table."
             },
+          ],
+          infos: [
+            {
+
+            }
           ],
         },
       ],
