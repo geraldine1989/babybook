@@ -31,7 +31,7 @@ export default class MainNav extends Component {
             <Accordion.Content active={activeIndex === 0}>
               <div className="accordionContent">
                 {/* <NavLink exact to="espace-parents" /> */}
-                  <div> <li>Espace parents</li> </div>
+                  <div > <li>Espace parents</li> </div>
                 {/* </NavLink> */}
                 {/* <NavLink exact to="/espace-parents/journee-type" /> */}
                   <div> <li>Journal</li> </div>
