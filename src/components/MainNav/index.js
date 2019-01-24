@@ -39,7 +39,7 @@ export default class MainNav extends Component {
                 <NavLink exact to="/espace-parents/infos" >
                   <div> <li>Infos</li> </div>
                 </NavLink>
-                <NavLink exact to="home" >
+                <NavLink exact to="/" >
                   <div> <li>Se déconnecter de cet espace</li> </div>
                 </NavLink>
               </div>
