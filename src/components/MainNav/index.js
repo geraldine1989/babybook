@@ -33,7 +33,7 @@ export default class MainNav extends Component {
                 <NavLink exact to="/espace-parents" >
                   <div> <li>Espace parents</li> </div>
                 </NavLink>
-                <NavLink exact to="/espace-parents/journee-type" >
+                <NavLink exact to="/my-day/journal" >
                   <div> <li>Journal</li> </div>
                 </NavLink>
                 <NavLink exact to="/espace-parents/infos" >
