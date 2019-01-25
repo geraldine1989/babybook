@@ -4,6 +4,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Input, Icon, Button, Form } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
 /**
  * Local import
@@ -48,11 +49,22 @@ const handleAddItemInList = (evt) => {
   addDayType(formDatas);
 };
 
-const ParentsSpaceDayType = ({ handleDeleteMyDayItem }) => {
+const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inputTitle, handleChangeNoteTask, inputNoteTask, handleChangeHourTask, inputHourTask }) => {
 
   const handleChangeTitle = (event) => {
     const text = event.target.value;
     handleChangeTitleDay(text);
+  };
+
+  const handleChangeNotesTask = (event) => {
+    const text = event.target.value;
+    handleChangeNoteTask(text);
+  };
+
+  const handlehour = (event) => {
+    console.log(event.target.value);
+    const hour = event.target.value;
+    handleChangeHourTask(hour);
   };
 
 
@@ -89,17 +101,27 @@ const ParentsSpaceDayType = ({ handleDeleteMyDayItem }) => {
               <label> Titre </label>
               <input 
                 placeholder="Titre"
-                value={input}
+                value={inputTitle}
                 onChange={handleChangeTitle}          
               />
             </Form.Field>
             <Form.Field>
               <label> Heure </label>
-              <input type="time" placeholder="Heure" value="" />
+              <input 
+                type="time" 
+                placeholder="Heure"
+                onChange={handlehour}
+                value={inputHourTask}
+              />
             </Form.Field>
             <Form.Field>
               <label> Note </label>
-              <input type="texte" placeholder="Note" value="" />
+              <input 
+                type="texte"
+                placeholder="Note" 
+                value={inputNoteTask}
+                onChange={handleChangeNotesTask}
+              />
             </Form.Field>
             <Button icon type="submit">
               <Icon name="add" onClick={handleAddItemInList} />
@@ -117,6 +139,15 @@ const ParentsSpaceDayType = ({ handleDeleteMyDayItem }) => {
       </div>
     </div>
   );
+};
+
+ParentsSpaceDayType.propTypes = {
+  handleChangeTitleDay: PropTypes.func.isRequired,
+  inputTitle: PropTypes.string.isRequired,
+  handleChangeNoteTask: PropTypes.func.isRequired,
+  inputNoteTask: PropTypes.func.isRequired,
+  handleChangeHourTask: PropTypes.func.isRequired,
+  inputHourTask: PropTypes.string.isRequired,
 };
 
 /**

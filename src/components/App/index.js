@@ -15,7 +15,7 @@ import LoginParents from 'src/components/LoginParents';
 import LoginNanny from 'src/components/LoginNanny';
 import MyDay from 'src/components/MyDay';
 import Informations from 'src/components/Informations';
-import ParentsSpaceDayType from 'src/components/ParentsSpace/ParentsSpaceDayType';
+import ParentsSpaceDayType from 'src/containers/ParentsSpaceDayType';
 import ParentsSpaceInfo from 'src/components/ParentsSpace/ParentsSpaceInfo';
 import ParentsSpaceContacts from 'src/components/ParentsSpace/ParentsSpaceContacts';
 import LegalMentions from 'src/components/LegalMentions';
