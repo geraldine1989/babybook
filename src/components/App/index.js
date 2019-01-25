@@ -43,10 +43,11 @@ class App extends React.Component {
         console.log(error);
       });
   }
+  
   render() {
     return(
       <div>
-        <HeaderLogo getAllDatas={this.getAllDatas}/>
+        <HeaderLogo />
         <MainNav />
         <Switch>
         <Route exact path="/" component={Home} />

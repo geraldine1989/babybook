@@ -7,9 +7,7 @@ const port = 3000;
 const baseUrl = "mongodb://localhost:27017/babybook";
 const MongoClient = require('mongodb').MongoClient;
 
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(bodyParser.json());
-/*
+/**
  * Express
  */
 app.use(bodyParser.json()); // for parsing application/json
