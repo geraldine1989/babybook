@@ -9,7 +9,6 @@ import 'semantic-ui-css/semantic.min.css';
 import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
 
 
-
 const ParentsSpaceInfo = () => (
   <div>
     <ParentsNav />

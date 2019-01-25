@@ -1,17 +1,13 @@
 #headerLogo {
-    padding: 3.5em;
-    background-image: url("img/nuages.jpg");
-    width: 100%;
-    
-    
-        & h2 {
-            color: #4c2e27;
-            font-size: 3em;
-
-            & .headerLogoB {
-                color: #2C1915;
-                padding: 0;
-            }
-        }
-
+  padding: 3.5em;
+  background-image: url("img/nuages.jpg");
+  width: 100%;
+  & h2 {
+    color: #4c2e27;
+    font-size: 3em;
+    & .headerLogoB {
+      color: #2C1915;
+      padding: 0;
+    }
+  }
 }
