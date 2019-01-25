@@ -2,14 +2,14 @@
  * Initial State
  */
 const initialState = {
-  message: 'Hello',
-  clic: 0,
+  itemList: [],
+  input: '',
 };
 
 /**
  * Types
  */
-const DO_SOMETHING = 'DO_SOMETHING';
+const INPUT_CHANGE_TITLE_TASK = 'INPUT_CHANGE_TITLE_TASK';
 
 /**
  * Traitements
@@ -20,10 +20,10 @@ const DO_SOMETHING = 'DO_SOMETHING';
  */
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case DO_SOMETHING:
+    case INPUT_CHANGE_TITLE_TASK:
       return {
         ...state,
-        clic: state.clic + 1,
+        input: action.input,
       };
 
     default:
@@ -34,8 +34,9 @@ const reducer = (state = initialState, action = {}) => {
 /**
  * Action Creators
  */
-export const doSomething = () => ({
-  type: DO_SOMETHING,
+export const handleChangeTitleDay = text => ({
+  type: INPUT_CHANGE_TITLE_TASK,
+  input: text,
 });
 
 /**

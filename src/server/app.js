@@ -41,6 +41,14 @@ app.get('/findAll', (req, res) => {
           resolve (results);
           return results;
         });
+
+        // requête adday
+        database.collection("addday").find().toArray(function (error, results) {
+          if (error) throw error;
+          resolve (results);
+          return results;
+        });
+
       });
     }); 
   }
@@ -80,6 +88,33 @@ app.post('/inscription', upload.array(), (req, res, next) => {
       console.log('Caught an error!', err);
     });
 })
+
+
+/**
+ * Add Day type
+ */
+app.post('/newday', upload.array(), (req, res, next) => {
+  const datas = req.body;
+  function sendDatas() {
+    return new Promise(function(resolve, reject) {
+      //connection
+      MongoClient.connect(baseUrl, { useNewUrlParser: true }, function (error, db) {
+        if (error) throw error;
+        const database = db.db('babybook');
+
+        database.collection('addday').insertOne(datas)
+      });
+    });
+  }
+  sendDatas()
+    .then(function() {
+      res.send("modification journee ok");
+    })
+    .catch(function(err) {
+      console.log('Caught an error!', err);
+    });
+})
+
 
 // le server écoute le port
 app.listen(port);

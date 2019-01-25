@@ -14,7 +14,47 @@ import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
 /**
  * Code
  */
-const ParentsSpaceDayType = ({ handleAddItemInList, handleDeleteMyDayItem }) => {
+
+/** Test mongo db */
+
+const addDayType = (formDatas) => {
+  const axios = require('axios');
+  axios.post('http://localhost:3000/newday', formDatas)
+    .then((response) => {
+      console.log(response);
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+
+const handleAddItemInList = (evt) => {
+  evt.preventDefault();
+  const formDatas = {
+    date: '01/02/2000',
+    note: 'Ceci est une note des parents pour la journée.',
+    itemList: [
+      {
+        name: 'Biberon',
+        hour: '08:00',
+        indic: 'Mettre 3 dosettes avec 250 cl de lait',
+        note: 'Tototounet a tout bu !!!',
+      },
+    ],
+  };
+
+  addDayType(formDatas);
+};
+
+const ParentsSpaceDayType = ({ handleDeleteMyDayItem }) => {
+
+  const handleChangeTitle = (event) => {
+    const text = event.target.value;
+    handleChangeTitleDay(text);
+  };
+
 
   return (
     <div>
@@ -47,7 +87,11 @@ const ParentsSpaceDayType = ({ handleAddItemInList, handleDeleteMyDayItem }) => 
           <Form className="form-add-item">
             <Form.Field>
               <label> Titre </label>
-              <input placeholder="Titre" value="" />
+              <input 
+                placeholder="Titre"
+                value={input}
+                onChange={handleChangeTitle}          
+              />
             </Form.Field>
             <Form.Field>
               <label> Heure </label>

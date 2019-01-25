@@ -91,7 +91,7 @@ const MyDay = () => (
         <div id="particular-note-title">
         Notes complémentaires
         </div>
-        <p>Aucune note pour journée</p>
+        <p>Aucune note pour la journée</p>
           
         <Form className="form-add-note-day">
           <Form.Field>
