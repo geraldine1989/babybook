@@ -65,7 +65,7 @@ const ParentsSpaceDayType = ({ handleAddItemInList, handleDeleteMyDayItem }) => 
         <div id="add-note">
           <p>Ajouter une note pour cette journée</p>
           <Form className="form-add-note">
-            <Form.Field>
+            <Form.Field className="form-field">
               <Input icon={{ name: 'add', link: true }} placeholder='Ajoutez une note' />
             </Form.Field>
           </Form>

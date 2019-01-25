@@ -4,6 +4,7 @@
   align-items: center;
   margin-bottom: 2em;
   margin-top: 2em;
+  
 }
 
 h3 {
@@ -59,10 +60,10 @@ li {
     }
     & Button {
       background-color: white;
-      color: #91D7D9;
+      color: #4c2e27;
       border-radius: 25px;
       margin-top: 1.5em;
-      border: 2px solid #91D7D9;
+      border: 2px solid #4c2e27;
     }
   }
 }
@@ -95,11 +96,15 @@ li {
       padding: 1em;
       justify-content: center;
       border-radius: 15px;
-      border: 1px solid #2C1915; 
+      background-color: #D7E8F2;
+    }
+
+    & input::placeholder {
+      color: gray;
     }
     & i {
       color: #2C1915;
-      background-color:#91D7D9;
+      background-color:#D7E8F2;
       border: 1px solid #2C1915;
       border-top-right-radius: 15px; 
       border-bottom-right-radius: 15px; 
@@ -166,10 +171,10 @@ li {
       }
       & Button {
         background-color: white;
-        color: #91D7D9;
+        color: #4c2e27;
         border-radius: 25px;
         margin-top: 1em;
-        border: 2px solid #91D7D9;
+        border: 2px solid #4c2e27;
       }
     }
   }
@@ -207,7 +212,7 @@ li {
       }
       & i {
         color: #2C1915;
-        background-color:#91D7D9;
+        background-color:#D7E8F2;
         border: 1px solid #2C1915;
         border-top-right-radius: 15px; 
         border-bottom-right-radius: 15px; 

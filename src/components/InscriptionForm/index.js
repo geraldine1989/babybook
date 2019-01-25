@@ -10,6 +10,7 @@ import { Form, Button } from 'semantic-ui-react';
 //import Example from 'src/containers/Example';
 import './style.scss';
 import 'semantic-ui-css/semantic.min.css';
+import { NavLink } from 'react-router-dom';
 /**
  * Code
  */
@@ -33,7 +34,9 @@ const InscriptionForm = () => (
         <Form.Field>
           <input type="text" placeholder="Code accès" value="" />
         </Form.Field>
-        <Button type="submit">S'inscrire</Button>
+        <NavLink exact to="/login-parents">
+          <Button type="submit">S'inscrire</Button>
+        </NavLink>
       </Form>
     </div>
   </div>

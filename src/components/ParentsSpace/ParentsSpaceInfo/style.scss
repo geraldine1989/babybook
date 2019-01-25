@@ -4,8 +4,9 @@
   margin-bottom: 5em;
   width: 80%;
   margin: auto;
+  margin-bottom: 5rem;
       & h2 {
-          color: #4c2e27;
+          color: #2C1915;
           margin: auto;
           text-align: center;
           text-transform: uppercase;
@@ -25,7 +26,7 @@
           & h3 {
               width: 100%;
               display: block;
-              color : #91D7D9;
+              color : #4c2e27;
               font-size: 2em;
               margin-bottom: 0.3em;            
           }
@@ -37,9 +38,14 @@
               flex-direction: column;
 
               & .ui input {
-                border: 1px solid gray;
+                border: 1px solid #D7E8F2;
+                background: #D7E8F2;
                 border-radius: 15px;
                 padding: 1em;
+              }
+
+              & .ui input::placeholder {
+                color: gray;
               }
           }
 
@@ -50,7 +56,7 @@
             flex-direction: column;
 
             & .ui input {
-              border: 1px solid gray;
+              border: 2px solid #D7E8F2;
               border-radius: 15px;
               padding: 1em;
             } 
@@ -69,7 +75,7 @@
           & h3 {
               width: 100%;
               display: block;
-              color : #91D7D9;
+              color : #4c2e27;
               font-size: 2em;
               margin-bottom: 1em; 
 
@@ -146,7 +152,7 @@
           & h3 {
               width: 100%;
               display: block;
-              color : #91D7D9;
+              color : #2C1915;
               font-size: 2em;
               margin-bottom: 0.3em;            
           }
@@ -176,6 +182,7 @@
           background-color: #C2DE89;
           color: #2C1915;
           width: 50%;
+          border-radius: 15px;
         }
 
       }
@@ -219,7 +226,7 @@
     width: 100%;
     margin: auto;
         & h2 {
-            color: #4c2e27;
+            
             margin: auto;
             text-align: center;
             text-transform: uppercase;
@@ -239,7 +246,6 @@
             & h3 {
                 width: 100%;
                 display: block;
-                color : #91D7D9;
                 font-size: 2em;
                 margin-bottom: 0.3em;            
             }
@@ -251,7 +257,6 @@
                 flex-direction: column;
   
                 & .ui input {
-                  border: 1px solid gray;
                   border-radius: 15px;
                   padding: 1em;
                 }
@@ -264,7 +269,6 @@
               flex-direction: column;
   
               & .ui input {
-                border: 1px solid gray;
                 border-radius: 15px;
                 padding: 1em;
               } 
@@ -282,7 +286,7 @@
             & h3 {
                 width: 100%;
                 display: block;
-                color : #91D7D9;
+                
                 font-size: 2em;
                 margin-bottom: 1em; 
   
@@ -301,7 +305,7 @@
                   
                   width: 100%;
                   & input {
-                    border: 1px solid gray;
+                    
                     border-radius: 15px;
                     
                   }
@@ -317,7 +321,7 @@
                   margin-bottom: 2em;
   
                   & .header {
-                    color: #4c2e27;
+                    
                     text-align: center;
                     font-size: 1em;
                     text-transform: uppercase;
@@ -336,10 +340,7 @@
                     }
                   }
   
-                  & button {
-                    background-color: white;
-                    border: 2px solid #C2DE89;
-                    
+                  & button {                   
                     font-size: 0.7em;
                     border-radius: 25px;
                     color: #C2DE89;
@@ -360,7 +361,6 @@
             & h3 {
                 width: 100%;
                 display: block;
-                color : #91D7D9;
                 font-size: 2em;
                 margin-bottom: 0.3em;            
             }
@@ -370,7 +370,6 @@
                
   
                 & .ui input {
-                  border: 1px solid gray;
                   border-radius: 15px;
                   padding: 1em;
                 }
@@ -387,8 +386,6 @@
           margin-bottom: 2em;
           
           & Button {
-            background-color: #C2DE89;
-            color: #2C1915;
             width: 50%;
           }
   
@@ -401,12 +398,6 @@
           align-items: baseline;
           justify-content: space-between;
           
-            & Button {
-              margin: 1em;
-              background-color: #C2DE89;
-              color: #2C1915;
-              
-            }
         }
   
         & .add-item {
@@ -417,8 +408,6 @@
           align-items: baseline;
             & Button {
               margin: 0.5em;
-              background-color: #C2DE89;
-              color: #2C1915;
             }
         }
   
