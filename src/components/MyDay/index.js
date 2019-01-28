@@ -13,6 +13,7 @@ import './style.scss';
 /**
  * Code
  */
+/* eslint-disable no-case-declarations */
 const MyDay = ({ list }) => (
  
   <div id="myday">

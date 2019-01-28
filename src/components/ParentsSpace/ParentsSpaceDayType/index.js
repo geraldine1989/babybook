@@ -49,8 +49,9 @@ const handleAddItemInList = (evt) => {
   addDayType(formDatas);
 };
 
-const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inputTitle, handleChangeNoteTask, inputNoteTask, handleChangeHourTask, inputHourTask, addTask, list }) => {
+const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inputTitle, handleChangeNoteTask, inputNoteTask, handleChangeHourTask, inputHourTask, addTask, list, handleAddNoteDay, inputNote, addNoteDayFromParents }) => {
 
+  /** Form ajout tache journee type */
   const handleChangeTitle = (event) => {
     const text = event.target.value;
     handleChangeTitleDay(text);
@@ -72,6 +73,18 @@ const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inpu
     addTask(inputNoteTask);
   };
 
+  /** ajouter une note pour la journee */
+
+  const handleAddNoteDayInput = (event) => {
+    const note = event.target.value;
+    handleAddNoteDay(note);
+  };
+
+  const handleAddNoteDaySubmit = (event) => {
+    event.preventDefault();
+    console.log('on a appuyé sur submit');
+    addNoteDayFromParents(inputNote);
+  };
 
   return (
     <div>
@@ -80,7 +93,7 @@ const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inpu
         <ul>
           {
             list.map((task) => 
-              <li>
+              <li key={task.id}>
                 <Icon name="smile outline" />
                 <span>{task.name}</span>
                 <span>{task.hour}</span>
@@ -113,9 +126,9 @@ const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inpu
             </Form.Field>
             <Form.Field>
               <label> Note </label>
-              <input 
+              <input
                 type="texte"
-                placeholder="Note" 
+                placeholder="Note"
                 value={inputNoteTask}
                 onChange={handleChangeNotesTask}
               />
@@ -127,9 +140,16 @@ const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inpu
         </div>
         <div id="add-note">
           <p>Ajouter une note pour cette journée</p>
-          <Form className="form-add-note">
+          <Form className="form-add-note" onSubmit={handleAddNoteDaySubmit}>
             <Form.Field className="form-field">
-              <Input icon={{ name: 'add', link: true }} placeholder='Ajoutez une note' />
+              <Input
+                
+                icon={{ name: 'add', link: true }}
+                placeholder='Ajoutez une note'
+                onChange={handleAddNoteDayInput}
+                
+                value={inputNote}
+                />
             </Form.Field>
           </Form>
         </div>
@@ -149,6 +169,10 @@ ParentsSpaceDayType.propTypes = {
   list: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
   })).isRequired,
+  handleAddNoteDay: PropTypes.func.isRequired,
+  inputNote: PropTypes.string.isRequired,
+  addNoteDayFromParents: PropTypes.func.isRequired,
+  
 };
 
 /**
