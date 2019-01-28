@@ -17,6 +17,7 @@ const mapStateToProps = (state, ownProps) => ({
   inputTitle: state.inputTitle,
   inputNoteTask: state.inputNoteTask,
   inputHourTask: state.inputHourTask,
+  list: state.itemList,
 });
 
 /* === Actions ===

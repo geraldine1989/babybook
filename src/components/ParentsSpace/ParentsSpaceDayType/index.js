@@ -49,7 +49,7 @@ const handleAddItemInList = (evt) => {
   addDayType(formDatas);
 };
 
-const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inputTitle, handleChangeNoteTask, inputNoteTask, handleChangeHourTask, inputHourTask, addTask }) => {
+const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inputTitle, handleChangeNoteTask, inputNoteTask, handleChangeHourTask, inputHourTask, addTask, list }) => {
 
   const handleChangeTitle = (event) => {
     const text = event.target.value;
@@ -78,27 +78,19 @@ const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inpu
       <ParentsNav />
       <div id="day-type">
         <ul>
-          <li>
-            <Icon name="smile outline" />
-            <span>Sieste</span>
-            <span>16h00</span>
-            <span>Dort avec doudou</span>
-            <Icon name="delete" onClick={handleDeleteMyDayItem} />
-          </li>
-          <li>
-            <Icon name="smile outline" />
-            <span>Sieste</span>
-            <span>16h00</span>
-            <span>Dort avec doudou</span>
-            <Icon name="delete" onClick={handleDeleteMyDayItem} />
-          </li>
-          <li>
-            <Icon name="smile outline" />
-            <span>Sieste</span>
-            <span>16h00</span>
-            <span>Dort avec doudou</span>
-            <Icon name="delete" onClick={handleDeleteMyDayItem} />
-          </li>
+          {
+            list.map((task) => 
+              <li>
+                <Icon name="smile outline" />
+                <span>{task.name}</span>
+                <span>{task.hour}</span>
+                <span>{task.indic}</span>
+                <Icon name="delete" onClick={handleDeleteMyDayItem} />
+              </li>
+              
+            )
+          }
+          
         </ul>
         <div id="add-item">
           <Form className="form-add-item" onSubmit={handleSubmitList}>
@@ -154,6 +146,9 @@ ParentsSpaceDayType.propTypes = {
   handleChangeHourTask: PropTypes.func.isRequired,
   inputHourTask: PropTypes.string.isRequired,
   addTask: PropTypes.func.isRequired,
+  list: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 /**

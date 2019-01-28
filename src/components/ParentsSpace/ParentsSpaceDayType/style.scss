@@ -20,9 +20,13 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  
+  text-align: left;
   padding: 1em;
   margin-top: 0.5em;
+  & span {
+    display: flex;
+    width: 30%;
+  }
 }
 
 #btn {

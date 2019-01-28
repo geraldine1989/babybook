@@ -35,7 +35,10 @@ const MyDay = ({ list }) => (
     <div id="list">
       {
         list.map(task => 
-          <div className="task">
+          <div 
+            className="task"
+            key= {task.id}
+          >
             <Button className="list-button" circular icon="utensils" />
             <div className="list-item">{task.name}</div>
             <div className="time">{task.hour}</div>

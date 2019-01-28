@@ -206,9 +206,11 @@
 @media screen and (max-width: 768px) {
   #myday {
     margin: 0 auto;
-    padding: 1em;
-    width: 100%;
+   
+    width: 95%;
     text-align: center;
+    
+    
   
     & #intro {
       display: flex;
@@ -276,9 +278,9 @@
   
         & .note {
           display: flex;
-          text-align: center;
+          text-align: left;
           align-items: center;
-          justify-content: center;
+          justify-content: left;
           width: 100%;
           color: black;
           padding-top: 1em;
