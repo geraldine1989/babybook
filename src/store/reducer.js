@@ -1,9 +1,16 @@
-// import uuidv4 from 'uuid/v4';
+import uuidv4 from 'uuid/v4';
 
 /**
  * Initial State
  */
 const initialState = {
+  childList: [],
+  birthDateList: [],
+  medsList: [],
+  vaccinesList: [],
+  allergiesList: [],
+  phoneList: [],
+  allInfosList: [],
   inputFirstName: '',
   inputLastName: '',
   inputBirthDate: '',
@@ -25,6 +32,13 @@ const INPUT_CHANGE_VACCINES = 'INPUT_CHANGE_VACCINES';
 const INPUT_CHANGE_ALLERGIES = 'INPUT_CHANGE_ALLERGIES';
 const INPUT_CHANGE_PHONE_NAME = 'INPUT_CHANGE_PHONE_NAME';
 const INPUT_CHANGE_PHONE_NUMBER = 'INPUT_CHANGE_PHONE_NUMBER';
+const ADD_CHILD = 'ADD_CHILD';
+const ADD_BIRTH_DATE = 'ADD_BIRTH_DATE';
+const ADD_MEDS = 'ADD_MEDS';
+const ADD_VACCINES = 'ADD_VACCINES';
+const ADD_ALLERGIES = 'ADD_ALLERGIES';
+const ADD_PHONE = 'ADD_PHONE';
+const ADD_ALL_INFOS = 'ADD_ALL_INFOS';
 
 
 /**
@@ -37,6 +51,13 @@ const INPUT_CHANGE_PHONE_NUMBER = 'INPUT_CHANGE_PHONE_NUMBER';
  */
 /* eslint-disable no-case-declarations */
 const reducer = (state = initialState, action = {}) => {
+  const { childList } = state;
+  const { birthDateList } = state;
+  const { medsList } = state;
+  const { vaccinesList } = state;
+  const { allergiesList } = state;
+  const { phoneList } = state;
+  const { allInfosList } = state;
   const { inputFirstName } = state;
   const { inputLastName } = state;
   const { inputBirthDate } = state;

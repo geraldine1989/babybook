@@ -93,55 +93,89 @@ const ParentsSpaceInfo = ({
   inputAllergies,
   inputPhoneName,
   inputPhoneNumber,
+  addChild,
+  addBirthDate,
+  addMeds,
+  addVaccines,
+  addAllergies,
+  addPhone,
+  addAllInfos,
 }) => {
 
   const handleChangeForFirstName = (evt) => {
     const text = evt.target.value;
-    console.log(evt.target.value);
     handleChangeFirstName(text);
   };
 
   const handleChangeForLastName = (evt) => {
     const text = evt.target.value;
-    console.log(evt.target.value);
     handleChangeLastName(text);
   };
 
   const handleChangeForBirthDate = (evt) => {
     const date = evt.target.value;
-    console.log(evt.target.value);
     handleChangeBirthDate(date);
   };
 
   const handleChangeForMedsItem = (evt) => {
     const text = evt.target.value;
-    console.log(evt.target.value);
     handleChangeMedsItem(text);
   };
 
   const handleChangeForVaccinesItem = (evt) => {
     const text = evt.target.value;
-    console.log(evt.target.value);
     handleChangeVaccinesItem(text);
   };
 
   const handleChangeForAllergiesItem = (evt) => {
     const text = evt.target.value;
-    console.log(evt.target.value);
     handleChangeAllergiesItem(text);
   };
 
   const handleChangeForPhoneName = (evt) => {
     const text = evt.target.value;
-    console.log(evt.target.value);
     handleChangePhoneName(text);
   };
 
   const handleChangeForPhoneNumber = (evt) => {
     const number = evt.target.value;
-    console.log(evt.target.value);
     handleChangePhoneNumber(number);
   };
+
+  const submitChild = (evt) => {
+    evt.preventDefault();
+    addChild(inputLastName);
+  };
+
+  const submitBirthDate = (evt) => {
+    evt.preventDefault();
+    addBirthDate(inputBirthDate);
+  };
+
+  const submitMeds = (evt) => {
+    evt.preventDefault();
+    addMeds(inputMeds);
+  };
+
+  const submitVaccines = (evt) => {
+    evt.preventDefault();
+    addVaccines(inputVaccines);
+  };
+
+  const submitAllergies = (evt) => {
+    evt.preventDefault();
+    addAllergies(inputAllergies);
+  };
+
+  const submitPhone = (evt) => {
+    evt.preventDefault();
+    addPhone(inputPhoneNumber);
+  };
+
+  const submitAllInfos = (evt) => {
+    evt.preventDefault();
+    addAllInfos(inputPhoneNumber);
+  }
 
   return (
     <div>
@@ -152,6 +186,7 @@ const ParentsSpaceInfo = ({
           <h3>Enfant</h3>
           <Form
             id="modif-child-name"
+            onSubmit={submitChild}
           >
             <Form.Input
               onChange={handleChangeForFirstName}
@@ -170,7 +205,7 @@ const ParentsSpaceInfo = ({
           <h3>Date de naissance</h3>
           <Form
             id="modif-birthdate"
-            
+            onSubmit={submitBirthDate}
           >
             <Form.Input
               type="date"
@@ -209,7 +244,7 @@ const ParentsSpaceInfo = ({
 
               <Form
                 className="add-sante"
-                
+                onSubmit={submitMeds}
               >
                 <Form.Field>
                   <Input
@@ -248,7 +283,7 @@ const ParentsSpaceInfo = ({
 
               <Form
                 className="add-sante"
-                
+                onSubmit={submitVaccines}
               >
                 <Form.Field>
                   <Input
@@ -278,7 +313,7 @@ const ParentsSpaceInfo = ({
 
               <Form
                 className="add-sante"
-                
+                onSubmit={submitAllergies}
               >
                 <Form.Field>
                   <Input
@@ -299,7 +334,7 @@ const ParentsSpaceInfo = ({
           <div id="modif-numeros-div">
             <Form
               id="child-contact"
-              
+              onSubmit={submitPhone}
             >
               <Form.Input
                 value={inputPhoneName}
@@ -319,7 +354,8 @@ const ParentsSpaceInfo = ({
 
         <div id="save">
           <Button
-            
+            type="submit"
+            onSubmit={submitAllInfos}
           >
             Sauvegarder
           </Button>
@@ -347,6 +383,13 @@ ParentsSpaceInfo.propTypes = {
   inputAllergies: PropTypes.string.isRequired,
   inputPhoneName: PropTypes.string.isRequired,
   inputPhoneNumber: PropTypes.string.isRequired,
+  addChild: PropTypes.func.isRequired,
+  addBirthDate: PropTypes.func.isRequired,
+  addMeds: PropTypes.func.isRequired,
+  addVaccines: PropTypes.func.isRequired,
+  addAllergies: PropTypes.func.isRequired,
+  addPhone: PropTypes.func.isRequired,
+  addAllInfos: PropTypes.func.isRequired,
 };
 
 export default ParentsSpaceInfo;
