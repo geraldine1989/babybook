@@ -94,7 +94,15 @@
         border-radius: 25px;
         border: 1px solid #D7E8F2; 
       }
+
+      & .novalid {
+        border: 1px solid red;
+      }
   
+      & label {
+        padding-left: 1em;
+      }
+      
       & input::placeholder {
         color: #2C1915;
         font-style: italic;
