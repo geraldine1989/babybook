@@ -1,28 +1,129 @@
-
+/* NPM Import */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button, Icon, Input } from 'semantic-ui-react';
 
-// Local imports
+/* Local imports */
 import './style.scss';
 import 'semantic-ui-css/semantic.min.css';
 import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
 
+/* Test Mongo DB */
+const addInfos = (formDatas) => {
+  const axios = ('axios');
+  axios.post('http://localhost:3000/newday', formDatas)
+    .then((response) => {
+      console.log(response);
+    })
 
-const ParentsSpaceInfo = ({ addItem, handleChange, removeItem, input }) => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    addItem(input);
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+const handleAddItemInList = (evt) => {
+  evt.preventDefault();
+  const formDatas = {
+    firstName: 'Lilou',
+    lastName: 'Dupont',
+    birthDate: '19/08/2017',
+    health: [
+      {
+        meds: [
+          {
+            name: 'Doliprane',
+          },
+          {
+            name: 'Smecta',
+          },
+        ],
+        vaccines: [
+          {
+            name: 'Rubéole: fait le 03/02/2017',
+          },
+          {
+            name: 'Rage: fait le 03/02/2017',
+          },
+        ],
+        allergies: [
+          {
+            name: 'Cacahuètes',
+          },
+        ],
+      },
+    ],
+    phoneNumbers: [
+      {
+        name: 'Mère portable',
+        phone: '06 11 22 33 44',
+      },
+      {
+        name: 'Mère travail',
+        phone: '01 11 77 33 44',
+      },
+      {
+        name: 'Père portable',
+        phone: '06 11 55 33 44',
+      },
+      {
+        name: 'Docteur Mamour',
+        phone: '01 11 22 33 42',
+      },
+    ],
   };
 
-  const handleChangeInput = (event) => {
-    const text = event.target.value;
-    handleChange(text);
+  addInfos(formDatas);
+};
+
+/* Code */
+const ParentsSpaceInfo = ({
+  handleChangeFirstName,
+  handleChangeLastName,
+  handleChangeBirthDate,
+  handleChangeMedsItem,
+  handleChangeVaccinesItem,
+  handleChangeAllergiesItem,
+  handleChangePhoneName,
+  handleChangePhoneNumber,
+}) => {
+  const handleChangeFirstName = (evt) => {
+    const text = evt.target.value;
+    handleChangeFirstName(text);
   };
 
-  const handleDelete = (event) => {
-    event.preventDefault();
-    removeItem(input);
+  const handleChangeLastName = (evt) => {
+    const text = evt.target.value;
+    handleChangeLastName(text);
+  };
+
+  const handleChangeBirthDate = (evt) => {
+    const date = evt.target.value;
+    handleChangeBirthDate(date);
+  };
+
+  const handleChangeMedsItem = (evt) => {
+    const text = evt.target.value;
+    handleChangeMedsItem(text);
+  };
+
+  const handleChangeVaccinesItem = (evt) => {
+    const text = evt.target.value;
+    handleChangeVaccinesItem(text);
+  };
+
+  const handleChangeAllergiesItem = (evt) => {
+    const text = evt.target.value;
+    handleChangeAllergiesItem(text);
+  };
+
+  const handleChangePhoneName = (evt) => {
+    const text = evt.target.value;
+    handleChangePhoneName(text);
+  };
+
+  const handleChangePhoneNumber = (evt) => {
+    const number = evt.target.value;
+    handleChangePhoneNumber(number);
   };
 
   return (
@@ -34,31 +135,29 @@ const ParentsSpaceInfo = ({ addItem, handleChange, removeItem, input }) => {
           <h3>Enfant</h3>
           <Form
             id="modif-child-name"
-            onSubmit={handleSubmit}
           >
             <Form.Input
-              onChange={handleChangeInput}
+              onChange={handleChangeFirstName}
               type="text"
               placeholder="Prénom de l'enfant"
-              value={input}
+              
             />
             <Form.Input
-              onChange={handleChangeInput}
+              onChange={handleChangeLastName}
               type="text"
               placeholder="Nom de l'enfant"
-              value={input}
+              
             />
           </Form>
 
           <h3>Date de naissance</h3>
           <Form
             id="modif-birthdate"
-            onSubmit={handleSubmit}
+            
           >
             <Form.Input
               type="date"
-              onChange={handleChangeInput}
-              value={input}
+              onChange={handleChangeBirthDate}
             />
           </Form>
         </div>
@@ -74,7 +173,7 @@ const ParentsSpaceInfo = ({ addItem, handleChange, removeItem, input }) => {
                   <Button
                     icon
                     type="submit"
-                    onClick={handleDelete}
+                    
                   >
                     <Icon name="delete" />
                   </Button>
@@ -83,7 +182,7 @@ const ParentsSpaceInfo = ({ addItem, handleChange, removeItem, input }) => {
                   <Button
                     icon
                     type="submit"
-                    onClick={handleDelete}
+                    
                   >
                     <Icon name="delete" />
                   </Button>
@@ -92,14 +191,14 @@ const ParentsSpaceInfo = ({ addItem, handleChange, removeItem, input }) => {
 
               <Form
                 className="add-sante"
-                onSubmit={handleSubmit}
+                
               >
                 <Form.Field>
                   <Input
-                    onChange={handleChangeInput}
+                    
                     icon={{ name: 'add', link: true }}
                     placeholder="Ajoutez un médicament"
-                    value={input}
+                    onChange={handleChangeMedsItem}
                   />
                 </Form.Field>
               </Form>
@@ -113,7 +212,7 @@ const ParentsSpaceInfo = ({ addItem, handleChange, removeItem, input }) => {
                   <Button
                     icon
                     type="submit"
-                    onClick={handleDelete}
+                    
                   >
                     <Icon name="delete" />
                   </Button>
@@ -122,7 +221,7 @@ const ParentsSpaceInfo = ({ addItem, handleChange, removeItem, input }) => {
                   <Button
                     icon
                     type="submit"
-                    onClick={handleDelete}
+                    
                   >
                     <Icon name="delete" />
                   </Button>
@@ -131,14 +230,14 @@ const ParentsSpaceInfo = ({ addItem, handleChange, removeItem, input }) => {
 
               <Form
                 className="add-sante"
-                onSubmit={handleSubmit}
+                
               >
                 <Form.Field>
                   <Input
-                    onChange={handleChangeInput}
+                    
                     icon={{ name: 'add', link: true }}
                     placeholder="Ajoutez le vaccin et sa date"
-                    value={input}
+                    onChange={handleChangeVaccinesItem}
                   />
                 </Form.Field>
               </Form>
@@ -152,7 +251,7 @@ const ParentsSpaceInfo = ({ addItem, handleChange, removeItem, input }) => {
                   <Button
                     icon
                     type="submit"
-                    onClick={handleDelete}
+                    
                   >
                     <Icon name="delete" />
                   </Button>
@@ -161,14 +260,14 @@ const ParentsSpaceInfo = ({ addItem, handleChange, removeItem, input }) => {
 
               <Form
                 className="add-sante"
-                onSubmit={handleSubmit}
+                
               >
                 <Form.Field>
                   <Input
-                    onChange={handleChangeInput}
+                    
                     icon={{ name: 'add', link: true }}
                     placeholder="Ajoutez un allergene"
-                    value={input}
+                    onChange={handleChangeAllergiesItem}
                   />
                 </Form.Field>
               </Form>
@@ -182,19 +281,19 @@ const ParentsSpaceInfo = ({ addItem, handleChange, removeItem, input }) => {
           <div id="modif-numeros-div">
             <Form
               id="child-contact"
-              onSubmit={handleSubmit}
+              
             >
               <Form.Input
-                onChange={handleChangeInput}
+                
                 type="text"
                 placeholder="Nom et prénom"
-                value={input}
+                onChange={handleChangePhoneName}
               />
               <Form.Input
-                onChange={handleChangeInput}
+                
                 type="number"
                 placeholder="Numéro de téléphone"
-                value={input}
+                onChange={handleChangePhoneNumber}
               />
             </Form>
           </div>
@@ -202,7 +301,7 @@ const ParentsSpaceInfo = ({ addItem, handleChange, removeItem, input }) => {
 
         <div id="save">
           <Button
-            onClick={handleSubmit}
+            
           >
             Sauvegarder
           </Button>
@@ -214,10 +313,14 @@ const ParentsSpaceInfo = ({ addItem, handleChange, removeItem, input }) => {
 };
 
 ParentsSpaceInfo.propTypes = {
-  addItem: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  removeItem: PropTypes.func.isRequired,
-  input: PropTypes.string.isRequired,
+  handleChangeFirstName: PropTypes.func.isRequired,
+  handleChangeLastName: PropTypes.func.isRequired,
+  handleChangeBirthDate: PropTypes.func.isRequired,
+  handleChangeMedsItem: PropTypes.func.isRequired,
+  handleChangeVaccinesItem: PropTypes.func.isRequired,
+  handleChangeAllergiesItem: PropTypes.func.isRequired,
+  handleChangePhoneName: PropTypes.func.isRequired,
+  handleChangePhoneNumber: PropTypes.func.isRequired,
 };
 
 export default ParentsSpaceInfo;

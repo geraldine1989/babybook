@@ -1,9 +1,11 @@
 
+import uuidv4 from 'uuid/v4';
+
 /**
  * Initial State
  */
 const initialState = {
-  tasks: '',
+  items: [],
   input: '',
 };
 
@@ -21,14 +23,37 @@ const REMOVE_ITEM = 'REMOVE_ITEM';
 /**
  * Reducer
  */
+/* eslint-disable no-case-declarations */
 const reducer = (state = initialState, action = {}) => {
-  const { tasks } = state;
+  const { items } = state;
 
   switch (action.type) {
     case INPUT_CHANGE:
       return {
         ...state,
         input: action.input,
+      };
+
+    case ADD_ITEM:
+
+      const newItemObject = {
+        id: uuidv4(),
+        text: action.text,
+      };
+
+      const newItems = [...items, newItemObject];
+      return {
+        ...state,
+        items: newItems,
+        input: '',
+      };
+
+    case REMOVE_ITEM:
+
+      const deletedItems = items.filter(item => item.id !== action.id);
+      return {
+        ...state,
+        items: deletedItems,
       };
 
     default:
@@ -39,8 +64,19 @@ const reducer = (state = initialState, action = {}) => {
 /**
  * Action Creators
  */
-export const doSomething = () => ({
-  type: DO_SOMETHING,
+export const addItem = text => ({
+  type: ADD_ITEM,
+  text,
+});
+
+export const inputChange = text => ({
+  type: INPUT_CHANGE,
+  input: text,
+});
+
+export const removeItem = id => ({
+  type: REMOVE_ITEM,
+  id,
 });
 
 /**

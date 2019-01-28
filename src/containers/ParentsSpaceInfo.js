@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import ParentsSpaceInfo from 'src/components/ParentsSpace/ParentsSpaceInfo';
 
 // Action Creators
-import { doSomething } from 'src/store/reducer';
+import { addItem, inputChange, removeItem } from 'src/store/reducer';
 
 /* === State (données) ===
  * - mapStateToProps retroune un objet de props pour le composant de présentation
@@ -19,8 +19,7 @@ import { doSomething } from 'src/store/reducer';
  * Pas de data à transmettre ? const mapStateToProps = null;
  */
 const mapStateToProps = state => ({
-  message: state.message,
-  clic: state.clic,
+  input: state.input,
 });
 
 /* === Actions ===
@@ -31,8 +30,14 @@ const mapStateToProps = state => ({
  * Pas de disptach à transmettre ? const mapDispatchToProps = {};
  */
 const mapDispatchToProps = dispatch => ({
-  doSomething: () => {
-    dispatch(doSomething());
+  addItem: (text) => {
+    dispatch(addItem(text));
+  },
+  handleChange: (text) => {
+    dispatch(inputChange(text));
+  },
+  removeItem: (id) => {
+    dispatch(removeItem(id));
   },
 });
 
