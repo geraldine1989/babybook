@@ -17,7 +17,8 @@ import MyDay from 'src/components/MyDay';
 import Informations from 'src/components/Informations';
 import ParentsSpaceDayType from 'src/components/ParentsSpace/ParentsSpaceDayType';
 import ParentsSpaceInfo from 'src/components/ParentsSpace/ParentsSpaceInfo';
-import ParentsSpaceContacts from 'src/components/ParentsSpace/ParentsSpaceContacts';
+//import ParentsSpaceContacts from 'src/components/ParentsSpace/ParentsSpaceContacts';
+import ParentsSpaceContacts from 'src/containers/ParentsSpaceContacts';
 import LegalMentions from 'src/components/LegalMentions';
 import Contact from 'src/components/Contact';
 import NotFound from 'src/components/NotFound';
@@ -43,24 +44,25 @@ class App extends React.Component {
         console.log(error);
       });
   }
+
   render() {
-    return(
+    return (
       <div>
         <HeaderLogo getAllDatas={this.getAllDatas}/>
         <MainNav />
         <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/inscription" component={InscriptionForm} />
-        <Route exact path="/login-parents" component={LoginParents} />
-        <Route exact path="/login-nanny" component={LoginNanny} />
-        <Route exact path="/my-day/journal" component={MyDay} />
-        <Route exact path="/my-day/infos" component={Informations} />
-        <Route exact path="/espace-parents/journee-type" component={ParentsSpaceDayType} />
-        <Route exact path="/espace-parents/infos" component={ParentsSpaceInfo} />
-        <Route exact path="/espace-parents/contacts" component={ParentsSpaceContacts} />
-        <Route exact path="/mentions-legales" component={LegalMentions} />
-        <Route exact path="/contact" component={Contact} />
-        <Route exact path="/not-found" component={NotFound} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/inscription" component={InscriptionForm} />
+          <Route exact path="/login-parents" component={LoginParents} />
+          <Route exact path="/login-nanny" component={LoginNanny} />
+          <Route exact path="/my-day/journal" component={MyDay} />
+          <Route exact path="/my-day/infos" component={Informations} />
+          <Route exact path="/espace-parents/journee-type" component={ParentsSpaceDayType} />
+          <Route exact path="/espace-parents/infos" component={ParentsSpaceInfo} />
+          <Route exact path="/espace-parents/contacts" component={ParentsSpaceContacts} />
+          <Route exact path="/mentions-legales" component={LegalMentions} />
+          <Route exact path="/contact" component={Contact} />
+          <Route exact path="/not-found" component={NotFound} />
         </Switch>
         
         <Footer />

@@ -2,7 +2,8 @@
  * Npm import
  */
 import React from 'react';
-import { Input, Icon, Button, Table, } from 'semantic-ui-react';
+import { Form, Input, Icon, Button, Table } from 'semantic-ui-react';
+import PropsTypes from 'prop-types';
 
 /**
  * Local import
@@ -13,7 +14,7 @@ import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
 /**
  * Code
  */
-const ParentsSpaceContacts = ({ handleChangeNannyPassword, handleDeleteContact }) => {
+const ParentsSpaceContacts = ({ addContact, inputName, inputEmail, handleChangeName, handleChangeEmail, handleDeleteContact}) => {
   const parentsContacts = [
     {
       firstName: "Toto",
@@ -29,11 +30,26 @@ const ParentsSpaceContacts = ({ handleChangeNannyPassword, handleDeleteContact }
     },
   ];
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addContact(inputName, inputEmail);
+  };
+
+  const handleChangeInputName = (event) => {
+    const text = event.target.value;
+    handleChangeName(text);
+  };
+
+  const handleChangeInputEmail = (event) => {
+    const text = event.target.value;
+    handleChangeEmail(text);
+  };
+
   return (
     <div>
       <ParentsNav />
       <div id="contacts">
-        <Button content="Modifier le code d'accès" onClick={handleChangeNannyPassword} />
+        {/* <Button content="Modifier le code d'accès" onClick={handleChangeNannyPassword} /> */}
         <h3>Gérer mes contacts</h3>
         <Table celled id="contact-table">
           <Table.Header className="table-header">
@@ -63,20 +79,50 @@ const ParentsSpaceContacts = ({ handleChangeNannyPassword, handleDeleteContact }
           </Table.Body>
         </Table>
         <h3>Ajouter un contact</h3>
-        <div id="contact-add">
-          <Input name="input-name" placeholder="Nom" value="" />
-          <Input name="input-email" placeholder="Adresse mail" value="" />
+        <Form
+          id="contact-add"
+          onSubmit={handleSubmit}
+        >
+          <Input
+            type="text"
+            name="input-name"
+            onChange={handleChangeInputName}
+            placeholder="Nom"
+            value={inputName}
+          />
+          <Input
+            type="text"
+            name="input-email"
+            onChange={handleChangeInputEmail}
+            placeholder="Adresse mail"
+            value={inputEmail}
+          />
           <Button icon type="submit">
             <Icon name="add" />
           </Button>
-        </div>
+        </Form>
       </div>
     </div>
   );
 };
 
+ParentsSpaceContacts.propTypes = {
+  addContact: PropsTypes.func.isRequired,
+  inputName: PropsTypes.string.isRequired,
+  inputEmail: PropsTypes.string.isRequired,
+  handleChangeName: PropsTypes.func.isRequired,
+  handleChangeEmail: PropsTypes.func.isRequired,
+//   handleDeleteContact: PropsTypes.func.isRequired,
+//   handleChangeNannyPassword: PropsTypes.func.isRequired,
+};
+
+// ParentsSpaceContacts.defaultProps = {
+//   inputName: '',
+//   inputEmail: '',
+// };
+
+
 /**
  * Export
  */
 export default ParentsSpaceContacts;
-
