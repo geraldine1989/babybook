@@ -1,7 +1,8 @@
 /*
  * Npm import
  */
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import ajaxMiddleware from './ajaxMiddleware';
 
 /*
  * Local import

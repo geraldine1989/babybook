@@ -10,7 +10,7 @@ import { NavLink, Route, Switch } from 'react-router-dom';
 import HeaderLogo from 'src/components/HeaderLogo';
 import MainNav from 'src/components/MainNav';
 import Home from 'src/components/Home';
-import InscriptionForm from 'src/components/InscriptionForm';
+import InscriptionForm from 'src/containers/InscriptionForm';
 import LoginParents from 'src/components/LoginParents';
 import LoginNanny from 'src/components/LoginNanny';
 import MyDay from 'src/components/MyDay';
