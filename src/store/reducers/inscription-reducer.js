@@ -2,7 +2,12 @@
  * Initial State
  */
 const initialState = {
-  errorsForm: {},
+  errorsForm: {
+    errorEmail: '',
+    errorPassword: '',
+    errorConfirmPassword: '',
+    errorAccessCode: '',
+  },
 };
 
 /**
@@ -32,32 +37,40 @@ const INSCRIPTION = 'INSCRIPTION';
 /**
  * Reducer
  */
-const reducer = (state = initialState, action = {}) => {
-  var errors = {};
-  
+const inscriptionReducer = (state = initialState, action = {}) => {
+let errors = {};
+const { inputEmail, inputPassword, inputConfirmPassword, inputAccessCode } = state;
+
   switch (action.type) {
     case HANDLE_CHANGE_INSCRIPTION_INPUT:
-    var { inputEmail, inputPassword, inputConfirmPassword, inputAccessCode, errorsForm } = state;
+    if (inputEmail && inputEmail.length < 7) {
+      errors = {
+        ...errors,
+        errorEmail: 'Veuillez saisir un email valide.',
+      }
+    }
     if (inputPassword && inputPassword.length < 7) {
       errors = {
         ...errors,
         errorPassword: 'Le mot de passe doit comporter au moins 8 caractères.',
       }
     }
-    if (inputConfirmPassword && (inputConfirmPassword != inputPassword)) {
+    if (inputConfirmPassword !== inputPassword) {
       errors = {
         ...errors,
         errorConfirmPassword: 'Vos mots de passe ne correspondent pas.',
       }
     }
+    
     if (inputAccessCode && inputAccessCode.length < 7) {
-      console.log(inputAccessCode.length);
+      // console.log(inputAccessCode.length);
       errors = {
         ...errors,
         errorAccessCode: 'Le code d\'accès doit comporter au moins 8 caractères.',
       }
     }
     console.log(errors);
+
     return {
       ...state,
       ...action.changes,
@@ -65,7 +78,12 @@ const reducer = (state = initialState, action = {}) => {
     }
 
     case INSCRIPTION:
-    // var errors = {};
+
+
+
+    if (!errors) {
+
+    };
     
     if (!inputPassword || inputPassword.length < 7) {
       errors = {
@@ -121,7 +139,7 @@ const reducer = (state = initialState, action = {}) => {
 /**
  * Action Creators
  */
-export const inscription = () => ({
+export const handleInscription = () => ({
   type: INSCRIPTION,
 });
 
@@ -136,4 +154,4 @@ export const handleChangeInputs = changes => ({
 /**
  * Export
  */
-export default reducer;
+export default inscriptionReducer;

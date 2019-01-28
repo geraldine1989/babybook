@@ -21,12 +21,12 @@ const InscriptionForm = ({
   inputConfirmPassword, 
   inputAccessCode, 
   handleChangeInputs, 
-  inscription,
+  handleInscription,
   errorsForm,
 }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    inscription();
+    handleInscription();
   }
 
   const handleChange = (event) => {
@@ -52,7 +52,14 @@ const InscriptionForm = ({
               name="inputEmail" 
               value={inputEmail} 
               onChange={handleChange}
+              className={!errorsForm.errorEmail ? 'valid' : 'novalid'}
             />
+            <label
+              htmlFor="inputEmail"
+              className={!errorsForm.errorEmail ? 'hidden' : 'block'}
+            >
+              {errorsForm.errorEmail}
+            </label>
           </Form.Field>
           <Form.Field>
             <input 
@@ -72,7 +79,7 @@ const InscriptionForm = ({
           </Form.Field>
           <Form.Field>
             <input 
-              type="password" 
+              type="text" 
               placeholder="Confirmer le mot de passe" 
               name="inputConfirmPassword" 
               value={inputConfirmPassword}

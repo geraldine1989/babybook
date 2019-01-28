@@ -9,22 +9,22 @@ import { connect } from 'react-redux';
 import InscriptionForm from 'src/components/InscriptionForm';
 
 // Action Creators
-import { handleChangeInputs, inscription } from 'src/store/reducer';
+import { handleChangeInputs, handleInscription } from 'src/store/reducers/inscription-reducer';
 
 const mapStateToProps = state => ({
-  inputEmail: state.inputEmail,
-  inputPassword: state.inputPassword,
-  inputConfirmPassword: state.inputConfirmPassword,
-  inputAccessCode: state.inputAccessCode,
-  errorsForm: state.errorsForm,
+  // inputEmail: state.inscriptionReducer.inputEmail,
+  // inputPassword: state.inscriptionReducer.inputPassword,
+  // inputConfirmPassword: state.inscriptionReducer.inputConfirmPassword,
+  // inputAccessCode: state.inscriptionReducer.inputAccessCode,
+  errorsForm: state.inscriptionReducer.errorsForm,
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = dispatch => ({
   handleChangeInputs: (changes) => {
     dispatch(handleChangeInputs(changes));
   },
-  inscription: () => {
-    dispatch(inscription());
+  handleInscription: () => {
+    dispatch(handleInscription());
   },
 });
 

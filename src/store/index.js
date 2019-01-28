@@ -5,10 +5,10 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import ajaxMiddleware from './ajaxMiddleware';
 
 /*
- * Local import
- */
+* Local import
+*/
 // Reducer
-import reducer from 'src/store/reducer';
+import rootReducer from 'src/store/reducers';
 
 /*
  * Code
@@ -19,7 +19,7 @@ const devTools = [
 
 
 // createStore
-const store = createStore(reducer, ...devTools);
+const store = createStore(rootReducer, ...devTools);
 
 /*
  * Export
