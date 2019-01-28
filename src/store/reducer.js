@@ -1,15 +1,18 @@
+
 /**
  * Initial State
  */
 const initialState = {
-  message: 'Hello',
-  clic: 0,
+  tasks: '',
+  input: '',
 };
 
 /**
  * Types
  */
-const DO_SOMETHING = 'DO_SOMETHING';
+const INPUT_CHANGE = 'INPUT_CHANGE_INFO';
+const ADD_ITEM = 'ADD_ITEM_IN_INFO';
+const REMOVE_ITEM = 'REMOVE_ITEM';
 
 /**
  * Traitements
@@ -19,11 +22,13 @@ const DO_SOMETHING = 'DO_SOMETHING';
  * Reducer
  */
 const reducer = (state = initialState, action = {}) => {
+  const { tasks } = state;
+
   switch (action.type) {
-    case DO_SOMETHING:
+    case INPUT_CHANGE:
       return {
         ...state,
-        clic: state.clic + 1,
+        input: action.input,
       };
 
     default:
