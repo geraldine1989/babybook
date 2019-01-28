@@ -9,11 +9,12 @@ import { connect } from 'react-redux';
 import ParentsSpaceContacts from 'src/components/ParentsSpace/ParentsSpaceContacts';
 
 // Action Creators
-import { inputNameChange, inputEmailChange, addContact } from 'src/store/reducer';
+import { inputNameChange, inputEmailChange, addContact, removeContact } from 'src/store/reducer';
 
 const mapStatetoProps = state => ({
   inputName: state.inputName,
   inputEmail: state.inputEmail,
+  contacts: state.contacts,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -28,6 +29,12 @@ const mapDispatchToProps = dispatch => ({
   handleChangeEmail: (textEmail) => {
     dispatch(inputEmailChange(textEmail));
   },
+  
+  removeContact: (id) => {
+    dispatch(removeContact(id));
+  },
+
+  
 });
 
 const ParentsSpaceContactsContainer = connect(mapStatetoProps, mapDispatchToProps)(ParentsSpaceContacts);

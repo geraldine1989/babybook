@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { Form, Input, Icon, Button, Table } from 'semantic-ui-react';
-import PropsTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 /**
  * Local import
@@ -14,7 +14,7 @@ import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
 /**
  * Code
  */
-const ParentsSpaceContacts = ({ addContact, inputName, inputEmail, handleChangeName, handleChangeEmail, handleDeleteContact}) => {
+const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, handleChangeName, handleChangeEmail, removeContact, id, }) => {
   const parentsContacts = [
     {
       firstName: "Toto",
@@ -45,6 +45,14 @@ const ParentsSpaceContacts = ({ addContact, inputName, inputEmail, handleChangeN
     handleChangeEmail(text);
   };
 
+  const contactsList = [
+    ...contacts,
+  ];
+
+  const handleDeleteContact = () => {
+    removeContact(id);
+  };
+
   return (
     <div>
       <ParentsNav />
@@ -61,17 +69,17 @@ const ParentsSpaceContacts = ({ addContact, inputName, inputEmail, handleChangeN
           </Table.Header>
 
           <Table.Body>
-            { parentsContacts.map(contact => (
-              <Table.Row key={contact.email}>
+            { contactsList.map(contactList => (
+              <Table.Row key={contactList.id}>
                 <Table.Cell>
-                  { contact.firstName }
+                  { contactList.textName }
                 </Table.Cell>
                 <Table.Cell>
-                  { contact.email }
+                  { contactList.textEmail }
                 </Table.Cell>
                 <Table.Cell className="delete-contact">
-                  <Button icon>
-                    <Icon name="delete" onClick={handleDeleteContact} />
+                  <Button icon onClick={handleDeleteContact}>
+                    <Icon name="delete" />
                   </Button>
                 </Table.Cell>
               </Table.Row>
@@ -91,7 +99,7 @@ const ParentsSpaceContacts = ({ addContact, inputName, inputEmail, handleChangeN
             value={inputName}
           />
           <Input
-            type="text"
+            type="email"
             name="input-email"
             onChange={handleChangeInputEmail}
             placeholder="Adresse mail"
@@ -107,12 +115,16 @@ const ParentsSpaceContacts = ({ addContact, inputName, inputEmail, handleChangeN
 };
 
 ParentsSpaceContacts.propTypes = {
-  addContact: PropsTypes.func.isRequired,
-  inputName: PropsTypes.string.isRequired,
-  inputEmail: PropsTypes.string.isRequired,
-  handleChangeName: PropsTypes.func.isRequired,
-  handleChangeEmail: PropsTypes.func.isRequired,
-//   handleDeleteContact: PropsTypes.func.isRequired,
+  addContact: PropTypes.func.isRequired,
+  inputName: PropTypes.string.isRequired,
+  inputEmail: PropTypes.string.isRequired,
+  handleChangeName: PropTypes.func.isRequired,
+  handleChangeEmail: PropTypes.func.isRequired,
+  contacts: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  })).isRequired,
+  removeContact: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
 //   handleChangeNannyPassword: PropsTypes.func.isRequired,
 };
 

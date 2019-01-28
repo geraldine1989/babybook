@@ -4,7 +4,7 @@ import uuidv4 from 'uuid/v4';
  * Initial State
  */
 const initialState = {
-  contactsList: [],
+  contacts: [],
   inputName: '',
   inputEmail: '',
 };
@@ -15,7 +15,7 @@ const initialState = {
 const INPUT_NAME_CHANGE = 'INPUT_NAME_CHANGE';
 const INPUT_EMAIL_CHANGE = 'INPUT_EMAIL_CHANGE';
 const ADD_CONTACT = 'ADD_CONTACT';
-
+const REMOVE_CONTACT = 'REMOVE_CONTACT';
 /**
  * Traitements
  */
@@ -24,9 +24,10 @@ const ADD_CONTACT = 'ADD_CONTACT';
  * Reducer
  */
 const reducer = (state = initialState, action = {}) => {
-  const { contactsList } = state;
+  const { contacts } = state;
   const { inputName } = state;
   const { inputEmail } = state;
+
   switch (action.type) {
     case INPUT_NAME_CHANGE:
       return {
@@ -41,15 +42,27 @@ const reducer = (state = initialState, action = {}) => {
       };
     /* eslint-disable no-case-declarations */
     case ADD_CONTACT:
-      const newContactObject = { id: uuidv4(), textName: inputName, textEmail: inputEmail };
+      const newContactObject = {
+        id: uuidv4(),
+        textName: inputName,
+        textEmail: inputEmail,
+      };
 
-      const newContacts = [...contactsList, newContactObject];
+      const newContacts = [...contacts, newContactObject];
 
       return {
         ...state,
-        contactsList: newContacts,
+        contacts: newContacts,
         inputName: '',
         inputEmail: '',
+      };
+
+    case REMOVE_CONTACT:
+      const deletedContacts = contacts.filter(contact => contact.id !== action.id);
+      console.log(deletedContacts);
+      return {
+        ...state,
+        contacts: deletedContacts,
       };
 
     default:
@@ -76,6 +89,10 @@ export const addContact = (textName, textEmail) => ({
   textEmail,
 });
 
+export const removeContact = id => ({
+  type: REMOVE_CONTACT,
+  id,
+});
 
 /**
  * Selectors
