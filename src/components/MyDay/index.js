@@ -14,7 +14,7 @@ import './style.scss';
  * Code
  */
 const MyDay = ({ list }) => (
-  
+ 
   <div id="myday">
 
     <div id="intro">
@@ -33,59 +33,27 @@ const MyDay = ({ list }) => (
     </div>
 
     <div id="list">
-
-
-      <div className="task">
-          <Button className="list-button" circular icon="utensils" />
-          <div className="list-item">Biberon</div>
-          <div className="time">8:00</div>
-          <div className="note">Mettre 5 dosettes avec 150ml d'eau</div>
+      {
+        list.map(task => 
+          <div className="task">
+            <Button className="list-button" circular icon="utensils" />
+            <div className="list-item">{task.name}</div>
+            <div className="time">{task.hour}</div>
+            <div className="note">{task.indic}</div>
+            
+            <form className="add-name-input">
+              <input  placeholder="Ajouter une note..." />
+              <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
+            </form>  
+            <div className="note-nany"> Pas de notes de la nounou </div>
+          </div>
           
-          <form className="add-name-input">
-            <input  placeholder="Ajouter une note..." />
-            <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
-          </form>  
-      </div>
-      <div className="note-nany"> Pas de notes de la nounou </div>
-
-      <div className="task">
-          <Button className="list-button" circular icon="utensils" />
-          <div className="list-item">Biberon</div>
-          <div className="time">12:00</div>
-          <div className="note">Mettre 3 dosettes avec 90ml d'eau</div>
           
-          <form className="add-name-input">
-            <input  placeholder="Ajouter une note..." />
-            <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
-          </form>  
-      </div>
-      <div className="note-nany"> Pas de notes de la nounou </div>
+        )
+      }
 
-      <div className="task">
-          <Button className="list-button" circular icon="utensils" />
-          <div className="list-item">Sieste</div>
-          <div className="time">13:30</div>
-          <div className="note">Aucune note particulère</div>
-          
-          <form className="add-name-input">
-            <input  placeholder="Ajouter une note..." />
-            <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
-          </form>  
-      </div>
-      <div className="note-nany"> Pas de notes de la nounou </div>
-
-      <div className="task">
-          <Button className="list-button" circular icon="utensil spoon" />
-          <div className="list-item">Goûter</div>
-          <div className="time">16:00</div>
-          <div className="note">Compote de pommes</div>
-          
-          <form className="add-name-input">
-            <input  placeholder="Ajouter une note..." />
-            <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
-          </form>  
-      </div>
-      <div className="note-nany-activ"> Plus qu'une compote restante </div>
+    
+  
   </div>
 
     <div id="info-plus">
