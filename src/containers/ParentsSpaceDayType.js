@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import ParentsSpaceDayType from 'src/components/ParentsSpace/ParentsSpaceDayType';
 
 // Action Creators
-import { handleChangeTitleDay, handleChangeNoteTask, handleChangeHourTask } from 'src/store/reducer';
+import { handleChangeTitleDay, handleChangeNoteTask, handleChangeHourTask, addTask } from 'src/store/reducer';
 
 /* === State (données) ===
  */
@@ -33,6 +33,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
   handleChangeHourTask: (hour) => {
     dispatch(handleChangeHourTask(hour));
+  },
+
+  addTask: (itemList) => {
+    dispatch(addTask(itemList));
+    console.log('je suis dans le dispacther');
   },
 });
 

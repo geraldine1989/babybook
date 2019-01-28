@@ -1,3 +1,6 @@
+import uuidv4 from 'uuid/v4';
+
+
 /**
  * Initial State
  */
@@ -14,6 +17,7 @@ const initialState = {
 const INPUT_CHANGE_TITLE_TASK = 'INPUT_CHANGE_TITLE_TASK';
 const INPUT_CHANGE_NOTE_TASK = 'INPUT_CHANGE_NOTE_TASK';
 const INPUT_CHANGE_HOUR_TASK = 'INPUT_CHANGE_HOUR_TASK';
+const ADD_TASK = 'ADD_TASK ';
 
 /**
  * Traitements
@@ -22,7 +26,12 @@ const INPUT_CHANGE_HOUR_TASK = 'INPUT_CHANGE_HOUR_TASK';
 /**
  * Reducer
  */
+/* eslint-disable no-case-declarations */
 const reducer = (state = initialState, action = {}) => {
+  const { itemList } = state;
+  const { inputTitle } = state;
+  const { inputNoteTask } = state;
+  const { inputHourTask } = state;
   switch (action.type) {
     // CHANGE INPUT from my day in parentsspace Form
     case INPUT_CHANGE_TITLE_TASK:
@@ -40,6 +49,25 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         inputHourTask: action.inputHourTask,
+      };
+    
+    // CHANGE INPUT from my day in parentsspace Form
+    case ADD_TASK:
+      const newTaskObject = {
+        id: uuidv4(),
+        name: inputTitle,
+        hour: inputHourTask,
+        indic: inputNoteTask,
+      };
+
+      const newTasks = [...itemList, newTaskObject];
+
+      return {
+        ...state,
+        itemList: newTasks,
+        inputTitle: '',
+        inputHourTask: '',
+        inputNoteTask: '',
       };
 
     default:
@@ -63,6 +91,11 @@ export const handleChangeNoteTask = text => ({
 export const handleChangeHourTask = hour => ({
   type: INPUT_CHANGE_HOUR_TASK,
   inputHourTask: hour,
+});
+
+export const addTask = itemList => ({
+  type: ADD_TASK,
+  itemList,
 });
 
 /**

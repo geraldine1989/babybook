@@ -26,7 +26,7 @@ export default class ParentsNav extends Component {
           name='Modifier journée type'
           //active={activeItem === 'Modifier journée type'}
           onClick={this.handleItemClick}
-          activeClasseName="active"
+          activeclassename="active"
         />
         <Menu.Item
           as={NavLink}
@@ -35,7 +35,7 @@ export default class ParentsNav extends Component {
           name='Modifier les infos'
           //active={activeItem === 'Modifier les infos'}
           onClick={this.handleItemClick}
-          activeClasseName="active"
+          activeclassename="active"
         />
         <Menu.Item
           as={NavLink}
@@ -44,7 +44,7 @@ export default class ParentsNav extends Component {
           name='Gestion contacts'
           //active={activeItem === 'Gestion contacts'}
           onClick={this.handleItemClick}
-          activeClasseName="active"
+          activeclassename="active"
         />
       </Menu>
       </div>

@@ -49,7 +49,7 @@ const handleAddItemInList = (evt) => {
   addDayType(formDatas);
 };
 
-const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inputTitle, handleChangeNoteTask, inputNoteTask, handleChangeHourTask, inputHourTask }) => {
+const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inputTitle, handleChangeNoteTask, inputNoteTask, handleChangeHourTask, inputHourTask, addTask }) => {
 
   const handleChangeTitle = (event) => {
     const text = event.target.value;
@@ -65,6 +65,11 @@ const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inpu
     console.log(event.target.value);
     const hour = event.target.value;
     handleChangeHourTask(hour);
+  };
+
+  const handleSubmitList = (event) => {
+    event.preventDefault();
+    addTask(inputNoteTask);
   };
 
 
@@ -96,7 +101,7 @@ const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inpu
           </li>
         </ul>
         <div id="add-item">
-          <Form className="form-add-item">
+          <Form className="form-add-item" onSubmit={handleSubmitList}>
             <Form.Field>
               <label> Titre </label>
               <input 
@@ -123,8 +128,8 @@ const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inpu
                 onChange={handleChangeNotesTask}
               />
             </Form.Field>
-            <Button icon type="submit">
-              <Icon name="add" onClick={handleAddItemInList} />
+            <Button icon type="submit" >
+              <Icon name="add" />
             </Button>
           </Form>
         </div>
@@ -145,9 +150,10 @@ ParentsSpaceDayType.propTypes = {
   handleChangeTitleDay: PropTypes.func.isRequired,
   inputTitle: PropTypes.string.isRequired,
   handleChangeNoteTask: PropTypes.func.isRequired,
-  inputNoteTask: PropTypes.func.isRequired,
+  inputNoteTask: PropTypes.string.isRequired,
   handleChangeHourTask: PropTypes.func.isRequired,
   inputHourTask: PropTypes.string.isRequired,
+  addTask: PropTypes.func.isRequired,
 };
 
 /**
