@@ -14,7 +14,7 @@ const initialState = {
  * Types
  */
 const HANDLE_CHANGE_INSCRIPTION_INPUT = 'HANDLE_CHANGE_INSCRIPTION_INPUT';
-const INSCRIPTION = 'INSCRIPTION';
+const HANDLE_INSCRIPTION = 'INSCRIPTION';
 
 /**
  * Traitements
@@ -43,71 +43,49 @@ const { inputEmail, inputPassword, inputConfirmPassword, inputAccessCode } = sta
 
   switch (action.type) {
     case HANDLE_CHANGE_INSCRIPTION_INPUT:
-    if (inputEmail && inputEmail.length < 7) {
-      errors = {
-        ...errors,
-        errorEmail: 'Veuillez saisir un email valide.',
+      if (inputEmail && inputEmail.length < 7) {
+        errors = {
+          ...errors,
+          errorEmail: 'Veuillez saisir un email valide.',
+        }
       }
-    }
-    if (inputPassword && inputPassword.length < 7) {
-      errors = {
-        ...errors,
-        errorPassword: 'Le mot de passe doit comporter au moins 8 caractères.',
+      if (inputPassword && inputPassword.length < 7) {
+        errors = {
+          ...errors,
+          errorPassword: 'Le mot de passe doit comporter au moins 8 caractères.',
+        }
       }
-    }
-    if (inputConfirmPassword !== inputPassword) {
-      errors = {
-        ...errors,
-        errorConfirmPassword: 'Vos mots de passe ne correspondent pas.',
+      if (inputConfirmPassword !== inputPassword) {
+        errors = {
+          ...errors,
+          errorConfirmPassword: 'Vos mots de passe ne correspondent pas.',
+        }
       }
-    }
+      
+      if (inputAccessCode && inputAccessCode.length < 7) {
+        // console.log(inputAccessCode.length);
+        errors = {
+          ...errors,
+          errorAccessCode: 'Le code d\'accès doit comporter au moins 8 caractères.',
+        }
+      }
+      console.log(errors);
+
+      return {
+        ...state,
+        ...action.changes,
+        errorsForm: errors,
+      }
+
+    case HANDLE_INSCRIPTION:
+
+
+
     
-    if (inputAccessCode && inputAccessCode.length < 7) {
-      // console.log(inputAccessCode.length);
-      errors = {
-        ...errors,
-        errorAccessCode: 'Le code d\'accès doit comporter au moins 8 caractères.',
+      return {
+        ...state,
+        errorsForm: errors,
       }
-    }
-    console.log(errors);
-
-    return {
-      ...state,
-      ...action.changes,
-      errorsForm: errors,
-    }
-
-    case INSCRIPTION:
-
-
-
-    if (!errors) {
-
-    };
-    
-    if (!inputPassword || inputPassword.length < 7) {
-      errors = {
-        ...errors,
-        errorPassword: 'Le mot de passe doit comporter au moins 8 caractères.',
-      }
-    }
-    if (!inputConfirmPassword || inputPassword != inputConfirmPassword) {
-      errors = {
-        ...errors,
-        errorConfirmPassword: 'Vos mots de passe ne correspondent pas.',
-      }
-    }
-    if (!inputAccessCode || inputAccessCode.length < 7) {
-      errors = {
-        ...errors,
-        errorAccessCode: 'Le code d\'accès doit comporter au moins 8 caractères.',
-      }
-    }
-    console.log(errors);
-    return {
-      ...state,
-      errorsForm: errors,
-    }
     
 
 
@@ -120,18 +98,9 @@ const { inputEmail, inputPassword, inputConfirmPassword, inputAccessCode } = sta
       }
       console.log(formDatas);
     //AXIOS TODO
-    // const inscription = (formDatas) => {
-    //   const axios = require('axios');
-    //   axios.post('http://localhost:3000/inscription', formDatas)
-    //     .then((response) => {
-    //       console.log(response);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // }
 
-    default:
+
+  default:
       return state;
   }
 };
@@ -140,7 +109,7 @@ const { inputEmail, inputPassword, inputConfirmPassword, inputAccessCode } = sta
  * Action Creators
  */
 export const handleInscription = () => ({
-  type: INSCRIPTION,
+  type: HANDLE_INSCRIPTION,
 });
 
 export const handleChangeInputs = changes => ({

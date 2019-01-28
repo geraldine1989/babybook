@@ -1,19 +1,19 @@
 import axios from 'axios';
 
+import { HANDLE_LOGIN } from './reducers/login-reducer';
 
 const ajaxMiddleware = store => next => (action) => {
   // Je veux vérifier si l'action que je reçois m'intéresse
   switch (action.type) {
-    case LOAD_RECIPES:
-      // Je veux faire une requête axios
-      axios.get(url)
-        .then((result) => {
-          console.log(result);
-          // store.dispatch(receivedRecipes(result.data));
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    case HANDLE_LOGIN:
+      console.log(action.modif)
+      // axios.post('http://localhost:3000/inscription', action.modif)
+      //   .then((response) => {
+      //     console.log(response);
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
 
       break;
 
@@ -23,3 +23,14 @@ const ajaxMiddleware = store => next => (action) => {
 };
 
 export default ajaxMiddleware;  
+
+    // const inscription = (formDatas) => {
+    //   const axios = require('axios');
+    //   axios.post('http://localhost:3000/inscription', formDatas)
+    //     .then((response) => {
+    //       console.log(response);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // }

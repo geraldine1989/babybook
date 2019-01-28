@@ -13,13 +13,16 @@ import rootReducer from 'src/store/reducers';
 /*
  * Code
  */
+const appliedMiddlewares = applyMiddleware(ajaxMiddleware);
+
 const devTools = [
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 ];
 
+const enhancers = compose(appliedMiddlewares, ...devTools);
 
 // createStore
-const store = createStore(rootReducer, ...devTools);
+const store = createStore(rootReducer, enhancers);
 
 /*
  * Export

@@ -11,7 +11,7 @@ import HeaderLogo from 'src/components/HeaderLogo';
 import MainNav from 'src/components/MainNav';
 import Home from 'src/components/Home';
 import InscriptionForm from 'src/containers/InscriptionForm';
-import LoginParents from 'src/components/LoginParents';
+import LoginParents from 'src/containers/LoginParents';
 import LoginNanny from 'src/components/LoginNanny';
 import MyDay from 'src/components/MyDay';
 import Informations from 'src/components/Informations';

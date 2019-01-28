@@ -79,7 +79,7 @@ const InscriptionForm = ({
           </Form.Field>
           <Form.Field>
             <input 
-              type="text" 
+              type="password" 
               placeholder="Confirmer le mot de passe" 
               name="inputConfirmPassword" 
               value={inputConfirmPassword}
