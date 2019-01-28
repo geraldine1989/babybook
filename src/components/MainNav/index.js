@@ -1,21 +1,18 @@
-import React, { Component } from 'react'
-import { Accordion, Menu, Icon, Dropdown } from 'semantic-ui-react'
+import React, { Component } from 'react';
+import { Accordion, Menu, Icon, Dropdown } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
-//Local import
+// Local import
 import './style.scss';
 
 export default class MainNav extends Component {
   // state = { activeIndex: -1 }
-
   // handleClick = (e, titleProps) => {
   //   const { index } = titleProps
   //   const { activeIndex } = this.state
   //   const newIndex = activeIndex === index ? -1 : index
-
   //   this.setState({ activeIndex: newIndex })
   // }
-
   render() {
     // const { activeIndex } = this.state
 

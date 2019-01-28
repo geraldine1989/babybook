@@ -8,7 +8,6 @@ import { NavLink } from 'react-router-dom';
 /**
  * Local import
  */
-//import Example from 'src/containers/Example';
 import './style.scss';
 import 'semantic-ui-css/semantic.min.css';
 /**
@@ -16,21 +15,18 @@ import 'semantic-ui-css/semantic.min.css';
  */
 
 class LoginParents extends React.Component {
-  
   handleSubmit = (evt) => {
     evt.preventDefault();
     console.log(evt.currentTarget);
     const datas = {
-      email: "test@test.com",
-      password: "motDePasse",
-    }
+      email: 'test@test.com',
+      password: 'motDePasse',
+    };
   };
-  
-  
+
   render() {
     return (
       <div id="pageLoginParents">
-        
         <h2>Connexion parents</h2>
         <div id="formLoginParents">
           <Form>
@@ -49,8 +45,8 @@ class LoginParents extends React.Component {
     );
   }
 }
+
 /**
  * Export
  */
 export default LoginParents;
-

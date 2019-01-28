@@ -16,16 +16,16 @@ import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
 const ParentsSpaceContacts = ({ handleChangeNannyPassword, handleDeleteContact }) => {
   const parentsContacts = [
     {
-      firstName: "Toto",
-      email: "toto@gmail.com",
+      firstName: 'Toto',
+      email: 'toto@gmail.com',
     },
     {
-      firstName: "Titi",
-      email: "titi@gmail.com",
+      firstName: 'Titi',
+      email: 'titi@gmail.com',
     },
     {
-      firstName: "Tata",
-      email: "tata@gmail.com",
+      firstName: 'Tata',
+      email: 'tata@gmail.com',
     },
   ];
 
@@ -79,4 +79,3 @@ const ParentsSpaceContacts = ({ handleChangeNannyPassword, handleDeleteContact }
  * Export
  */
 export default ParentsSpaceContacts;
-

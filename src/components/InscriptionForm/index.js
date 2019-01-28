@@ -7,7 +7,6 @@ import { Form, Button } from 'semantic-ui-react';
 /**
  * Local import
  */
-//import Example from 'src/containers/Example';
 import './style.scss';
 import 'semantic-ui-css/semantic.min.css';
 import { NavLink } from 'react-router-dom';
@@ -15,8 +14,7 @@ import { NavLink } from 'react-router-dom';
  * Code
  */
 const inscription = (formDatas) => {
-
-  const axios = require('axios');
+  const axios = ('axios');
   axios.post('http://localhost:3000/inscription', formDatas)
     .then((response) => {
       console.log(response);
@@ -24,17 +22,17 @@ const inscription = (formDatas) => {
     .catch((error) => {
       console.log(error);
     });
-}
+};
 
 const handleSubmit = (evt) => {
   evt.preventDefault();
   const formDatas = {
     email: 'toto@gmail.com',
     password: 'motdepasse',
-    accessCode: 'codeAcces'
-  }
+    accessCode: 'codeAcces',
+  };
   inscription(formDatas);
-}
+};
 
 const InscriptionForm = () => (
   <div id="pageInscription">
@@ -68,4 +66,3 @@ const InscriptionForm = () => (
  * Export
  */
 export default InscriptionForm;
-
