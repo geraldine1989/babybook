@@ -13,7 +13,7 @@ import Home from 'src/components/Home';
 import InscriptionForm from 'src/components/InscriptionForm';
 import LoginParents from 'src/components/LoginParents';
 import LoginNanny from 'src/components/LoginNanny';
-import MyDay from 'src/components/MyDay';
+import MyDay from 'src/containers/MyDay';
 import Informations from 'src/components/Informations';
 import ParentsSpaceDayType from 'src/containers/ParentsSpaceDayType';
 import ParentsSpaceInfo from 'src/components/ParentsSpace/ParentsSpaceInfo';
