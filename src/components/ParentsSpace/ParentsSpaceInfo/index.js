@@ -85,44 +85,61 @@ const ParentsSpaceInfo = ({
   handleChangeAllergiesItem,
   handleChangePhoneName,
   handleChangePhoneNumber,
+  inputFirstName,
+  inputLastName,
+  inputBirthDate,
+  inputMeds,
+  inputVaccines,
+  inputAllergies,
+  inputPhoneName,
+  inputPhoneNumber,
 }) => {
-  const handleChangeFirstName = (evt) => {
+
+  const handleChangeForFirstName = (evt) => {
     const text = evt.target.value;
+    console.log(evt.target.value);
     handleChangeFirstName(text);
   };
 
-  const handleChangeLastName = (evt) => {
+  const handleChangeForLastName = (evt) => {
     const text = evt.target.value;
+    console.log(evt.target.value);
     handleChangeLastName(text);
   };
 
-  const handleChangeBirthDate = (evt) => {
+  const handleChangeForBirthDate = (evt) => {
     const date = evt.target.value;
+    console.log(evt.target.value);
     handleChangeBirthDate(date);
   };
 
-  const handleChangeMedsItem = (evt) => {
+  const handleChangeForMedsItem = (evt) => {
     const text = evt.target.value;
+    console.log(evt.target.value);
     handleChangeMedsItem(text);
   };
 
-  const handleChangeVaccinesItem = (evt) => {
+  const handleChangeForVaccinesItem = (evt) => {
     const text = evt.target.value;
+    console.log(evt.target.value);
     handleChangeVaccinesItem(text);
   };
 
-  const handleChangeAllergiesItem = (evt) => {
+  const handleChangeForAllergiesItem = (evt) => {
     const text = evt.target.value;
+    console.log(evt.target.value);
     handleChangeAllergiesItem(text);
   };
 
-  const handleChangePhoneName = (evt) => {
+  const handleChangeForPhoneName = (evt) => {
     const text = evt.target.value;
+    console.log(evt.target.value);
     handleChangePhoneName(text);
   };
 
-  const handleChangePhoneNumber = (evt) => {
+  const handleChangeForPhoneNumber = (evt) => {
     const number = evt.target.value;
+    console.log(evt.target.value);
     handleChangePhoneNumber(number);
   };
 
@@ -137,16 +154,16 @@ const ParentsSpaceInfo = ({
             id="modif-child-name"
           >
             <Form.Input
-              onChange={handleChangeFirstName}
+              onChange={handleChangeForFirstName}
               type="text"
               placeholder="Prénom de l'enfant"
-              
+              value={inputFirstName}
             />
             <Form.Input
-              onChange={handleChangeLastName}
+              onChange={handleChangeForLastName}
               type="text"
               placeholder="Nom de l'enfant"
-              
+              value={inputLastName}
             />
           </Form>
 
@@ -157,7 +174,8 @@ const ParentsSpaceInfo = ({
           >
             <Form.Input
               type="date"
-              onChange={handleChangeBirthDate}
+              onChange={handleChangeForBirthDate}
+              value={inputBirthDate}
             />
           </Form>
         </div>
@@ -195,10 +213,10 @@ const ParentsSpaceInfo = ({
               >
                 <Form.Field>
                   <Input
-                    
+                    value={inputMeds}
                     icon={{ name: 'add', link: true }}
                     placeholder="Ajoutez un médicament"
-                    onChange={handleChangeMedsItem}
+                    onChange={handleChangeForMedsItem}
                   />
                 </Form.Field>
               </Form>
@@ -234,10 +252,10 @@ const ParentsSpaceInfo = ({
               >
                 <Form.Field>
                   <Input
-                    
+                    value={inputVaccines}
                     icon={{ name: 'add', link: true }}
                     placeholder="Ajoutez le vaccin et sa date"
-                    onChange={handleChangeVaccinesItem}
+                    onChange={handleChangeForVaccinesItem}
                   />
                 </Form.Field>
               </Form>
@@ -264,10 +282,10 @@ const ParentsSpaceInfo = ({
               >
                 <Form.Field>
                   <Input
-                    
+                    value={inputAllergies}
                     icon={{ name: 'add', link: true }}
                     placeholder="Ajoutez un allergene"
-                    onChange={handleChangeAllergiesItem}
+                    onChange={handleChangeForAllergiesItem}
                   />
                 </Form.Field>
               </Form>
@@ -284,16 +302,16 @@ const ParentsSpaceInfo = ({
               
             >
               <Form.Input
-                
+                value={inputPhoneName}
                 type="text"
                 placeholder="Nom et prénom"
-                onChange={handleChangePhoneName}
+                onChange={handleChangeForPhoneName}
               />
               <Form.Input
-                
+                value={inputPhoneNumber}
                 type="number"
                 placeholder="Numéro de téléphone"
-                onChange={handleChangePhoneNumber}
+                onChange={handleChangeForPhoneNumber}
               />
             </Form>
           </div>
@@ -321,6 +339,14 @@ ParentsSpaceInfo.propTypes = {
   handleChangeAllergiesItem: PropTypes.func.isRequired,
   handleChangePhoneName: PropTypes.func.isRequired,
   handleChangePhoneNumber: PropTypes.func.isRequired,
+  inputFirstName: PropTypes.string.isRequired,
+  inputLastName: PropTypes.string.isRequired,
+  inputBirthDate: PropTypes.string.isRequired,
+  inputMeds: PropTypes.string.isRequired,
+  inputVaccines: PropTypes.string.isRequired,
+  inputAllergies: PropTypes.string.isRequired,
+  inputPhoneName: PropTypes.string.isRequired,
+  inputPhoneNumber: PropTypes.string.isRequired,
 };
 
 export default ParentsSpaceInfo;

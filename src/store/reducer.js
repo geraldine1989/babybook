@@ -1,59 +1,98 @@
-
-import uuidv4 from 'uuid/v4';
+// import uuidv4 from 'uuid/v4';
 
 /**
  * Initial State
  */
 const initialState = {
-  items: [],
-  input: '',
+  inputFirstName: '',
+  inputLastName: '',
+  inputBirthDate: '',
+  inputMeds: '',
+  inputVaccines: '',
+  inputAllergies: '',
+  inputPhoneName: '',
+  inputPhoneNumber: '',
 };
 
 /**
  * Types
  */
-const INPUT_CHANGE = 'INPUT_CHANGE_INFO';
-const ADD_ITEM = 'ADD_ITEM_IN_INFO';
-const REMOVE_ITEM = 'REMOVE_ITEM';
+const INPUT_CHANGE_FIRST_NAME = 'INPUT_CHANGE_FIRST_NAME';
+const INPUT_CHANGE_LAST_NAME = 'INPUT_CHANGE_LAST_NAME';
+const INPUT_CHANGE_BIRTH_DATE = 'INPUT_CHANGE_BIRTH_DATE';
+const INPUT_CHANGE_MEDS = 'INPUT_CHANGE_MEDS';
+const INPUT_CHANGE_VACCINES = 'INPUT_CHANGE_VACCINES';
+const INPUT_CHANGE_ALLERGIES = 'INPUT_CHANGE_ALLERGIES';
+const INPUT_CHANGE_PHONE_NAME = 'INPUT_CHANGE_PHONE_NAME';
+const INPUT_CHANGE_PHONE_NUMBER = 'INPUT_CHANGE_PHONE_NUMBER';
+
 
 /**
  * Traitements
  */
+
 
 /**
  * Reducer
  */
 /* eslint-disable no-case-declarations */
 const reducer = (state = initialState, action = {}) => {
-  const { items } = state;
+  const { inputFirstName } = state;
+  const { inputLastName } = state;
+  const { inputBirthDate } = state;
+  const { inputMeds } = state;
+  const { inputVaccines } = state;
+  const { inputAllergies } = state;
+  const { inputPhoneName } = state;
+  const { inputPhoneNumber } = state;
 
   switch (action.type) {
-    case INPUT_CHANGE:
+    case INPUT_CHANGE_FIRST_NAME:
       return {
         ...state,
-        input: action.input,
+        inputFirstName: action.inputFirstName,
       };
 
-    case ADD_ITEM:
-
-      const newItemObject = {
-        id: uuidv4(),
-        text: action.text,
-      };
-
-      const newItems = [...items, newItemObject];
+    case INPUT_CHANGE_LAST_NAME:
       return {
         ...state,
-        items: newItems,
-        input: '',
+        inputLastName: action.inputLastName,
       };
 
-    case REMOVE_ITEM:
-
-      const deletedItems = items.filter(item => item.id !== action.id);
+    case INPUT_CHANGE_BIRTH_DATE:
       return {
         ...state,
-        items: deletedItems,
+        inputBirthDate: action.inputBirthDate,
+      };
+
+    case INPUT_CHANGE_MEDS:
+      return {
+        ...state,
+        inputMeds: action.inputMeds,
+      };
+
+    case INPUT_CHANGE_VACCINES:
+      return {
+        ...state,
+        inputVaccines: action.inputVaccines,
+      };
+
+    case INPUT_CHANGE_ALLERGIES:
+      return {
+        ...state,
+        inputAllergies: action.inputAllergies,
+      };
+
+    case INPUT_CHANGE_PHONE_NAME:
+      return {
+        ...state,
+        inputPhoneName: action.inputPhoneName,
+      };
+
+    case INPUT_CHANGE_PHONE_NUMBER:
+      return {
+        ...state,
+        inputPhoneNumber: action.inputPhoneNumber,
       };
 
     default:
@@ -64,19 +103,45 @@ const reducer = (state = initialState, action = {}) => {
 /**
  * Action Creators
  */
-export const addItem = text => ({
-  type: ADD_ITEM,
-  text,
+
+export const handleChangeFirstName = text => ({
+  type: INPUT_CHANGE_FIRST_NAME,
+  inputFirstName: text,
 });
 
-export const inputChange = text => ({
-  type: INPUT_CHANGE,
-  input: text,
+export const handleChangeLastName = text => ({
+  type: INPUT_CHANGE_LAST_NAME,
+  inputLastName: text,
 });
 
-export const removeItem = id => ({
-  type: REMOVE_ITEM,
-  id,
+export const handleChangeBirthDate = date => ({
+  type: INPUT_CHANGE_BIRTH_DATE,
+  inputBirthDate: date,
+});
+
+export const handleChangeMedsItem = text => ({
+  type: INPUT_CHANGE_MEDS,
+  inputMeds: text,
+});
+
+export const handleChangeVaccinesItem = text => ({
+  type: INPUT_CHANGE_VACCINES,
+  inputVaccines: text,
+});
+
+export const handleChangeAllergiesItem = text => ({
+  type: INPUT_CHANGE_ALLERGIES,
+  inputAllergies: text,
+});
+
+export const handleChangePhoneName = text => ({
+  type: INPUT_CHANGE_PHONE_NAME,
+  inputPhoneName: text,
+});
+
+export const handleChangePhoneNumber = number => ({
+  type: INPUT_CHANGE_PHONE_NUMBER,
+  inputPhoneNumber: number,
 });
 
 /**
