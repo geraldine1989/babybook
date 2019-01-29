@@ -14,7 +14,7 @@ import './style.scss';
  * Code
  */
 /* eslint-disable no-case-declarations */
-const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou }) => {
+const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, inputNoteNounouTask, handleAddNoteNoteTaskNounou }) => {
   
   /** Input ajout note nounou journées */
   const handleAddNoteDayInputNounou = (event) => {
@@ -25,6 +25,11 @@ const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDa
   const handleAddNoteDaySubmitNounou = (event) => {
     event.preventDefault();
     AddNoteDaySubmitNounou(inputNoteNounou);
+  };
+
+  const handleAddNoteTaskInputNounou = (event) => {
+    const text = event.target.value;
+    handleAddNoteNoteTaskNounou(text);
   };
   return (
     <div id="myday">
@@ -52,7 +57,7 @@ const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDa
               <div className="note">{task.indic}</div>
               
               <form className="add-name-input">
-                <input  placeholder="Ajouter une note..." />
+                <input  placeholder="Ajouter une note..." value= {inputNoteNounouTask} onChange={handleAddNoteTaskInputNounou} />
                 <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
               </form>  
               <div className="note-nany"> Pas de notes de la nounou </div>
@@ -65,7 +70,7 @@ const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDa
           <div id="particular-note-title">
           Notes complémentaires
           </div>
-          <p>Pas de note de la part de la nounou</p>
+          <p>{nannyNote}</p>
           <Form className="form-add-note-day" onSubmit={handleAddNoteDaySubmitNounou}>   
             <input placeholder='Ajoutez une note' value={inputNoteNounou} onChange={handleAddNoteDayInputNounou} />
             <Button icon type="submit">
@@ -86,6 +91,9 @@ MyDay.propTypes = {
   inputNoteNounou: PropTypes.string.isRequired,
   handleAddNoteNoteNounou: PropTypes.func.isRequired,
   AddNoteDaySubmitNounou: PropTypes.func.isRequired,
+  nannyNote: PropTypes.string.isRequired,
+  inputNoteNounouTask: PropTypes.string.isRequired,
+  handleAddNoteNoteTaskNounou: PropTypes.func.isRequired,
 };
 
 

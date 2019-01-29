@@ -182,16 +182,18 @@
 
       & .form-add-note-day{
         margin-bottom: 5rem;
+        display: flex;
+        justify-content: center;
         & input {
-          border: 1px solid #D7E8F2;
-          background-color: #D7E8F2;
+          border: 3px solid #D7E8F2;
+          background-color: white;
         }
 
         & input::placeholder {
           color: grey;
         }
 
-        & i {
+        & button {
           color: write;
           background-color:#D7E8F2;
           border: 1px solid white;
@@ -321,7 +323,7 @@
       justify-content: center;
   
       & #particular-note {
-        width: 80%;
+        width: 90%;
   
         & #particular-note-title {
           padding: 1em;
@@ -335,22 +337,6 @@
           color: gray;
         }
         
-        & .form-add-note-day{
-          margin-bottom: 5rem;
-          & input {
-            border: 1px solid gray;
-          }
-  
-          & input::placeholder {
-            color: grey;
-          }
-  
-          & i {
-            color: write;
-            background-color: #D7E8F2;
-            border: 1px solid gray;
-          }
-        }
       }  
     }
   }
