@@ -2,7 +2,8 @@
  * Npm import
  */
 import { createStore, applyMiddleware, compose } from 'redux';
-import ajaxMiddleware from './ajaxMiddleware';
+import loginParentsMiddleware from './loginParentsMiddleware';
+import inscriptionMiddleware from './inscriptionMiddleware';
 
 /*
 * Local import
@@ -13,7 +14,7 @@ import rootReducer from 'src/store/reducers';
 /*
  * Code
  */
-const appliedMiddlewares = applyMiddleware(ajaxMiddleware);
+const appliedMiddlewares = applyMiddleware(inscriptionMiddleware, loginParentsMiddleware);
 
 const devTools = [
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),

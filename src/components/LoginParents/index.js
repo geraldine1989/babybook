@@ -20,6 +20,7 @@ const LoginParents = ({
   inputPassword,
   handleChangeInputs,
   handleLogin,
+  errorLogin,
 }) => {
 
   const handleChange = (event) => {
@@ -60,8 +61,13 @@ const LoginParents = ({
             />
           </Form.Field>
           <NavLink exact to="/espace-parents/journee-type">
-            <Button type="submit" onClick={handleSubmit}>Se connecter</Button>
+            <Button name="btn" type="submit" onClick={handleSubmit}>Se connecter</Button>
           </NavLink>
+          <label
+            htmlFor="btn" className={!errorLogin ? 'hidden' : 'block'}
+          >
+            {errorLogin}
+          </label>
         </Form>
       </div>
     </div>

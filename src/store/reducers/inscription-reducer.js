@@ -2,6 +2,10 @@
  * Initial State
  */
 const initialState = {
+  inputEmail: '',
+  inputPassword: '',
+  inputConfirmPassword: '',
+  inputAccessCode: '',
   errorsForm: {
     errorEmail: '',
     errorPassword: '',
@@ -14,7 +18,7 @@ const initialState = {
  * Types
  */
 const HANDLE_CHANGE_INSCRIPTION_INPUT = 'HANDLE_CHANGE_INSCRIPTION_INPUT';
-const HANDLE_INSCRIPTION = 'INSCRIPTION';
+export const HANDLE_INSCRIPTION = 'INSCRIPTION';
 
 /**
  * Traitements
@@ -76,13 +80,12 @@ const inscriptionReducer = (state = initialState, action = {}) => {
       }
 
     case HANDLE_INSCRIPTION:
-
+      console.log('HANDLE_INSCRIPTION reducer');
 
 
     
       return {
         ...state,
-        errorsForm: errors,
       }
     
 

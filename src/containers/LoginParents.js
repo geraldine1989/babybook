@@ -9,10 +9,12 @@ import { connect } from 'react-redux';
 import LoginParents from 'src/components/LoginParents';
 
 // Action Creators
-import { handleChangeInputs, handleLogin } from 'src/store/reducers/login-reducer';
+import { handleChangeInputs, handleLogin } from 'src/store/reducers/login-parents-reducer';
 
 const mapStateToProps = state => ({
-  errorsForm: state.inscriptionReducer.errorsForm,
+  inputEmail: state.loginParentsReducer.inputEmail,
+  inputPassword: state.loginParentsReducer.inputPassword,
+  errorLogin: state.loginParentsReducer.errorLogin,
 });
 
 const mapDispatchToProps = dispatch => ({

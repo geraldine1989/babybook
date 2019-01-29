@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-import { HANDLE_LOGIN } from './reducers/login-reducer';
+import { HANDLE_INSCRIPTION } from './reducers/inscription-reducer';
 
-const ajaxMiddleware = store => next => (action) => {
+const inscriptionMiddleware = store => next => (action) => {
   // Je veux vérifier si l'action que je reçois m'intéresse
   switch (action.type) {
-    case HANDLE_LOGIN:
+    case HANDLE_INSCRIPTION:
       console.log(action.changes);
-      console.log('ajax');
+      console.log('HANDLE_INSCRIPTION middleware');
       // axios.post('http://localhost:3000/inscription', action.modif)
       //   .then((response) => {
       //     console.log(response);
@@ -16,12 +16,11 @@ const ajaxMiddleware = store => next => (action) => {
       //     console.log(error);
       //   });
 
-      break;
 
     default:
       next(action);
   }
 };
 
-export default ajaxMiddleware;  
+export default inscriptionMiddleware;  
 

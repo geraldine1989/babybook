@@ -34,6 +34,7 @@ const InscriptionForm = ({
     const changes = {
       [name]: value,
     };
+    console.log(changes);
     handleChangeInputs(changes);
   }
   

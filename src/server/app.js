@@ -59,6 +59,7 @@ app.get('/findAll', (req, res) => {
  */
 app.post('/inscription', upload.array(), (req, res, next) => {
   const datas = req.body;
+  console.log(datas);
   function sendDatas() {
     return new Promise(function(resolve, reject) {
       //connection
@@ -73,6 +74,40 @@ app.post('/inscription', upload.array(), (req, res, next) => {
   sendDatas()
     .then(function() {
       res.send("inscription ok");
+    })
+    .catch(function(err) {
+      console.log('Caught an error!', err);
+    });
+})
+
+/**
+ * Login Parents
+ */
+app.post('/loginParents', upload.array(), (req, res, next) => {
+  const datas = req.body;
+  console.log(datas);
+  function sendDatas() {
+    return new Promise(function(resolve, reject) {
+      //connection
+      MongoClient.connect(baseUrl, { useNewUrlParser: true }, function (error, db) {
+        if (error) throw error;
+        const database = db.db('babybook');
+
+        database.collection("parents").find({'email': datas.email}).toArray(function (error, results) {
+          if (error) throw error;
+          resolve (results);
+          return results;
+        });
+      });
+    });
+  }
+  sendDatas()
+    .then(function(results) {
+      if (results[0].password !== datas.password) {
+        res.send('L\'email ou le mot de passe est incorrect.')
+      } else {
+        res.send('logged');
+      }
     })
     .catch(function(err) {
       console.log('Caught an error!', err);
