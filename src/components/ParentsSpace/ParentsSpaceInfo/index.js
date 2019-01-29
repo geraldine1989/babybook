@@ -100,6 +100,7 @@ const ParentsSpaceInfo = ({
   addAllergies,
   addPhone,
   addAllInfos,
+  medsList,
 }) => {
 
   const handleChangeForFirstName = (evt) => {
@@ -156,6 +157,10 @@ const ParentsSpaceInfo = ({
     evt.preventDefault();
     addMeds(inputMeds);
   };
+
+  const medList = [
+    ...medsList,
+  ];
 
   const submitVaccines = (evt) => {
     evt.preventDefault();
@@ -220,26 +225,18 @@ const ParentsSpaceInfo = ({
           <div id="cards">
             <div className="cards-item">
               <div className="header">Traitement en cours</div>
-
               <div className="delete-item">
-                <li>Doliprane
-                  <Button
-                    icon
-                    type="submit"
-                    
-                  >
-                    <Icon name="delete" />
-                  </Button>
-                </li>
-                <li>Smecta
-                  <Button
-                    icon
-                    type="submit"
-                    
-                  >
-                    <Icon name="delete" />
-                  </Button>
-                </li>
+                { medList.map(meds => (
+                  <li key={meds.id}>{meds.name}
+                    <Button
+                      icon
+                      type="submit"
+                      
+                    >
+                      <Icon name="delete" />
+                    </Button>
+                  </li>
+                ))}
               </div>
 
               <Form
@@ -390,6 +387,9 @@ ParentsSpaceInfo.propTypes = {
   addAllergies: PropTypes.func.isRequired,
   addPhone: PropTypes.func.isRequired,
   addAllInfos: PropTypes.func.isRequired,
+  medsList: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 export default ParentsSpaceInfo;

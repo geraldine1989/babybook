@@ -144,6 +144,20 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         inputPhoneNumber: '',
       };
 
+    case ADD_MEDS:
+      const newMedsObject = {
+        id: uuidv4(),
+        name: inputMeds,
+      };
+
+      const newMedsList = [...medsList, newMedsObject];
+
+      return {
+        ...state,
+        medsList: newMedsList,
+        inputMeds: '',
+      };
+
     default:
       return state;
   }
@@ -196,6 +210,11 @@ export const handleChangePhoneNumber = number => ({
 export const addAllInfos = allInfosList => ({
   type: ADD_ALL_INFOS,
   allInfosList,
+});
+
+export const addMeds = medsList => ({
+  type: ADD_MEDS,
+  medsList,
 });
 
 /**

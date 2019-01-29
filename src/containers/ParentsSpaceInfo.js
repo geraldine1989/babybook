@@ -19,6 +19,7 @@ import {
   handleChangePhoneName,
   handleChangePhoneNumber,
   addAllInfos,
+  addMeds,
 } from 'src/store/ParentsSpaceInfoReducer';
 
 /* === State (données) ===
@@ -38,6 +39,7 @@ const mapStateToProps = (state, ownProps) => ({
   inputPhoneName: state.inputPhoneName,
   inputPhoneNumber: state.inputPhoneNumber,
   list: state.allInfosList,
+  medsList: state.medsList,
 });
 
 /* === Actions ===
@@ -74,6 +76,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   addAllInfos: (allInfosList) => {
     dispatch(addAllInfos(allInfosList));
+  },
+  addMeds: (medsList) => {
+    dispatch(addMeds(medsList));
   },
 });
 
