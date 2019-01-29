@@ -14,73 +14,78 @@ import './style.scss';
  * Code
  */
 /* eslint-disable no-case-declarations */
-const MyDay = ({ list }) => (
- 
-  <div id="myday">
-
-    <div id="intro">
-      <div id="date">
-        <h2>Mardi 22 janvier</h2>
-        <h3 id="title">Journal de Lilou</h3>
-      </div>
-   
-
-      <div className="info-day">
-        
-        <p id="note-parents">
-          Pas d'indications particulières pour cette journée.
-        </p>
-      </div>
-    </div>
-
-    <div id="list">
-      {
-        list.map(task => 
-          <div 
-            className="task"
-            key= {task.id}
-          >
-            <Button className="list-button" circular icon="utensils" />
-            <div className="list-item">{task.name}</div>
-            <div className="time">{task.hour}</div>
-            <div className="note">{task.indic}</div>
-            
-            <form className="add-name-input">
-              <input  placeholder="Ajouter une note..." />
-              <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
-            </form>  
-            <div className="note-nany"> Pas de notes de la nounou </div>
-          </div>
-          
-          
-        )
-      }
-
-    
+const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou }) => {
   
-  </div>
+  /** Input ajout note nounou journées */
+  const handleAddNoteDayInputNounou = (event) => {
+    const text = event.target.value;
+    handleAddNoteNoteNounou(text);
+  };
 
-    <div id="info-plus">
-      <div id="particular-note">
-        <div id="particular-note-title">
-        Notes complémentaires
+  const handleAddNoteDaySubmitNounou = (event) => {
+    event.preventDefault();
+    AddNoteDaySubmitNounou(inputNoteNounou);
+  };
+  return (
+    <div id="myday">
+      <div id="intro">
+        <div id="date">
+          <h2>Mardi 22 janvier</h2>
+          <h3 id="title">Journal de Lilou</h3>
         </div>
-        <p>Aucune note pour la journée</p>
-          
-        <Form className="form-add-note-day">
-          <Form.Field>
-            <Input icon={{ name: 'add', link: true }} placeholder='Ajoutez une note' />
-          </Form.Field>
-      </Form>        
+        <div className="info-day">    
+          <p id="note-parents">
+            <span className="note-parents">  Note des parents : </span> {note}
+          </p>
+        </div>
+      </div>
+      <div id="list">
+        {
+          list.map(task => 
+            <div
+              className="task"
+              key= {task.id}
+            >
+              <Button className="list-button" circular icon="utensils" />
+              <div className="list-item">{task.name}</div>
+              <div className="time">{task.hour}</div>
+              <div className="note">{task.indic}</div>
+              
+              <form className="add-name-input">
+                <input  placeholder="Ajouter une note..." />
+                <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
+              </form>  
+              <div className="note-nany"> Pas de notes de la nounou </div>
+            </div>       
+          )
+        }
+      </div>
+      <div id="info-plus">
+        <div id="particular-note">
+          <div id="particular-note-title">
+          Notes complémentaires
+          </div>
+          <p>Pas de note de la part de la nounou</p>
+          <Form className="form-add-note-day" onSubmit={handleAddNoteDaySubmitNounou}>   
+            <input placeholder='Ajoutez une note' value={inputNoteNounou} onChange={handleAddNoteDayInputNounou} />
+            <Button icon type="submit">
+              <Icon name="add" />
+            </Button>
+          </Form>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 MyDay.propTypes = {
   list: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
   })).isRequired,
+  note: PropTypes.string.isRequired,
+  inputNoteNounou: PropTypes.string.isRequired,
+  handleAddNoteNoteNounou: PropTypes.func.isRequired,
+  AddNoteDaySubmitNounou: PropTypes.func.isRequired,
 };
 
 

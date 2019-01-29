@@ -19,7 +19,7 @@ const mapStateToProps = (state, ownProps) => ({
   inputHourTask: state.inputHourTask,
   list: state.itemList,
   inputNote: state.inputNote,
-  note: state.note,
+  
 
 });
 
@@ -52,7 +52,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
   addNoteDayFromParents: (note) => {
     dispatch(addNoteDayFromParents(note));
-    
   },
 });
 

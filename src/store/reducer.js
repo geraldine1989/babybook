@@ -10,7 +10,9 @@ const initialState = {
   inputNoteTask: '',
   inputHourTask: '00:00',
   inputNote: '',
-  note: '',
+  note: "Pas d'indications particulières pour cette journée",
+  inputNoteNounou: '',
+  nannyNote: '',
 };
 
 /**
@@ -22,6 +24,8 @@ const INPUT_CHANGE_HOUR_TASK = 'INPUT_CHANGE_HOUR_TASK';
 const ADD_TASK = 'ADD_TASK ';
 const INPUT_NOTE = 'INPUT_NOTE';
 const ADD_NOTE = 'ADD_NOTE';
+const CHANGE_INPUT_NOTE_NANY_DAY = 'CHANGE_INPUT_NOTE_NANY_DAY';
+const ADD_NOTE_DAY_NANNY = 'ADD_NOTE_DAY_NANNY';
 
 /**
  * Traitements
@@ -37,6 +41,7 @@ const reducer = (state = initialState, action = {}) => {
   const { inputNoteTask } = state;
   const { inputHourTask } = state;
   const { inputNote } = state;
+  const { inputNoteNounou } = state;
   
   
   switch (action.type) {
@@ -87,8 +92,25 @@ const reducer = (state = initialState, action = {}) => {
     case ADD_NOTE:
       return {
         ...state,
-        note: 'coucou',
+        note: inputNote,
+        inputNote: '',
       };
+
+    // note day nanny
+
+    case CHANGE_INPUT_NOTE_NANY_DAY:
+      return {
+        ...state,
+        inputNoteNounou: action.inputNoteNounou,
+      };
+
+    case ADD_NOTE_DAY_NANNY: {
+      return {
+        ...state,
+        noteNanny: inputNoteNounou,
+        inputNoteNounou: '',
+      }
+    }
     
     default:
       return state;
@@ -128,6 +150,18 @@ export const addNoteDayFromParents = note => ({
   type: ADD_NOTE,
   note,
 });
+
+/** Note nanny day */
+export const handleAddNoteNoteNounou = text => ({
+  type: CHANGE_INPUT_NOTE_NANY_DAY,
+  inputNoteNounou: text,
+});
+
+export const AddNoteDaySubmitNounou = note => ({
+  type: ADD_NOTE_DAY_NANNY,
+  note,
+});
+
 /**
  * Selectors
  */

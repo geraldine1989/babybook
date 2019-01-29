@@ -53,6 +53,9 @@
         padding: 1.5em;
         font-style: italic;
         border-bottom: 1px solid gray;
+        & .note-parents {
+          font-weight: bold;
+        }
       }
     }
   }
@@ -227,6 +230,9 @@
         padding-bottom: 2em;
         margin: auto;
       }
+
+
+      
       
     }
   
