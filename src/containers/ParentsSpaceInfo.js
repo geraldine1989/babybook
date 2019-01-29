@@ -17,8 +17,9 @@ import {
   handleChangeVaccinesItem,
   handleChangeAllergiesItem,
   handleChangePhoneName,
-  handleChangePhoneNumber
-} from 'src/store/reducer';
+  handleChangePhoneNumber,
+  addChild,
+} from 'src/store/ParentsSpaceInfoReducer';
 
 /* === State (données) ===
  * - mapStateToProps retroune un objet de props pour le composant de présentation
@@ -36,6 +37,7 @@ const mapStateToProps = (state, ownProps) => ({
   inputAllergies: state.inputAllergies,
   inputPhoneName: state.inputPhoneName,
   inputPhoneNumber: state.inputPhoneNumber,
+  children: state.childList,
 });
 
 /* === Actions ===
@@ -69,6 +71,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   handleChangePhoneNumber: (number) => {
     dispatch(handleChangePhoneNumber(number));
+  },
+  addChild: (childList) => {
+    dispatch(addChild(childList));
   },
 });
 

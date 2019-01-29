@@ -50,7 +50,7 @@ const ADD_ALL_INFOS = 'ADD_ALL_INFOS';
  * Reducer
  */
 /* eslint-disable no-case-declarations */
-const reducer = (state = initialState, action = {}) => {
+const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
   const { childList } = state;
   const { birthDateList } = state;
   const { medsList } = state;
@@ -116,6 +116,22 @@ const reducer = (state = initialState, action = {}) => {
         inputPhoneNumber: action.inputPhoneNumber,
       };
 
+    case ADD_CHILD:
+      const newChildObject = {
+        id: uuidv4(),
+        firstname: inputFirstName,
+        lastname: inputLastName,
+      };
+
+      const newChildList = [...childList, newChildObject];
+
+      return {
+        ...state,
+        childList: newChildList,
+        inputFirstName: '',
+        inputLastName: '',
+      };
+
     default:
       return state;
   }
@@ -165,6 +181,11 @@ export const handleChangePhoneNumber = number => ({
   inputPhoneNumber: number,
 });
 
+export const addChild = childList => ({
+  type: ADD_CHILD,
+  childList,
+});
+
 /**
  * Selectors
  */
@@ -172,4 +193,4 @@ export const handleChangePhoneNumber = number => ({
 /**
  * Export
  */
-export default reducer;
+export default ParentsSpaceInfoReducer;
