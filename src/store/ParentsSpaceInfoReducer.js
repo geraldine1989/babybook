@@ -186,6 +186,52 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         inputAllergies: '',
       };
 
+    case ADD_CHILD:
+      const newChildObject = {
+        id: uuidv4(),
+        firstname: inputFirstName,
+        lastname: inputLastName,
+      };
+
+      const newChildList = [...childList, newChildObject];
+
+      return {
+        ...state,
+        childList: newChildList,
+        inputFirstName: '',
+        inputLastName: '',
+      };
+
+    case ADD_BIRTH_DATE:
+      const newBirthDateObject = {
+        id: uuidv4(),
+        birthdate: inputBirthDate,
+      };
+
+      const newBirthDateList = [...birthDateList, newBirthDateObject];
+
+      return {
+        ...state,
+        birthDateList: newBirthDateList,
+        inputBirthDate: '',
+      };
+
+    case ADD_PHONE:
+      const newPhoneObject = {
+        id: uuidv4(),
+        phonename: inputPhoneName,
+        phonenumber: inputPhoneNumber,
+      };
+
+      const newPhoneList = [...phoneList, newPhoneObject];
+
+      return {
+        ...state,
+        phoneList: newPhoneList,
+        inputPhoneName: '',
+        inputPhoneNumber: '',
+      };
+
     default:
       return state;
   }
@@ -253,6 +299,21 @@ export const addVaccines = vaccinesList => ({
 export const addAllergies = allergiesList => ({
   type: ADD_ALLERGIES,
   allergiesList,
+});
+
+export const addChild = childList => ({
+  type: ADD_CHILD,
+  childList,
+});
+
+export const addBirthDate = birthDateList => ({
+  type: ADD_BIRTH_DATE,
+  birthDateList,
+});
+
+export const addPhone = phoneList => ({
+  type: ADD_PHONE,
+  phoneList,
 });
 
 /**

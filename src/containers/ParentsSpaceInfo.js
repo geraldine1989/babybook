@@ -22,6 +22,9 @@ import {
   addMeds,
   addVaccines,
   addAllergies,
+  addChild,
+  addBirthDate,
+  addPhone,
 } from 'src/store/ParentsSpaceInfoReducer';
 
 /* === State (données) ===
@@ -40,10 +43,13 @@ const mapStateToProps = (state, ownProps) => ({
   inputAllergies: state.inputAllergies,
   inputPhoneName: state.inputPhoneName,
   inputPhoneNumber: state.inputPhoneNumber,
-  list: state.allInfosList,
+  allInfoslist: state.allInfosList,
   medsList: state.medsList,
   vaccinesList: state.vaccinesList,
   allergiesList: state.allergiesList,
+  childList: state.childList,
+  birthDateList: state.birthDateList,
+  phoneList: state.phoneList,
 });
 
 /* === Actions ===
@@ -89,6 +95,15 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   addAllergies: (allergiesList) => {
     dispatch(addAllergies(allergiesList));
+  },
+  addChild: (childList) => {
+    dispatch(addChild(childList));
+  },
+  addBirthDate: (birthDateList) => {
+    dispatch(addBirthDate(birthDateList));
+  },
+  addPhone: (phoneList) => {
+    dispatch(addPhone(phoneList));
   },
 });
 

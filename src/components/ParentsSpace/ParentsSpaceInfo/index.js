@@ -105,6 +105,11 @@ const ParentsSpaceInfo = ({
   medsList,
   vaccinesList,
   allergiesList,
+  childList,
+  birthDateList,
+  phoneList,
+  allInfosList,
+
 }) => {
 
   const handleChangeForFirstName = (evt) => {
@@ -152,10 +157,18 @@ const ParentsSpaceInfo = ({
     addChild(inputLastName);
   };
 
+  const childrenList = [
+    ...childList,
+  ];
+
   const submitBirthDate = (evt) => {
     evt.preventDefault();
     addBirthDate(inputBirthDate);
   };
+
+  const birthDatesList = [
+    ...birthDateList,
+  ];
 
   const submitMeds = (evt) => {
     evt.preventDefault();
@@ -189,10 +202,18 @@ const ParentsSpaceInfo = ({
     addPhone(inputPhoneNumber);
   };
 
+  const phonesList = [
+    ...phoneList,
+  ];
+
   const submitAllInfos = (evt) => {
     evt.preventDefault();
     addAllInfos(inputPhoneNumber);
   };
+
+  const allTheInfosList = [
+    ...allInfosList,
+  ];
 
   return (
     <div>
@@ -401,6 +422,18 @@ ParentsSpaceInfo.propTypes = {
     id: PropTypes.string.isRequired,
   })).isRequired,
   allergiesList: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  })).isRequired,
+  childList: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  })).isRequired,
+  birthDateList: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  })).isRequired,
+  phoneList: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  })).isRequired,
+  allInfosList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
   })).isRequired,
 };
