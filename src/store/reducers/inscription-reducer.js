@@ -1,3 +1,6 @@
+
+import { Redirect } from 'react-router';
+
 /**
  * Initial State
  */
@@ -68,31 +71,20 @@ const inscriptionReducer = (state = initialState, action = {}) => {
       }
 
     case GET_EMAILS_RESPONSE:
-    console.log(action.data);
       return {
-
+        ...state,
       }
 
     case HANDLE_INSCRIPTION:
       console.log('HANDLE_INSCRIPTION reducer');
 
 
-    
+      // return <Redirect to='/login-parents' />
+
       return {
         ...state,
       }
-    
 
-
-
-
-      const formDatas = {
-        // email: inputEmail,
-        // password: inputPassword,
-        // accessCode: inputAccesCode
-      }
-      console.log(formDatas);
-    //AXIOS TODO
 
 
   default:

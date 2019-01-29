@@ -29,17 +29,6 @@ import './app.scss';
  * Code
  */
 class App extends React.Component {
-
-  getAllDatas = () => {
-    const axios = require('axios');
-    axios.get('http://localhost:3000/findAll')
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
   
   render() {
     return(

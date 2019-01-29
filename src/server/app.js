@@ -60,7 +60,6 @@ app.get('/findAll', (req, res) => {
  */
 app.get('/getEmails', (req, res, next) => {
   // récupération depuis la base de la liste de emails enregistrés
-  const emailSend = req.query;
   function getRegisteredEmails() {
     return new Promise(function(resolve, reject) {
       //connection
@@ -106,25 +105,34 @@ app.get('/getEmails', (req, res, next) => {
 app.post('/inscription', upload.array(), (req, res, next) => {
   const datas = req.body;
   console.log(datas);
-  function sendDatas() {
-    return new Promise(function(resolve, reject) {
-      //connection
-      MongoClient.connect(baseUrl, { useNewUrlParser: true }, function (error, db) {
-        if (error) throw error;
-        const database = db.db('babybook');
-
-        database.collection('parents').insertOne(datas)
+  for (key in registeredEmails) {
+    if (datas.email === registeredEmails[key]) {
+      console.log('email existant');
+      const message = "inscription ok";
+      res.send(message)
+    } else {
+    function sendDatas() {
+      return new Promise(function(resolve, reject) {
+        //connection
+        MongoClient.connect(baseUrl, { useNewUrlParser: true }, function (error, db) {
+          if (error) throw error;
+          const database = db.db('babybook');
+          
+          database.collection('parents').insertOne(datas)
+        });
       });
-    });
-  }
-  sendDatas()
+    }
+    sendDatas()
     .then(function() {
       res.send("inscription ok");
     })
     .catch(function(err) {
       console.log('Caught an error!', err);
     });
+  }
+  }
 })
+   
 
 /**
  * Login Parents
