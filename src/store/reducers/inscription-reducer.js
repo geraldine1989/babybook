@@ -38,19 +38,18 @@ const HANDLE_INSCRIPTION = 'INSCRIPTION';
  * Reducer
  */
 const inscriptionReducer = (state = initialState, action = {}) => {
-  const { inputEmail, inputPassword, inputConfirmPassword, inputAccessCode } = state;
   
   switch (action.type) {
     case HANDLE_CHANGE_INSCRIPTION_INPUT:
-    let errors = {};
-    console.log(action.changes);
-      if (inputEmail && inputEmail.length < 7) {
+      const { inputEmail, inputPassword, inputConfirmPassword, inputAccessCode } = action.changes;
+      let errors = {};
+      if (inputEmail && inputEmail.length < 8) {
         errors = {
           ...errors,
           errorEmail: 'Veuillez saisir un email valide.',
         }
       }
-      if (inputPassword && inputPassword.length < 7) {
+      if (inputPassword && inputPassword.length < 8) {
         errors = {
           ...errors,
           errorPassword: 'Le mot de passe doit comporter au moins 8 caractères.',
@@ -62,7 +61,7 @@ const inscriptionReducer = (state = initialState, action = {}) => {
           errorConfirmPassword: 'Vos mots de passe ne correspondent pas.',
         }
       }
-      if (inputAccessCode && inputAccessCode.length < 7) {
+      if (inputAccessCode && inputAccessCode.length < 8) {
         // console.log(inputAccessCode.length);
         errors = {
           ...errors,

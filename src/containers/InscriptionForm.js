@@ -12,10 +12,10 @@ import InscriptionForm from 'src/components/InscriptionForm';
 import { handleChangeInputs, handleInscription } from 'src/store/reducers/inscription-reducer';
 
 const mapStateToProps = state => ({
-  // inputEmail: state.inscriptionReducer.inputEmail,
-  // inputPassword: state.inscriptionReducer.inputPassword,
-  // inputConfirmPassword: state.inscriptionReducer.inputConfirmPassword,
-  // inputAccessCode: state.inscriptionReducer.inputAccessCode,
+  inputEmail: state.inscriptionReducer.inputEmail,
+  inputPassword: state.inscriptionReducer.inputPassword,
+  inputConfirmPassword: state.inscriptionReducer.inputConfirmPassword,
+  inputAccessCode: state.inscriptionReducer.inputAccessCode,
   errorsForm: state.inscriptionReducer.errorsForm,
 });
 
