@@ -157,18 +157,18 @@ const ParentsSpaceInfo = ({
     addChild(inputLastName);
   };
 
-  const childrenList = [
-    ...childList,
-  ];
+  // const childrenList = [
+  //   ...childList,
+  // ];
 
   const submitBirthDate = (evt) => {
     evt.preventDefault();
     addBirthDate(inputBirthDate);
   };
 
-  const birthDatesList = [
-    ...birthDateList,
-  ];
+  // const birthDatesList = [
+  //   ...birthDateList,
+  // ];
 
   const submitMeds = (evt) => {
     evt.preventDefault();
@@ -202,18 +202,18 @@ const ParentsSpaceInfo = ({
     addPhone(inputPhoneNumber);
   };
 
-  const phonesList = [
-    ...phoneList,
-  ];
+  // const phonesList = [
+  //   ...phoneList,
+  // ];
 
   const submitAllInfos = (evt) => {
     evt.preventDefault();
     addAllInfos(inputPhoneNumber);
   };
 
-  const allTheInfosList = [
-    ...allInfosList,
-  ];
+  // const allTheInfosList = [
+  //   ...allInfosList,
+  // ];
 
   return (
     <div>
@@ -222,6 +222,10 @@ const ParentsSpaceInfo = ({
         <div id="modif-child">
 
           <h3>Enfant</h3>
+          <div>{childList.map((child) =>
+            <p>Prénom : {child.firstname} Nom : {child.lastname}</p>
+          )}
+          </div>
           <Form
             id="modif-child-name"
             onSubmit={submitChild}
@@ -238,9 +242,13 @@ const ParentsSpaceInfo = ({
               placeholder="Nom de l'enfant"
               value={inputLastName}
             />
+            <Button icon type="submit">
+              <Icon name="add" />
+            </Button>
           </Form>
 
           <h3>Date de naissance</h3>
+          <p>Né(e) le : 12/01/1199</p>
           <Form
             id="modif-birthdate"
             onSubmit={submitBirthDate}
@@ -250,6 +258,9 @@ const ParentsSpaceInfo = ({
               onChange={handleChangeForBirthDate}
               value={inputBirthDate}
             />
+            <Button icon type="submit">
+              <Icon name="add" />
+            </Button>
           </Form>
         </div>
 
@@ -356,6 +367,26 @@ const ParentsSpaceInfo = ({
 
         <div id="modif-numeros">
           <h3>Numéros utiles</h3>
+          <ul>
+            <li>Portable Papa : 0625487956
+              <Button
+                      icon
+                      type="submit"
+                    
+                    >
+                      <Icon name="delete" />
+                    </Button>
+                    </li>
+            <li>Portable Maman : 0629787956
+              <Button
+                      icon
+                      type="submit"
+                    
+                    >
+                      <Icon name="delete" />
+                    </Button>
+                    </li>
+          </ul>
           <div id="modif-numeros-div">
             <Form
               id="child-contact"
@@ -373,19 +404,12 @@ const ParentsSpaceInfo = ({
                 placeholder="Numéro de téléphone"
                 onChange={handleChangeForPhoneNumber}
               />
+              <Button icon type="submit">
+                <Icon name="add" />
+              </Button>
             </Form>
           </div>
         </div>
-
-        <div id="save">
-          <Button
-            type="submit"
-            onSubmit={submitAllInfos}
-          >
-            Sauvegarder
-          </Button>
-        </div>
-
       </div>
     </div>
   );

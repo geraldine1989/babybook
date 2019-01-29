@@ -6,18 +6,20 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 
-const Informations = () => (
+const Informations = ({ childList }) => (
   <div id="informations">
     <h2>Informations</h2>
 
     <div id="enfant">
       <h3> Enfant</h3>
       <div id="child-info">
+      {childList.map((child) =>
+        <div>
         <div className="child-info-div">
-            Prénom: <span>Lilou</span>
+            Prénom: <span>{child.firstname}</span>
         </div>
         <div className="child-info-div">
-            Nom: <span>Dupont</span>
+            Nom: <span>{child.lastname}</span>
         </div>
         <div className="child-info-div">
             Age: <span>18 mois</span>
@@ -25,6 +27,8 @@ const Informations = () => (
         <div className="child-info-div">
             Date de naissance: <span>Le 19/08/17</span>
         </div>
+        </div>
+      )}
       </div>
     </div>
 
@@ -78,6 +82,9 @@ const Informations = () => (
 );
 
 Informations.propTypes = {
+  childList: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 export default Informations;
