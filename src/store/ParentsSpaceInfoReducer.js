@@ -116,20 +116,32 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         inputPhoneNumber: action.inputPhoneNumber,
       };
 
-    case ADD_CHILD:
-      const newChildObject = {
+    case ADD_ALL_INFOS:
+      const newInfosObject = {
         id: uuidv4(),
         firstname: inputFirstName,
         lastname: inputLastName,
+        birthdate: inputBirthDate,
+        meds: inputMeds,
+        vaccines: inputVaccines,
+        allergies: inputAllergies,
+        phonename: inputPhoneName,
+        phonenumber: inputPhoneNumber,
       };
 
-      const newChildList = [...childList, newChildObject];
+      const newInfosList = [...allInfosList, newInfosObject];
 
       return {
         ...state,
-        childList: newChildList,
+        allInfosList: newInfosList,
         inputFirstName: '',
         inputLastName: '',
+        inputBirthDate: '',
+        inputMeds: '',
+        inputVaccines: '',
+        inputAllergies: '',
+        inputPhoneName: '',
+        inputPhoneNumber: '',
       };
 
     default:
@@ -181,9 +193,9 @@ export const handleChangePhoneNumber = number => ({
   inputPhoneNumber: number,
 });
 
-export const addChild = childList => ({
-  type: ADD_CHILD,
-  childList,
+export const addAllInfos = allInfosList => ({
+  type: ADD_ALL_INFOS,
+  allInfosList,
 });
 
 /**

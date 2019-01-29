@@ -18,7 +18,7 @@ import {
   handleChangeAllergiesItem,
   handleChangePhoneName,
   handleChangePhoneNumber,
-  addChild,
+  addAllInfos,
 } from 'src/store/ParentsSpaceInfoReducer';
 
 /* === State (données) ===
@@ -37,7 +37,7 @@ const mapStateToProps = (state, ownProps) => ({
   inputAllergies: state.inputAllergies,
   inputPhoneName: state.inputPhoneName,
   inputPhoneNumber: state.inputPhoneNumber,
-  children: state.childList,
+  list: state.allInfosList,
 });
 
 /* === Actions ===
@@ -72,8 +72,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   handleChangePhoneNumber: (number) => {
     dispatch(handleChangePhoneNumber(number));
   },
-  addChild: (childList) => {
-    dispatch(addChild(childList));
+  addAllInfos: (allInfosList) => {
+    dispatch(addAllInfos(allInfosList));
   },
 });
 

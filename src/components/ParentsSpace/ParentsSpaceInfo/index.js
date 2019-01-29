@@ -175,7 +175,7 @@ const ParentsSpaceInfo = ({
   const submitAllInfos = (evt) => {
     evt.preventDefault();
     addAllInfos(inputPhoneNumber);
-  }
+  };
 
   return (
     <div>
