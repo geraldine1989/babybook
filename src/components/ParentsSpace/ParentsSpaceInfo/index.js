@@ -9,73 +9,75 @@ import 'semantic-ui-css/semantic.min.css';
 import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
 
 /* Test Mongo DB */
-const addInfos = (formDatas) => {
-  const axios = ('axios');
-  axios.post('http://localhost:3000/newday', formDatas)
-    .then((response) => {
-      console.log(response);
-    })
 
-    .catch((error) => {
-      console.log(error);
-    });
-};
+// const addInfos = (formDatas) => {
+//   const axios = ('axios');
+//   axios.post('http://localhost:3000/newday', formDatas)
+//     .then((response) => {
+//       console.log(response);
+//     })
 
-const handleAddItemInList = (evt) => {
-  evt.preventDefault();
-  const formDatas = {
-    firstName: 'Lilou',
-    lastName: 'Dupont',
-    birthDate: '19/08/2017',
-    health: [
-      {
-        meds: [
-          {
-            name: 'Doliprane',
-          },
-          {
-            name: 'Smecta',
-          },
-        ],
-        vaccines: [
-          {
-            name: 'Rubéole: fait le 03/02/2017',
-          },
-          {
-            name: 'Rage: fait le 03/02/2017',
-          },
-        ],
-        allergies: [
-          {
-            name: 'Cacahuètes',
-          },
-        ],
-      },
-    ],
-    phoneNumbers: [
-      {
-        name: 'Mère portable',
-        phone: '06 11 22 33 44',
-      },
-      {
-        name: 'Mère travail',
-        phone: '01 11 77 33 44',
-      },
-      {
-        name: 'Père portable',
-        phone: '06 11 55 33 44',
-      },
-      {
-        name: 'Docteur Mamour',
-        phone: '01 11 22 33 42',
-      },
-    ],
-  };
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// };
 
-  addInfos(formDatas);
-};
+// const handleAddItemInList = (evt) => {
+//   evt.preventDefault();
+//   const formDatas = {
+//     firstName: 'Lilou',
+//     lastName: 'Dupont',
+//     birthDate: '19/08/2017',
+//     health: [
+//       {
+//         meds: [
+//           {
+//             name: 'Doliprane',
+//           },
+//           {
+//             name: 'Smecta',
+//           },
+//         ],
+//         vaccines: [
+//           {
+//             name: 'Rubéole: fait le 03/02/2017',
+//           },
+//           {
+//             name: 'Rage: fait le 03/02/2017',
+//           },
+//         ],
+//         allergies: [
+//           {
+//             name: 'Cacahuètes',
+//           },
+//         ],
+//       },
+//     ],
+//     phoneNumbers: [
+//       {
+//         name: 'Mère portable',
+//         phone: '06 11 22 33 44',
+//       },
+//       {
+//         name: 'Mère travail',
+//         phone: '01 11 77 33 44',
+//       },
+//       {
+//         name: 'Père portable',
+//         phone: '06 11 55 33 44',
+//       },
+//       {
+//         name: 'Docteur Mamour',
+//         phone: '01 11 22 33 42',
+//       },
+//     ],
+//   };
+
+//   addInfos(formDatas);
+// };
 
 /* Code */
+
 const ParentsSpaceInfo = ({
   handleChangeFirstName,
   handleChangeLastName,
@@ -101,6 +103,8 @@ const ParentsSpaceInfo = ({
   addPhone,
   addAllInfos,
   medsList,
+  vaccinesList,
+  allergiesList,
 }) => {
 
   const handleChangeForFirstName = (evt) => {
@@ -167,10 +171,18 @@ const ParentsSpaceInfo = ({
     addVaccines(inputVaccines);
   };
 
+  const vaccineList = [
+    ...vaccinesList,
+  ];
+
   const submitAllergies = (evt) => {
     evt.preventDefault();
     addAllergies(inputAllergies);
   };
+
+  const allergieList = [
+    ...allergiesList,
+  ];
 
   const submitPhone = (evt) => {
     evt.preventDefault();
@@ -258,24 +270,17 @@ const ParentsSpaceInfo = ({
               <div className="header">Vaccins</div>
 
               <div className="delete-item">
-                <li>Rubéole : fait le 09/09/17
-                  <Button
-                    icon
-                    type="submit"
+                { vaccineList.map(vaccines => (
+                  <li key={vaccines.id}>{vaccines.name}
+                    <Button
+                      icon
+                      type="submit"
                     
-                  >
-                    <Icon name="delete" />
-                  </Button>
-                </li>
-                <li>Rage : fait le 09/09/17
-                  <Button
-                    icon
-                    type="submit"
-                    
-                  >
-                    <Icon name="delete" />
-                  </Button>
-                </li>
+                    >
+                      <Icon name="delete" />
+                    </Button>
+                  </li>
+                ))}
               </div>
 
               <Form
@@ -297,15 +302,17 @@ const ParentsSpaceInfo = ({
               <div className="header">Allergies</div>
 
               <div className="delete-item">
-                <li>Cacahuètes
-                  <Button
-                    icon
-                    type="submit"
+                { allergieList.map(allergies => (
+                  <li key={allergies.id}>{allergies.name}
+                    <Button
+                      icon
+                      type="submit"
                     
-                  >
-                    <Icon name="delete" />
-                  </Button>
-                </li>
+                    >
+                      <Icon name="delete" />
+                    </Button>
+                  </li>
+                ))}
               </div>
 
               <Form
@@ -388,6 +395,12 @@ ParentsSpaceInfo.propTypes = {
   addPhone: PropTypes.func.isRequired,
   addAllInfos: PropTypes.func.isRequired,
   medsList: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  })).isRequired,
+  vaccinesList: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  })).isRequired,
+  allergiesList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
   })).isRequired,
 };

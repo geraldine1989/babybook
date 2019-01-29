@@ -158,6 +158,34 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         inputMeds: '',
       };
 
+    case ADD_VACCINES:
+      const newVaccinesObject = {
+        id: uuidv4(),
+        name: inputVaccines,
+      };
+
+      const newVaccinesList = [...vaccinesList, newVaccinesObject];
+
+      return {
+        ...state,
+        vaccinesList: newVaccinesList,
+        inputVaccines: '',
+      };
+
+    case ADD_ALLERGIES:
+      const newAllergiesObject = {
+        id: uuidv4(),
+        name: inputAllergies,
+      };
+
+      const newAllergiesList = [...allergiesList, newAllergiesObject];
+
+      return {
+        ...state,
+        allergiesList: newAllergiesList,
+        inputAllergies: '',
+      };
+
     default:
       return state;
   }
@@ -215,6 +243,16 @@ export const addAllInfos = allInfosList => ({
 export const addMeds = medsList => ({
   type: ADD_MEDS,
   medsList,
+});
+
+export const addVaccines = vaccinesList => ({
+  type: ADD_VACCINES,
+  vaccinesList,
+});
+
+export const addAllergies = allergiesList => ({
+  type: ADD_ALLERGIES,
+  allergiesList,
 });
 
 /**
