@@ -19,24 +19,12 @@ const initialState = {
  */
 const HANDLE_CHANGE_INSCRIPTION_INPUT = 'HANDLE_CHANGE_INSCRIPTION_INPUT';
 export const HANDLE_INSCRIPTION = 'INSCRIPTION';
+export const GET_EMAILS_RESPONSE = 'GET_EMAILS_RESPONSE';
+export const HANDLE_GET_EMAILS = 'HANDLE_GET_EMAILS';
 
 /**
  * Traitements
  */
-// Validation du formulaire
-// const checkForm = (state) => {
-//   const { inputEmail, inputPassword, inputConfirmPassword, inputAccesCode, emailValid, errorsForm } = state;
-//   if (inputPassword.length < 8) {
-//     errorsForm = [...errorsForm, 'Le mot de passe doit comporter au moins 7 caractères.'];
-//     }
-//   if (inputPassword != inputConfirmPassword) {
-//     errorsForm = [...errorsForm, 'Vos mots de passe ne correspondent pas.']
-//   }
-//   if (inputAccesCode < 8) {
-//     errorsForm = [...errorsForm, 'Le code d\'accès doit comporter au moins 7 caractères.'];
-//   }
-//   console.log(errorsForm);
-// }
 
 /**
  * Reducer
@@ -79,6 +67,12 @@ const inscriptionReducer = (state = initialState, action = {}) => {
         errorsForm: errors,
       }
 
+    case GET_EMAILS_RESPONSE:
+    console.log(action.data);
+      return {
+
+      }
+
     case HANDLE_INSCRIPTION:
       console.log('HANDLE_INSCRIPTION reducer');
 
@@ -116,6 +110,10 @@ export const handleInscription = () => ({
 export const handleChangeInputs = changes => ({
   type: HANDLE_CHANGE_INSCRIPTION_INPUT,
   changes,
+});
+
+export const handleGetEmails = () => ({
+  type: HANDLE_GET_EMAILS,
 });
 /**
  * Selectors

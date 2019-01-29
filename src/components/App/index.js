@@ -9,7 +9,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import HeaderLogo from 'src/components/HeaderLogo';
 import MainNav from 'src/containers/MainNav';
-import Home from 'src/components/Home';
+import Home from 'src/containers/Home';
 import InscriptionForm from 'src/containers/InscriptionForm';
 import LoginParents from 'src/containers/LoginParents';
 import LoginNanny from 'src/components/LoginNanny';

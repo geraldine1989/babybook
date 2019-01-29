@@ -6,6 +6,7 @@ var upload = multer(); // for parsing multipart/form-data
 const port = 3000;
 const baseUrl = "mongodb://localhost:27017/babybook";
 const MongoClient = require('mongodb').MongoClient;
+var registeredEmails = [];
 
 /**
  * Express
@@ -52,6 +53,51 @@ app.get('/findAll', (req, res) => {
     .catch(function(err) {
       console.log('Caught an error!', err);
     });
+})
+
+/**
+ * Récupération des emails inscrits
+ */
+app.get('/getEmails', (req, res, next) => {
+  // récupération depuis la base de la liste de emails enregistrés
+  const emailSend = req.query;
+  function getRegisteredEmails() {
+    return new Promise(function(resolve, reject) {
+      //connection
+      MongoClient.connect(baseUrl, { useNewUrlParser: true }, function (error, db) {
+        if (error) throw error;
+        const database = db.db('babybook');
+
+        database.collection('emails').find().toArray(function(error, results) {
+          if (error) throw error;
+          result = results[0];
+          resolve (result);
+          return result;
+        });
+      });
+    });
+  }
+  getRegisteredEmails()
+    .then(function(response) {
+      // const validity = checkEmail(value) ? "L'email existe déjà" : "L'email est valide";
+      registeredEmails = response
+      // res.send(validity);
+      console.log(registeredEmails);
+      res.send();
+    })
+    .catch(function(err) {
+      console.log('Caught an error!', err);
+    });
+
+// const checkEmail = (value) => {
+//   for (var key in value) {
+//     // comparaison avec le mail envoyé en requête
+//     if (value[key] === emailSend.email) {
+//       return true;
+//     }
+//   }
+//   return false;
+// }
 })
 
 /**
@@ -118,54 +164,4 @@ app.post('/loginParents', upload.array(), (req, res, next) => {
 app.listen(port);
 
 
-// app.get('/inscription', (req, res, next) => {
-//   // récupération depuis la base de la liste de emails enregistrés
-//   const emailSend = req.query;
-//   console.log(emailSend);
-//   function getEmails() {
-//     return new Promise(function(resolve, reject) {
-//       //connection
-//       MongoClient.connect(baseUrl, { useNewUrlParser: true }, function (error, db) {
-//         if (error) throw error;
-//         const database = db.db('babybook');
 
-//         database.collection('emails').find().toArray(function(error, results) {
-//           if (error) throw error;
-//           // console.log(results);
-//           result = results[0];
-//           resolve (result);
-//           return result;
-//         });
-//       });
-//     });
-//   }
-//   getEmails()
-//     .then(function(value) {
-//       // console.log(value);
-//       const validity = checkEmail(value) ? "L'email existe déjà" : "L'email est valide";
-//       res.send(validity);
-//     })
-//     .catch(function(err) {
-//       console.log('Caught an error!', err);
-//     });
-
-// const checkEmail = (value) => {
-//   for (var key in value) {
-//     // comparaison avec le mail envoyé en requête
-//     if (value[key] === emailSend.email) {
-//       return true;
-//     }
-//   }
-//   return false;
-// }
-// })
-
-// const checkEmail = (value) => {
-//   for (var key in value) {
-//     // comparaison avec le mail envoyé en requête
-//     if (value[key] === emailSend.email) {
-//       return true;
-//     }
-//   }
-//   return false;
-// }
