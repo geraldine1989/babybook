@@ -109,7 +109,6 @@ const ParentsSpaceInfo = ({
   phoneList,
 
 }) => {
-
   const handleChangeForFirstName = (evt) => {
     const text = evt.target.value;
     handleChangeFirstName(text);
