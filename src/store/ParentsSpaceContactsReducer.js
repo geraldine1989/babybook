@@ -58,10 +58,9 @@ const reducer = (state = initialState, action = {}) => {
       };
 
     case REMOVE_CONTACT:
-      const deletedContacts = contacts.filter(contact => contact.id !== action.id);
-      console.log(deletedContacts);
+      const deletedContacts = state.contacts.filter(contact => contact !== action.id);
+      console.log(action);
       return {
-        ...state,
         contacts: deletedContacts,
       };
 

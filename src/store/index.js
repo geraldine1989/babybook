@@ -7,7 +7,7 @@ import { createStore } from 'redux';
  * Local import
  */
 // Reducer
-import reducer from 'src/store/reducer';
+import reducer from 'src/store/ParentsSpaceContactsReducer';
 
 /*
  * Code
@@ -19,7 +19,6 @@ const devTools = [
 
 // createStore
 const store = createStore(reducer, ...devTools);
-
 /*
  * Export
  */
