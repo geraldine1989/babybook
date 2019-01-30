@@ -31,7 +31,6 @@ const mapDispatchToProps = dispatch => ({
   },
   
   removeContact: (id) => {
-    console.log('je suis dans le dispatcher, voici l id :' + id);
     dispatch(removeContact(id));
   },
 
