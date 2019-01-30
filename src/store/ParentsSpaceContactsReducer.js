@@ -58,7 +58,7 @@ const ParentsSpaceContactsReducer = (state = initialState, action = {}) => {
       };
 
     case REMOVE_CONTACT:
-      const deletedContacts = state.contacts.filter(contact => contact !== action.id);
+      const deletedContacts = state.contacts.filter(contact => contact.id !== action.id);
       console.log(action);
       return {
         contacts: deletedContacts,
@@ -68,6 +68,7 @@ const ParentsSpaceContactsReducer = (state = initialState, action = {}) => {
       return state;
   }
 };
+
 
 /**
  * Action Creators

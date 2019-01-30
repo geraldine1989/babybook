@@ -14,7 +14,7 @@ import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
 /**
  * Code
  */
-const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, handleChangeName, handleChangeEmail, removeContact, id, actions }) => {
+const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, handleChangeName, handleChangeEmail, removeContact, id}) => {
   const parentsContacts = [
     {
       firstName: "Toto",
@@ -49,7 +49,7 @@ const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, han
     ...contacts,
   ];
 
-  const handleDeleteContact = () => {
+  const handleDeleteContact = (id) => () => {
     removeContact(id);
   };
 
@@ -70,7 +70,7 @@ const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, han
 
           <Table.Body>
             { contactsList.map(contactList => (
-              <Table.Row key={contactList.id} {...actions} >
+              <Table.Row key={contactList.id} >
                 <Table.Cell >
                   { contactList.textName }
                 </Table.Cell>
@@ -78,7 +78,7 @@ const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, han
                   { contactList.textEmail }
                 </Table.Cell>
                 <Table.Cell className="delete-contact">
-                  <Button icon onClick={handleDeleteContact}>
+                  <Button icon onClick={handleDeleteContact(contactList.id)}>
                     <Icon name="delete" />
                   </Button>
                 </Table.Cell>
@@ -116,8 +116,8 @@ const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, han
 
 ParentsSpaceContacts.propTypes = {
   addContact: PropTypes.func.isRequired,
-  inputName: PropTypes.string.isRequired,
-  inputEmail: PropTypes.string.isRequired,
+  inputName: PropTypes.string,
+  inputEmail: PropTypes.string,
   handleChangeName: PropTypes.func.isRequired,
   handleChangeEmail: PropTypes.func.isRequired,
   contacts: PropTypes.arrayOf(PropTypes.shape({
@@ -125,14 +125,13 @@ ParentsSpaceContacts.propTypes = {
   })).isRequired,
   removeContact: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
-  actions: PropTypes.object.isRequired,
 //   handleChangeNannyPassword: PropsTypes.func.isRequired,
 };
 
-// ParentsSpaceContacts.defaultProps = {
-//   inputName: '',
-//   inputEmail: '',
-// };
+ParentsSpaceContacts.defaultProps = {
+  inputName: '',
+  inputEmail: '',
+};
 
 
 /**
