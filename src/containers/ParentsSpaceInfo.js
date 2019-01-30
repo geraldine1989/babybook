@@ -22,7 +22,6 @@ import {
   addVaccines,
   addAllergies,
   addChild,
-  addBirthDate,
   addPhone,
 } from 'src/store/ParentsSpaceInfoReducer';
 
@@ -46,7 +45,6 @@ const mapStateToProps = (state, ownProps) => ({
   vaccinesList: state.vaccinesList,
   allergiesList: state.allergiesList,
   childList: state.childList,
-  birthDateList: state.birthDateList,
   phoneList: state.phoneList,
 });
 
@@ -93,9 +91,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   addChild: (childList) => {
     dispatch(addChild(childList));
-  },
-  addBirthDate: (birthDateList) => {
-    dispatch(addBirthDate(birthDateList));
   },
   addPhone: (phoneList) => {
     dispatch(addPhone(phoneList));

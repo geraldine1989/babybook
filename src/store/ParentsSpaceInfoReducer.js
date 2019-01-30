@@ -5,7 +5,6 @@ import uuidv4 from 'uuid/v4';
  */
 const initialState = {
   childList: [],
-  birthDateList: [],
   medsList: [],
   vaccinesList: [],
   allergiesList: [],
@@ -32,7 +31,6 @@ const INPUT_CHANGE_ALLERGIES = 'INPUT_CHANGE_ALLERGIES';
 const INPUT_CHANGE_PHONE_NAME = 'INPUT_CHANGE_PHONE_NAME';
 const INPUT_CHANGE_PHONE_NUMBER = 'INPUT_CHANGE_PHONE_NUMBER';
 const ADD_CHILD = 'ADD_CHILD';
-const ADD_BIRTH_DATE = 'ADD_BIRTH_DATE';
 const ADD_MEDS = 'ADD_MEDS';
 const ADD_VACCINES = 'ADD_VACCINES';
 const ADD_ALLERGIES = 'ADD_ALLERGIES';
@@ -50,7 +48,6 @@ const ADD_PHONE = 'ADD_PHONE';
 /* eslint-disable no-case-declarations */
 const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
   const { childList } = state;
-  const { birthDateList } = state;
   const { medsList } = state;
   const { vaccinesList } = state;
   const { allergiesList } = state;
@@ -160,6 +157,7 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         id: uuidv4(),
         firstname: inputFirstName,
         lastname: inputLastName,
+        birthdate: inputBirthDate,
       };
 
       const newChildList = [...childList, newChildObject];
@@ -169,19 +167,6 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         childList: newChildList,
         inputFirstName: '',
         inputLastName: '',
-      };
-
-    case ADD_BIRTH_DATE:
-      const newBirthDateObject = {
-        id: uuidv4(),
-        birthdate: inputBirthDate,
-      };
-
-      const newBirthDateList = [...birthDateList, newBirthDateObject];
-
-      return {
-        ...state,
-        birthDateList: newBirthDateList,
         inputBirthDate: '',
       };
 
@@ -268,11 +253,6 @@ export const addAllergies = allergiesList => ({
 export const addChild = childList => ({
   type: ADD_CHILD,
   childList,
-});
-
-export const addBirthDate = birthDateList => ({
-  type: ADD_BIRTH_DATE,
-  birthDateList,
 });
 
 export const addPhone = phoneList => ({

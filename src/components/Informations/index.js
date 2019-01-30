@@ -8,7 +8,6 @@ import './style.scss';
 
 const Informations = ({
   childList,
-  birthDateList,
   medsList,
   vaccinesList,
   allergiesList,
@@ -33,9 +32,7 @@ const Informations = ({
             Age: <span>18 mois</span>
             </div>
             <div className="child-info-div">
-              {birthDateList.map(birthDate => (
-                <span>Date de naissance: {birthDate.birthdate}</span>
-              ))}
+            Date de naissance: <span>{child.birthdate}</span>
             </div>
           </div>
         ))}
@@ -90,9 +87,6 @@ const Informations = ({
 
 Informations.propTypes = {
   childList: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-  })).isRequired,
-  birthDateList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
   })).isRequired,
   medsList: PropTypes.arrayOf(PropTypes.shape({

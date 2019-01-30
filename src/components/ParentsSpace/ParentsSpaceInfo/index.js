@@ -96,7 +96,6 @@ const ParentsSpaceInfo = ({
   inputPhoneName,
   inputPhoneNumber,
   addChild,
-  addBirthDate,
   addMeds,
   addVaccines,
   addAllergies,
@@ -105,7 +104,6 @@ const ParentsSpaceInfo = ({
   vaccinesList,
   allergiesList,
   childList,
-  birthDateList,
   phoneList,
 
 }) => {
@@ -154,11 +152,6 @@ const ParentsSpaceInfo = ({
     addChild(inputLastName);
   };
 
-  const submitBirthDate = (evt) => {
-    evt.preventDefault();
-    addBirthDate(inputBirthDate);
-  };
-
   const submitMeds = (evt) => {
     evt.preventDefault();
     addMeds(inputMeds);
@@ -186,7 +179,7 @@ const ParentsSpaceInfo = ({
         <div id="modif-child">
           <h3>Enfant</h3>
           <div>{childList.map(child => (
-            <p key={child.id}>Prénom : {child.firstname} Nom : {child.lastname}
+            <p key={child.id}>Prénom : {child.firstname} Nom : {child.lastname} Date de naissance : {child.birthdate}
             </p>
           ))}
           </div>
@@ -206,24 +199,9 @@ const ParentsSpaceInfo = ({
               placeholder="Nom de l'enfant"
               value={inputLastName}
             />
-            <Button icon type="submit">
-              <Icon name="add" />
-            </Button>
-          </Form>
-
-          <h3>Date de naissance</h3>
-          <div>{birthDateList.map(birthDate => (
-            <p key={birthDate.id}>Né(e) le : {birthDate.birthdate}
-            </p>
-          ))}
-          </div>
-          <Form
-            id="modif-birthdate"
-            onSubmit={submitBirthDate}
-          >
             <Form.Input
-              type="date"
               onChange={handleChangeForBirthDate}
+              type="date"
               value={inputBirthDate}
             />
             <Button icon type="submit">
@@ -394,7 +372,6 @@ ParentsSpaceInfo.propTypes = {
   inputPhoneName: PropTypes.string.isRequired,
   inputPhoneNumber: PropTypes.string.isRequired,
   addChild: PropTypes.func.isRequired,
-  addBirthDate: PropTypes.func.isRequired,
   addMeds: PropTypes.func.isRequired,
   addVaccines: PropTypes.func.isRequired,
   addAllergies: PropTypes.func.isRequired,
@@ -409,9 +386,6 @@ ParentsSpaceInfo.propTypes = {
     id: PropTypes.string.isRequired,
   })).isRequired,
   childList: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-  })).isRequired,
-  birthDateList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
   })).isRequired,
   phoneList: PropTypes.arrayOf(PropTypes.shape({

@@ -20,7 +20,6 @@ import { } from 'src/store/ParentsSpaceInfoReducer';
  */
 const mapStateToProps = (state, ownProps) => ({
   childList: state.childList,
-  birthDateList: state.birthDateList,
   medsList: state.medsList,
   vaccinesList: state.vaccinesList,
   allergiesList: state.allergiesList,
