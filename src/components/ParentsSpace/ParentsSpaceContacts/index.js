@@ -14,7 +14,7 @@ import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
 /**
  * Code
  */
-const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, handleChangeName, handleChangeEmail, removeContact, id, actions }) => {
+const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, handleChangeName, handleChangeEmail, removeContact, id }) => {
   const parentsContacts = [
     {
       firstName: "Toto",
@@ -70,7 +70,7 @@ const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, han
 
           <Table.Body>
             { contactsList.map(contactList => (
-              <Table.Row key={contactList.id} {...actions} >
+              <Table.Row key={contactList.id} id={contactList.id}>
                 <Table.Cell >
                   { contactList.textName }
                 </Table.Cell>
@@ -125,7 +125,6 @@ ParentsSpaceContacts.propTypes = {
   })).isRequired,
   removeContact: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
-  actions: PropTypes.object.isRequired,
 //   handleChangeNannyPassword: PropsTypes.func.isRequired,
 };
 
