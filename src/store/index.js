@@ -16,7 +16,7 @@ import rootReducer from 'src/store/reducers';
 const appliedMiddlewares = applyMiddleware(ajaxMiddleware);
 
 const devTools = [
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
 ];
 
 const enhancers = compose(appliedMiddlewares, ...devTools);
