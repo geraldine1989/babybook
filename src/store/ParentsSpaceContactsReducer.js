@@ -23,7 +23,7 @@ const REMOVE_CONTACT = 'REMOVE_CONTACT';
 /**
  * Reducer
  */
-const reducer = (state = initialState, action = {}) => {
+const ParentsSpaceContactsReducer = (state = initialState, action = {}) => {
   const { contacts } = state;
   const { inputName } = state;
   const { inputEmail } = state;
@@ -100,4 +100,4 @@ export const removeContact = id => ({
 /**
  * Export
  */
-export default reducer;
+export default ParentsSpaceContactsReducer;
