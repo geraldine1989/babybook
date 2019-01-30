@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import MyDay from 'src/components/MyDay';
 
 
-import { handleAddNoteNoteNounou, AddNoteDaySubmitNounou, handleAddNoteNoteTaskNounou, AddNoteNoteTaskNounou } from 'src/store/reducer';
+import { handleAddNoteNoteNounou, AddNoteDaySubmitNounou, handleAddNoteNoteTaskNounou, AddNoteNoteTaskNounou } from 'src/store/myday';
 
 // Fonction pour mapper le state du store vers les props
 

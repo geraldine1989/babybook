@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import ParentsSpaceDayType from 'src/components/ParentsSpace/ParentsSpaceDayType';
 
 // Action Creators
-import { handleChangeTitleDay, handleChangeNoteTask, handleChangeHourTask, addTask, addNoteDayFromParents, handleAddNoteDay } from 'src/store/reducer';
+import { handleChangeTitleDay, handleChangeNoteTask, handleChangeHourTask, addTask, addNoteDayFromParents, handleAddNoteDay } from 'src/store/myday';
 
 /* === State (données) ===
  */

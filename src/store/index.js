@@ -7,7 +7,7 @@ import { createStore } from 'redux';
  * Local import
  */
 // Reducer
-import reducer from 'src/store/reducer';
+import myday from 'src/store/myday';
 
 /*
  * Code
@@ -18,7 +18,7 @@ const devTools = [
 
 
 // createStore
-const store = createStore(reducer, ...devTools);
+const store = createStore(myday, ...devTools);
 
 /*
  * Export

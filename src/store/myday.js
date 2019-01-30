@@ -39,7 +39,7 @@ const ADD_NOTE_TASK_NANNY = 'ADD_NOTE_TASK_NANNY';
  * Reducer
  */
 /* eslint-disable no-case-declarations */
-const reducer = (state = initialState, action = {}) => {
+const myday = (state = initialState, action = {}) => {
   const { itemList } = state;
   const { inputTitle } = state;
   const { inputNoteTask } = state;
@@ -207,4 +207,4 @@ export const AddNoteNoteTaskNounou = (note, id) => ({
 /**
  * Export
  */
-export default reducer;
+export default myday;
