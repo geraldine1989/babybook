@@ -36,18 +36,18 @@ class App extends React.Component {
         <HeaderLogo />
         <MainNav />
         <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/inscription" component={InscriptionForm} />
-        <Route exact path="/login-parents" component={LoginParents} />
-        <Route exact path="/login-nanny" component={LoginNanny} />
-        <Route exact path="/my-day/journal" component={MyDay} />
-        <Route exact path="/my-day/infos" component={Informations} />
-        <Route exact path="/espace-parents/journee-type" component={ParentsSpaceDayType} />
-        <Route exact path="/espace-parents/infos" component={ParentsSpaceInfo} />
-        <Route exact path="/espace-parents/contacts" component={ParentsSpaceContacts} />
-        <Route exact path="/mentions-legales" component={LegalMentions} />
-        <Route exact path="/contact" component={Contact} />
-        <Route exact path="/not-found" component={NotFound} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/inscription" component={InscriptionForm} />
+          <Route exact path="/login-parents" component={LoginParents} />
+          <Route exact path="/login-nanny" component={LoginNanny} />
+          <Route exact path="/my-day/journal" component={MyDay} />
+          <Route exact path="/my-day/infos" component={Informations} />
+          <Route exact path="/espace-parents/journee-type" component={ParentsSpaceDayType} />
+          <Route exact path="/espace-parents/infos" component={ParentsSpaceInfo} />
+          <Route exact path="/espace-parents/contacts" component={ParentsSpaceContacts} />
+          <Route exact path="/mentions-legales" component={LegalMentions} />
+          <Route exact path="/contact" component={Contact} />
+          <Route exact path="/not-found" component={NotFound} />
         </Switch>
         
         <Footer />
