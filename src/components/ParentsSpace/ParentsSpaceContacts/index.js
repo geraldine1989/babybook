@@ -49,7 +49,7 @@ const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, han
     ...contacts,
   ];
 
-  const handleDeleteContact = () => {
+  const handleDeleteContact = (id) => () => {
     removeContact(id);
   };
 
@@ -70,7 +70,7 @@ const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, han
 
           <Table.Body>
             { contactsList.map(contactList => (
-              <Table.Row key={contactList.id} id={contactList.id}>
+              <Table.Row key={contactList.id}>
                 <Table.Cell >
                   { contactList.textName }
                 </Table.Cell>
@@ -78,7 +78,7 @@ const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, han
                   { contactList.textEmail }
                 </Table.Cell>
                 <Table.Cell className="delete-contact">
-                  <Button icon onClick={handleDeleteContact}>
+                  <Button icon onClick={handleDeleteContact(contactList.id)}>
                     <Icon name="delete" />
                   </Button>
                 </Table.Cell>
