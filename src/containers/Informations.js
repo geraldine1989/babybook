@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import Informations from 'src/components/Informations';
 
 // Action Creators
-import { doSomething } from 'src/store/ParentsSpaceInfoReducer';
+import { } from 'src/store/ParentsSpaceInfoReducer';
 
 /* === State (données) ===
  * - mapStateToProps retroune un objet de props pour le composant de présentation
@@ -20,6 +20,11 @@ import { doSomething } from 'src/store/ParentsSpaceInfoReducer';
  */
 const mapStateToProps = (state, ownProps) => ({
   childList: state.childList,
+  birthDateList: state.birthDateList,
+  medsList: state.medsList,
+  vaccinesList: state.vaccinesList,
+  allergiesList: state.allergiesList,
+  phoneList: state.phoneList,
 });
 
 /* === Actions ===
@@ -31,7 +36,7 @@ const mapStateToProps = (state, ownProps) => ({
  */
 const mapDispatchToProps = (dispatch, ownProps) => ({
   doSomething: () => {
-    dispatch(doSomething());
+    dispatch();
   },
 });
 

@@ -10,7 +10,6 @@ const initialState = {
   vaccinesList: [],
   allergiesList: [],
   phoneList: [],
-  allInfosList: [],
   inputFirstName: '',
   inputLastName: '',
   inputBirthDate: '',
@@ -38,7 +37,6 @@ const ADD_MEDS = 'ADD_MEDS';
 const ADD_VACCINES = 'ADD_VACCINES';
 const ADD_ALLERGIES = 'ADD_ALLERGIES';
 const ADD_PHONE = 'ADD_PHONE';
-const ADD_ALL_INFOS = 'ADD_ALL_INFOS';
 
 
 /**
@@ -57,7 +55,6 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
   const { vaccinesList } = state;
   const { allergiesList } = state;
   const { phoneList } = state;
-  const { allInfosList } = state;
   const { inputFirstName } = state;
   const { inputLastName } = state;
   const { inputBirthDate } = state;
@@ -114,34 +111,6 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         inputPhoneNumber: action.inputPhoneNumber,
-      };
-
-    case ADD_ALL_INFOS:
-      const newInfosObject = {
-        id: uuidv4(),
-        firstname: inputFirstName,
-        lastname: inputLastName,
-        birthdate: inputBirthDate,
-        meds: inputMeds,
-        vaccines: inputVaccines,
-        allergies: inputAllergies,
-        phonename: inputPhoneName,
-        phonenumber: inputPhoneNumber,
-      };
-
-      const newInfosList = [...allInfosList, newInfosObject];
-
-      return {
-        ...state,
-        allInfosList: newInfosList,
-        inputFirstName: '',
-        inputLastName: '',
-        inputBirthDate: '',
-        inputMeds: '',
-        inputVaccines: '',
-        inputAllergies: '',
-        inputPhoneName: '',
-        inputPhoneNumber: '',
       };
 
     case ADD_MEDS:
@@ -279,11 +248,6 @@ export const handleChangePhoneName = text => ({
 export const handleChangePhoneNumber = number => ({
   type: INPUT_CHANGE_PHONE_NUMBER,
   inputPhoneNumber: number,
-});
-
-export const addAllInfos = allInfosList => ({
-  type: ADD_ALL_INFOS,
-  allInfosList,
 });
 
 export const addMeds = medsList => ({

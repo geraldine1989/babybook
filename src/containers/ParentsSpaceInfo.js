@@ -18,7 +18,6 @@ import {
   handleChangeAllergiesItem,
   handleChangePhoneName,
   handleChangePhoneNumber,
-  addAllInfos,
   addMeds,
   addVaccines,
   addAllergies,
@@ -43,7 +42,6 @@ const mapStateToProps = (state, ownProps) => ({
   inputAllergies: state.inputAllergies,
   inputPhoneName: state.inputPhoneName,
   inputPhoneNumber: state.inputPhoneNumber,
-  allInfoslist: state.allInfosList,
   medsList: state.medsList,
   vaccinesList: state.vaccinesList,
   allergiesList: state.allergiesList,
@@ -83,9 +81,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   handleChangePhoneNumber: (number) => {
     dispatch(handleChangePhoneNumber(number));
-  },
-  addAllInfos: (allInfosList) => {
-    dispatch(addAllInfos(allInfosList));
   },
   addMeds: (medsList) => {
     dispatch(addMeds(medsList));

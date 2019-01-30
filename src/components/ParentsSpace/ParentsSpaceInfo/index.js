@@ -101,14 +101,12 @@ const ParentsSpaceInfo = ({
   addVaccines,
   addAllergies,
   addPhone,
-  addAllInfos,
   medsList,
   vaccinesList,
   allergiesList,
   childList,
   birthDateList,
   phoneList,
-  allInfosList,
 
 }) => {
 
@@ -157,74 +155,41 @@ const ParentsSpaceInfo = ({
     addChild(inputLastName);
   };
 
-  // const childrenList = [
-  //   ...childList,
-  // ];
-
   const submitBirthDate = (evt) => {
     evt.preventDefault();
     addBirthDate(inputBirthDate);
   };
-
-  // const birthDatesList = [
-  //   ...birthDateList,
-  // ];
 
   const submitMeds = (evt) => {
     evt.preventDefault();
     addMeds(inputMeds);
   };
 
-  const medList = [
-    ...medsList,
-  ];
-
   const submitVaccines = (evt) => {
     evt.preventDefault();
     addVaccines(inputVaccines);
   };
-
-  const vaccineList = [
-    ...vaccinesList,
-  ];
 
   const submitAllergies = (evt) => {
     evt.preventDefault();
     addAllergies(inputAllergies);
   };
 
-  const allergieList = [
-    ...allergiesList,
-  ];
-
   const submitPhone = (evt) => {
     evt.preventDefault();
     addPhone(inputPhoneNumber);
   };
-
-  // const phonesList = [
-  //   ...phoneList,
-  // ];
-
-  const submitAllInfos = (evt) => {
-    evt.preventDefault();
-    addAllInfos(inputPhoneNumber);
-  };
-
-  // const allTheInfosList = [
-  //   ...allInfosList,
-  // ];
 
   return (
     <div>
       <ParentsNav />
       <div id="modif-informations">
         <div id="modif-child">
-
           <h3>Enfant</h3>
-          <div>{childList.map((child) =>
-            <p>Prénom : {child.firstname} Nom : {child.lastname}</p>
-          )}
+          <div>{childList.map(child => (
+            <p key={child.id}>Prénom : {child.firstname} Nom : {child.lastname}
+            </p>
+          ))}
           </div>
           <Form
             id="modif-child-name"
@@ -248,7 +213,11 @@ const ParentsSpaceInfo = ({
           </Form>
 
           <h3>Date de naissance</h3>
-          <p>Né(e) le : 12/01/1199</p>
+          <div>{birthDateList.map(birthDate => (
+            <p key={birthDate.id}>Né(e) le : {birthDate.birthdate}
+            </p>
+          ))}
+          </div>
           <Form
             id="modif-birthdate"
             onSubmit={submitBirthDate}
@@ -270,12 +239,12 @@ const ParentsSpaceInfo = ({
             <div className="cards-item">
               <div className="header">Traitement en cours</div>
               <div className="delete-item">
-                { medList.map(meds => (
+                {medsList.map(meds => (
                   <li key={meds.id}>{meds.name}
                     <Button
                       icon
                       type="submit"
-                      
+
                     >
                       <Icon name="delete" />
                     </Button>
@@ -302,12 +271,12 @@ const ParentsSpaceInfo = ({
               <div className="header">Vaccins</div>
 
               <div className="delete-item">
-                { vaccineList.map(vaccines => (
+                {vaccinesList.map(vaccines => (
                   <li key={vaccines.id}>{vaccines.name}
                     <Button
                       icon
                       type="submit"
-                    
+
                     >
                       <Icon name="delete" />
                     </Button>
@@ -334,12 +303,12 @@ const ParentsSpaceInfo = ({
               <div className="header">Allergies</div>
 
               <div className="delete-item">
-                { allergieList.map(allergies => (
+                {allergiesList.map(allergies => (
                   <li key={allergies.id}>{allergies.name}
                     <Button
                       icon
                       type="submit"
-                    
+
                     >
                       <Icon name="delete" />
                     </Button>
@@ -368,24 +337,17 @@ const ParentsSpaceInfo = ({
         <div id="modif-numeros">
           <h3>Numéros utiles</h3>
           <ul>
-            <li>Portable Papa : 0625487956
-              <Button
-                      icon
-                      type="submit"
-                    
-                    >
-                      <Icon name="delete" />
-                    </Button>
-                    </li>
-            <li>Portable Maman : 0629787956
-              <Button
-                      icon
-                      type="submit"
-                    
-                    >
-                      <Icon name="delete" />
-                    </Button>
-                    </li>
+            {phoneList.map(phone => (
+              <li key={phone.id}>{phone.phonename} : {phone.phonenumber}
+                <Button
+                  icon
+                  type="submit"
+
+                >
+                  <Icon name="delete" />
+                </Button>
+              </li>
+            ))}
           </ul>
           <div id="modif-numeros-div">
             <Form
@@ -438,7 +400,6 @@ ParentsSpaceInfo.propTypes = {
   addVaccines: PropTypes.func.isRequired,
   addAllergies: PropTypes.func.isRequired,
   addPhone: PropTypes.func.isRequired,
-  addAllInfos: PropTypes.func.isRequired,
   medsList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
   })).isRequired,
@@ -455,9 +416,6 @@ ParentsSpaceInfo.propTypes = {
     id: PropTypes.string.isRequired,
   })).isRequired,
   phoneList: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-  })).isRequired,
-  allInfosList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
   })).isRequired,
 };
