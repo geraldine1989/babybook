@@ -49,6 +49,7 @@ const ParentsSpaceContactsReducer = (state = initialState, action = {}) => {
       };
 
       const newContacts = [...contacts, newContactObject];
+      console.log(newContacts);
 
       return {
         ...state,
