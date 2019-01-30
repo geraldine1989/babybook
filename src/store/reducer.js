@@ -123,7 +123,22 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         inputNoteNounouTask: action.inputNoteNounouTask,
       };
-    
+      /**    case ADD_NOTE_TASK_NANNY:
+      const tableauListItem = itemList.filter(list => list.id === action.id);
+      const selectList = { ...tableauListItem[0] };
+      selectList.note = inputNoteNounouTask;
+      let newList = itemList.map((task) => {
+        if (task.id === action.id) {
+          return selectList;
+        }
+        return task;
+      });
+      return {
+        ...state,
+        itemList: newList,
+      };
+     */
+
     default:
       return state;
   }
@@ -178,6 +193,12 @@ export const AddNoteDaySubmitNounou = note => ({
 export const handleAddNoteNoteTaskNounou = text => ({
   type: CHANGE_INPUT_NOTE_NANY_TASK,
   inputNoteNounouTask: text,
+});
+
+export const AddNoteNoteTaskNounou = (note, id) => ({
+  type: ADD_NOTE_TASK_NANNY,
+  note,
+  id,
 });
 /**
  * Selectors

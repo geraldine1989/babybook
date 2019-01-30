@@ -14,7 +14,7 @@ import './style.scss';
  * Code
  */
 /* eslint-disable no-case-declarations */
-const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, inputNoteNounouTask, handleAddNoteNoteTaskNounou }) => {
+const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, inputNoteNounouTask, handleAddNoteNoteTaskNounou, AddNoteNoteTaskNounou }) => {
   
   /** Input ajout note nounou journées */
   const handleAddNoteDayInputNounou = (event) => {
@@ -29,8 +29,16 @@ const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDa
 
   const handleAddNoteTaskInputNounou = (event) => {
     const text = event.target.value;
+    console.log(current.target);
     handleAddNoteNoteTaskNounou(text);
   };
+
+  const handleAddNoteTaskSubmitNounou = (event, id) => {
+    const text = event.target.value;
+    AddNoteNoteTaskNounou(text, id);
+  };
+
+  
   return (
     <div id="myday">
       <div id="intro">
@@ -50,14 +58,15 @@ const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDa
             <div
               className="task"
               key= {task.id}
+              id={task.id}
             >
               <Button className="list-button" circular icon="utensils" />
               <div className="list-item">{task.name}</div>
               <div className="time">{task.hour}</div>
               <div className="note">{task.indic}</div>
               
-              <form className="add-name-input">
-                <input  placeholder="Ajouter une note..." value= {inputNoteNounouTask} onChange={handleAddNoteTaskInputNounou} />
+              <form className="add-name-input"  /*onSubmit={handleAddNoteTaskSubmitNounou}*/>
+                <input placeholder="Ajouter une note..." value= {inputNoteNounouTask} onChange={handleAddNoteTaskInputNounou} />
                 <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
               </form>  
               <div className="note-nany"> Pas de notes de la nounou </div>
@@ -94,6 +103,8 @@ MyDay.propTypes = {
   nannyNote: PropTypes.string.isRequired,
   inputNoteNounouTask: PropTypes.string.isRequired,
   handleAddNoteNoteTaskNounou: PropTypes.func.isRequired,
+  AddNoteNoteTaskNounou: PropTypes.func.isRequired,
+  
 };
 
 
