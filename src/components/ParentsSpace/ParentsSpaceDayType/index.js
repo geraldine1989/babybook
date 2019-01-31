@@ -49,7 +49,7 @@ const handleAddItemInList = (evt) => {
   addDayType(formDatas);
 };
 
-const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inputTitle, handleChangeNoteTask, inputNoteTask, handleChangeHourTask, inputHourTask, addTask, list, handleAddNoteDay, inputNote, addNoteDayFromParents }) => {
+const ParentsSpaceDayType = ({ removeTaskDay, handleChangeTitleDay, inputTitle, handleChangeNoteTask, inputNoteTask, handleChangeHourTask, inputHourTask, addTask, list, handleAddNoteDay, inputNote, addNoteDayFromParents, id }) => {
 
   /** Form ajout tache journee type */
   const handleChangeTitle = (event) => {
@@ -86,6 +86,13 @@ const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inpu
     addNoteDayFromParents(inputNote);
   };
 
+
+
+  const handleDeleteMyDayItem = (id) => () => {
+    console.log('je suis clique');
+    removeTaskDay(id);
+  };
+
   return (
     <div>
       <ParentsNav />
@@ -98,7 +105,8 @@ const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inpu
                 <span>{task.name}</span>
                 <span>{task.hour}</span>
                 <span>{task.indic}</span>
-                <Icon name="delete" onClick={handleDeleteMyDayItem} />
+                <Icon name="delete" onClick={handleDeleteMyDayItem(task.id)} />
+                
               </li>
               
             )
@@ -166,6 +174,7 @@ ParentsSpaceDayType.propTypes = {
   handleAddNoteDay: PropTypes.func.isRequired,
   inputNote: PropTypes.string.isRequired,
   addNoteDayFromParents: PropTypes.func.isRequired,
+  removeTaskDay: PropTypes.func.isRequired,
 };
 
 /**

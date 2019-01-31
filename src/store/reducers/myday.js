@@ -13,7 +13,7 @@ const initialState = {
   note: "Pas d'indications particulières pour cette journée",
   inputNoteNounou: '',
   nannyNote: 'Pas de notes de la part de la nounou',
-  
+  inputatNannyTask: '',
 };
 
 /**
@@ -29,6 +29,7 @@ const CHANGE_INPUT_NOTE_NANY_DAY = 'CHANGE_INPUT_NOTE_NANY_DAY';
 const ADD_NOTE_DAY_NANNY = 'ADD_NOTE_DAY_NANNY';
 const CHANGE_INPUT_NOTE_NANY_TASK = 'CHANGE_INPUT_NOTE_NANY_TASK';
 const ADD_NOTE_TASK_NANNY = 'ADD_NOTE_TASK_NANNY';
+const REMOVE_TASK_DAY = 'REMOVE_TASK_DAY'; 
 
 
 /**
@@ -122,7 +123,7 @@ const myday = (state = initialState, action = {}) => {
     // note task nanny
     case CHANGE_INPUT_NOTE_NANY_TASK:
     console.log(action);
-      const tableautask = itemList.filter(list => list.id === action.id);
+      const tableautask = itemList.filter(list => list.selctedInput === action.name);
       const modifiedTask = { ...tableautask[0] };
       
       modifiedTask.selctedInput = action.selctedInput;
@@ -136,6 +137,7 @@ const myday = (state = initialState, action = {}) => {
         ...state,
         itemList: newTasksList,
       };
+
       /**    case ADD_NOTE_TASK_NANNY:
       const tableauListItem = itemList.filter(list => list.id === action.id);
       const selectList = { ...tableauListItem[0] };
@@ -151,6 +153,13 @@ const myday = (state = initialState, action = {}) => {
         itemList: newList,
       };
      */
+
+     case REMOVE_TASK_DAY:
+     const detetedTask = state.itemList.filter(list => list.id !== action.id);
+      return {
+        ...state,
+        itemList: detetedTask,
+      };
 
     default:
       return state;
@@ -203,14 +212,20 @@ export const AddNoteDaySubmitNounou = note => ({
 });
 
 /** Note nanny task */
-export const handleAddNoteNoteTaskNounou =  modif => ({
+export const handleAddNoteNoteTaskNounou = modif => ({
   type: CHANGE_INPUT_NOTE_NANY_TASK,
-  selctedInput: modif,
+  modif,
+
 });
 
 export const AddNoteNoteTaskNounou = (note, id) => ({
   type: ADD_NOTE_TASK_NANNY,
   note,
+  id,
+});
+
+export const removeTaskDay = id => ({
+  type: REMOVE_TASK_DAY,
   id,
 });
 /**

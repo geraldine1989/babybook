@@ -28,14 +28,15 @@ const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDa
   };
 
   const handleAddNoteTaskInputNounou = (event) => {
+    console.log(event.target);
     const { name, value } = event.target;
     const modif = {
       [name]: value,
     };
     console.log('je suis dans le composant' + modif);
     handleAddNoteNoteTaskNounou(modif);
-
   };
+  
 
   const handleAddNoteTaskSubmitNounou = (event, id) => {
     const text = event.target.value;
