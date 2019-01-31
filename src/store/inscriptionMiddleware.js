@@ -7,14 +7,14 @@ const inscriptionMiddleware = store => next => (action) => {
   // Je veux vérifier si l'action que je reçois m'intéresse
   switch (action.type) {
     case HANDLE_GET_EMAILS:
-    axios.get('http://localhost:3000/getEmails')
-    .then((response) => {
-      console.log('inscriptionMiddleware HANDLE_GET_EMAILS : '+response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-    break;
+      axios.get('http://localhost:3000/getEmails')
+      .then((response) => {
+        console.log('inscriptionMiddleware HANDLE_GET_EMAILS : '+response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+      break;
     case HANDLE_INSCRIPTION:
       const state = store.getState().inscriptionReducer;
       const { inputEmail, inputPassword, inputAccessCode } = state;

@@ -13,7 +13,7 @@ const initialState = {
   note: "Pas d'indications particulières pour cette journée",
   inputNoteNounou: '',
   nannyNote: 'Pas de notes de la part de la nounou',
-  inputNoteNounouTask: '',
+  inputNoteNounouTask: [{}],
 };
 
 /**
@@ -75,7 +75,7 @@ const myday = (state = initialState, action = {}) => {
         name: inputTitle,
         hour: inputHourTask,
         indic: inputNoteTask,
-        note: inputNoteNounouTask,
+        note: '',
       };
 
       const newTasks = [...itemList, newTaskObject];
@@ -121,7 +121,7 @@ const myday = (state = initialState, action = {}) => {
     case CHANGE_INPUT_NOTE_NANY_TASK:
       return  {
         ...state,
-        inputNoteNounouTask: action.inputNoteNounouTask.name,
+        inputNoteNounouTask: [...inputNoteNounouTask, {[action.modif]: action.modif}],
       };
       /**    case ADD_NOTE_TASK_NANNY:
       const tableauListItem = itemList.filter(list => list.id === action.id);
