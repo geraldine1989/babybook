@@ -46,6 +46,7 @@
   "dependencies": {
     "@babel/polyfill": "*",
     "axios": "^0.18.0",
+    "hash.js": "^1.1.7",
     "prop-types": "^15.6.2",
     "react": "*",
     "react-burger-menu": "^2.6.1",

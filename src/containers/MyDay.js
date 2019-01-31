@@ -29,8 +29,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(AddNoteDaySubmitNounou(note));
   },
 
-  handleAddNoteNoteTaskNounou: (text, id) => {
-    dispatch(handleAddNoteNoteTaskNounou(text, id));
+  handleAddNoteNoteTaskNounou: (modif) => {
+    dispatch(handleAddNoteNoteTaskNounou(modif));
   },
 
   AddNoteNoteTaskNounou: (note, id) => {

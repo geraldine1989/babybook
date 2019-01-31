@@ -7,6 +7,7 @@ const port = 3000;
 const baseUrl = "mongodb://localhost:27017/babybook";
 const MongoClient = require('mongodb').MongoClient;
 var registeredEmails = [];
+var hash = require('hash.js');
 
 /**
  * Express
@@ -75,7 +76,7 @@ app.get('/getEmails', (req, res, next) => {
         if (error) throw error;
         const database = db.db('babybook');
 
-        database.collection('emails').find().toArray(function(error, results) {
+        database.collection('registeredEmails').find().toArray(function(error, results) {
           if (error) throw error;
           result = results[0];
           resolve (result);
@@ -87,7 +88,7 @@ app.get('/getEmails', (req, res, next) => {
   getRegisteredEmails()
     .then(function(response) {
       // const validity = checkEmail(value) ? "L'email existe déjà" : "L'email est valide";
-      registeredEmails = response
+      registeredEmails = response;
       // res.send(validity);
       console.log(registeredEmails);
       res.send();
@@ -116,7 +117,7 @@ app.post('/inscription', upload.array(), (req, res, next) => {
   for (key in registeredEmails) {
     if (datas.email === registeredEmails[key]) {
       console.log('email existant');
-      const message = "inscription ok";
+      const message = "Cet email est déjà utilisé.";
       res.send(message)
     } else {
     function sendDatas() {
@@ -126,7 +127,9 @@ app.post('/inscription', upload.array(), (req, res, next) => {
           if (error) throw error;
           const database = db.db('babybook');
           
-          database.collection('parents').insertOne(datas)
+          // database.collection('parents').insertOne(datas);
+          database.collection('registeredEmails').insertOne(datas);
+
         });
       });
     }
@@ -168,7 +171,7 @@ app.post('/loginParents', upload.array(), (req, res, next) => {
       if (results[0].password !== datas.password) {
         res.send('L\'email ou le mot de passe est incorrect.')
       } else {
-        res.send('logged');
+        res.send('ParentLogged');
       }
     })
     .catch(function(err) {

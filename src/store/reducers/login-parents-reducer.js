@@ -2,7 +2,7 @@
  * Initial State
  */
 const initialState = {
-  logged: false,
+  ParentLogged: false,
   inputEmail: '',
   inputPassword: '',
 };
@@ -49,10 +49,10 @@ const loginParentsReducer = (state = initialState, action = {}) => {
       }
     
     case LOGIN_RESPONSE:
-      if (action.answer === 'logged') {
+      if (action.answer === 'ParentLogged') {
         return {
           ...state,
-          logged: true,
+          ParentLogged: true,
           errorLogin: '',
         }
       }

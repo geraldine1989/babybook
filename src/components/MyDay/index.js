@@ -28,9 +28,12 @@ const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDa
   };
 
   const handleAddNoteTaskInputNounou = (event) => {
-    const text = event.target.value;
-    console.log(current.target);
-    handleAddNoteNoteTaskNounou(text);
+    const { name, value } = event.target;
+    const modif = {
+      [name]: value,
+    }
+    // console.log(current.target);
+    handleAddNoteNoteTaskNounou(modif);
   };
 
   const handleAddNoteTaskSubmitNounou = (event, id) => {
@@ -66,7 +69,11 @@ const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDa
               <div className="note">{task.indic}</div>
               
               <form className="add-name-input"  /*onSubmit={handleAddNoteTaskSubmitNounou}*/>
-                <input placeholder="Ajouter une note..." value= {inputNoteNounouTask} onChange={handleAddNoteTaskInputNounou} />
+                <input 
+                  name={inputNoteNounouTask}
+                  placeholder="Ajouter une note..." 
+                  value= {inputNoteNounouTask} 
+                  onChange={handleAddNoteTaskInputNounou} />
                 <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
               </form>  
               <div className="note-nany"> Pas de notes de la nounou </div>

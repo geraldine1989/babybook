@@ -121,7 +121,7 @@ const myday = (state = initialState, action = {}) => {
     case CHANGE_INPUT_NOTE_NANY_TASK:
       return  {
         ...state,
-        inputNoteNounouTask: action.inputNoteNounouTask,
+        inputNoteNounouTask: action.inputNoteNounouTask.name,
       };
       /**    case ADD_NOTE_TASK_NANNY:
       const tableauListItem = itemList.filter(list => list.id === action.id);
@@ -190,9 +190,9 @@ export const AddNoteDaySubmitNounou = note => ({
 });
 
 /** Note nanny task */
-export const handleAddNoteNoteTaskNounou = text => ({
+export const handleAddNoteNoteTaskNounou = modif => ({
   type: CHANGE_INPUT_NOTE_NANY_TASK,
-  inputNoteNounouTask: text,
+  inputNoteNounouTask: modif,
 });
 
 export const AddNoteNoteTaskNounou = (note, id) => ({

@@ -2,6 +2,7 @@
  * Npm import
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Form, Button } from 'semantic-ui-react';
 
 /**
@@ -118,6 +119,22 @@ const InscriptionForm = ({
   )
 };
 
+InscriptionForm.proptypes = {
+  inputEmail: PropTypes.string,
+  inputPassword: PropTypes.string,
+  inputConfirmPassword: PropTypes.string, 
+  inputAccessCode: PropTypes.string,
+  handleChangeInputs: PropTypes.func.isRequired,
+  handleInscription: PropTypes.func.isRequired,
+  errorsForm: PropTypes.object,
+};
+InscriptionForm.defaultProps = {
+  inputEmail: '',
+  inputPassword: '',
+  inputConfirmPassword: '',
+  inputAccessCode: '',
+  errorsForm: {},
+}
 /**
  * Export
  */

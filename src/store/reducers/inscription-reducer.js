@@ -57,12 +57,17 @@ const inscriptionReducer = (state = initialState, action = {}) => {
         }
       }
       if (inputAccessCode && inputAccessCode.length < 8) {
-        // console.log(inputAccessCode.length);
         errors = {
           ...errors,
           errorAccessCode: 'Le code d\'accès doit comporter au moins 8 caractères.',
         }
       }
+      // if (inputAccessCode === inputPassword) {
+      //   errors = {
+      //     ...errors,
+      //     errorAccessCode: 'Le code d\'accès doit être différent de votre mot de passe',
+      //   }
+      // }
 
       return {
         ...state,
