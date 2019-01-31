@@ -14,7 +14,7 @@ import './style.scss';
  * Code
  */
 /* eslint-disable no-case-declarations */
-const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, handleAddNoteNoteTaskNounou, AddNoteNoteTaskNounou }) => {
+const MyDay = ({ childList, list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, handleAddNoteNoteTaskNounou, AddNoteNoteTaskNounou }) => {
   
   /** Input ajout note nounou journées */
   const handleAddNoteDayInputNounou = (event) => {
@@ -36,6 +36,9 @@ const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDa
     console.log('je suis dans le composant' + modif);
     handleAddNoteNoteTaskNounou(modif);
   };
+
+  const dayDate = new Date();
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   
 
   const handleAddNoteTaskSubmitNounou = (event, id) => {
@@ -48,8 +51,8 @@ const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDa
     <div id="myday">
       <div id="intro">
         <div id="date">
-          <h2>Mardi 22 janvier</h2>
-          <h3 id="title">Journal de Lilou</h3>
+          <h2>{dayDate.toLocaleDateString('fr-CA', options)}</h2>
+          { childList.map(enfant => <h3 id="title"> Journal de  {enfant.firstname}</h3>) }
         </div>
         <div className="info-day">    
           <p id="note-parents">
