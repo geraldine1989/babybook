@@ -28,22 +28,28 @@ const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDa
   };
 
   const handleAddNoteTaskInputNounou = (event) => {
-    const text = event.target.value;
-    console.log(current.target);
-    handleAddNoteNoteTaskNounou(text);
+    const { name, value } = event.target;
+    const modif = {
+      [name]: value,
+    };
+    handleAddNoteNoteTaskNounou(modif);
   };
+
+  const dayDate = new Date();
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
 
   const handleAddNoteTaskSubmitNounou = (event, id) => {
     const text = event.target.value;
     AddNoteNoteTaskNounou(text, id);
   };
 
-  
+
   return (
     <div id="myday">
       <div id="intro">
         <div id="date">
-          <h2>Mardi 22 janvier</h2>
+          <h2>{dayDate.toLocaleDateString('fr-CA', options)}</h2>
           <h3 id="title">Journal de Lilou</h3>
         </div>
         <div className="info-day">    
@@ -66,7 +72,11 @@ const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDa
               <div className="note">{task.indic}</div>
               
               <form className="add-name-input"  /*onSubmit={handleAddNoteTaskSubmitNounou}*/>
-                <input placeholder="Ajouter une note..." value= {inputNoteNounouTask} onChange={handleAddNoteTaskInputNounou} />
+                <input
+                  name={task.selctedInput} 
+                  placeholder="Ajouter une note..." 
+                  value= {task.selctedInput} 
+                  onChange={handleAddNoteTaskInputNounou} />
                 <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
               </form>  
               <div className="note-nany"> Pas de notes de la nounou </div>
