@@ -238,7 +238,7 @@ const ParentsSpaceInfo = ({
                     value={inputMeds}
                     icon={{ name: 'add', link: true }}
                     placeholder="Ajoutez un médicament"
-                    onChange={handleChangeForMedsItem}
+                    onChange={handleChangeForMedsItem}  
                   />
                 </Form.Field>
               </Form>

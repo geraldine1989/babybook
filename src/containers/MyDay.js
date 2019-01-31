@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
   note: state.myday.note,
   nannyNote: state.myday.nannyNote,
   inputNoteNounou: state.myday.inputNoteNounou,
-  inputNoteNounouTask: state.myday.inputNoteNounouTask,
+  
   
 
 });
@@ -29,8 +29,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(AddNoteDaySubmitNounou(note));
   },
 
-  handleAddNoteNoteTaskNounou: (text, id) => {
-    dispatch(handleAddNoteNoteTaskNounou(text, id));
+  handleAddNoteNoteTaskNounou: (modif) => {
+    dispatch(handleAddNoteNoteTaskNounou(modif));
   },
 
   AddNoteNoteTaskNounou: (note, id) => {

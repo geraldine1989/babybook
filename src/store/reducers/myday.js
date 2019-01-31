@@ -13,7 +13,7 @@ const initialState = {
   note: "Pas d'indications particulières pour cette journée",
   inputNoteNounou: '',
   nannyNote: 'Pas de notes de la part de la nounou',
-  inputNoteNounouTask: '',
+  
 };
 
 /**
@@ -76,6 +76,7 @@ const myday = (state = initialState, action = {}) => {
         hour: inputHourTask,
         indic: inputNoteTask,
         note: inputNoteNounouTask,
+        selctedInput: '',
       };
 
       const newTasks = [...itemList, newTaskObject];
@@ -117,11 +118,23 @@ const myday = (state = initialState, action = {}) => {
         inputNoteNounou: '',
       };
     
+      // state.contacts.filter(contact => contact.id !== action.id);
     // note task nanny
     case CHANGE_INPUT_NOTE_NANY_TASK:
-      return  {
+    console.log(action);
+      const tableautask = itemList.filter(list => list.id === action.id);
+      const modifiedTask = { ...tableautask[0] };
+      
+      modifiedTask.selctedInput = action.selctedInput;
+      const newTasksList = itemList.map((list) => {
+        if (list.id === action.id) {
+          return modifiedTask;
+        }
+        return list;
+      });
+      return {
         ...state,
-        inputNoteNounouTask: action.inputNoteNounouTask,
+        itemList: newTasksList,
       };
       /**    case ADD_NOTE_TASK_NANNY:
       const tableauListItem = itemList.filter(list => list.id === action.id);
@@ -190,9 +203,9 @@ export const AddNoteDaySubmitNounou = note => ({
 });
 
 /** Note nanny task */
-export const handleAddNoteNoteTaskNounou = text => ({
+export const handleAddNoteNoteTaskNounou =  modif => ({
   type: CHANGE_INPUT_NOTE_NANY_TASK,
-  inputNoteNounouTask: text,
+  selctedInput: modif,
 });
 
 export const AddNoteNoteTaskNounou = (note, id) => ({

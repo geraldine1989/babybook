@@ -14,7 +14,7 @@ import './style.scss';
  * Code
  */
 /* eslint-disable no-case-declarations */
-const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, inputNoteNounouTask, handleAddNoteNoteTaskNounou, AddNoteNoteTaskNounou }) => {
+const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, handleAddNoteNoteTaskNounou, AddNoteNoteTaskNounou }) => {
   
   /** Input ajout note nounou journées */
   const handleAddNoteDayInputNounou = (event) => {
@@ -28,9 +28,13 @@ const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDa
   };
 
   const handleAddNoteTaskInputNounou = (event) => {
-    const text = event.target.value;
-    console.log(current.target);
-    handleAddNoteNoteTaskNounou(text);
+    const { name, value } = event.target;
+    const modif = {
+      [name]: value,
+    };
+    console.log('je suis dans le composant' + modif);
+    handleAddNoteNoteTaskNounou(modif);
+
   };
 
   const handleAddNoteTaskSubmitNounou = (event, id) => {
@@ -66,7 +70,11 @@ const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDa
               <div className="note">{task.indic}</div>
               
               <form className="add-name-input"  /*onSubmit={handleAddNoteTaskSubmitNounou}*/>
-                <input placeholder="Ajouter une note..." value= {inputNoteNounouTask} onChange={handleAddNoteTaskInputNounou} />
+                <input
+                  name={task.selctedInput} 
+                  placeholder="Ajouter une note..." 
+                  value= {task.selctedInput} 
+                  onChange={handleAddNoteTaskInputNounou} />
                 <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
               </form>  
               <div className="note-nany"> Pas de notes de la nounou </div>
@@ -101,7 +109,6 @@ MyDay.propTypes = {
   handleAddNoteNoteNounou: PropTypes.func.isRequired,
   AddNoteDaySubmitNounou: PropTypes.func.isRequired,
   nannyNote: PropTypes.string.isRequired,
-  inputNoteNounouTask: PropTypes.string.isRequired,
   handleAddNoteNoteTaskNounou: PropTypes.func.isRequired,
   AddNoteNoteTaskNounou: PropTypes.func.isRequired,
   
