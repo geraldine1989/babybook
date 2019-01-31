@@ -35,6 +35,9 @@ const ADD_MEDS = 'ADD_MEDS';
 const ADD_VACCINES = 'ADD_VACCINES';
 const ADD_ALLERGIES = 'ADD_ALLERGIES';
 const ADD_PHONE = 'ADD_PHONE';
+const REMOVE_MEDS = 'REMOVE_MEDS';
+const REMOVE_VACCINES = 'REMOVE_VACCINES';
+const REMOVE_ALLERGIES = 'REMOVE_ALLERGIES';
 
 
 /**
@@ -124,6 +127,14 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         inputMeds: '',
       };
 
+    case REMOVE_MEDS:
+      const deletedMeds = state.medsList.filter(deletedMed => deletedMed.id !== action.id);
+
+      return {
+        ...state,
+        medsList: deletedMeds,
+      };
+
     case ADD_VACCINES:
       const newVaccinesObject = {
         id: uuidv4(),
@@ -138,6 +149,14 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         inputVaccines: '',
       };
 
+    case REMOVE_VACCINES:
+      const deletedVaccines = state.vaccinesList.filter(deletedVaccine => deletedVaccine.id !== action.id);
+
+      return {
+        ...state,
+        vaccinesList: deletedVaccines,
+      };
+
     case ADD_ALLERGIES:
       const newAllergiesObject = {
         id: uuidv4(),
@@ -150,6 +169,14 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         ...state,
         allergiesList: newAllergiesList,
         inputAllergies: '',
+      };
+
+    case REMOVE_ALLERGIES:
+      const deletedAllergies = state.allergiesList.filter(deletedAllergie => deletedAllergie.id !== action.id);
+
+      return {
+        ...state,
+        allergiesList: deletedAllergies,
       };
 
     case ADD_CHILD:
@@ -258,6 +285,21 @@ export const addChild = childList => ({
 export const addPhone = phoneList => ({
   type: ADD_PHONE,
   phoneList,
+});
+
+export const removeMeds = id => ({
+  type: REMOVE_MEDS,
+  id,
+});
+
+export const removeVaccines = id => ({
+  type: REMOVE_VACCINES,
+  id,
+});
+
+export const removeAllergies = id => ({
+  type: REMOVE_ALLERGIES,
+  id,
 });
 
 /**

@@ -105,7 +105,9 @@ const ParentsSpaceInfo = ({
   allergiesList,
   childList,
   phoneList,
-
+  removeMeds,
+  removeVaccines,
+  removeAllergies,
 }) => {
   const handleChangeForFirstName = (evt) => {
     const text = evt.target.value;
@@ -172,19 +174,39 @@ const ParentsSpaceInfo = ({
     addPhone(inputPhoneNumber);
   };
 
+  const handleDeleteMeds = (id) => () => {
+    removeMeds(id);
+  }
+
+  const handleDeleteVaccines = (id) => () => {
+    removeVaccines(id);
+  }
+
+  const handleDeleteAllergies = (id) => () => {
+    removeAllergies(id);
+  }
+
   return (
-    <div>
+    <div id="main">
       <ParentsNav />
       <div id="modif-informations">
         <div id="modif-child">
           <h3>Enfant</h3>
-          <div>{childList.map(child => (
-            <p key={child.id}>Prénom : {child.firstname} Nom : {child.lastname} Date de naissance : {child.birthdate}
-            </p>
+          <ul>
+            {childList.map(child => (
+            <li key={child.id}>{child.firstname} {child.lastname} Né(e) le {child.birthdate}
+            <Button
+              icon
+              type="submit"
+
+            >
+              <Icon name="delete" />
+            </Button>
+            </li>
           ))}
-          </div>
+          </ul>
           <Form
-            id="modif-child-name"
+            id="modif-child-form"
             onSubmit={submitChild}
           >
             <Form.Input
@@ -210,6 +232,7 @@ const ParentsSpaceInfo = ({
           </Form>
         </div>
 
+
         <div id="modif-health">
           <h3>Santé</h3>
           <div id="cards">
@@ -221,14 +244,13 @@ const ParentsSpaceInfo = ({
                     <Button
                       icon
                       type="submit"
-
+                      onClick={handleDeleteMeds(meds.id)}
                     >
                       <Icon name="delete" />
                     </Button>
                   </li>
                 ))}
               </div>
-
               <Form
                 className="add-sante"
                 onSubmit={submitMeds}
@@ -236,31 +258,31 @@ const ParentsSpaceInfo = ({
                 <Form.Field>
                   <Input
                     value={inputMeds}
-                    icon={{ name: 'add', link: true }}
                     placeholder="Ajoutez un médicament"
                     onChange={handleChangeForMedsItem}
                   />
                 </Form.Field>
+                <Button icon type="submit">
+                  <Icon name="add" />
+                </Button>
               </Form>
             </div>
 
             <div className="cards-item">
               <div className="header">Vaccins</div>
-
               <div className="delete-item">
                 {vaccinesList.map(vaccines => (
                   <li key={vaccines.id}>{vaccines.name}
                     <Button
                       icon
                       type="submit"
-
+                      onClick={handleDeleteVaccines(vaccines.id)}
                     >
                       <Icon name="delete" />
                     </Button>
                   </li>
                 ))}
               </div>
-
               <Form
                 className="add-sante"
                 onSubmit={submitVaccines}
@@ -268,31 +290,31 @@ const ParentsSpaceInfo = ({
                 <Form.Field>
                   <Input
                     value={inputVaccines}
-                    icon={{ name: 'add', link: true }}
                     placeholder="Ajoutez le vaccin et sa date"
                     onChange={handleChangeForVaccinesItem}
                   />
                 </Form.Field>
+                <Button icon type="submit">
+                  <Icon name="add" />
+                </Button>
               </Form>
             </div>
 
             <div className="cards-item">
               <div className="header">Allergies</div>
-
               <div className="delete-item">
                 {allergiesList.map(allergies => (
                   <li key={allergies.id}>{allergies.name}
                     <Button
                       icon
                       type="submit"
-
+                      onClick={handleDeleteAllergies(allergies.id)}
                     >
                       <Icon name="delete" />
                     </Button>
                   </li>
                 ))}
               </div>
-
               <Form
                 className="add-sante"
                 onSubmit={submitAllergies}
@@ -300,16 +322,18 @@ const ParentsSpaceInfo = ({
                 <Form.Field>
                   <Input
                     value={inputAllergies}
-                    icon={{ name: 'add', link: true }}
                     placeholder="Ajoutez un allergene"
                     onChange={handleChangeForAllergiesItem}
                   />
                 </Form.Field>
+                <Button icon type="submit">
+                  <Icon name="add" />
+                </Button>
               </Form>
-
             </div>
           </div>
         </div>
+
 
         <div id="modif-numeros">
           <h3>Numéros utiles</h3>
@@ -326,9 +350,8 @@ const ParentsSpaceInfo = ({
               </li>
             ))}
           </ul>
-          <div id="modif-numeros-div">
             <Form
-              id="child-contact"
+              id="modif-numeros-form"
               onSubmit={submitPhone}
             >
               <Form.Input
@@ -347,7 +370,6 @@ const ParentsSpaceInfo = ({
                 <Icon name="add" />
               </Button>
             </Form>
-          </div>
         </div>
       </div>
     </div>

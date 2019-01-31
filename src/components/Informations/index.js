@@ -21,7 +21,7 @@ const Informations = ({
       <h3> Enfant</h3>
       <div id="child-info">
         {childList.map(child => (
-          <div>
+          <div key={child.id}>
             <div className="child-info-div">
             Prénom: <span>{child.firstname}</span>
             </div>
@@ -46,7 +46,7 @@ const Informations = ({
           <h4>Médicaments</h4>
           <ul>
             {medsList.map(meds => (
-              <li><span>{meds.name}</span></li>
+              <li key={meds.id}><span>{meds.name}</span></li>
             ))}
           </ul>
         </div>
@@ -54,7 +54,7 @@ const Informations = ({
           <h4>Vaccins</h4>
           <ul>
             {vaccinesList.map(vaccines => (
-              <li><span>{vaccines.name}</span></li>
+              <li key={vaccines.id}><span>{vaccines.name}</span></li>
             ))}
           </ul>
         </div>
@@ -62,7 +62,7 @@ const Informations = ({
           <h4>Allergies</h4>
           <ul>
             {allergiesList.map(allergies => (
-              <li><span>{allergies.name}</span></li>
+              <li key={allergies.id}><span>{allergies.name}</span></li>
             ))}
           </ul>
         </div>
@@ -74,7 +74,7 @@ const Informations = ({
       <div id="numeros-div">
         <ul>
           {phoneList.map(phone => (
-            <li>
+            <li key={phone.id}>
               <span>{phone.phonename} : {phone.phonenumber}</span>
             </li>
           ))}
