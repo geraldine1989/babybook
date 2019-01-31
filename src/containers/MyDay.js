@@ -3,17 +3,17 @@ import { connect } from 'react-redux';
 import MyDay from 'src/components/MyDay';
 
 
-import { handleAddNoteNoteNounou, AddNoteDaySubmitNounou, handleAddNoteNoteTaskNounou, AddNoteNoteTaskNounou } from 'src/store/myday';
+import { handleAddNoteNoteNounou, AddNoteDaySubmitNounou, handleAddNoteNoteTaskNounou, AddNoteNoteTaskNounou } from 'src/store/reducers/myday';
 
 // Fonction pour mapper le state du store vers les props
 
 
 const mapStateToProps = state => ({
-  list: state.itemList,
-  note: state.note,
-  nannyNote: state.nannyNote,
-  inputNoteNounou: state.inputNoteNounou,
-  inputNoteNounouTask: state.inputNoteNounouTask,
+  list: state.myday.itemList,
+  note: state.myday.note,
+  nannyNote: state.myday.nannyNote,
+  inputNoteNounou: state.myday.inputNoteNounou,
+  inputNoteNounouTask: state.myday.inputNoteNounouTask,
   
 
 });

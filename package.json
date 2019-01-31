@@ -1,5 +1,5 @@
 {
-  "name": "react-modele",
+  "name": "babybook",
   "devDependencies": {
     "@babel/core": "*",
     "@babel/plugin-proposal-class-properties": "*",

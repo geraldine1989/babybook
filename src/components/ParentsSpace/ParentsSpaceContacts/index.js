@@ -2,7 +2,8 @@
  * Npm import
  */
 import React from 'react';
-import { Input, Icon, Button, Table, } from 'semantic-ui-react';
+import { Form, Input, Icon, Button, Table } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
 /**
  * Local import
@@ -13,7 +14,7 @@ import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
 /**
  * Code
  */
-const ParentsSpaceContacts = ({ handleChangeNannyPassword, handleDeleteContact }) => {
+const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, handleChangeName, handleChangeEmail, removeContact, id }) => {
   const parentsContacts = [
     {
       firstName: "Toto",
@@ -29,11 +30,34 @@ const ParentsSpaceContacts = ({ handleChangeNannyPassword, handleDeleteContact }
     },
   ];
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addContact(inputName, inputEmail);
+  };
+
+  const handleChangeInputName = (event) => {
+    const text = event.target.value;
+    handleChangeName(text);
+  };
+
+  const handleChangeInputEmail = (event) => {
+    const text = event.target.value;
+    handleChangeEmail(text);
+  };
+
+  const contactsList = [
+    ...contacts,
+  ];
+
+  const handleDeleteContact = (id) => () => {
+    removeContact(id);
+  };
+
   return (
     <div>
       <ParentsNav />
       <div id="contacts">
-        <Button content="Modifier le code d'accès" onClick={handleChangeNannyPassword} />
+        {/* <Button content="Modifier le code d'accès" onClick={handleChangeNannyPassword} /> */}
         <h3>Gérer mes contacts</h3>
         <Table celled id="contact-table">
           <Table.Header className="table-header">
@@ -45,17 +69,17 @@ const ParentsSpaceContacts = ({ handleChangeNannyPassword, handleDeleteContact }
           </Table.Header>
 
           <Table.Body>
-            { parentsContacts.map(contact => (
-              <Table.Row key={contact.email}>
-                <Table.Cell>
-                  { contact.firstName }
+            { contactsList.map(contactList => (
+              <Table.Row key={contactList.id} id={contactList.id}>
+                <Table.Cell >
+                  { contactList.textName }
                 </Table.Cell>
-                <Table.Cell>
-                  { contact.email }
+                <Table.Cell >
+                  { contactList.textEmail }
                 </Table.Cell>
                 <Table.Cell className="delete-contact">
-                  <Button icon>
-                    <Icon name="delete" onClick={handleDeleteContact} />
+                  <Button icon onClick={handleDeleteContact(contactList.id)}>
+                    <Icon name="delete" />
                   </Button>
                 </Table.Cell>
               </Table.Row>
@@ -63,20 +87,54 @@ const ParentsSpaceContacts = ({ handleChangeNannyPassword, handleDeleteContact }
           </Table.Body>
         </Table>
         <h3>Ajouter un contact</h3>
-        <div id="contact-add">
-          <Input name="input-name" placeholder="Nom" value="" />
-          <Input name="input-email" placeholder="Adresse mail" value="" />
+        <Form
+          id="contact-add"
+          onSubmit={handleSubmit}
+        >
+          <Input
+            type="text"
+            name="input-name"
+            onChange={handleChangeInputName}
+            placeholder="Nom"
+            value={inputName}
+          />
+          <Input
+            type="email"
+            name="input-email"
+            onChange={handleChangeInputEmail}
+            placeholder="Adresse mail"
+            value={inputEmail}
+          />
           <Button icon type="submit">
             <Icon name="add" />
           </Button>
-        </div>
+        </Form>
       </div>
     </div>
   );
 };
 
+ParentsSpaceContacts.propTypes = {
+  addContact: PropTypes.func.isRequired,
+  inputName: PropTypes.string,
+  inputEmail: PropTypes.string,
+  handleChangeName: PropTypes.func.isRequired,
+  handleChangeEmail: PropTypes.func.isRequired,
+  contacts: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  })).isRequired,
+  removeContact: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+//   handleChangeNannyPassword: PropsTypes.func.isRequired,
+};
+
+ParentsSpaceContacts.defaultProps = {
+  inputName: '',
+  inputEmail: '',
+};
+
+
 /**
  * Export
  */
 export default ParentsSpaceContacts;
-
