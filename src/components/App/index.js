@@ -2,16 +2,16 @@
  * Npm import
  */
 import React from 'react';
-import { NavLink, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 /**
  * Local import
  */
 
 import HeaderLogo from 'src/components/HeaderLogo';
-import MainNav from 'src/components/MainNav';
-import Home from 'src/components/Home';
-import InscriptionForm from 'src/components/InscriptionForm';
-import LoginParents from 'src/components/LoginParents';
+import MainNav from 'src/containers/MainNav';
+import Home from 'src/containers/Home';
+import InscriptionForm from 'src/containers/InscriptionForm';
+import LoginParents from 'src/containers/LoginParents';
 import LoginNanny from 'src/components/LoginNanny';
 import MyDay from 'src/components/MyDay';
 import Informations from 'src/components/Informations';
@@ -30,25 +30,11 @@ import './app.scss';
  * Code
  */
 class App extends React.Component {
-
-  getAllDatas = () => {
-    const axios = require('axios');
-    axios.get('http://localhost:3000/findAll')
-      .then((response) => {
-        console.log(response);
-        // this.setState({
-        //   datas: response,
-        // });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
+  
   render() {
     return (
       <div>
-        <HeaderLogo getAllDatas={this.getAllDatas}/>
+        <HeaderLogo />
         <MainNav />
         <Switch>
           <Route exact path="/" component={Home} />
