@@ -108,6 +108,8 @@ const ParentsSpaceInfo = ({
   removeMeds,
   removeVaccines,
   removeAllergies,
+  removeChild,
+  removePhone,
 }) => {
   const handleChangeForFirstName = (evt) => {
     const text = evt.target.value;
@@ -174,17 +176,25 @@ const ParentsSpaceInfo = ({
     addPhone(inputPhoneNumber);
   };
 
-  const handleDeleteMeds = (id) => () => {
+  const handleDeleteMeds = id => () => {
     removeMeds(id);
-  }
+  };
 
-  const handleDeleteVaccines = (id) => () => {
+  const handleDeleteVaccines = id => () => {
     removeVaccines(id);
-  }
+  };
 
-  const handleDeleteAllergies = (id) => () => {
+  const handleDeleteAllergies = id => () => {
     removeAllergies(id);
-  }
+  };
+
+  const handleDeleteChild = id => () => {
+    removeChild(id);
+  };
+
+  const handleDeletePhone = id => () => {
+    removePhone(id);
+  };
 
   return (
     <div id="main">
@@ -194,16 +204,16 @@ const ParentsSpaceInfo = ({
           <h3>Enfant</h3>
           <ul>
             {childList.map(child => (
-            <li key={child.id}>{child.firstname} {child.lastname} Né(e) le {child.birthdate}
-            <Button
-              icon
-              type="submit"
-
-            >
-              <Icon name="delete" />
-            </Button>
-            </li>
-          ))}
+              <li key={child.id}>{child.firstname} {child.lastname} Né(e) le {child.birthdate}
+                <Button
+                  icon
+                  type="submit"
+                  onClick={handleDeleteChild(child.id)}
+                >
+                  <Icon name="delete" />
+                </Button>
+              </li>
+            ))}
           </ul>
           <Form
             id="modif-child-form"
@@ -237,7 +247,7 @@ const ParentsSpaceInfo = ({
           <h3>Santé</h3>
           <div id="cards">
             <div className="cards-item">
-              <div className="header">Traitement en cours</div>
+              <div className="header">Médicaments</div>
               <div className="delete-item">
                 {medsList.map(meds => (
                   <li key={meds.id}>{meds.name}
@@ -343,33 +353,33 @@ const ParentsSpaceInfo = ({
                 <Button
                   icon
                   type="submit"
-
+                  onClick={handleDeletePhone(phone.id)}
                 >
                   <Icon name="delete" />
                 </Button>
               </li>
             ))}
           </ul>
-            <Form
-              id="modif-numeros-form"
-              onSubmit={submitPhone}
-            >
-              <Form.Input
-                value={inputPhoneName}
-                type="text"
-                placeholder="Nom et prénom"
-                onChange={handleChangeForPhoneName}
-              />
-              <Form.Input
-                value={inputPhoneNumber}
-                type="number"
-                placeholder="Numéro de téléphone"
-                onChange={handleChangeForPhoneNumber}
-              />
-              <Button icon type="submit">
-                <Icon name="add" />
-              </Button>
-            </Form>
+          <Form
+            id="modif-numeros-form"
+            onSubmit={submitPhone}
+          >
+            <Form.Input
+              value={inputPhoneName}
+              type="text"
+              placeholder="Nom et prénom"
+              onChange={handleChangeForPhoneName}
+            />
+            <Form.Input
+              value={inputPhoneNumber}
+              type="number"
+              placeholder="Numéro de téléphone"
+              onChange={handleChangeForPhoneNumber}
+            />
+            <Button icon type="submit">
+              <Icon name="add" />
+            </Button>
+          </Form>
         </div>
       </div>
     </div>
@@ -413,6 +423,11 @@ ParentsSpaceInfo.propTypes = {
   phoneList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
   })).isRequired,
+  removeMeds: PropTypes.func.isRequired,
+  removeVaccines: PropTypes.func.isRequired,
+  removeAllergies: PropTypes.func.isRequired,
+  removeChild: PropTypes.func.isRequired,
+  removePhone: PropTypes.func.isRequired,
 };
 
 export default ParentsSpaceInfo;

@@ -26,6 +26,8 @@ import {
   removeMeds,
   removeVaccines,
   removeAllergies,
+  removeChild,
+  removePhone,
 } from 'src/store/reducers/ParentsSpaceInfoReducer';
 
 /* === State (données) ===
@@ -106,6 +108,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   removeAllergies: (id) => {
     dispatch(removeAllergies(id));
+  },
+  removeChild: (id) => {
+    dispatch(removeChild(id));
+  },
+  removePhone: (id) => {
+    dispatch(removePhone(id));
   },
 });
 

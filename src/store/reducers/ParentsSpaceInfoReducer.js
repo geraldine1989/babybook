@@ -38,6 +38,8 @@ const ADD_PHONE = 'ADD_PHONE';
 const REMOVE_MEDS = 'REMOVE_MEDS';
 const REMOVE_VACCINES = 'REMOVE_VACCINES';
 const REMOVE_ALLERGIES = 'REMOVE_ALLERGIES';
+const REMOVE_CHILD = 'REMOVE_CHILD';
+const REMOVE_PHONE = 'REMOVE_PHONE';
 
 
 /**
@@ -197,6 +199,14 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         inputBirthDate: '',
       };
 
+    case REMOVE_CHILD:
+      const deletedChild = state.childList.filter(deletedKid => deletedKid.id !== action.id);
+
+      return {
+        ...state,
+        childList: deletedChild,
+      };
+
     case ADD_PHONE:
       const newPhoneObject = {
         id: uuidv4(),
@@ -211,6 +221,14 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         phoneList: newPhoneList,
         inputPhoneName: '',
         inputPhoneNumber: '',
+      };
+
+    case REMOVE_PHONE:
+      const deletedPhones = state.phoneList.filter(deletedPhone => deletedPhone.id !== action.id);
+
+      return {
+        ...state,
+        phoneList: deletedPhones,
       };
 
     default:
@@ -299,6 +317,16 @@ export const removeVaccines = id => ({
 
 export const removeAllergies = id => ({
   type: REMOVE_ALLERGIES,
+  id,
+});
+
+export const removeChild = id => ({
+  type: REMOVE_CHILD,
+  id,
+});
+
+export const removePhone = id => ({
+  type: REMOVE_PHONE,
   id,
 });
 

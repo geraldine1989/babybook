@@ -57,9 +57,9 @@
       }
 
       & button {
+        align-self: center;
         background-color: white;
         border: 2px solid #C2DE89;
-        font-size: 0.7em;
         border-radius: 25px;
         color: #C2DE89;
       }
@@ -90,16 +90,24 @@
 
       & .add-sante {
         width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
 
-        & input {
-          border: 1px solid gray;
+        & .ui input {
+          border: 1px solid #D7E8F2;
+          background: #D7E8F2;
           border-radius: 15px;
+        }
+
+        & .ui input::placeholder {
+          color: rgb(112, 112, 112);
         }
         
         & button {
+          align-self: center;
           background-color: white;
           border: 2px solid #C2DE89;
-          font-size: 0.7em;
           border-radius: 25px;
           color: #C2DE89;
         }
@@ -172,15 +180,20 @@
       flex-direction: column;
 
       & .ui input {
-        border: 1px solid gray;
+        border: 1px solid #D7E8F2;
+        background: #D7E8F2;
         border-radius: 15px;
         padding: 1em;
       }
 
+      & .ui input::placeholder {
+        color: rgb(90, 90, 90);
+      }
+
       & button {
+        align-self: center;
         background-color: white;
         border: 2px solid #C2DE89;
-        font-size: 0.7em;
         border-radius: 25px;
         color: #C2DE89;
       }
