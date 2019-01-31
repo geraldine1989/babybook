@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import Informations from 'src/components/Informations';
 
 // Action Creators
-import { } from 'src/store/ParentsSpaceInfoReducer';
+import { } from 'src/store/reducers/ParentsSpaceInfoReducer';
 
 /* === State (données) ===
  * - mapStateToProps retroune un objet de props pour le composant de présentation
@@ -19,11 +19,11 @@ import { } from 'src/store/ParentsSpaceInfoReducer';
  * Pas de data à transmettre ? const mapStateToProps = null;
  */
 const mapStateToProps = (state, ownProps) => ({
-  childList: state.childList,
-  medsList: state.medsList,
-  vaccinesList: state.vaccinesList,
-  allergiesList: state.allergiesList,
-  phoneList: state.phoneList,
+  childList: state.ParentsSpaceInfoReducer.childList,
+  medsList: state.ParentsSpaceInfoReducer.medsList,
+  vaccinesList: state.ParentsSpaceInfoReducer.vaccinesList,
+  allergiesList: state.ParentsSpaceInfoReducer.allergiesList,
+  phoneList: state.ParentsSpaceInfoReducer.phoneList,
 });
 
 /* === Actions ===

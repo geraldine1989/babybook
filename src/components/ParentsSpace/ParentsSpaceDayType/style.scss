@@ -20,9 +20,13 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  
+  text-align: left;
   padding: 1em;
   margin-top: 0.5em;
+  & span {
+    display: flex;
+    width: 30%;
+  }
 }
 
 #btn {
@@ -95,17 +99,19 @@ li {
       width: 100%;
       padding: 1em;
       justify-content: center;
-      border-radius: 15px;
-      background-color: #D7E8F2;
+      border-top-left-radius: 15px;
+      border-bottom-left-radius: 15px;
+      background-color: white;
+      border: 3px solid #D7E8F2;
     }
 
     & input::placeholder {
       color: gray;
     }
-    & i {
-      color: #2C1915;
-      background-color:#D7E8F2;
-      border: 1px solid #2C1915;
+    & button {
+      color: gray;
+      background-color:white;
+      border: 3px solid #D7E8F2;
       border-top-right-radius: 15px; 
       border-bottom-right-radius: 15px; 
     }
@@ -207,16 +213,9 @@ li {
         width: 100%;
         padding: 1em;
         justify-content: center;
-        border-radius: 15px;
-        border: 1px solid #2C1915; 
+
       }
-      & i {
-        color: #2C1915;
-        background-color:#D7E8F2;
-        border: 1px solid #2C1915;
-        border-top-right-radius: 15px; 
-        border-bottom-right-radius: 15px; 
-      }
+      
      
     }
   }

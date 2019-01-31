@@ -2,22 +2,22 @@
  * Npm import
  */
 import React from 'react';
-import { NavLink, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 /**
  * Local import
  */
 
 import HeaderLogo from 'src/components/HeaderLogo';
-import MainNav from 'src/components/MainNav';
-import Home from 'src/components/Home';
-import InscriptionForm from 'src/components/InscriptionForm';
-import LoginParents from 'src/components/LoginParents';
+import MainNav from 'src/containers/MainNav';
+import Home from 'src/containers/Home';
+import InscriptionForm from 'src/containers/InscriptionForm';
+import LoginParents from 'src/containers/LoginParents';
 import LoginNanny from 'src/components/LoginNanny';
-import MyDay from 'src/components/MyDay';
+import MyDay from 'src/containers/MyDay';
 import Informations from 'src/containers/Informations';
-import ParentsSpaceDayType from 'src/components/ParentsSpace/ParentsSpaceDayType';
+import ParentsSpaceDayType from 'src/containers/ParentsSpaceDayType';
 import ParentsSpaceInfo from 'src/containers/ParentsSpaceInfo';
-import ParentsSpaceContacts from 'src/components/ParentsSpace/ParentsSpaceContacts';
+import ParentsSpaceContacts from 'src/containers/ParentsSpaceContacts';
 import LegalMentions from 'src/components/LegalMentions';
 import Contact from 'src/components/Contact';
 import NotFound from 'src/components/NotFound';
@@ -29,24 +29,10 @@ import './app.scss';
  * Code
  */
 class App extends React.Component {
-  getAllDatas = () => {
-    const axios = ('axios');
-    axios.get('http://localhost:3000/findAll')
-      .then((response) => {
-        console.log(response);
-        // this.setState({
-        //   datas: response,
-        // });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
   render() {
     return (
       <div>
-        <HeaderLogo getAllDatas={this.getAllDatas} />
+        <HeaderLogo />
         <MainNav />
         <Switch>
           <Route exact path="/" component={Home} />

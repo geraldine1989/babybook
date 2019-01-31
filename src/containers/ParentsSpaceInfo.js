@@ -23,7 +23,7 @@ import {
   addAllergies,
   addChild,
   addPhone,
-} from 'src/store/ParentsSpaceInfoReducer';
+} from 'src/store/reducers/ParentsSpaceInfoReducer';
 
 /* === State (données) ===
  * - mapStateToProps retroune un objet de props pour le composant de présentation
@@ -33,19 +33,19 @@ import {
  * Pas de data à transmettre ? const mapStateToProps = null;
  */
 const mapStateToProps = (state, ownProps) => ({
-  inputFirstName: state.inputFirstName,
-  inputLastName: state.inputLastName,
-  inputBirthDate: state.inputBirthDate,
-  inputMeds: state.inputMeds,
-  inputVaccines: state.inputVaccines,
-  inputAllergies: state.inputAllergies,
-  inputPhoneName: state.inputPhoneName,
-  inputPhoneNumber: state.inputPhoneNumber,
-  medsList: state.medsList,
-  vaccinesList: state.vaccinesList,
-  allergiesList: state.allergiesList,
-  childList: state.childList,
-  phoneList: state.phoneList,
+  inputFirstName: state.ParentsSpaceInfoReducer.inputFirstName,
+  inputLastName: state.ParentsSpaceInfoReducer.inputLastName,
+  inputBirthDate: state.ParentsSpaceInfoReducer.inputBirthDate,
+  inputMeds: state.ParentsSpaceInfoReducer.inputMeds,
+  inputVaccines: state.ParentsSpaceInfoReducer.inputVaccines,
+  inputAllergies: state.ParentsSpaceInfoReducer.inputAllergies,
+  inputPhoneName: state.ParentsSpaceInfoReducer.inputPhoneName,
+  inputPhoneNumber: state.ParentsSpaceInfoReducer.inputPhoneNumber,
+  medsList: state.ParentsSpaceInfoReducer.medsList,
+  vaccinesList: state.ParentsSpaceInfoReducer.vaccinesList,
+  allergiesList: state.ParentsSpaceInfoReducer.allergiesList,
+  childList: state.ParentsSpaceInfoReducer.childList,
+  phoneList: state.ParentsSpaceInfoReducer.phoneList,
 });
 
 /* === Actions ===
