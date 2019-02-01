@@ -49,7 +49,18 @@ const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNou
   //   AddNoteNoteTaskNounou(text, id);
   // };
 
-  
+  /** Affichage par heure */
+  const compare = (a, b) => {
+    if (a.hour < b.hour)
+      return -1;
+    if (a.hour > b.hour)
+      return 1;
+    return 0;
+  };
+  const orderedTasks = [
+    ...list.sort(compare),
+  ]; 
+
   return (
     <div id="myday">
       <div id="intro">
@@ -65,7 +76,7 @@ const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNou
       </div>
       <div id="list">
         {
-          list.map(task => 
+          orderedTasks.map(task => 
             <div
               className="task"
               key= {task.id}

@@ -89,11 +89,9 @@ const ParentsSpaceDayType = ({ removeTaskDay, handleChangeTitleDay, inputTitle, 
 
 
   const handleDeleteMyDayItem = (id) => () => {
-    console.log('je suis clique');
     removeTaskDay(id);
   };
 
-  
 
   const compare = (a, b) => {
     if (a.hour < b.hour)

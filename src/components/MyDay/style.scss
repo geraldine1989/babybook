@@ -93,6 +93,7 @@
       flex-wrap: wrap;
       justify-content: flex-start;
       width: 100%;
+      margin-bottom: 2em;
 
       & .list-button {
         height: 3em;
@@ -133,9 +134,9 @@
 
       & .add-name-input {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-around;
         text-align: left;
-       
+       margin-bottom: 1em;
         align-items: baseline;
         width: 100%;
 
@@ -143,7 +144,7 @@
           display: flex;
           margin: 0;
           padding: 1em;
-          width: 90%;
+          width: 100%;
           justify-items: flex-start;
           margin-right: 1em;
           border: 1px solid #C2DE89;
