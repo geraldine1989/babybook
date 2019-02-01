@@ -14,7 +14,7 @@ import './style.scss';
  * Code
  */
 /* eslint-disable no-case-declarations */
-const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, handleAddNoteNoteTaskNounou, AddNoteNoteTaskNounou }) => {
+const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, handleAddNoteNoteTaskNounou, AddNoteNoteTaskNounou, taskCheck }) => {
   
   /** Input ajout note nounou journées */
   const handleAddNoteDayInputNounou = (event) => {
@@ -61,6 +61,12 @@ const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNou
     ...list.sort(compare),
   ]; 
 
+  /** Changer la couleur du bouton au check */
+  const handleCheck = (id) => () => {
+    console.log('je suis checke');
+    taskCheck(id);
+  };
+
   return (
     <div id="myday">
       <div id="intro">
@@ -82,7 +88,13 @@ const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNou
               key= {task.id}
               id={task.id}
             >
-              <Button className="list-button" circular icon="utensils" />
+              <Button
+              /** list-button todo-done  */
+              className={task.tododone}
+              circular
+              icon="utensils"
+              onClick={handleCheck(task.id)}
+              />
               <div className="list-item">{task.name}</div>
               <div className="time">{task.hour}</div>
               <div className="note">{task.indic}</div>
@@ -129,6 +141,7 @@ MyDay.propTypes = {
   nannyNote: PropTypes.string.isRequired,
   handleAddNoteNoteTaskNounou: PropTypes.func.isRequired,
   AddNoteNoteTaskNounou: PropTypes.func.isRequired,
+  taskCheck: PropTypes.func.isRequired,
   
 };
 

@@ -29,7 +29,8 @@ const CHANGE_INPUT_NOTE_NANY_DAY = 'CHANGE_INPUT_NOTE_NANY_DAY';
 const ADD_NOTE_DAY_NANNY = 'ADD_NOTE_DAY_NANNY';
 const CHANGE_INPUT_NOTE_NANY_TASK = 'CHANGE_INPUT_NOTE_NANY_TASK';
 const ADD_NOTE_TASK_NANNY = 'ADD_NOTE_TASK_NANNY';
-const REMOVE_TASK_DAY = 'REMOVE_TASK_DAY'; 
+const REMOVE_TASK_DAY = 'REMOVE_TASK_DAY';
+const TASK_CHECK = 'TASK_CHECK'
 
 
 /**
@@ -78,6 +79,7 @@ const myday = (state = initialState, action = {}) => {
         indic: inputNoteTask,
         note: inputNoteNounouTask,
         selctedInput: '',
+        tododone:'list-button',
       };
 
       const newTasks = [...itemList, newTaskObject];
@@ -154,6 +156,7 @@ const myday = (state = initialState, action = {}) => {
       };
      */
 
+     /** Suppresion d'un tache */
      case REMOVE_TASK_DAY:
      const detetedTask = state.itemList.filter(list => list.id !== action.id);
       return {
@@ -161,6 +164,29 @@ const myday = (state = initialState, action = {}) => {
         itemList: detetedTask,
       };
 
+    /** Changer la classe du bouton si cheché */
+
+    case TASK_CHECK:
+      const newTaskListCheched = itemList.map((task) => {
+        if (task.id === action.id) {
+          if (task.tododone === 'list-button') {
+            return {
+              ...task,
+              tododone: 'todo-done',
+            };
+          } else {
+              return {
+                ...task,
+                tododone: 'list-button',
+              };
+            }      
+        }
+        return task;
+      });
+      return {
+        ...state,
+        itemList: newTaskListCheched,
+      };
     default:
       return state;
   }
@@ -227,6 +253,11 @@ export const AddNoteNoteTaskNounou = (note, id) => ({
 
 export const removeTaskDay = id => ({
   type: REMOVE_TASK_DAY,
+  id,
+});
+
+export const taskCheck = id => ({
+  type: TASK_CHECK,
   id,
 });
 /**
