@@ -41,7 +41,6 @@ const REMOVE_ALLERGIES = 'REMOVE_ALLERGIES';
 const REMOVE_CHILD = 'REMOVE_CHILD';
 const REMOVE_PHONE = 'REMOVE_PHONE';
 
-
 /**
  * Traitements
  */
