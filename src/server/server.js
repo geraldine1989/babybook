@@ -135,6 +135,7 @@ app.post('/inscription', upload.array(), (req, res, next) => {
     }
     sendDatas()
     .then(function() {
+      // console.log(response);
       res.send("inscription ok");
     })
     .catch(function(err) {
