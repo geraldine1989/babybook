@@ -82,8 +82,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   handleChangePhoneName: (text) => {
     dispatch(handleChangePhoneName(text));
   },
-  handleChangePhoneNumber: (number) => {
-    dispatch(handleChangePhoneNumber(number));
+  handleChangePhoneNumber: (tel) => {
+    dispatch(handleChangePhoneNumber(tel));
   },
   addMeds: (medsList) => {
     dispatch(addMeds(medsList));

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 // Local imports
 import './style.scss';
@@ -29,10 +30,10 @@ const Informations = ({
             Nom: <span>{child.lastname}</span>
             </div>
             <div className="child-info-div">
-            Age: <span>18 mois</span>
+            Age: <span>{moment(child.birthdate).locale('fr').startOf('mois').fromNow(true)}</span>
             </div>
             <div className="child-info-div">
-            Date de naissance: <span>{child.birthdate}</span>
+            Date de naissance: <span>{new Date(child.birthdate).toLocaleDateString('fr')}</span>
             </div>
           </div>
         ))}

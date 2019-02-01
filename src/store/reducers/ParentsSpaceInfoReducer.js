@@ -275,9 +275,9 @@ export const handleChangePhoneName = text => ({
   inputPhoneName: text,
 });
 
-export const handleChangePhoneNumber = number => ({
+export const handleChangePhoneNumber = tel => ({
   type: INPUT_CHANGE_PHONE_NUMBER,
-  inputPhoneNumber: number,
+  inputPhoneNumber: tel,
 });
 
 export const addMeds = medsList => ({

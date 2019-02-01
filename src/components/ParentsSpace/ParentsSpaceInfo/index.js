@@ -147,8 +147,8 @@ const ParentsSpaceInfo = ({
   };
 
   const handleChangeForPhoneNumber = (evt) => {
-    const number = evt.target.value;
-    handleChangePhoneNumber(number);
+    const tel = evt.target.value;
+    handleChangePhoneNumber(tel);
   };
 
   const submitChild = (evt) => {
@@ -204,7 +204,7 @@ const ParentsSpaceInfo = ({
           <h3>Enfant</h3>
           <ul>
             {childList.map(child => (
-              <li key={child.id}>{child.firstname} {child.lastname} Né(e) le {child.birthdate}
+              <li key={child.id}>{child.firstname} {child.lastname} Né(e) le {new Date(child.birthdate).toLocaleDateString('fr')}
                 <Button
                   icon
                   type="submit"
@@ -372,7 +372,7 @@ const ParentsSpaceInfo = ({
             />
             <Form.Input
               value={inputPhoneNumber}
-              type="number"
+              type="tel"
               placeholder="Numéro de téléphone"
               onChange={handleChangeForPhoneNumber}
             />
