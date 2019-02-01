@@ -24,6 +24,7 @@ const HANDLE_CHANGE_INSCRIPTION_INPUT = 'HANDLE_CHANGE_INSCRIPTION_INPUT';
 export const HANDLE_INSCRIPTION = 'INSCRIPTION';
 export const GET_EMAILS_RESPONSE = 'GET_EMAILS_RESPONSE';
 export const HANDLE_GET_EMAILS = 'HANDLE_GET_EMAILS';
+export const INSCRIPTION_RESPONSE = 'INSCRIPTION_RESPONSE';
 
 /**
  * Traitements
@@ -82,14 +83,37 @@ const inscriptionReducer = (state = initialState, action = {}) => {
 
     case HANDLE_INSCRIPTION:
       console.log('HANDLE_INSCRIPTION reducer');
-
-
+      // const { errorsForm } = state;
+      // var errorEmail = errorsForm.errorEmail;
+      // console.log(errorsForm);
+      // if (errorsForm) {
+      //   errors = {
+      //     ...errors,
+      //     errorEmail,
+      //   }
+      // }
       // return <Redirect to='/login-parents' />
-
       return {
         ...state,
+        // errorsForm: action.err,
+        inputEmail: '',
+        inputPassword: '',
+        inputConfirmPassword: '',
+        inputAccessCode: '',
       }
 
+    case INSCRIPTION_RESPONSE:
+      console.log(action.datas);
+      if (action.datas === 'notOk') {
+        errors = {
+          ...errors,
+          errorEmail: 'Cette adresse mail existe déjà.',
+        }
+        return {
+          ...state,
+          errorsForm: errors,
+        }
+      }
 
 
   default:
@@ -112,6 +136,11 @@ export const handleChangeInputs = changes => ({
 export const handleGetEmails = () => ({
   type: HANDLE_GET_EMAILS,
 });
+
+export const inscriptionResponse = (datas) => ({
+  type: INSCRIPTION_RESPONSE,
+  datas,
+})
 /**
  * Selectors
  */

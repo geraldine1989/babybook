@@ -22,10 +22,10 @@ const Home = ({ handleGetEmails }) => (
     </h2>
     <div id="nav">
       <NavLink exact to="/login-parents" className="homeLink">
-        <Button color="teal" content="Connexion Parents" className="homeButton" />
+        <Button color="teal" content="Connexion Parents" className="homeButton" onClick={handleGetEmails} />
       </NavLink>
       <NavLink exact to="/login-nanny" className="homeLink">
-        <Button color="teal" content="Connexion Nanny" className="homeButton" />
+        <Button color="teal" content="Connexion Nanny" className="homeButton" onClick={handleGetEmails} />
       </NavLink>
       <NavLink exact to="/inscription" className="homeLink">
         <Button color="teal" content="Inscription" className="homeButton" onClick={handleGetEmails} />
