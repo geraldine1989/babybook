@@ -4,7 +4,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import loginParentsMiddleware from './loginParentsMiddleware';
 import inscriptionMiddleware from './inscriptionMiddleware';
-
+import mydayMiddleware from './mydayMiddleware';
 /*
 * Local import
 */
@@ -14,7 +14,7 @@ import rootReducer from 'src/store/reducers';
 /*
  * Code
  */
-const appliedMiddlewares = applyMiddleware(inscriptionMiddleware, loginParentsMiddleware);
+const appliedMiddlewares = applyMiddleware(inscriptionMiddleware, loginParentsMiddleware, mydayMiddleware);
 
 const devTools = [
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
