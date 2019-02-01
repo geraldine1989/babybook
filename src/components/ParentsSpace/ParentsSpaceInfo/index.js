@@ -171,6 +171,7 @@ const ParentsSpaceInfo = ({
     evt.preventDefault();
     addPhone(inputPhoneNumber);
   };
+  
 
   return (
     <div>
@@ -179,7 +180,7 @@ const ParentsSpaceInfo = ({
         <div id="modif-child">
           <h3>Enfant</h3>
           <div>{childList.map(child => (
-            <p key={child.id}>Prénom : {child.firstname} Nom : {child.lastname} Date de naissance : {child.birthdate}
+            <p key={child.id}>Prénom : {child.firstname} Nom : {child.lastname} Date de naissance : {new Date(child.birthdate).toLocaleDateString('fr')}
             </p>
           ))}
           </div>
