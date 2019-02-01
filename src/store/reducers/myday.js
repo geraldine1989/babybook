@@ -212,9 +212,10 @@ export const AddNoteDaySubmitNounou = note => ({
 });
 
 /** Note nanny task */
-export const handleAddNoteNoteTaskNounou = modif => ({
+export const handleAddNoteNoteTaskNounou = (id, modif) => ({
   type: CHANGE_INPUT_NOTE_NANY_TASK,
   modif,
+  id,
 
 });
 

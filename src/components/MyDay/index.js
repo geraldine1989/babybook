@@ -14,7 +14,7 @@ import './style.scss';
  * Code
  */
 /* eslint-disable no-case-declarations */
-const MyDay = ({ childList, list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, handleAddNoteNoteTaskNounou, AddNoteNoteTaskNounou }) => {
+const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, handleAddNoteNoteTaskNounou, AddNoteNoteTaskNounou }) => {
   
   /** Input ajout note nounou journées */
   const handleAddNoteDayInputNounou = (event) => {
@@ -27,24 +27,27 @@ const MyDay = ({ childList, list, note, inputNoteNounou, handleAddNoteNoteNounou
     AddNoteDaySubmitNounou(inputNoteNounou);
   };
 
-  const handleAddNoteTaskInputNounou = (event) => {
-    console.log(event.target);
-    const { name, value } = event.target;
-    const modif = {
-      [name]: value,
-    };
-    console.log('je suis dans le composant' + modif);
-    handleAddNoteNoteTaskNounou(modif);
+  /** Je veux envoyer au store une fonction qui prenne en compte l'id et le event.target.value */
+  const handleAddNoteTaskInputNounou = (id, event) => () => {
+    // console.log(event.target);
+    // const { name, value } = event.target;
+    // const modif = {
+    //   [name]: value,
+    // };
+    // console.log('je suis dans le composant' + modif);
+    const modif = event.target.value;
+    console.log('element tapé ' + modif);
+    handleAddNoteNoteTaskNounou(id, modif);
   };
 
   const dayDate = new Date();
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   
 
-  const handleAddNoteTaskSubmitNounou = (event, id) => {
-    const text = event.target.value;
-    AddNoteNoteTaskNounou(text, id);
-  };
+  // const handleAddNoteTaskSubmitNounou = (event, id) => {
+  //   const text = event.target.value;
+  //   AddNoteNoteTaskNounou(text, id);
+  // };
 
   
   return (
@@ -78,7 +81,7 @@ const MyDay = ({ childList, list, note, inputNoteNounou, handleAddNoteNoteNounou
                   name={task.selctedInput} 
                   placeholder="Ajouter une note..." 
                   value= {task.selctedInput} 
-                  onChange={handleAddNoteTaskInputNounou} />
+                  onChange={handleAddNoteTaskInputNounou(task.id)} />
                 <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
               </form>  
               <div className="note-nany"> Pas de notes de la nounou </div>
