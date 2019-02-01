@@ -27,6 +27,13 @@ var registeredEmails = new mongoose.Schema({
  accessCode: String
 });
 var registered_emails = mongoose.model("registered_emails", registeredEmails);
+
+var registeredChildren = new mongoose.Schema({
+  firstname: String,
+  lastname: String,
+  birthdate: String
+ });
+ var registered_children = mongoose.model("registered_children", registeredChildren);
 /**
 * les routes
 */
@@ -53,7 +60,7 @@ app.get("/getEmails", (req, res) => {
  .catch(function(err) {
    console.log('Caught an error!', err);
  });
-})
+});
 
 /**
 * inscription
@@ -80,6 +87,27 @@ app.post("/inscription", (req, res) => {
    }
 
 });
+
+app.post("/postchild", (req, res) => {
+  var newUser = new registered_children(req.body);
+  console.log(regEmails);
+  console.log('newUserEmail : ' + newUser.email);
+  const emailExist = regEmails.filter(email => newUser.email === email);
+  console.log(emailExist);
+    if (emailExist[0]) {
+      res.send('notOk');
+    } else {
+ 
+      newUser.save()
+      .then(item => {
+        res.send("Name saved to database");
+      })
+      .catch(err => {
+        res.status(400).send("Unable to save to database");
+      });
+    }
+ 
+ });
 
 /**
 * Listen PORT 3000

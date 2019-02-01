@@ -14,7 +14,7 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
         birthdate: inputBirthDate,
       };
 
-      axios.post('http://localhost:3000/parentsSpaceInfo', childDatas)
+      axios.post('http://localhost:3000/postchild', childDatas)
         .then((response) => {
           console.log(response);
           store.dispatch();
