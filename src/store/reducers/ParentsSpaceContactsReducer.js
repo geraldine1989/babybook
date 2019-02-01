@@ -14,8 +14,8 @@ const initialState = {
  */
 const INPUT_NAME_CHANGE = 'INPUT_NAME_CHANGE';
 const INPUT_EMAIL_CHANGE = 'INPUT_EMAIL_CHANGE';
-const ADD_CONTACT = 'ADD_CONTACT';
-const REMOVE_CONTACT = 'REMOVE_CONTACT';
+export const ADD_CONTACT = 'ADD_CONTACT';
+export const REMOVE_CONTACT = 'REMOVE_CONTACT';
 /**
  * Traitements
  */
@@ -49,7 +49,7 @@ const ParentsSpaceContactsReducer = (state = initialState, action = {}) => {
       };
 
       const newContacts = [...contacts, newContactObject];
-      console.log(newContacts);
+      
 
       return {
         ...state,
