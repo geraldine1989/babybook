@@ -2,6 +2,7 @@
  * Npm import
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Form, Button } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
@@ -73,6 +74,18 @@ const LoginParents = ({
   );
 }
 
+LoginParents.proptypes = {
+  inputEmail: PropTypes.string,
+  inputPassword: PropTypes.string,
+  handleChangeInputs: PropTypes.func.isRequired,
+  handleLogin: PropTypes.func.isRequired,
+  errorLogin: PropTypes.string,
+};
+LoginParents.defaultProps = {
+  inputEmail: '',
+  inputPassword: '',
+  errorLogin: '',
+}
 /**
  * Export
  */

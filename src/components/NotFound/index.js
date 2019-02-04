@@ -15,7 +15,8 @@ import './style.scss';
 const NotFound = () => (
   <div id="error">
     <h2>Oups... Il semblerait que cette page n'existe pas...</h2>
-    <NavLink exact to="/home">
+    <h2>Ou que vous n'y avez pas accès...</h2>
+    <NavLink exact to="/">
       <button className="back-button"> Retour</button>
     </NavLink>
   </div>

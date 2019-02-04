@@ -71,13 +71,13 @@ const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDa
               <div className="time">{task.hour}</div>
               <div className="note">{task.indic}</div>
               
-              <form className="add-name-input"  /*onSubmit={handleAddNoteTaskSubmitNounou}*/>
-                <input
-                  name={task.selctedInput} 
+              <form className="add-name-input">
+                <input 
+                  name={task.id}
                   placeholder="Ajouter une note..." 
-                  value= {task.selctedInput} 
+                  value= {inputNoteNounouTask[task.id]} 
                   onChange={handleAddNoteTaskInputNounou} />
-                <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
+                <Button  className="add-task-button"  circular icon={<Icon  name="add" /> } onSubmit={handleAddNoteTaskSubmitNounou}/>
               </form>  
               <div className="note-nany"> Pas de notes de la nounou </div>
             </div>       
