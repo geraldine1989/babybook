@@ -13,9 +13,12 @@ const Informations = ({
   vaccinesList,
   allergiesList,
   phoneList,
-}) => (
+}) => {
 
-  <div id="informations">
+  return (
+
+
+    <div id="informations">
     <h2>Informations</h2>
 
     <div id="enfant">
@@ -30,7 +33,7 @@ const Informations = ({
             Nom: <span>{child.lastname}</span>
             </div>
             <div className="child-info-div">
-            Age: <span>{moment(child.birthdate).locale('fr').startOf('mois').fromNow(true)}</span>
+            Age: <span data-locale="fr">{moment(child.birthdate).locale('fr').startOf('months').fromNow(true)}</span>
             </div>
             <div className="child-info-div">
             Date de naissance: <span>{new Date(child.birthdate).toLocaleDateString('fr')}</span>
@@ -85,6 +88,7 @@ const Informations = ({
 
   </div>
 );
+}
 
 Informations.propTypes = {
   childList: PropTypes.arrayOf(PropTypes.shape({

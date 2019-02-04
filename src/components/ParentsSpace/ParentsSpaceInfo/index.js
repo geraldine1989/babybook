@@ -176,6 +176,7 @@ const ParentsSpaceInfo = ({
     addPhone(inputPhoneNumber);
   };
 
+<<<<<<< HEAD
   const handleDeleteMeds = id => () => {
     removeMeds(id);
   };
@@ -195,6 +196,8 @@ const ParentsSpaceInfo = ({
   const handleDeletePhone = id => () => {
     removePhone(id);
   };
+=======
+>>>>>>> 792436bbc55a60bb5bad9c9edf452dad443e8052
 
   return (
     <div id="main">
@@ -202,6 +205,7 @@ const ParentsSpaceInfo = ({
       <div id="modif-informations">
         <div id="modif-child">
           <h3>Enfant</h3>
+<<<<<<< HEAD
           <ul>
             {childList.map(child => (
               <li key={child.id}>{child.firstname} {child.lastname} Né(e) le {new Date(child.birthdate).toLocaleDateString('fr')}
@@ -215,6 +219,13 @@ const ParentsSpaceInfo = ({
               </li>
             ))}
           </ul>
+=======
+          <div>{childList.map(child => (
+            <p key={child.id}>Prénom : {child.firstname} Nom : {child.lastname} Date de naissance : {new Date(child.birthdate).toLocaleDateString('fr')}
+            </p>
+          ))}
+          </div>
+>>>>>>> 792436bbc55a60bb5bad9c9edf452dad443e8052
           <Form
             id="modif-child-form"
             onSubmit={submitChild}
