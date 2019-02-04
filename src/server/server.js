@@ -84,8 +84,8 @@ app.post("/inscription", (req, res) => {
  */
 
 var registeredContacts = new mongoose.Schema({
-  contactname: String,
-  contactemail: String,
+  email: String,
+  name: String,
  });
 
 var registered_contacts = mongoose.model("registered_contacts", registeredContacts);
@@ -93,7 +93,6 @@ var registered_contacts = mongoose.model("registered_contacts", registeredContac
 
 app.post("/espace-parents/contacts", (req, res) => {
   var NewContact = new registered_contacts(req.body);
-  
   NewContact.save()
   .then(item => {
     res.send("Name saved in db");
