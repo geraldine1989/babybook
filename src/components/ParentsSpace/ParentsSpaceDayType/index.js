@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
  * Local import
  */
 import './style.scss';
-import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
+import ParentsNav from 'src/containers/ParentsNav';
 
 /**
  * Code

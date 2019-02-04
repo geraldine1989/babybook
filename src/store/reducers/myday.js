@@ -32,6 +32,7 @@ const ADD_NOTE_TASK_NANNY = 'ADD_NOTE_TASK_NANNY';
 export const REMOVE_TASK_DAY = 'REMOVE_TASK_DAY';
 export const TASK_CHECK = 'TASK_CHECK';
 export const ADD_TASKS_RESPONSE = 'ADD_TASKS_RESPONSE';
+export const HANDLE_GET_TASKS = 'HANDLE_GET_TASKS';
 
 
 /**
@@ -80,7 +81,7 @@ const myday = (state = initialState, action = {}) => {
         indic: inputNoteTask,
         note: inputNoteNounouTask,
         selctedInput: '',
-        tododone:'list-button',
+        tododone: 'list-button',
       };
 
       const newTasks = [...itemList, newTaskObject];
@@ -91,6 +92,11 @@ const myday = (state = initialState, action = {}) => {
         inputTitle: '',
         inputHourTask: '',
         inputNoteTask: '',
+      };
+
+    case HANDLE_GET_TASKS:
+      return {
+        ...state,
       };
     
     // change input note
@@ -273,8 +279,12 @@ export const taskCheck = id => ({
 export const addTaskResponse = datas => ({
   type: ADD_TASKS_RESPONSE,
   datas,
-
 });
+
+export const handleGetTasks = () => ({
+  type: HANDLE_GET_TASKS,
+});
+
 /**
  * Selectors
  */

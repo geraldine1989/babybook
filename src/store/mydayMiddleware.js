@@ -1,6 +1,6 @@
 import axios from 'axios';
 import uuidv4 from 'uuid/v4';
-import { ADD_TASK, addTaskResponse, ADD_NOTE, ADD_NOTE_DAY_NANNY } from './reducers/myday';
+import { ADD_TASK, addTaskResponse, ADD_NOTE, ADD_NOTE_DAY_NANNY, HANDLE_GET_TASKS } from './reducers/myday';
 
 const mydayMiddleware = store => next => (action) => {
   const state = store.getState().myday;
@@ -24,8 +24,7 @@ const mydayMiddleware = store => next => (action) => {
         tododone:'list-button',
         id: uuidv4(),
       };
-        
-      
+   
       axios.post('http://localhost:3000/espace-parents/add-task', formDatas)
       .then((response) => {
         store.dispatch(addTaskResponse(response.data));
