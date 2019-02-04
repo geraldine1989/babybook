@@ -1,5 +1,6 @@
 
 import { Redirect } from 'react-router';
+var validator = require("email-validator");
 
 /**
  * Initial State
@@ -39,7 +40,7 @@ const inscriptionReducer = (state = initialState, action = {}) => {
     case HANDLE_CHANGE_INSCRIPTION_INPUT:
       const { inputEmail, inputPassword, inputConfirmPassword, inputAccessCode } = action.changes;
       let errors = {};
-      if (inputEmail && inputEmail.length < 8) {
+      if (!validator.validate(inputEmail)) {
         errors = {
           ...errors,
           errorEmail: 'Veuillez saisir un email valide.',

@@ -2,13 +2,18 @@ var express = require("express");
 var app = express();
 var port = 3000;
 var bodyParser = require('body-parser');
+//connect-mongo
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', '*'); // remplacer '*' par l'adresse du site en prod
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('Access-Control-Allow-Methods', 'GET, POST');
+  // res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
 
@@ -22,14 +27,15 @@ mongoose.connect("mongodb://localhost:27017/babybook", { useNewUrlParser: true }
 var registeredEmails = new mongoose.Schema({
   email: String,
   password: String,
-  accessCode: String
+  accessCode: String,
+  parent: Boolean,
 });
 var registered_emails = mongoose.model("registered_emails", registeredEmails);
 /**
  * les routes
  */
 /**
- * Récupération de la liste de emails enregistrés
+ * Récupération de la liste des emails enregistrés
  */
 var regEmails = [];
 app.get("/getEmails", (req, res) => {
@@ -37,15 +43,17 @@ app.get("/getEmails", (req, res) => {
     return new Promise(function(resolve, reject) {
       registered_emails.find(function (err, response) {
         regEmails = response;
-        resolve (response);
-        return response;
+        resolve (regEmails);
+        return regEmails;
       })
     })
   }
   findEmails()
-  .then(function(response) {
-    regEmails = response;
+  .then(function(regEmails) {
+    // regEmails = response;
     regEmails = regEmails.map(email => email.email);
+    console.log('regEmails : ', regEmails);
+    res.status('200').send();
   })
   .catch(function(err) {
     console.log('Caught an error!', err);
@@ -59,7 +67,7 @@ console.log(regEmails);
 
 app.post("/inscription", (req, res) => {
   var newUser = new registered_emails(req.body);
-  console.log(regEmails);
+  console.log('regEmails : ', regEmails);
   console.log('newUserEmail : ' + newUser.email);
   const emailExist = regEmails.filter(email => newUser.email === email);
   console.log(emailExist);
@@ -69,6 +77,44 @@ app.post("/inscription", (req, res) => {
 
       newUser.save()
       .then(item => {
+
+        /**
+         * Send email
+         */
+        // "use strict";
+        // const nodemailer = require("nodemailer");
+
+        // // async..await is not allowed in global scope, must use a wrapper
+        // async function sendEmail(){
+        //   // create reusable transporter object using the default SMTP transport
+        //   const transporter = nodemailer.createTransport({
+        //     host: "smtp.gmail.com",
+        //     port: 465,
+        //     secure: true, // true for 465, false for other ports
+        //     auth: {
+        //       user: 'spionit@gmail.com',
+        //       pass: 'ttrchecpoihufqcs'
+        //     }
+        //   });
+
+        //   // setup email data
+        //   const mailOptions = {
+        //     from: '"Babybook"', // sender address
+        //     to: `${newUser.email}`, // list of receivers
+        //     subject: "Bienvenue sur Babybook", // Subject line
+        //     text: "Merci pour votre inscription à Babybook", // plain text body
+        //     html: "<b>Alors ça c'est top ! :)</b>" // html body
+        //   };
+
+        //   // send mail with defined transport object
+        //   const info = await transporter.sendMail(mailOptions)
+
+        //   console.log("Message sent: %s", info.messageId);
+        // }
+
+        // sendEmail().catch(console.error);
+        // ********************** ^^
+
         res.send("Name saved to database");
       })
       .catch(err => {
@@ -81,28 +127,69 @@ app.post("/inscription", (req, res) => {
 /**
  * login Parents
  */
-var regEmails = [];
+// var regEmails = [];
+// app.post("/loginParents", (req, res) => {
+//   var user = new registered_emails(req.body);
+//   console.log(user);
+//   function findEmails() {
+//     return new Promise(function(resolve, reject) {
+//       registered_emails.find(function (err, response) {
+//         regEmails = response;
+//         resolve (regEmails);
+//         return regEmails;
+//       })
+//     })
+//   }
+//   findEmails()
+//   .then(function(regEmails) {
+//     console.log(regEmails);
+//     const emailExist = regEmails.filter(email => user.email === email);
+//     if (emailExist) {
+//       if (user.password === '') {
+//         //todo
+//         res.send('Connexion ok');
+//       }
+//     } else {
+//       res.send('Erreur de connexion')
+//     }
+//   })
+//   .catch(function(err) {
+//     res.status(400).send('Login impossible', err);
+//   });
+// })
+
 app.post("/loginParents", (req, res) => {
+  console.log('*******************************');
   var user = new registered_emails(req.body);
+  console.log('user : ',user);
   function findEmails() {
     return new Promise(function(resolve, reject) {
-      registered_emails.find(function (err, response) {
-        regEmails = response;
-        resolve (response);
-        return response;
-      })
+      const returnedUser = registered_emails.find({'email': user.email});
+      resolve (returnedUser);
     })
   }
   findEmails()
-  .then(function(response) {
-    console.log(response);
-    const emailExist = regEmails.filter(email => user.email === email);
+  .then(function(returnedUser) {
+    console.log('returnedUser', returnedUser[0]);
     
+    if (returnedUser[0]) {
+      if (user.password === returnedUser[0].password) {
+        console.log('user ok mpd ok');
+        res.send('logged');
+      } else {
+        console.log('user ok mdp PAS ok');
+        res.send('notLogged');
+      }
+    } else {
+      console.log('user PAS ok');
+      res.send('notLogged');
+    }
   })
   .catch(function(err) {
-    console.log('Caught an error!', err);
+    res.status(400).send('Login impossible', err);
   });
 })
+
 
 /**
  * Listen PORT 3000
@@ -111,45 +198,3 @@ app.listen(port, () => {
     console.log("Server listening on port " + port);
 });
 
-"use strict";
-const nodemailer = require("nodemailer");
-
-// async..await is not allowed in global scope, must use a wrapper
-async function sendEmail(){
-
-  // Generate test SMTP service account from ethereal.email
-  // Only needed if you don't have a real mail account for testing
-  // let account = await nodemailer.createTestAccount();
-
-  // create reusable transporter object using the default SMTP transport
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true, // true for 465, false for other ports
-    auth: {
-      user: 'spionit@gmail.com', // generated ethereal user
-      pass: 'ttrchecpoihufqcs' // generated ethereal password
-    }
-  });
-
-  // setup email data with unicode symbols
-  const mailOptions = {
-    from: '"Babybook" <spionit@gmail.com>', // sender address
-    to: "spionit@gmail.com", // list of receivers
-    subject: "Hello", // Subject line
-    text: "Merci pour votre inscription à Babybook", // plain text body
-    html: "<b>Hello world?</b>" // html body
-  };
-
-  // send mail with defined transport object
-  const info = await transporter.sendMail(mailOptions)
-
-  console.log("Message sent: %s", info.messageId);
-  // Preview only available when sending through an Ethereal account
-  // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-
-  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-}
-
-sendEmail().catch(console.error);

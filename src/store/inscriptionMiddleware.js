@@ -10,16 +10,24 @@ const inscriptionMiddleware = store => next => (action) => {
       .then((response) => {
         // emails = response.data[0];
         // emails = emails.map(email => email.email);
-        console.log(emails);
+        // console.log(emails);
       })
       .catch((error) => {
         console.log(error);
       });
       break;
     case HANDLE_INSCRIPTION:
-      // console.log(emails);
       const state = store.getState().inscriptionReducer;
       const { inputEmail, inputPassword, inputAccessCode, errorsForm } = state;
+      // console.log(emails);
+      if (
+        (!validator.validate(inputEmail)) ||
+        (inputPassword && inputPassword.length < 8) ||
+        (inputConfirmPassword !== inputPassword) ||
+        (inputAccessCode && inputAccessCode.length < 8)
+      ) {
+        
+      }
       const hashPassword = hash.sha256().update(inputPassword).digest('hex');
       const hashAccessCode = hash.sha256().update(inputAccessCode).digest('hex');
       
@@ -27,6 +35,7 @@ const inscriptionMiddleware = store => next => (action) => {
           email: inputEmail,
           password: hashPassword,
           accessCode: hashAccessCode,
+          parent: true,
         }
       axios.post('http://localhost:3000/inscription', datas)
       .then((response) => {
