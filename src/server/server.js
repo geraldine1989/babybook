@@ -90,31 +90,10 @@ var registeredContacts = new mongoose.Schema({
 
 var registered_contacts = mongoose.model("registered_contacts", registeredContacts);
 
-var regContacts = [];
-app.get("/getContacts", (req, res) => {
- function findContacts() {
-   return new Promise(function(resolve, reject) {
 
-     registered_Contacts.find(function (err, response) {
-       regContacts = response;
-       resolve (response);
-       return response;
-     })
-   })
- }
- findContacts()
- .then(function(response) {
-   regContacts = response;
-   regContacts = regContacts.map(contactemail => contactemail.contactemail);
- })
- .catch(function(err) {
-   console.log('Caught an error!', err);
- });
-})
-
-app.post("/espace-parents/contacts/", (req, res) => {
+app.post("/espace-parents/contacts", (req, res) => {
   var NewContact = new registered_contacts(req.body);
-  console.log(regContacts);
+  
   NewContact.save()
   .then(item => {
     res.send("Name saved in db");
