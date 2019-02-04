@@ -22,6 +22,11 @@ app.use(function(req, res, next) {
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/babybook", { useNewUrlParser: true });
+// const connection = mongoose.createConnection("mongodb://localhost:27017/babybook", { useNewUrlParser: true });
+ 
+// app.use(session({
+//     store: new MongoStore({ mongooseConnection: connection })
+// }));
 
 /**
  * var
@@ -175,6 +180,7 @@ app.post("/loginParents", (req, res) => {
     if (returnedUser[0]) {
       if (user.password === returnedUser[0].password) {
         console.log('user ok mpd ok');
+
         res.send('logged');
       } else {
         console.log('user ok mdp PAS ok');
@@ -186,7 +192,7 @@ app.post("/loginParents", (req, res) => {
     }
   })
   .catch(function(err) {
-    res.status(400).send('Login impossible', err);
+    res.status(400).send(err);
   });
 })
 

@@ -19,10 +19,6 @@ const inscriptionMiddleware = store => next => (action) => {
       var emails = [];
       axios.get('http://localhost:3000/getParents')
       .then((response) => {
-        // emails = response.data;
-        // emails = emails.map(email => email.email);
-        // console.log(response);
-        // console.log(emails);
       })
       .catch((error) => {
         console.log(error);
@@ -30,12 +26,10 @@ const inscriptionMiddleware = store => next => (action) => {
       break;
     case HANDLE_INSCRIPTION:
       const state = store.getState().inscriptionReducer;
-      // console.log('state avant : ', state);
 
       const { inputEmail, inputPassword, inputConfirmPassword, inputAccessCode, errorsForm } = state;
       var emailValid = validator.validate(inputEmail);
       let errors = {};
-      // for (var key in emails)
       if (!emailValid) {
         errors = {
           ...errors,
