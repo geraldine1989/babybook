@@ -1,8 +1,10 @@
 import axios from 'axios';
+import uuidv4 from 'uuid/v4';
 
 import {
   ADD_CHILD,
   childResponse,
+  GET_CHILD,
   ADD_PHONE,
   phoneResponse,
   ADD_MEDS,
@@ -16,16 +18,29 @@ import {
 /* eslint-disable no-case-declarations */
 const parentsSpaceInfoMiddleware = store => next => (action) => {
   switch (action.type) {
+
+    case GET_CHILD:
+      axios.get('http://localhost:3000/espace-parents/infos/get-child')
+        .then((response) => {
+          store.dispatch(childResponse(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      next(action);
+      break;
+
     case ADD_CHILD:
       const childState = store.getState().ParentsSpaceInfoReducer;
       const { inputFirstName, inputLastName, inputBirthDate } = childState;
       const childDatas = {
+        id: uuidv4(),
         firstname: inputFirstName,
         lastname: inputLastName,
         birthdate: inputBirthDate,
       };
 
-      axios.post('http://localhost:3000/espace-parents/infos/child', childDatas)
+      axios.post('http://localhost:3000/espace-parents/infos/add-child', childDatas)
         .then((response) => {
           console.log(response);
           store.dispatch(childResponse(response.data));

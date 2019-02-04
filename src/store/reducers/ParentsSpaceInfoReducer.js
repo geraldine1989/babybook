@@ -49,6 +49,8 @@ export const VACCINES_RESPONSE = 'VACCINES_RESPONSE';
 export const ALLERGIES_RESPONSE = 'ALLERGIES_RESPONSE';
 export const PHONE_RESPONSE = 'PHONE_RESPONSE';
 
+export const GET_CHILD = 'GET_CHILD';
+
 /**
  * Traitements
  */
@@ -92,6 +94,11 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         inputBirthDate: action.inputBirthDate,
+      };
+
+    case GET_CHILD:
+      return {
+        ...state,
       };
 
     case ADD_CHILD:
@@ -306,6 +313,10 @@ export const removeChild = id => ({
 export const childResponse = datas => ({
   type: CHILD_RESPONSE,
   datas,
+});
+
+export const getChild = () => ({
+  type: GET_CHILD,
 });
 
 

@@ -92,7 +92,27 @@ const registeredChild = new mongoose.Schema({
 });
 const Child = mongoose.model('child', registeredChild);
 
-app.post('/espace-parents/infos/child', (req, res) => {
+/* Chargement de la liste des enfants */
+app.get('/espace-parents/infos/get-child', (req, res) => {
+  function findRegisteredChild() {
+    return new Promise(((resolve, reject) => {
+      Child.find((err, response) => {
+        regChild = response;
+        resolve (regChild);
+        return regChild;
+      });
+    }));
+  }
+  findRegisteredChild()
+    .then((regChild) => {
+      res.status('200').send(regChild);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
+});
+/* Enregistrement d'un enfant dans la BDD */
+app.post('/espace-parents/infos/add-child', (req, res) => {
   const newChild = new Child(req.body);
   newChild.save()
     .then((item) => {
@@ -100,6 +120,24 @@ app.post('/espace-parents/infos/child', (req, res) => {
     })
     .catch((err) => {
       res.status(400).send('Unable to save to database');
+    });
+
+  // Chargement de la nouvelle liste
+  function findRegisteredContacts() {
+    return new Promise(((resolve, reject) => {
+      Child.find((err, response) => {
+        regChild = response;
+        resolve (regChild);
+        return regChild;
+      });
+    }));
+  }
+  findRegisteredContacts()
+    .then((regContacts) => {
+      res.status('200').send(regContacts);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
     });
 });
 
