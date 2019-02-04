@@ -89,40 +89,58 @@ var addTaskFromParents = new mongoose.Schema({
    });
    var add_task = mongoose.model("add_task", addTaskFromParents);
 
-    var addListTask = [];
-    app.get("/espace-parents/journee-type", (req, res) => {
-    function findListTasks() {
-    return new Promise(function(resolve, reject) {
-
-        add_task.find(function (err, response) {
-        addListTask = response;
-        resolve (response);
-        return response;
-        })
-    })
-    }
-    findListTasks()
-    .then(function(response) {
-    addListTask = response;
-    })
-    .catch(function(err) {
-    console.log('Caught an error!', err);
-    });
-    
-    
-    })
     /** a finir sauvegarde dans la base */
-    app.post("/espace-parents/journee-type", (req, res) => {
+    app.post("/espace-parents/add-task", (req, res) => {
       var newTask = new add_task(req.body);
       newTask.save()
           .then(item => {
-            res.send("Name saved to database");
+            res.send("Task saved to database");
           })
           .catch(err => {
             res.status(400).send("Unable to save to database");
           });
         
-      })
+      });
+
+/** Ajout d'une note pour la journée */
+var addNoteFromParents = new mongoose.Schema({
+  note: String,
+ });
+ var add_note = mongoose.model("add_note", addNoteFromParents);
+
+ 
+  app.post("/espace-parents/add-note-day-parents", (req, res) => {
+    var newNote = new add_note(req.body);
+    newNote.save()
+        .then(item => {
+          console.log('la note a été sauvegardée');
+          res.send("Note save to database");
+        })
+        .catch(err => {
+          res.status(400).send("Unable to save to database");
+        });
+      
+    });
+
+/** Ajout d'une note de la nanny pour la journée */
+var addNoteFromNanny = new mongoose.Schema({
+  nannyNote: String,
+ });
+ var add_note_nanny = mongoose.model("add_note_nanny", addNoteFromNanny);
+
+ 
+  app.post("/myday/nannydaytask", (req, res) => {
+    var newNoteNanny = new add_note_nanny(req.body);
+    newNoteNanny.save()
+        .then(item => {
+          console.log('la note de la nanny pour la journée a été sauvegardée');
+          res.send("Note save to database");
+        })
+        .catch(err => {
+          res.status(400).send("Unable to save to database");
+        });
+      
+    });
 
 /**
 * Listen PORT 3000

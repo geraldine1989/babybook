@@ -30,7 +30,8 @@ export const ADD_NOTE_DAY_NANNY = 'ADD_NOTE_DAY_NANNY';
 const CHANGE_INPUT_NOTE_NANY_TASK = 'CHANGE_INPUT_NOTE_NANY_TASK';
 const ADD_NOTE_TASK_NANNY = 'ADD_NOTE_TASK_NANNY';
 export const REMOVE_TASK_DAY = 'REMOVE_TASK_DAY';
-export const TASK_CHECK = 'TASK_CHECK'
+export const TASK_CHECK = 'TASK_CHECK';
+export const ADD_TASKS_RESPONSE = 'ADD_TASKS_RESPONSE';
 
 
 /**
@@ -187,6 +188,12 @@ const myday = (state = initialState, action = {}) => {
         ...state,
         itemList: newTaskListCheched,
       };
+
+      /** Envoi pour la requete */
+    case ADD_TASKS_RESPONSE:
+      return {
+        ...state,
+      };
     default:
       return state;
   }
@@ -259,6 +266,13 @@ export const removeTaskDay = id => ({
 export const taskCheck = id => ({
   type: TASK_CHECK,
   id,
+});
+
+/** Envoi pour la requete */
+export const addTaskResponse = datas => ({
+  type: ADD_TASKS_RESPONSE,
+  datas,
+
 });
 /**
  * Selectors
