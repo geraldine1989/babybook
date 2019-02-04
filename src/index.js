@@ -8,6 +8,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
 
+
+
+
 /**
  * import : local
  */
@@ -18,6 +21,7 @@ import App from 'src/components/App';
  * Render - Rendu d'un composant React dans le DOM
  */
 const rootComponent = (
+  
   <Provider store={store}>
     <Router>
       <App />

@@ -94,13 +94,32 @@ var addTaskFromParents = new mongoose.Schema({
       var newTask = new add_task(req.body);
       newTask.save()
           .then(item => {
-            res.send("Task saved to database");
+            // res.send("Task saved to database");
           })
           .catch(err => {
             res.status(400).send("Unable to save to database");
           });
         
-      });
+          function findTasks() {
+            return new Promise(function(resolve, reject) {
+              add_task.find(function (err, response) {
+                tasks = response;
+                resolve (tasks);
+                return tasks;
+              })
+            })
+          }
+          findTasks()
+          .then(function(tasks) {
+            console.log('tasks : ', tasks);
+            res.status('200').send(tasks);
+          })
+          .catch(function(err) {
+            console.log('Caught an error!', err);
+          });
+    });
+
+    
 
 /** Ajout d'une note pour la journée */
 var addNoteFromParents = new mongoose.Schema({
@@ -141,7 +160,8 @@ var addNoteFromNanny = new mongoose.Schema({
         });
       
     });
-
+  // test
+  
 /**
 * Listen PORT 3000
 */

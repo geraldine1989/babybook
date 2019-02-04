@@ -193,6 +193,7 @@ const myday = (state = initialState, action = {}) => {
     case ADD_TASKS_RESPONSE:
       return {
         ...state,
+        itemList: action.datas,
       };
     default:
       return state;
