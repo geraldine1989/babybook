@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 //connect-mongo
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+// email validator
+var validator = require("email-validator");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -77,7 +79,6 @@ app.post("/inscription", (req, res) => {
 
       newUser.save()
       .then(item => {
-
         /**
          * Send email
          */
