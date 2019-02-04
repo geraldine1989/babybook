@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import uuidv4 from 'uuid/v4';
 import { ADD_TASK, addTaskResponse, ADD_NOTE, ADD_NOTE_DAY_NANNY } from './reducers/myday';
 
 const mydayMiddleware = store => next => (action) => {
@@ -12,6 +12,7 @@ const mydayMiddleware = store => next => (action) => {
   switch (action.type) {
     
     /** Ajout d'une tache */
+
     case ADD_TASK:
     console.log('je suis dans le middleware');
       
@@ -21,6 +22,7 @@ const mydayMiddleware = store => next => (action) => {
         hour: inputHourTask,
         indic: inputNoteTask,
         tododone:'list-button',
+        id: uuidv4(),
       };
         
       
@@ -33,6 +35,19 @@ const mydayMiddleware = store => next => (action) => {
       .catch((error) => {
         console.log(error);
       });
+      next(action);
+      break;
+
+    /** Récupéation des taches */
+    case HANDLE_GET_TASKS:
+    console.log('coucou HANDLE GET TASK Middleware');
+      axios.get('http://localhost:3000/espace-parents/journee-type')
+        .then((response) => {
+          store.dispatch(addTaskResponse(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       next(action);
       break;
 

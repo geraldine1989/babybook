@@ -81,43 +81,71 @@ app.post("/inscription", (req, res) => {
 
 
 /** Ajout d'une tache */
+
 var addTaskFromParents = new mongoose.Schema({
     name: String,
     hour: String,
     indic: String,
     tododone:String,
+    id: String,
    });
+
    var add_task = mongoose.model("add_task", addTaskFromParents);
 
-    /** a finir sauvegarde dans la base */
-    app.post("/espace-parents/add-task", (req, res) => {
-      var newTask = new add_task(req.body);
-      newTask.save()
-          .then(item => {
-            // res.send("Task saved to database");
-          })
-          .catch(err => {
-            res.status(400).send("Unable to save to database");
-          });
-        
-          function findTasks() {
-            return new Promise(function(resolve, reject) {
-              add_task.find(function (err, response) {
-                tasks = response;
-                resolve (tasks);
-                return tasks;
-              })
-            })
-          }
-          findTasks()
-          .then(function(tasks) {
-            console.log('tasks : ', tasks);
-            res.status('200').send(tasks);
-          })
-          .catch(function(err) {
-            console.log('Caught an error!', err);
-          });
+    /**
+ * Chargement de la liste des taches
+ */
+app.get("/espace-parents/journee-type", (req, res) => {
+  function findTasks() {
+    return new Promise(function(resolve, reject) {
+      add_task.find(function (err, response) {
+        tasks = response;
+        resolve (tasks);
+        return tasks;
+      })
+    })
+  }
+  findTasks()
+    .then(function(tasks) {
+    console.log('tasks : ', tasks);
+      res.status('200').send(tasks);
+  })
+    .catch(function(err) {
+    console.log('Caught an error!', err);
+  });
+  });
+
+/**
+ * Enregistrement du nouveau contact
+ */
+app.post("/espace-parents/add-task", (req, res) => {
+  var newTask = new add_task(req.body);
+  newTask.save()
+    .then(item => {
+      // res.send("Task saved to database");
+    })
+    .catch(err => {
+      res.status(400).send("Unable to save to database");
     });
+  /**Chargement de la nouvelle liste */
+  function findTasks() {
+    return new Promise(function(resolve, reject) {
+      add_task.find(function (err, response) {
+        tasks = response;
+        resolve (tasks);
+        return tasks;
+      })
+    })
+  }
+  findTasks()
+  .then(function(tasks) {
+    console.log('tasks : ', tasks);
+    res.status('200').send(tasks);
+  })
+  .catch(function(err) {
+    console.log('Caught an error!', err);
+  });
+});
 
     
 
