@@ -3,6 +3,7 @@
  */
 const initialState = {
   logged: false,
+  parent: false,
   inputEmail: '',
   inputPassword: '',
 };
@@ -55,10 +56,12 @@ const loginParentsReducer = (state = initialState, action = {}) => {
           logged: true,
           errorLogin: '',
         }
-      }
-      return {
-        ...state,
-        errorLogin: action.answer,
+      } else {
+        return {
+          ...state,
+          logged: false,
+          errorLogin: 'Votre email ou votre mot de passe est incorrect.',
+        }
       }
 
     default:

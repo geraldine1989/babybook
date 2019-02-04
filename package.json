@@ -46,7 +46,11 @@
   "dependencies": {
     "@babel/polyfill": "*",
     "axios": "^0.18.0",
+    "luxon": "^1.10.0",
     "moment": "^2.24.0",
+    "moments": "^0.0.2",
+    "email-validator": "^2.0.4",
+    "hash.js": "^1.1.7",
     "prop-types": "^15.6.2",
     "react": "*",
     "react-burger-menu": "^2.6.1",

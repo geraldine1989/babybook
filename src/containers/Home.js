@@ -13,6 +13,7 @@ import { handleGetEmails } from 'src/store/reducers/inscription-reducer';
 
 const mapStateToProps = state => ({
   emails: state.inscriptionReducer.inputEmail,
+  logged: state.loginParentsReducer.logged,
 });
 
 const mapDispatchToProps = dispatch => ({

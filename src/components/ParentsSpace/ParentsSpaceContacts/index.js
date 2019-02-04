@@ -9,12 +9,12 @@ import PropTypes from 'prop-types';
  * Local import
  */
 import './style.scss';
-import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
+import ParentsNav from 'src/containers/ParentsNav';
 
 /**
  * Code
  */
-const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, handleChangeName, handleChangeEmail, removeContact, id }) => {
+const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, handleChangeName, handleChangeEmail, removeContact }) => {
   const parentsContacts = [
     {
       firstName: 'Toto',
@@ -70,12 +70,12 @@ const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, han
 
           <Table.Body>
             { contactsList.map(contactList => (
-              <Table.Row key={contactList.id} id={contactList.id}>
+              <Table.Row key={contactList.id}>
                 <Table.Cell >
-                  { contactList.textName }
+                  { contactList.name }
                 </Table.Cell>
                 <Table.Cell >
-                  { contactList.textEmail }
+                  { contactList.email }
                 </Table.Cell>
                 <Table.Cell className="delete-contact">
                   <Button icon onClick={handleDeleteContact(contactList.id)}>
@@ -124,7 +124,6 @@ ParentsSpaceContacts.propTypes = {
     id: PropTypes.string.isRequired,
   })).isRequired,
   removeContact: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
 //   handleChangeNannyPassword: PropsTypes.func.isRequired,
 };
 

@@ -14,8 +14,10 @@ const initialState = {
  */
 const INPUT_NAME_CHANGE = 'INPUT_NAME_CHANGE';
 const INPUT_EMAIL_CHANGE = 'INPUT_EMAIL_CHANGE';
-const ADD_CONTACT = 'ADD_CONTACT';
-const REMOVE_CONTACT = 'REMOVE_CONTACT';
+export const ADD_CONTACT = 'ADD_CONTACT';
+export const REMOVE_CONTACT = 'REMOVE_CONTACT';
+export const CONTACTS_RESPONSE = 'CONTACTS_RESPONSE';
+export const HANDLE_GET_CONTACTS = 'HANDLE_GET_CONTACTS';
 /**
  * Traitements
  */
@@ -41,6 +43,12 @@ const ParentsSpaceContactsReducer = (state = initialState, action = {}) => {
         inputEmail: action.inputEmail,
       };
     /* eslint-disable no-case-declarations */
+
+    case HANDLE_GET_CONTACTS:
+      return {
+        ...state,
+      };
+
     case ADD_CONTACT:
       const newContactObject = {
         id: uuidv4(),
@@ -49,7 +57,7 @@ const ParentsSpaceContactsReducer = (state = initialState, action = {}) => {
       };
 
       const newContacts = [...contacts, newContactObject];
-      console.log(newContacts);
+      
 
       return {
         ...state,
@@ -58,12 +66,20 @@ const ParentsSpaceContactsReducer = (state = initialState, action = {}) => {
         inputEmail: '',
       };
 
+    case CONTACTS_RESPONSE:
+      console.log(action.datas);
+      return {
+        ...state,
+        contacts: action.datas,
+      };
+      
     case REMOVE_CONTACT:
       const deletedContacts = state.contacts.filter(contact => contact.id !== action.id);
       console.log(action);
       return {
         contacts: deletedContacts,
       };
+
 
     default:
       return state;
@@ -93,6 +109,15 @@ export const addContact = (textName, textEmail) => ({
 export const removeContact = id => ({
   type: REMOVE_CONTACT,
   id,
+});
+
+export const contactsResponse = datas => ({
+  type: CONTACTS_RESPONSE,
+  datas,
+});
+
+export const handleGetContacts = () => ({
+  type: HANDLE_GET_CONTACTS,
 });
 
 /**

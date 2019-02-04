@@ -190,6 +190,74 @@ var addNoteFromNanny = new mongoose.Schema({
     });
   // test
   
+
+ /**
+ * gestion contacts espace parents
+ */
+
+var registeredContacts = new mongoose.Schema({
+  id: String,
+  email: String,
+  name: String,
+ });
+
+var registered_contacts = mongoose.model("registered_contacts", registeredContacts);
+
+/**
+ * Chargement de la liste des contacts
+ */
+app.get("/espace-parents/contacts", (req, res) => {
+  function findRegisteredContacts() {
+    return new Promise(function(resolve, reject) {
+      registered_contacts.find(function (err, response) {
+        regContacts = response;
+        resolve (regContacts);
+        return regContacts;
+      })
+    })
+  }
+  findRegisteredContacts()
+  .then(function(regContacts) {
+    res.status('200').send(regContacts);
+  })
+  .catch(function(err) {
+    console.log('Caught an error!', err);
+  });
+}); 
+/**
+ * enregistrement d'un contact
+ */
+app.post("/espace-parents/contacts/add-contact", (req, res) => {
+  var NewContact = new registered_contacts(req.body);
+  
+// Enregistrement du nouveau contact
+  NewContact.save()
+  .then(item => {
+    // res.send("Name saved in db");
+  })
+  .catch(err => {
+    res.status(400).send("Unable to save in db");
+  });
+
+// Chargement de la nouvelle liste
+  function findRegisteredContacts() {
+    return new Promise(function(resolve, reject) {
+      registered_contacts.find(function (err, response) {
+        regContacts = response;
+        resolve (regContacts);
+        return regContacts;
+      })
+    })
+  }
+  findRegisteredContacts()
+  .then(function(regContacts) {
+    res.status('200').send(regContacts);
+  })
+  .catch(function(err) {
+    console.log('Caught an error!', err);
+  });
+});
+
 /**
 * Listen PORT 3000
 */

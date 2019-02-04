@@ -1,4 +1,5 @@
 import axios from 'axios';
+var hash = require('hash.js')
 
 import { HANDLE_LOGIN, loginResponse } from './reducers/login-parents-reducer';
 
@@ -9,11 +10,12 @@ const loginParentsMiddleware = store => next => (action) => {
     console.log('HANDLE_LOGIN middleware');
     const state = store.getState().loginParentsReducer;
     const { inputEmail, inputPassword } = state;
+    const hashPassword = hash.sha256().update(inputPassword).digest('hex');
     const formDatas = {
       email: inputEmail,
-      password: inputPassword,
+      password: hashPassword,
     }
-    console.log(formDatas);
+    // console.log(formDatas);
 
       axios.post('http://localhost:3000/loginParents', formDatas)
         .then((response) => {

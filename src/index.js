@@ -15,7 +15,7 @@ import 'semantic-ui-css/semantic.min.css';
  * import : local
  */
 import store from 'src/store';
-import App from 'src/components/App';
+import App from 'src/containers/App';
 
 /**
  * Render - Rendu d'un composant React dans le DOM

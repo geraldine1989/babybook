@@ -6,7 +6,7 @@ import { Form, Button, Icon, Input } from 'semantic-ui-react';
 /* Local imports */
 import './style.scss';
 import 'semantic-ui-css/semantic.min.css';
-import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
+import ParentsNav from 'src/containers/ParentsNav';
 
 /* Test Mongo DB */
 
@@ -172,6 +172,7 @@ const ParentsSpaceInfo = ({
     addPhone(inputPhoneNumber);
   };
   
+
 
   return (
     <div>
