@@ -5,21 +5,17 @@ import { NavLink } from 'react-router-dom';
 // Local import
 import './style.scss';
 
-const MainNav = ({ logged }) => {
-  // state = { activeIndex: -1 }
-  // handleClick = (e, titleProps) => {
-  //   const { index } = titleProps
-  //   const { activeIndex } = this.state
-  //   const newIndex = activeIndex === index ? -1 : index
-  //   this.setState({ activeIndex: newIndex })
-  // }
-
-    // const { activeIndex } = this.state
+const MainNav = ({ parent }) => {
   return (
     <div id="mainMenu">
       <div id="mainNav">
         <Dropdown item text="menu" simple className="accordionTitle">
         <Dropdown.Menu className="accordionContent">
+          {/* { parent && <Dropdown.Item >
+            <NavLink exact to="/espace-parents/journee-type" >
+              Espace Parents
+            </NavLink>
+          </Dropdown.Item> } */}
           <Dropdown.Item >
             <NavLink exact to="/espace-parents/journee-type" >
               Espace Parents

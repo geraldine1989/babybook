@@ -33,7 +33,8 @@ const App = ({ logged }) => {
   return (
     <div>
       <HeaderLogo />
-      { logged && <MainNav /> }
+      {/* { logged && <MainNav /> } */}
+      <MainNav />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/inscription" component={InscriptionForm} />
@@ -44,9 +45,10 @@ const App = ({ logged }) => {
         <Route exact path="/espace-parents/journee-type" component={ParentsSpaceDayType} />
         <Route exact path="/espace-parents/infos" component={ParentsSpaceInfo} />
         <Route exact path="/espace-parents/contacts" component={ParentsSpaceContacts} />
+        {/* {logged && parent && <Route exact path="/espace-parents/contacts" component={ParentsSpaceContacts} />} */}
         <Route exact path="/mentions-legales" component={LegalMentions} />
         <Route exact path="/contact" component={Contact} />
-        <Route exact path="/not-found" component={NotFound} />
+        <Route component={NotFound} />
       </Switch>
       <Footer />
     </div>

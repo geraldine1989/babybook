@@ -3,6 +3,7 @@
  */
 const initialState = {
   logged: false,
+  parent: false,
   inputEmail: '',
   inputPassword: '',
 };
