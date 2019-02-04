@@ -2,27 +2,29 @@
  * Npm import
  */
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 /**
  * Local import
  */
-import MainNav from 'src/components/MainNav';
+import App from 'src/components/App';
 
 // Action Creators
 
 const mapStateToProps = state => ({
-  parent: state.loginParentsReducer.parent,
+  logged: state.loginParentsReducer.logged,
 });
 
 const mapDispatchToProps = () => ({});
 
 // Container
-const MainNavContainer = connect(
+
+const AppContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(MainNav);
+)(App);
 
 /**
  * Export
  */
-export default MainNavContainer;
+export default withRouter(AppContainer);

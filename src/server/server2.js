@@ -160,11 +160,11 @@ app.post("/inscription", (req, res) => {
 
 app.post("/loginParents", (req, res) => {
   console.log('*******************************');
-  var user = new registered_emails(req.body);
+  var user = new registered_parents(req.body);
   console.log('user : ',user);
   function findEmails() {
     return new Promise(function(resolve, reject) {
-      const returnedUser = registered_emails.find({'email': user.email});
+      const returnedUser = registered_parents.find({'email': user.email});
       resolve (returnedUser);
     })
   }
