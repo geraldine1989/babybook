@@ -18,11 +18,13 @@ import {
   handleChangeAllergiesItem,
   handleChangePhoneName,
   handleChangePhoneNumber,
+
   addMeds,
   addVaccines,
   addAllergies,
   addChild,
   addPhone,
+
   removeMeds,
   removeVaccines,
   removeAllergies,
@@ -37,7 +39,7 @@ import {
  *  - ownProps : les props passées au container
  * Pas de data à transmettre ? const mapStateToProps = null;
  */
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = state => ({
   inputFirstName: state.ParentsSpaceInfoReducer.inputFirstName,
   inputLastName: state.ParentsSpaceInfoReducer.inputLastName,
   inputBirthDate: state.ParentsSpaceInfoReducer.inputBirthDate,
@@ -60,7 +62,7 @@ const mapStateToProps = (state, ownProps) => ({
  *  - ownProps : les props passées au container
  * Pas de disptach à transmettre ? const mapDispatchToProps = {};
  */
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = dispatch => ({
   handleChangeFirstName: (text) => {
     dispatch(handleChangeFirstName(text));
   },

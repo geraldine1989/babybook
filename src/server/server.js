@@ -29,12 +29,6 @@ const registeredEmails = new mongoose.Schema({
 });
 const registered_emails = mongoose.model('registered_emails', registeredEmails);
 
-const registeredChildren = new mongoose.Schema({
-  firstname: String,
-  lastname: String,
-  birthdate: String,
-});
-const registered_children = mongoose.model('registered_children', registeredChildren);
 /**
 * les routes
 */
@@ -45,7 +39,6 @@ let regEmails = [];
 app.get('/getEmails', (req, res) => {
   function findEmails() {
     return new Promise(((resolve, reject) => {
-
       registered_emails.find((err, response) => {
         regEmails = response;
         resolve (response);
@@ -88,24 +81,107 @@ app.post('/inscription', (req, res) => {
   }
 });
 
-app.post('/postchild', (req, res) => {
-  const newUser = new registered_children(req.body);
-  console.log(regEmails);
-  console.log(`newUserEmail : ${newUser.email}`);
-  const emailExist = regEmails.filter(email => newUser.email === email);
-  console.log(emailExist);
-  if (emailExist[0]) {
-    res.send('notOk');
-  }
-  else {
-    newUser.save()
-      .then((item) => {
-        res.send('Name saved to database');
-      })
-      .catch((err) => {
-        res.status(400).send('Unable to save to database');
-      });
-  }
+/**
+ * infos parents - enfant
+ */
+
+const registeredChild = new mongoose.Schema({
+  firstname: String,
+  lastname: String,
+  birthdate: Date,
+});
+const Child = mongoose.model('child', registeredChild);
+
+app.post('/espace-parents/infos/child', (req, res) => {
+  const newChild = new Child(req.body);
+  newChild.save()
+    .then((item) => {
+      res.send('Name saved to database');
+    })
+    .catch((err) => {
+      res.status(400).send('Unable to save to database');
+    });
+});
+
+/**
+ * infos parents - santé - médicaments
+ */
+
+const registeredMed = new mongoose.Schema({
+  name: String,
+});
+const Med = mongoose.model('med', registeredMed);
+
+app.post('/espace-parents/infos/meds', (req, res) => {
+  const newMed = new Med(req.body);
+  newMed.save()
+    .then((item) => {
+      res.send('Name saved to database');
+    })
+    .catch((err) => {
+      res.status(400).send('Unable to save to database');
+    });
+});
+
+/**
+ * infos parents - santé - vaccins
+ */
+
+const registeredVaccine = new mongoose.Schema({
+  name: String,
+});
+const Vaccine = mongoose.model('vaccine', registeredVaccine);
+
+app.post('/espace-parents/infos/vaccines', (req, res) => {
+  const newVaccine = new Vaccine(req.body);
+  newVaccine.save()
+    .then((item) => {
+      res.send('Name saved to database');
+    })
+    .catch((err) => {
+      res.status(400).send('Unable to save to database');
+    });
+});
+
+/**
+ * infos parents - santé - allergies
+ */
+
+const registeredAllergie = new mongoose.Schema({
+  name: String,
+});
+const Allergie = mongoose.model('allergie', registeredAllergie);
+
+app.post('/espace-parents/infos/allergies', (req, res) => {
+  const newAllergie = new Allergie(req.body);
+  newAllergie.save()
+    .then((item) => {
+      res.send('Name saved to database');
+    })
+    .catch((err) => {
+      res.status(400).send('Unable to save to database');
+    });
+});
+
+/**
+ * infos parents - téléphones
+ */
+
+const registeredPhone = new mongoose.Schema({
+  phonename: String,
+  phonenumber: String,
+});
+const Phone = mongoose.model('phone', registeredPhone);
+
+app.post('/espace-parents/infos/phone', (req, res) => {
+  const newPhone = new Phone(req.body);
+  newPhone.save()
+    .then((item) => {
+      res.send('Name saved to database');
+    })
+    .catch((err) => {
+      res.status(400).send('Unable to save to database');
+    });
 });
 
 /**
