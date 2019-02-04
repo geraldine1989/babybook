@@ -54,6 +54,8 @@ const mydayMiddleware = store => next => (action) => {
       .catch((error) => {
         console.log(error);
       });
+      next(action);
+      break;
 
 
     /** Ajout d'une note de la nanny pour la journée */
