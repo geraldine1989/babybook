@@ -13,7 +13,7 @@ const initialState = {
   note: "Pas d'indications particulières pour cette journée",
   inputNoteNounou: '',
   nannyNote: 'Pas de notes de la part de la nounou',
-  inputNoteNounouTask: [{}],
+  inputatNannyTask: '',
 };
 
 /**
@@ -22,13 +22,17 @@ const initialState = {
 const INPUT_CHANGE_TITLE_TASK = 'INPUT_CHANGE_TITLE_TASK';
 const INPUT_CHANGE_NOTE_TASK = 'INPUT_CHANGE_NOTE_TASK';
 const INPUT_CHANGE_HOUR_TASK = 'INPUT_CHANGE_HOUR_TASK';
-const ADD_TASK = 'ADD_TASK ';
+export const ADD_TASK = 'ADD_TASK ';
 const INPUT_NOTE = 'INPUT_NOTE';
-const ADD_NOTE = 'ADD_NOTE';
+export const ADD_NOTE = 'ADD_NOTE';
 const CHANGE_INPUT_NOTE_NANY_DAY = 'CHANGE_INPUT_NOTE_NANY_DAY';
-const ADD_NOTE_DAY_NANNY = 'ADD_NOTE_DAY_NANNY';
+export const ADD_NOTE_DAY_NANNY = 'ADD_NOTE_DAY_NANNY';
 const CHANGE_INPUT_NOTE_NANY_TASK = 'CHANGE_INPUT_NOTE_NANY_TASK';
 const ADD_NOTE_TASK_NANNY = 'ADD_NOTE_TASK_NANNY';
+export const REMOVE_TASK_DAY = 'REMOVE_TASK_DAY';
+export const TASK_CHECK = 'TASK_CHECK';
+export const ADD_TASKS_RESPONSE = 'ADD_TASKS_RESPONSE';
+export const HANDLE_GET_TASKS = 'HANDLE_GET_TASKS';
 
 
 /**
@@ -75,7 +79,9 @@ const myday = (state = initialState, action = {}) => {
         name: inputTitle,
         hour: inputHourTask,
         indic: inputNoteTask,
-        note: '',
+        note: inputNoteNounouTask,
+        selctedInput: '',
+        tododone: 'list-button',
       };
 
       const newTasks = [...itemList, newTaskObject];
@@ -86,6 +92,11 @@ const myday = (state = initialState, action = {}) => {
         inputTitle: '',
         inputHourTask: '',
         inputNoteTask: '',
+      };
+
+    case HANDLE_GET_TASKS:
+      return {
+        ...state,
       };
     
     // change input note
@@ -117,12 +128,25 @@ const myday = (state = initialState, action = {}) => {
         inputNoteNounou: '',
       };
     
+      // state.contacts.filter(contact => contact.id !== action.id);
     // note task nanny
     case CHANGE_INPUT_NOTE_NANY_TASK:
-      return  {
+    console.log(action);
+      const tableautask = itemList.filter(list => list.selctedInput === action.name);
+      const modifiedTask = { ...tableautask[0] };
+      
+      modifiedTask.selctedInput = action.selctedInput;
+      const newTasksList = itemList.map((list) => {
+        if (list.id === action.id) {
+          return modifiedTask;
+        }
+        return list;
+      });
+      return {
         ...state,
-        inputNoteNounouTask: [...inputNoteNounouTask, {[action.modif]: action.modif}],
+        itemList: newTasksList,
       };
+
       /**    case ADD_NOTE_TASK_NANNY:
       const tableauListItem = itemList.filter(list => list.id === action.id);
       const selectList = { ...tableauListItem[0] };
@@ -139,6 +163,44 @@ const myday = (state = initialState, action = {}) => {
       };
      */
 
+     /** Suppresion d'un tache */
+     case REMOVE_TASK_DAY:
+     const detetedTask = state.itemList.filter(list => list.id !== action.id);
+      return {
+        ...state,
+        itemList: detetedTask,
+      };
+
+    /** Changer la classe du bouton si cheché */
+
+    case TASK_CHECK:
+      const newTaskListCheched = itemList.map((task) => {
+        if (task.id === action.id) {
+          if (task.tododone === 'list-button') {
+            return {
+              ...task,
+              tododone: 'todo-done',
+            };
+          } else {
+              return {
+                ...task,
+                tododone: 'list-button',
+              };
+            }      
+        }
+        return task;
+      });
+      return {
+        ...state,
+        itemList: newTaskListCheched,
+      };
+
+      /** Envoi pour la requete */
+    case ADD_TASKS_RESPONSE:
+      return {
+        ...state,
+        itemList: action.datas,
+      };
     default:
       return state;
   }
@@ -190,9 +252,11 @@ export const AddNoteDaySubmitNounou = note => ({
 });
 
 /** Note nanny task */
-export const handleAddNoteNoteTaskNounou = modif => ({
+export const handleAddNoteNoteTaskNounou = (id, modif) => ({
   type: CHANGE_INPUT_NOTE_NANY_TASK,
-  inputNoteNounouTask: modif,
+  modif,
+  id,
+
 });
 
 export const AddNoteNoteTaskNounou = (note, id) => ({
@@ -200,6 +264,27 @@ export const AddNoteNoteTaskNounou = (note, id) => ({
   note,
   id,
 });
+
+export const removeTaskDay = id => ({
+  type: REMOVE_TASK_DAY,
+  id,
+});
+
+export const taskCheck = id => ({
+  type: TASK_CHECK,
+  id,
+});
+
+/** Envoi pour la requete */
+export const addTaskResponse = datas => ({
+  type: ADD_TASKS_RESPONSE,
+  datas,
+});
+
+export const handleGetTasks = () => ({
+  type: HANDLE_GET_TASKS,
+});
+
 /**
  * Selectors
  */

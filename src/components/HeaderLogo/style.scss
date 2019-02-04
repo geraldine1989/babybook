@@ -1,12 +1,14 @@
 #headerLogo {
-  padding: 3.5em;
+  padding: 3em;
   background-image: url("img/nuages.jpg");
   width: 100%;
+
   & h2 {
-    color: #4c2e27;
+    color: #666E72;
     font-size: 3em;
+    font-family: 'Gloria Hallelujah', cursive;
     & .headerLogoB {
-      color: #2C1915;
+      color: #393D40;
       padding: 0;
     }
   }

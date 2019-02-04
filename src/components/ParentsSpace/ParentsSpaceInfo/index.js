@@ -175,29 +175,8 @@ const ParentsSpaceInfo = ({
     evt.preventDefault();
     addPhone(inputPhoneNumber);
   };
+  
 
-<<<<<<< HEAD
-  const handleDeleteMeds = id => () => {
-    removeMeds(id);
-  };
-
-  const handleDeleteVaccines = id => () => {
-    removeVaccines(id);
-  };
-
-  const handleDeleteAllergies = id => () => {
-    removeAllergies(id);
-  };
-
-  const handleDeleteChild = id => () => {
-    removeChild(id);
-  };
-
-  const handleDeletePhone = id => () => {
-    removePhone(id);
-  };
-=======
->>>>>>> 792436bbc55a60bb5bad9c9edf452dad443e8052
 
   return (
     <div id="main">
@@ -205,27 +184,19 @@ const ParentsSpaceInfo = ({
       <div id="modif-informations">
         <div id="modif-child">
           <h3>Enfant</h3>
-<<<<<<< HEAD
           <ul>
             {childList.map(child => (
               <li key={child.id}>{child.firstname} {child.lastname} Né(e) le {new Date(child.birthdate).toLocaleDateString('fr')}
                 <Button
                   icon
                   type="submit"
-                  onClick={handleDeleteChild(child.id)}
+                  onClick={(child.id)}
                 >
                   <Icon name="delete" />
                 </Button>
               </li>
             ))}
           </ul>
-=======
-          <div>{childList.map(child => (
-            <p key={child.id}>Prénom : {child.firstname} Nom : {child.lastname} Date de naissance : {new Date(child.birthdate).toLocaleDateString('fr')}
-            </p>
-          ))}
-          </div>
->>>>>>> 792436bbc55a60bb5bad9c9edf452dad443e8052
           <Form
             id="modif-child-form"
             onSubmit={submitChild}
@@ -265,7 +236,7 @@ const ParentsSpaceInfo = ({
                     <Button
                       icon
                       type="submit"
-                      onClick={handleDeleteMeds(meds.id)}
+                      onClick={(meds.id)}
                     >
                       <Icon name="delete" />
                     </Button>
@@ -280,7 +251,7 @@ const ParentsSpaceInfo = ({
                   <Input
                     value={inputMeds}
                     placeholder="Ajoutez un médicament"
-                    onChange={handleChangeForMedsItem}
+                    onChange={handleChangeForMedsItem}  
                   />
                 </Form.Field>
                 <Button icon type="submit">
@@ -297,7 +268,7 @@ const ParentsSpaceInfo = ({
                     <Button
                       icon
                       type="submit"
-                      onClick={handleDeleteVaccines(vaccines.id)}
+                      onClick={(vaccines.id)}
                     >
                       <Icon name="delete" />
                     </Button>
@@ -329,7 +300,7 @@ const ParentsSpaceInfo = ({
                     <Button
                       icon
                       type="submit"
-                      onClick={handleDeleteAllergies(allergies.id)}
+                      onClick={(allergies.id)}
                     >
                       <Icon name="delete" />
                     </Button>
@@ -364,7 +335,7 @@ const ParentsSpaceInfo = ({
                 <Button
                   icon
                   type="submit"
-                  onClick={handleDeletePhone(phone.id)}
+                  onClick={(phone.id)}
                 >
                   <Icon name="delete" />
                 </Button>

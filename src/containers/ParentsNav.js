@@ -8,10 +8,8 @@ import { connect } from 'react-redux';
  */
 import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
 import { handleGetContacts } from 'src/store/reducers/ParentsSpaceContactsReducer';
-<<<<<<< HEAD
 import { getChild } from 'src/store/reducers/ParentsSpaceInfoReducer';
-=======
->>>>>>> 792436bbc55a60bb5bad9c9edf452dad443e8052
+import { handleGetTasks } from 'src/store/reducers/myday';
 // Action Creators
 
 const mapStateToProps = () => ({});
@@ -20,12 +18,12 @@ const mapDispatchToProps = dispatch => ({
   handleGetContacts: () => {
     dispatch(handleGetContacts());
   },
-<<<<<<< HEAD
   getChild: () => {
     dispatch(getChild());
   },
-=======
->>>>>>> 792436bbc55a60bb5bad9c9edf452dad443e8052
+  handleGetTasks: () => {
+    dispatch(handleGetTasks());
+  },
 });
 
 // Container
