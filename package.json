@@ -1,5 +1,5 @@
 {
-  "name": "react-modele",
+  "name": "babybook",
   "devDependencies": {
     "@babel/core": "*",
     "@babel/plugin-proposal-class-properties": "*",
@@ -46,6 +46,9 @@
   "dependencies": {
     "@babel/polyfill": "*",
     "axios": "^0.18.0",
+    "luxon": "^1.10.0",
+    "moment": "^2.24.0",
+    "moments": "^0.0.2",
     "prop-types": "^15.6.2",
     "react": "*",
     "react-burger-menu": "^2.6.1",

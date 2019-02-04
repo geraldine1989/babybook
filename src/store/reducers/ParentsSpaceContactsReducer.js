@@ -14,8 +14,9 @@ const initialState = {
  */
 const INPUT_NAME_CHANGE = 'INPUT_NAME_CHANGE';
 const INPUT_EMAIL_CHANGE = 'INPUT_EMAIL_CHANGE';
-const ADD_CONTACT = 'ADD_CONTACT';
-const REMOVE_CONTACT = 'REMOVE_CONTACT';
+export const ADD_CONTACT = 'ADD_CONTACT';
+export const REMOVE_CONTACT = 'REMOVE_CONTACT';
+export const CONTACTS_RESPONSE = 'CONTACT_RESPONSE';
 /**
  * Traitements
  */
@@ -49,6 +50,7 @@ const ParentsSpaceContactsReducer = (state = initialState, action = {}) => {
       };
 
       const newContacts = [...contacts, newContactObject];
+      
 
       return {
         ...state,
@@ -57,16 +59,25 @@ const ParentsSpaceContactsReducer = (state = initialState, action = {}) => {
         inputEmail: '',
       };
 
+    case CONTACTS_RESPONSE:
+      console.log(action.datas);
+      return {
+        ...state,
+      };
+      
     case REMOVE_CONTACT:
-      const deletedContacts = contacts.filter(contact => (contact.id !== action.id));
+      const deletedContacts = state.contacts.filter(contact => contact.id !== action.id);
+      console.log(action);
       return {
         contacts: deletedContacts,
       };
+
 
     default:
       return state;
   }
 };
+
 
 /**
  * Action Creators
@@ -90,6 +101,11 @@ export const addContact = (textName, textEmail) => ({
 export const removeContact = id => ({
   type: REMOVE_CONTACT,
   id,
+});
+
+export const contactsResponse = datas => ({
+  type: CONTACTS_RESPONSE,
+  datas,
 });
 
 /**

@@ -15,7 +15,7 @@ import LoginNanny from '../LoginNanny';
 /**
  * Code
  */
-const Home = () => (
+const Home = ({ handleGetEmails }) => (
   <div id="home">
     <h2>
       Le journal de bébé pour le suivre pas à pas chaque jour.
@@ -25,21 +25,26 @@ const Home = () => (
         <Button color="teal" content="Connexion Parents" className="homeButton" />
       </NavLink>
       <NavLink exact to="/login-nanny" className="homeLink">
-        <Button color="teal" content="Connexion Nanny" className="homeButton"/>
+        <Button color="teal" content="Connexion Nanny" className="homeButton" />
       </NavLink>
       <NavLink exact to="/inscription" className="homeLink">
-        <Button color="teal" content="Inscription" className="homeButton" />
+        <Button color="teal" content="Inscription" className="homeButton" onClick={handleGetEmails} />
       </NavLink>
     </div>
     <div id="complements">
       <p>
-        Parents, organisez une journée type pour faciliter les nounous et babysitters. 
+        Parents, organisez une journée type pour faciliter les nounous et babysitters.
       </p>
-      <p> Parents et nounous, indiquez vos notes personnelles pour la journée.</p>
-      <p> Ayez accès rapidement aux informations de santé de bébé</p>
-      <p> Nounous et babysitters, simplifiez-vous la vie en rapportant la journée de bébé d'un simple clic. </p>
+      <p>
+        Parents et nounous, indiquez vos notes personnelles pour la journée.
+      </p>
+      <p>
+        Ayez accès rapidement aux informations de santé de bébé
+      </p>
+      <p>
+        Nounous et babysitters, simplifiez-vous la vie en rapportant la journée de bébé d'un simple clic.
+      </p>
     </div>
-
   </div>
 );
 

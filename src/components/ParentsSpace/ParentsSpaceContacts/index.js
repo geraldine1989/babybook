@@ -17,16 +17,16 @@ import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
 const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, handleChangeName, handleChangeEmail, removeContact, id }) => {
   const parentsContacts = [
     {
-      firstName: "Toto",
-      email: "toto@gmail.com",
+      firstName: 'Toto',
+      email: 'toto@gmail.com',
     },
     {
-      firstName: "Titi",
-      email: "titi@gmail.com",
+      firstName: 'Titi',
+      email: 'titi@gmail.com',
     },
     {
-      firstName: "Tata",
-      email: "tata@gmail.com",
+      firstName: 'Tata',
+      email: 'tata@gmail.com',
     },
   ];
 
@@ -116,8 +116,8 @@ const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, han
 
 ParentsSpaceContacts.propTypes = {
   addContact: PropTypes.func.isRequired,
-  inputName: PropTypes.string.isRequired,
-  inputEmail: PropTypes.string.isRequired,
+  inputName: PropTypes.string,
+  inputEmail: PropTypes.string,
   handleChangeName: PropTypes.func.isRequired,
   handleChangeEmail: PropTypes.func.isRequired,
   contacts: PropTypes.arrayOf(PropTypes.shape({
@@ -128,10 +128,10 @@ ParentsSpaceContacts.propTypes = {
 //   handleChangeNannyPassword: PropsTypes.func.isRequired,
 };
 
-// ParentsSpaceContacts.defaultProps = {
-//   inputName: '',
-//   inputEmail: '',
-// };
+ParentsSpaceContacts.defaultProps = {
+  inputName: '',
+  inputEmail: '',
+};
 
 
 /**

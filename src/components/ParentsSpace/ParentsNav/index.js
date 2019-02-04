@@ -10,8 +10,6 @@ import './style.scss';
 export default class ParentsNav extends Component {
   state = { activeItem: 'Modifier journée type' }
 
-
-
   render() {
     const { activeItem } = this.state;
 
@@ -48,7 +46,6 @@ export default class ParentsNav extends Component {
         />
       </Menu>
       </div>
-
     );
   }
 }

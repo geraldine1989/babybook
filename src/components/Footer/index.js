@@ -23,7 +23,7 @@ const Footer = () => (
     <NavLink exact to="contact">
       <div className="footer-elements a-elements">Contact</div>
     </NavLink>
-    <div className="footer-elements"> <Icon name='copyright outline'/> BabyBook </div>
+    <div className="footer-elements"> <Icon name="copyright outline" /> BabyBook </div>
   </div>
 );
 

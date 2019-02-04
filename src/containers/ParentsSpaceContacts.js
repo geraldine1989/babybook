@@ -9,12 +9,12 @@ import { connect } from 'react-redux';
 import ParentsSpaceContacts from 'src/components/ParentsSpace/ParentsSpaceContacts';
 
 // Action Creators
-import { inputNameChange, inputEmailChange, addContact, removeContact } from 'src/store/ParentsSpaceContactsReducer';
+import { inputNameChange, inputEmailChange, addContact, removeContact } from 'src/store/reducers/ParentsSpaceContactsReducer';
 
 const mapStatetoProps = state => ({
-  inputName: state.inputName,
-  inputEmail: state.inputEmail,
-  contacts: state.contacts,
+  inputName: state.ParentsSpaceContactsReducer.inputName,
+  inputEmail: state.ParentsSpaceContactsReducer.inputEmail,
+  contacts: state.ParentsSpaceContactsReducer.contacts,
 });
 
 const mapDispatchToProps = dispatch => ({

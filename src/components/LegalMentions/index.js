@@ -4,7 +4,7 @@ import React from 'react';
 import { Container, Header } from 'semantic-ui-react';
 
 
-// Import local 
+// Import local
 import './style.scss';
 
 const LegalMentions = () => (

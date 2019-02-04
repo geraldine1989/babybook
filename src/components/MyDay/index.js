@@ -2,6 +2,7 @@
  * Npm import
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, TextArea, Form, Icon, Input } from 'semantic-ui-react';
 
 /**
@@ -12,96 +13,110 @@ import './style.scss';
 /**
  * Code
  */
-const MyDay = () => (
+/* eslint-disable no-case-declarations */
+const MyDay = ({ list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, inputNoteNounouTask, handleAddNoteNoteTaskNounou, AddNoteNoteTaskNounou }) => {
+  
+  /** Input ajout note nounou journées */
+  const handleAddNoteDayInputNounou = (event) => {
+    const text = event.target.value;
+    handleAddNoteNoteNounou(text);
+  };
 
-  <div id="myday">
+  const handleAddNoteDaySubmitNounou = (event) => {
+    event.preventDefault();
+    AddNoteDaySubmitNounou(inputNoteNounou);
+  };
 
-    <div id="intro">
-      <div id="date">
-        <h2>Mardi 22 janvier</h2>
-        <h3 id="title">Journal de Lilou</h3>
-      </div>
-   
+  const handleAddNoteTaskInputNounou = (event) => {
+    const { name, value } = event.target;
+    const modif = {
+      [name]: value,
+    };
+    handleAddNoteNoteTaskNounou(modif);
+  };
 
-      <div className="info-day">
-        
-        <p id="note-parents">
-          Pas d'indications particulières pour cette journée.
-        </p>
-      </div>
-    </div>
+  const dayDate = new Date();
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
-    <div id="list">
 
-      <div className="task">
-          <Button className="list-button" circular icon="utensils" />
-          <div className="list-item">Biberon</div>
-          <div className="time">8:00</div>
-          <div className="note">Mettre 5 dosettes avec 150ml d'eau</div>
-          
-          <form className="add-name-input">
-            <input  placeholder="Ajouter une note..." />
-            <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
-          </form>  
-      </div>
-      <div className="note-nany"> Pas de notes de la nounou </div>
+  const handleAddNoteTaskSubmitNounou = (event, id) => {
+    const text = event.target.value;
+    AddNoteNoteTaskNounou(text, id);
+  };
 
-      <div className="task">
-          <Button className="list-button" circular icon="utensils" />
-          <div className="list-item">Biberon</div>
-          <div className="time">12:00</div>
-          <div className="note">Mettre 3 dosettes avec 90ml d'eau</div>
-          
-          <form className="add-name-input">
-            <input  placeholder="Ajouter une note..." />
-            <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
-          </form>  
-      </div>
-      <div className="note-nany"> Pas de notes de la nounou </div>
 
-      <div className="task">
-          <Button className="list-button" circular icon="utensils" />
-          <div className="list-item">Sieste</div>
-          <div className="time">13:30</div>
-          <div className="note">Aucune note particulère</div>
-          
-          <form className="add-name-input">
-            <input  placeholder="Ajouter une note..." />
-            <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
-          </form>  
-      </div>
-      <div className="note-nany"> Pas de notes de la nounou </div>
-
-      <div className="task">
-          <Button className="list-button" circular icon="utensil spoon" />
-          <div className="list-item">Goûter</div>
-          <div className="time">16:00</div>
-          <div className="note">Compote de pommes</div>
-          
-          <form className="add-name-input">
-            <input  placeholder="Ajouter une note..." />
-            <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
-          </form>  
-      </div>
-      <div className="note-nany-activ"> Plus qu'une compote restante </div>
-  </div>
-
-    <div id="info-plus">
-      <div id="particular-note">
-        <div id="particular-note-title">
-        Notes complémentaires
+  return (
+    <div id="myday">
+      <div id="intro">
+        <div id="date">
+          <h2>{dayDate.toLocaleDateString('fr-CA', options)}</h2>
+          <h3 id="title">Journal de Lilou</h3>
         </div>
-        <p>Aucune note pour journée</p>
-          
-        <Form className="form-add-note-day">
-          <Form.Field>
-            <Input icon={{ name: 'add', link: true }} placeholder='Ajoutez une note' />
-          </Form.Field>
-      </Form>        
+        <div className="info-day">    
+          <p id="note-parents">
+            <span className="note-parents">  Note des parents : </span> {note}
+          </p>
+        </div>
+      </div>
+      <div id="list">
+        {
+          list.map(task => 
+            <div
+              className="task"
+              key= {task.id}
+              id={task.id}
+            >
+              <Button className="list-button" circular icon="utensils" />
+              <div className="list-item">{task.name}</div>
+              <div className="time">{task.hour}</div>
+              <div className="note">{task.indic}</div>
+              
+              <form className="add-name-input"  /*onSubmit={handleAddNoteTaskSubmitNounou}*/>
+                <input
+                  name={task.selctedInput} 
+                  placeholder="Ajouter une note..." 
+                  value= {task.selctedInput} 
+                  onChange={handleAddNoteTaskInputNounou} />
+                <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
+              </form>  
+              <div className="note-nany"> Pas de notes de la nounou </div>
+            </div>       
+          )
+        }
+      </div>
+      <div id="info-plus">
+        <div id="particular-note">
+          <div id="particular-note-title">
+          Notes complémentaires
+          </div>
+          <p>{nannyNote}</p>
+          <Form className="form-add-note-day" onSubmit={handleAddNoteDaySubmitNounou}>   
+            <input placeholder='Ajoutez une note' value={inputNoteNounou} onChange={handleAddNoteDayInputNounou} />
+            <Button icon type="submit">
+              <Icon name="add" />
+            </Button>
+          </Form>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
+
+MyDay.propTypes = {
+  list: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  })).isRequired,
+  note: PropTypes.string.isRequired,
+  inputNoteNounou: PropTypes.string.isRequired,
+  handleAddNoteNoteNounou: PropTypes.func.isRequired,
+  AddNoteDaySubmitNounou: PropTypes.func.isRequired,
+  nannyNote: PropTypes.string.isRequired,
+  inputNoteNounouTask: PropTypes.string.isRequired,
+  handleAddNoteNoteTaskNounou: PropTypes.func.isRequired,
+  AddNoteNoteTaskNounou: PropTypes.func.isRequired,
+  
+};
+
 
 /**
  * Export
