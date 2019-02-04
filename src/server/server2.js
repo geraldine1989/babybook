@@ -26,36 +26,36 @@ mongoose.connect("mongodb://localhost:27017/babybook", { useNewUrlParser: true }
 /**
  * var
  */
-var registeredEmails = new mongoose.Schema({
+var registeredParents = new mongoose.Schema({
   email: String,
   password: String,
   accessCode: String,
   parent: Boolean,
 });
-var registered_emails = mongoose.model("registered_emails", registeredEmails);
+var registered_parents = mongoose.model("registered_parents", registeredParents);
 /**
  * les routes
  */
 /**
- * Récupération de la liste des emails enregistrés
+ * Récupération de la liste des parents enregistrés
  */
-var regEmails = [];
-app.get("/getEmails", (req, res) => {
-  function findEmails() {
+var regParents = [];
+app.get("/getParents", (req, res) => {
+  function findParents() {
     return new Promise(function(resolve, reject) {
-      registered_emails.find(function (err, response) {
-        regEmails = response;
-        resolve (regEmails);
-        return regEmails;
+      registered_parents.find(function (err, response) {
+        regParents = response;
+        resolve (regParents);
+        return regParents;
       })
     })
   }
-  findEmails()
-  .then(function(regEmails) {
-    // regEmails = response;
-    regEmails = regEmails.map(email => email.email);
-    console.log('regEmails : ', regEmails);
-    res.status('200').send();
+  findParents()
+  .then(function(regParents) {
+    // regParents = response;
+    regParents = regParents.map(email => email.email);
+    console.log('regParents : ', regParents);
+    res.status('200').send(regParents);
   })
   .catch(function(err) {
     console.log('Caught an error!', err);
@@ -65,13 +65,12 @@ app.get("/getEmails", (req, res) => {
 /**
  * inscription
  */
-console.log(regEmails);
 
 app.post("/inscription", (req, res) => {
-  var newUser = new registered_emails(req.body);
-  console.log('regEmails : ', regEmails);
+  var newUser = new registered_parents(req.body);
+  console.log('regParents : ', regParents);
   console.log('newUserEmail : ' + newUser.email);
-  const emailExist = regEmails.filter(email => newUser.email === email);
+  const emailExist = regParents.filter(email => newUser.email === email.email);
   console.log(emailExist);
     if (emailExist[0]) {
       res.send('notOk');
