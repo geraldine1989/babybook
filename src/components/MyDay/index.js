@@ -9,16 +9,18 @@ import { Button, TextArea, Form, Icon, Input } from 'semantic-ui-react';
  * Local import
  */
 import './style.scss';
+import { ID } from 'postcss-selector-parser';
 
 /**
  * Code
  */
 /* eslint-disable no-case-declarations */
-const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, handleAddNoteNoteTaskNounou, AddNoteNoteTaskNounou, taskCheck }) => {
+const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, handleChangeInputTaskNounou, AddNoteNoteTaskNounou, taskCheck }) => {
   
   /** Input ajout note nounou journées */
   const handleAddNoteDayInputNounou = (event) => {
     const text = event.target.value;
+    console.log(event);
     handleAddNoteNoteNounou(text);
   };
 
@@ -28,26 +30,26 @@ const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNou
   };
 
   /** Je veux envoyer au store une fonction qui prenne en compte l'id et le event.target.value */
-  const handleAddNoteTaskInputNounou = (id, event) => () => {
+  const handleAddNoteTaskInputNounou = (event) => {
     // console.log(event.target);
     // const { name, value } = event.target;
-    // const modif = {
+    // const modif = {ID
     //   [name]: value,
     // };
     // console.log('je suis dans le composant' + modif);
-    const modif = event.target.value;
-    console.log('element tapé ' + modif);
-    handleAddNoteNoteTaskNounou(id, modif);
+    //const modif = event.target.value;
+    const id = event.target.getAttribute('data-task-id');
+    const text = event.target.value;
+    console.log('id tapé ', id);
+    console.log('event tapé ', text);
+    handleChangeInputTaskNounou(text, id);
   };
 
   const dayDate = new Date();
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   
 
-  // const handleAddNoteTaskSubmitNounou = (event, id) => {
-  //   const text = event.target.value;
-  //   AddNoteNoteTaskNounou(text, id);
-  // };
+  
 
   /** Affichage par heure */
   const compare = (a, b) => {
@@ -101,10 +103,11 @@ const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNou
               
               <form className="add-name-input"  /*onSubmit={handleAddNoteTaskSubmitNounou}*/>
                 <input
-                  name={task.selctedInput} 
+                  //name={task.selctedInput} 
+                  data-task-id = {task.id}
                   placeholder="Ajouter une note..." 
                   value= {task.selctedInput} 
-                  onChange={handleAddNoteTaskInputNounou(task.id)} />
+                  onChange={handleAddNoteTaskInputNounou} />
                 <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
               </form>  
               <div className="note-nany"> Pas de notes de la nounou </div>

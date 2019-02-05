@@ -229,6 +229,7 @@ var addTaskFromParents = new mongoose.Schema({
     hour: String,
     indic: String,
     tododone:String,
+    selctedInput: String,
     id: String,
    });
 

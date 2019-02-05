@@ -252,18 +252,18 @@ export const AddNoteDaySubmitNounou = note => ({
 });
 
 /** Note nanny task */
-export const handleAddNoteNoteTaskNounou = (id, modif) => ({
+export const handleChangeInputTaskNounou = (text, id) => ({
   type: CHANGE_INPUT_NOTE_NANY_TASK,
-  modif,
+  text,
   id,
 
 });
 
-export const AddNoteNoteTaskNounou = (note, id) => ({
-  type: ADD_NOTE_TASK_NANNY,
-  note,
-  id,
-});
+// export const AddNoteNoteTaskNounou = (note, id) => ({
+//   type: ADD_NOTE_TASK_NANNY,
+//   note,
+//   id,
+// });
 
 export const removeTaskDay = id => ({
   type: REMOVE_TASK_DAY,

@@ -22,6 +22,7 @@ const mydayMiddleware = store => next => (action) => {
         hour: inputHourTask,
         indic: inputNoteTask,
         tododone:'list-button',
+        selctedInput: '',
         id: uuidv4(),
       };
    
