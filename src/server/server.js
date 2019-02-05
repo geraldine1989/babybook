@@ -86,6 +86,7 @@ app.post('/inscription', (req, res) => {
  */
 
 const registeredChild = new mongoose.Schema({
+  id: String,
   firstname: String,
   lastname: String,
   birthdate: Date,
