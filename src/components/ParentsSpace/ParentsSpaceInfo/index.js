@@ -175,7 +175,26 @@ const ParentsSpaceInfo = ({
     evt.preventDefault();
     addPhone(inputPhoneNumber);
   };
-  
+
+  const handleDeleteChild = id => () => {
+    removeChild(id);
+  };
+
+  const handleDeleteMeds = id => () => {
+    removeMeds(id);
+  };
+
+  const handleDeleteVaccines = id => () => {
+    removeVaccines(id);
+  };
+
+  const handleDeleteAllergies = id => () => {
+    removeAllergies(id);
+  };
+
+  const handleDeletePhone = id => () => {
+    removePhone(id);
+  };
 
 
   return (
@@ -190,7 +209,7 @@ const ParentsSpaceInfo = ({
                 <Button
                   icon
                   type="submit"
-                  onClick={(child.id)}
+                  onClick={handleDeleteChild(child.id)}
                 >
                   <Icon name="delete" />
                 </Button>
@@ -236,7 +255,7 @@ const ParentsSpaceInfo = ({
                     <Button
                       icon
                       type="submit"
-                      onClick={(meds.id)}
+                      onClick={handleDeleteMeds(meds.id)}
                     >
                       <Icon name="delete" />
                     </Button>
@@ -251,7 +270,7 @@ const ParentsSpaceInfo = ({
                   <Input
                     value={inputMeds}
                     placeholder="Ajoutez un médicament"
-                    onChange={handleChangeForMedsItem}  
+                    onChange={handleChangeForMedsItem}
                   />
                 </Form.Field>
                 <Button icon type="submit">
@@ -268,7 +287,7 @@ const ParentsSpaceInfo = ({
                     <Button
                       icon
                       type="submit"
-                      onClick={(vaccines.id)}
+                      onClick={handleDeleteVaccines(vaccines.id)}
                     >
                       <Icon name="delete" />
                     </Button>
@@ -300,7 +319,7 @@ const ParentsSpaceInfo = ({
                     <Button
                       icon
                       type="submit"
-                      onClick={(allergies.id)}
+                      onClick={handleDeleteAllergies(allergies.id)}
                     >
                       <Icon name="delete" />
                     </Button>
@@ -335,7 +354,7 @@ const ParentsSpaceInfo = ({
                 <Button
                   icon
                   type="submit"
-                  onClick={(phone.id)}
+                  onClick={handleDeletePhone(phone.id)}
                 >
                   <Icon name="delete" />
                 </Button>
