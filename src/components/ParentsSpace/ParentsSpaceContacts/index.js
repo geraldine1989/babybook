@@ -15,20 +15,6 @@ import ParentsNav from 'src/containers/ParentsNav';
  * Code
  */
 const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, handleChangeName, handleChangeEmail, removeContact }) => {
-  const parentsContacts = [
-    {
-      firstName: 'Toto',
-      email: 'toto@gmail.com',
-    },
-    {
-      firstName: 'Titi',
-      email: 'titi@gmail.com',
-    },
-    {
-      firstName: 'Tata',
-      email: 'tata@gmail.com',
-    },
-  ];
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -49,7 +35,7 @@ const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, han
     ...contacts,
   ];
 
-  const handleDeleteContact = (id) => () => {
+  const handleDeleteContact = id => () => {
     removeContact(id);
   };
 

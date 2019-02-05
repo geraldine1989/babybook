@@ -18,6 +18,7 @@ export const ADD_CONTACT = 'ADD_CONTACT';
 export const REMOVE_CONTACT = 'REMOVE_CONTACT';
 export const CONTACTS_RESPONSE = 'CONTACTS_RESPONSE';
 export const HANDLE_GET_CONTACTS = 'HANDLE_GET_CONTACTS';
+
 /**
  * Traitements
  */
@@ -42,7 +43,7 @@ const ParentsSpaceContactsReducer = (state = initialState, action = {}) => {
         ...state,
         inputEmail: action.inputEmail,
       };
-    /* eslint-disable no-case-declarations */
+      /* eslint-disable no-case-declarations */
 
     case HANDLE_GET_CONTACTS:
       return {
@@ -77,9 +78,9 @@ const ParentsSpaceContactsReducer = (state = initialState, action = {}) => {
       const deletedContacts = state.contacts.filter(contact => contact.id !== action.id);
       console.log(action);
       return {
+        ...state,
         contacts: deletedContacts,
       };
-
 
     default:
       return state;

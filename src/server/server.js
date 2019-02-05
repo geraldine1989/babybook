@@ -2,9 +2,9 @@ var express = require("express");
 var app = express();
 var port = 3000;
 var bodyParser = require('body-parser');
-//connect-mongo
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
+// connect-mongo
+// const session = require('express-session');
+// const MongoStore = require('connect-mongo')(session);
 // email validator
 var validator = require("email-validator");
 
@@ -24,9 +24,9 @@ mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/babybook", { useNewUrlParser: true });
 // const connection = mongoose.createConnection("mongodb://localhost:27017/babybook", { useNewUrlParser: true });
 
-app.use(session({
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
-}));
+// app.use(session({
+//   store: new MongoStore({ mongooseConnection: mongoose.connection })
+// }));
 
 /**
  * var
@@ -486,18 +486,7 @@ app.get("/espace-parents/contacts", (req, res) => {
  */
 app.post("/espace-parents/contacts/add-contact", (req, res) => {
   var NewContact = new registered_contacts(req.body);
-  
-// Enregistrement du nouveau contact
-  NewContact.save()
-  .then(item => {
-    // res.send("Name saved in db");
-  })
-  .catch(err => {
-    res.status(400).send("Unable to save in db");
-  });
-
-// Chargement de la nouvelle liste
-  function findRegisteredContacts() {
+    function findRegisteredContacts() {
     return new Promise(function(resolve, reject) {
       registered_contacts.find(function (err, response) {
         regContacts = response;
@@ -506,13 +495,43 @@ app.post("/espace-parents/contacts/add-contact", (req, res) => {
       })
     })
   }
-  findRegisteredContacts()
-  .then(function(regContacts) {
-    res.status('200').send(regContacts);
-  })
-  .catch(function(err) {
-    console.log('Caught an error!', err);
-  });
+// Enregistrement du nouveau contact
+  NewContact.save()
+    .then(item => {
+      // Chargement de la nouvelle liste
+      findRegisteredContacts()
+        .then(function(regContacts) {
+          res.status('200').send(regContacts);
+        })
+        .catch(function(err) {
+          console.log('Caught an error!', err);
+        });
+    })
+    .catch(err => {
+      res.status(400).send("Unable to save in db");
+    });
+});
+
+// Supprimer un contact
+
+app.post("/espace-parents/contacts/remove-contact", (req, res) => {
+  var DeletdContact = req.body;
+  console.log('coucou je veux être supprimé à tout jamais');
+  console.log(DeletdContact);
+  console.log(registered_contacts(req)); 
+
+
+
+  registered_contacts.deleteOne({ 'id': [DeletdContact] }, function (err) {});
+    // .then(item => {
+    //   // res.send("Name saved in db");
+    //   console.log('pas statut deleteOne400');
+      
+    // })
+    // .catch(err => {
+    //   res.status(400).send("Unable to save in db");
+    // });
+  // registered_contacts.findById(DeletdContact, function (err, registered_contacts) {});
 });
 
 /**
