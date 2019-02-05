@@ -220,66 +220,7 @@ app.post('/espace-parents/infos/phone', (req, res) => {
     .catch((err) => {
       res.status(400).send('Unable to save to database');
     });
-var registeredEmails = new mongoose.Schema({
- email: String,
- password: String,
- accessCode: String
 });
-var registered_emails = mongoose.model("registered_emails", registeredEmails);
-/**
-* les routes
-*/
-/**
-* Récupération de la liste de emails enregistrés
-*/
-var regEmails = [];
-app.get("/getEmails", (req, res) => {
- function findEmails() {
-   return new Promise(function(resolve, reject) {
-
-     registered_emails.find(function (err, response) {
-       regEmails = response;
-       resolve (response);
-       return response;
-     })
-   })
- }
- findEmails()
- .then(function(response) {
-   regEmails = response;
-   regEmails = regEmails.map(email => email.email);
- })
- .catch(function(err) {
-   console.log('Caught an error!', err);
- });
-})
-
-/**
-* inscription
-*/
-console.log(regEmails);
-
-app.post("/inscription", (req, res) => {
- var newUser = new registered_emails(req.body);
- console.log(regEmails);
- console.log('newUserEmail : ' + newUser.email);
- const emailExist = regEmails.filter(email => newUser.email === email)
- console.log(emailExist);
-   if (emailExist[0]) {
-     res.send('notOk');
-   } else {
-
-     newUser.save()
-     .then(item => {
-       res.send("Name saved to database");
-     })
-     .catch(err => {
-       res.status(400).send("Unable to save to database");
-     });
-   }
-
-});
-
 
 /** Ajout d'une tache */
 
