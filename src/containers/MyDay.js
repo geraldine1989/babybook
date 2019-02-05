@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import MyDay from 'src/components/MyDay';
 
 
-import { handleAddNoteNoteNounou, AddNoteDaySubmitNounou, handleAddNoteNoteTaskNounou, AddNoteNoteTaskNounou } from 'src/store/reducers/myday';
-
+import { handleAddNoteNoteNounou, AddNoteDaySubmitNounou, handleAddNoteNoteTaskNounou, AddNoteNoteTaskNounou, taskCheck } from 'src/store/reducers/myday';
+import { } from 'src/store/reducers/ParentsSpaceInfoReducer';
 // Fonction pour mapper le state du store vers les props
 
 
@@ -13,7 +13,8 @@ const mapStateToProps = state => ({
   note: state.myday.note,
   nannyNote: state.myday.nannyNote,
   inputNoteNounou: state.myday.inputNoteNounou,
-  inputNoteNounouTask: state.myday.inputNoteNounouTask,
+  childList: state.ParentsSpaceInfoReducer.childList,
+  
   
 
 });
@@ -29,12 +30,16 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(AddNoteDaySubmitNounou(note));
   },
 
-  handleAddNoteNoteTaskNounou: (modif) => {
-    dispatch(handleAddNoteNoteTaskNounou(modif));
+  handleAddNoteNoteTaskNounou: (modif, id) => {
+    dispatch(handleAddNoteNoteTaskNounou(modif, id));
   },
 
   AddNoteNoteTaskNounou: (note, id) => {
     dispatch(AddNoteNoteTaskNounou(note, id));
+  },
+
+  taskCheck: (id) => {
+    dispatch(taskCheck(id));
   },
 });
 

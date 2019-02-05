@@ -1,6 +1,7 @@
 #mainMenu{
     width: 100%;
     background-color: #EEE9E6;
+    margin-bottom: 0em;
 }
 
 #mainNav {
@@ -14,13 +15,14 @@
     font-weight: 700;
     font-size: 1.5em;
     padding-bottom: .5em;
-    color:#2C1915;
+    color: #393D40;
     text-transform: uppercase;
+    
 }
 
 .accordionContent {
     & a {
-        color: #2C1915;
+        color: #393D40;
         list-style: none;
         padding: 1em;
         text-transform: uppercase;
@@ -29,7 +31,7 @@
     }
 
     & a:hover {
-        color: #4c2e27;
+        color: black;
         
     }
 }

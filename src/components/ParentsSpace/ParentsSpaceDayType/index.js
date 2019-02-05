@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
  * Local import
  */
 import './style.scss';
-import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
+import ParentsNav from 'src/containers/ParentsNav';
 
 /**
  * Code
@@ -49,7 +49,7 @@ const handleAddItemInList = (evt) => {
   addDayType(formDatas);
 };
 
-const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inputTitle, handleChangeNoteTask, inputNoteTask, handleChangeHourTask, inputHourTask, addTask, list, handleAddNoteDay, inputNote, addNoteDayFromParents }) => {
+const ParentsSpaceDayType = ({ removeTaskDay, handleChangeTitleDay, inputTitle, handleChangeNoteTask, inputNoteTask, handleChangeHourTask, inputHourTask, addTask, list, handleAddNoteDay, inputNote, addNoteDayFromParents, id }) => {
 
   /** Form ajout tache journee type */
   const handleChangeTitle = (event) => {
@@ -86,19 +86,38 @@ const ParentsSpaceDayType = ({ handleDeleteMyDayItem, handleChangeTitleDay, inpu
     addNoteDayFromParents(inputNote);
   };
 
+
+
+  const handleDeleteMyDayItem = (id) => () => {
+    removeTaskDay(id);
+  };
+
+
+  const compare = (a, b) => {
+    if (a.hour < b.hour)
+      return -1;
+    if (a.hour > b.hour)
+      return 1;
+    return 0;
+  };
+  const orderedTasks = [
+    ...list.sort(compare),
+  ]; 
+  
   return (
     <div>
       <ParentsNav />
       <div id="day-type">
         <ul>
           {
-            list.map((task) => 
+            orderedTasks.map((task) => 
               <li key={task.id}>
                 <Icon name="smile outline" />
                 <span>{task.name}</span>
                 <span>{task.hour}</span>
                 <span>{task.indic}</span>
-                <Icon name="delete" onClick={handleDeleteMyDayItem} />
+                <Icon name="delete" onClick={handleDeleteMyDayItem(task.id)} />
+                
               </li>
               
             )
@@ -166,6 +185,7 @@ ParentsSpaceDayType.propTypes = {
   handleAddNoteDay: PropTypes.func.isRequired,
   inputNote: PropTypes.string.isRequired,
   addNoteDayFromParents: PropTypes.func.isRequired,
+  removeTaskDay: PropTypes.func.isRequired,
 };
 
 /**

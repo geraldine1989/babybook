@@ -6,7 +6,7 @@ import { Form, Button, Icon, Input } from 'semantic-ui-react';
 /* Local imports */
 import './style.scss';
 import 'semantic-ui-css/semantic.min.css';
-import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
+import ParentsNav from 'src/containers/ParentsNav';
 
 /* Test Mongo DB */
 
@@ -105,7 +105,11 @@ const ParentsSpaceInfo = ({
   allergiesList,
   childList,
   phoneList,
-
+  removeMeds,
+  removeVaccines,
+  removeAllergies,
+  removeChild,
+  removePhone,
 }) => {
   const handleChangeForFirstName = (evt) => {
     const text = evt.target.value;
@@ -143,8 +147,8 @@ const ParentsSpaceInfo = ({
   };
 
   const handleChangeForPhoneNumber = (evt) => {
-    const number = evt.target.value;
-    handleChangePhoneNumber(number);
+    const tel = evt.target.value;
+    handleChangePhoneNumber(tel);
   };
 
   const submitChild = (evt) => {
@@ -171,20 +175,30 @@ const ParentsSpaceInfo = ({
     evt.preventDefault();
     addPhone(inputPhoneNumber);
   };
+  
+
 
   return (
-    <div>
+    <div id="main">
       <ParentsNav />
       <div id="modif-informations">
         <div id="modif-child">
           <h3>Enfant</h3>
-          <div>{childList.map(child => (
-            <p key={child.id}>Prénom : {child.firstname} Nom : {child.lastname} Date de naissance : {child.birthdate}
-            </p>
-          ))}
-          </div>
+          <ul>
+            {childList.map(child => (
+              <li key={child.id}>{child.firstname} {child.lastname} Né(e) le {new Date(child.birthdate).toLocaleDateString('fr')}
+                <Button
+                  icon
+                  type="submit"
+                  onClick={(child.id)}
+                >
+                  <Icon name="delete" />
+                </Button>
+              </li>
+            ))}
+          </ul>
           <Form
-            id="modif-child-name"
+            id="modif-child-form"
             onSubmit={submitChild}
           >
             <Form.Input
@@ -210,25 +224,25 @@ const ParentsSpaceInfo = ({
           </Form>
         </div>
 
+
         <div id="modif-health">
           <h3>Santé</h3>
           <div id="cards">
             <div className="cards-item">
-              <div className="header">Traitement en cours</div>
+              <div className="header">Médicaments</div>
               <div className="delete-item">
                 {medsList.map(meds => (
                   <li key={meds.id}>{meds.name}
                     <Button
                       icon
                       type="submit"
-
+                      onClick={(meds.id)}
                     >
                       <Icon name="delete" />
                     </Button>
                   </li>
                 ))}
               </div>
-
               <Form
                 className="add-sante"
                 onSubmit={submitMeds}
@@ -236,31 +250,31 @@ const ParentsSpaceInfo = ({
                 <Form.Field>
                   <Input
                     value={inputMeds}
-                    icon={{ name: 'add', link: true }}
                     placeholder="Ajoutez un médicament"
-                    onChange={handleChangeForMedsItem}
+                    onChange={handleChangeForMedsItem}  
                   />
                 </Form.Field>
+                <Button icon type="submit">
+                  <Icon name="add" />
+                </Button>
               </Form>
             </div>
 
             <div className="cards-item">
               <div className="header">Vaccins</div>
-
               <div className="delete-item">
                 {vaccinesList.map(vaccines => (
                   <li key={vaccines.id}>{vaccines.name}
                     <Button
                       icon
                       type="submit"
-
+                      onClick={(vaccines.id)}
                     >
                       <Icon name="delete" />
                     </Button>
                   </li>
                 ))}
               </div>
-
               <Form
                 className="add-sante"
                 onSubmit={submitVaccines}
@@ -268,31 +282,31 @@ const ParentsSpaceInfo = ({
                 <Form.Field>
                   <Input
                     value={inputVaccines}
-                    icon={{ name: 'add', link: true }}
                     placeholder="Ajoutez le vaccin et sa date"
                     onChange={handleChangeForVaccinesItem}
                   />
                 </Form.Field>
+                <Button icon type="submit">
+                  <Icon name="add" />
+                </Button>
               </Form>
             </div>
 
             <div className="cards-item">
               <div className="header">Allergies</div>
-
               <div className="delete-item">
                 {allergiesList.map(allergies => (
                   <li key={allergies.id}>{allergies.name}
                     <Button
                       icon
                       type="submit"
-
+                      onClick={(allergies.id)}
                     >
                       <Icon name="delete" />
                     </Button>
                   </li>
                 ))}
               </div>
-
               <Form
                 className="add-sante"
                 onSubmit={submitAllergies}
@@ -300,16 +314,18 @@ const ParentsSpaceInfo = ({
                 <Form.Field>
                   <Input
                     value={inputAllergies}
-                    icon={{ name: 'add', link: true }}
                     placeholder="Ajoutez un allergene"
                     onChange={handleChangeForAllergiesItem}
                   />
                 </Form.Field>
+                <Button icon type="submit">
+                  <Icon name="add" />
+                </Button>
               </Form>
-
             </div>
           </div>
         </div>
+
 
         <div id="modif-numeros">
           <h3>Numéros utiles</h3>
@@ -319,35 +335,33 @@ const ParentsSpaceInfo = ({
                 <Button
                   icon
                   type="submit"
-
+                  onClick={(phone.id)}
                 >
                   <Icon name="delete" />
                 </Button>
               </li>
             ))}
           </ul>
-          <div id="modif-numeros-div">
-            <Form
-              id="child-contact"
-              onSubmit={submitPhone}
-            >
-              <Form.Input
-                value={inputPhoneName}
-                type="text"
-                placeholder="Nom et prénom"
-                onChange={handleChangeForPhoneName}
-              />
-              <Form.Input
-                value={inputPhoneNumber}
-                type="number"
-                placeholder="Numéro de téléphone"
-                onChange={handleChangeForPhoneNumber}
-              />
-              <Button icon type="submit">
-                <Icon name="add" />
-              </Button>
-            </Form>
-          </div>
+          <Form
+            id="modif-numeros-form"
+            onSubmit={submitPhone}
+          >
+            <Form.Input
+              value={inputPhoneName}
+              type="text"
+              placeholder="Nom et prénom"
+              onChange={handleChangeForPhoneName}
+            />
+            <Form.Input
+              value={inputPhoneNumber}
+              type="tel"
+              placeholder="Numéro de téléphone"
+              onChange={handleChangeForPhoneNumber}
+            />
+            <Button icon type="submit">
+              <Icon name="add" />
+            </Button>
+          </Form>
         </div>
       </div>
     </div>
@@ -391,6 +405,11 @@ ParentsSpaceInfo.propTypes = {
   phoneList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
   })).isRequired,
+  removeMeds: PropTypes.func.isRequired,
+  removeVaccines: PropTypes.func.isRequired,
+  removeAllergies: PropTypes.func.isRequired,
+  removeChild: PropTypes.func.isRequired,
+  removePhone: PropTypes.func.isRequired,
 };
 
 export default ParentsSpaceInfo;

@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
  */
 import ParentsSpaceInfo from 'src/components/ParentsSpace/ParentsSpaceInfo';
 
+
 // Action Creators
 import {
   handleChangeFirstName,
@@ -18,11 +19,18 @@ import {
   handleChangeAllergiesItem,
   handleChangePhoneName,
   handleChangePhoneNumber,
+
   addMeds,
   addVaccines,
   addAllergies,
   addChild,
   addPhone,
+
+  removeMeds,
+  removeVaccines,
+  removeAllergies,
+  removeChild,
+  removePhone,
 } from 'src/store/reducers/ParentsSpaceInfoReducer';
 
 /* === State (données) ===
@@ -32,7 +40,7 @@ import {
  *  - ownProps : les props passées au container
  * Pas de data à transmettre ? const mapStateToProps = null;
  */
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = state => ({
   inputFirstName: state.ParentsSpaceInfoReducer.inputFirstName,
   inputLastName: state.ParentsSpaceInfoReducer.inputLastName,
   inputBirthDate: state.ParentsSpaceInfoReducer.inputBirthDate,
@@ -55,7 +63,7 @@ const mapStateToProps = (state, ownProps) => ({
  *  - ownProps : les props passées au container
  * Pas de disptach à transmettre ? const mapDispatchToProps = {};
  */
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = dispatch => ({
   handleChangeFirstName: (text) => {
     dispatch(handleChangeFirstName(text));
   },
@@ -77,8 +85,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   handleChangePhoneName: (text) => {
     dispatch(handleChangePhoneName(text));
   },
-  handleChangePhoneNumber: (number) => {
-    dispatch(handleChangePhoneNumber(number));
+  handleChangePhoneNumber: (tel) => {
+    dispatch(handleChangePhoneNumber(tel));
   },
   addMeds: (medsList) => {
     dispatch(addMeds(medsList));
@@ -94,6 +102,21 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   addPhone: (phoneList) => {
     dispatch(addPhone(phoneList));
+  },
+  removeMeds: (id) => {
+    dispatch(removeMeds(id));
+  },
+  removeVaccines: (id) => {
+    dispatch(removeVaccines(id));
+  },
+  removeAllergies: (id) => {
+    dispatch(removeAllergies(id));
+  },
+  removeChild: (id) => {
+    dispatch(removeChild(id));
+  },
+  removePhone: (id) => {
+    dispatch(removePhone(id));
   },
 });
 

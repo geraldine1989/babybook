@@ -2,6 +2,7 @@
  * Npm import
  */
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 /**
  * Local import
@@ -30,4 +31,4 @@ const MainNavContainer = connect(
 /**
  * Export
  */
-export default MainNavContainer;
+export default withRouter(MainNavContainer);
