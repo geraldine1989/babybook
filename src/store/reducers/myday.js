@@ -28,7 +28,7 @@ export const ADD_NOTE = 'ADD_NOTE';
 const CHANGE_INPUT_NOTE_NANY_DAY = 'CHANGE_INPUT_NOTE_NANY_DAY';
 export const ADD_NOTE_DAY_NANNY = 'ADD_NOTE_DAY_NANNY';
 const CHANGE_INPUT_NOTE_NANY_TASK = 'CHANGE_INPUT_NOTE_NANY_TASK';
-const ADD_NOTE_TASK_NANNY = 'ADD_NOTE_TASK_NANNY';
+// const ADD_NOTE_TASK_NANNY = 'ADD_NOTE_TASK_NANNY';
 export const REMOVE_TASK_DAY = 'REMOVE_TASK_DAY';
 export const TASK_CHECK = 'TASK_CHECK';
 export const ADD_TASKS_RESPONSE = 'ADD_TASKS_RESPONSE';
@@ -132,10 +132,12 @@ const myday = (state = initialState, action = {}) => {
     // note task nanny
     case CHANGE_INPUT_NOTE_NANY_TASK:
     console.log(action);
-      const tableautask = itemList.filter(list => list.selctedInput === action.name);
+      // const tableautask = itemList.filter(list => list.selctedInput === action.name);
+      const tableautask = itemList.filter(list => list.id === action.id);
       const modifiedTask = { ...tableautask[0] };
-      
-      modifiedTask.selctedInput = action.selctedInput;
+      console.log('tache modifiee', modifiedTask);
+      // modifiedTask.selctedInput = action.selctedInput;
+      modifiedTask.selctedInput = action.text;
       const newTasksList = itemList.map((list) => {
         if (list.id === action.id) {
           return modifiedTask;

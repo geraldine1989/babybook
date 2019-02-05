@@ -15,7 +15,7 @@ import { ID } from 'postcss-selector-parser';
  * Code
  */
 /* eslint-disable no-case-declarations */
-const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, handleChangeInputTaskNounou, AddNoteNoteTaskNounou, taskCheck }) => {
+const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, handleChangeInputTaskNounou, taskCheck }) => {
   
   /** Input ajout note nounou journées */
   const handleAddNoteDayInputNounou = (event) => {
@@ -103,7 +103,7 @@ const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNou
               
               <form className="add-name-input"  /*onSubmit={handleAddNoteTaskSubmitNounou}*/>
                 <input
-                  //name={task.selctedInput} 
+                  name={task.selctedInput} 
                   data-task-id = {task.id}
                   placeholder="Ajouter une note..." 
                   value= {task.selctedInput} 
@@ -142,8 +142,7 @@ MyDay.propTypes = {
   handleAddNoteNoteNounou: PropTypes.func.isRequired,
   AddNoteDaySubmitNounou: PropTypes.func.isRequired,
   nannyNote: PropTypes.string.isRequired,
-  handleAddNoteNoteTaskNounou: PropTypes.func.isRequired,
-  AddNoteNoteTaskNounou: PropTypes.func.isRequired,
+  handleChangeInputTaskNounou: PropTypes.func.isRequired,
   taskCheck: PropTypes.func.isRequired,
   
 };
