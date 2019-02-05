@@ -79,7 +79,7 @@ const myday = (state = initialState, action = {}) => {
         name: inputTitle,
         hour: inputHourTask,
         indic: inputNoteTask,
-        note: 'pas de notes de la part de la nounou',
+        note: '',
         selctedInput: '',
         tododone: 'list-button',
       };
@@ -152,6 +152,7 @@ const myday = (state = initialState, action = {}) => {
       const selectList = { ...tableauListItem[0] };
       // selectList.note = itemList.selctedInput;
       selectList.note = action.text;
+      selectList.selctedInput = '';
       console.log('mon action : ', action);
       console.log('note selectionnee : ', selectList);
       console.log('liste recuperee de selectInput', itemList);

@@ -113,7 +113,7 @@ const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNou
                   <Icon name="add" />
                 </Button> 
               </form>  
-              <div className="note-nany"> Pas de notes de la nounou </div>
+              <div className="note-nany"> {task.note} </div>
             </div>       
           )
         }
@@ -148,10 +148,12 @@ MyDay.propTypes = {
   handleChangeInputTaskNounou: PropTypes.func.isRequired,
   taskCheck: PropTypes.func.isRequired,
   addNoteTaskSubmitNounou: PropTypes.func.isRequired,
-  selctedInput: PropTypes.string.isRequired,
+  selctedInput: PropTypes.string,
   
 };
-
+MyDay.defaultProps = {
+  selctedInput: '',
+};
 
 /**
  * Export

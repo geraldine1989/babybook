@@ -14,11 +14,6 @@ const mapStateToProps = state => ({
   nannyNote: state.myday.nannyNote,
   inputNoteNounou: state.myday.inputNoteNounou,
   childList: state.ParentsSpaceInfoReducer.childList,
-  //selctedInput: state.myday.itemList.selctedInput,
-
-  
-  
-
 });
 // Fonction pour mapper des dipatch d'action vers les props
 
