@@ -1,214 +1,206 @@
-var express = require('express');
+var express = require("express");
 var app = express();
-const bodyParser = require('body-parser');
-var multer = require('multer'); // v1.0.5
-var upload = multer(); // for parsing multipart/form-data
-const port = 3000;
-const baseUrl = "mongodb://localhost:27017/babybook";
-const MongoClient = require('mongodb').MongoClient;
-var registeredEmails = [];
-var hash = require('hash.js');
+var port = 3000;
+var bodyParser = require('body-parser');
+//connect-mongo
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+// email validator
+var validator = require("email-validator");
 
-/**
- * Express
- */
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', '*'); // remplacer '*' par l'adresse du site en prod
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('Access-Control-Allow-Methods', 'GET, POST');
+  // res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
 
+var mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://localhost:27017/babybook", { useNewUrlParser: true });
+// const connection = mongoose.createConnection("mongodb://localhost:27017/babybook", { useNewUrlParser: true });
+
+app.use(session({
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
+
 /**
- * Récupération de la BDD
+ * var
  */
-app.get('/findAll', (req, res) => {
-  
-  function findAll() {
+var registeredParents = new mongoose.Schema({
+  email: String,
+  password: String,
+  accessCode: String,
+  parent: Boolean,
+});
+var registered_parents = mongoose.model("registered_parents", registeredParents);
+/**
+ * les routes
+ */
+/**
+ * Récupération de la liste des parents enregistrés
+ */
+var regParents = [];
+app.get("/getParents", (req, res) => {
+  function findParents() {
     return new Promise(function(resolve, reject) {
-      
-      // Connection
-      MongoClient.connect(baseUrl, { useNewUrlParser: true }, function (error, db) {
-        if (error) throw error;
-        const database = db.db('babybook');
-
-        // requête
-        database.collection("parents").find().toArray(function (error, results) {
-          if (error) throw error;
-          resolve (results);
-          return results;
-        });
-
-        // requête adday
-        database.collection("addday").find().toArray(function (error, results) {
-          if (error) throw error;
-          resolve (results);
-          return results;
-        });
-
-      });
-    }); 
-  }
-  // appel à la fonction
-  findAll()
-    .then(function(value) {
-      console.log(value);
-      res.status(200);
-      res.send(value);
+      registered_parents.find(function (err, response) {
+        regParents = response;
+        resolve (regParents);
+        return regParents;
+      })
     })
-    .catch(function(err) {
-      console.log('Caught an error!', err);
-    });
+  }
+  findParents()
+  .then(function(regParents) {
+    // regParents = response;
+    regParents = regParents.map(email => email.email);
+    console.log('regParents : ', regParents);
+    res.status('200').send(regParents);
+  })
+  .catch(function(err) {
+    console.log('Caught an error!', err);
+  });
 })
 
 /**
- * Récupération des emails inscrits
+ * inscription
  */
-app.get('/getEmails', (req, res, next) => {
-  // récupération depuis la base de la liste de emails enregistrés
-  function getRegisteredEmails() {
-    return new Promise(function(resolve, reject) {
-      //connection
-      MongoClient.connect(baseUrl, { useNewUrlParser: true }, function (error, db) {
-        if (error) throw error;
-        const database = db.db('babybook');
 
-        database.collection('registeredEmails').find().toArray(function(error, results) {
-          if (error) throw error;
-          result = results[0];
-          resolve (result);
-          return result;
-        });
-      });
-    });
-  }
-  getRegisteredEmails()
-    .then(function(response) {
-      // const validity = checkEmail(value) ? "L'email existe déjà" : "L'email est valide";
-      registeredEmails = response;
-      // res.send(validity);
-      console.log(registeredEmails);
-      res.send();
-    })
-    .catch(function(err) {
-      console.log('Caught an error!', err);
-    });
-
-// const checkEmail = (value) => {
-//   for (var key in value) {
-//     // comparaison avec le mail envoyé en requête
-//     if (value[key] === emailSend.email) {
-//       return true;
-//     }
-//   }
-//   return false;
-// }
-})
-
-/**
- * Inscription
- */
-app.post('/inscription', upload.array(), (req, res, next) => {
-  const datas = req.body;
-  console.log(datas);
-  for (key in registeredEmails) {
-    if (datas.email === registeredEmails[key]) {
-      console.log('email existant');
-      const message = "Cet email est déjà utilisé.";
-      res.send(message)
+app.post("/inscription", (req, res) => {
+  var newUser = new registered_parents(req.body);
+  console.log('regParents : ', regParents);
+  console.log('newUserEmail : ' + newUser.email);
+  const emailExist = regParents.filter(email => newUser.email === email.email);
+  console.log(emailExist);
+    if (emailExist[0]) {
+      res.send('notOk');
     } else {
-    function sendDatas() {
-      return new Promise(function(resolve, reject) {
-        //connection
-        MongoClient.connect(baseUrl, { useNewUrlParser: true }, function (error, db) {
-          if (error) throw error;
-          const database = db.db('babybook');
-          
-          // database.collection('parents').insertOne(datas);
-          database.collection('registeredEmails').insertOne(datas);
 
-        });
+      newUser.save()
+      .then(item => {
+        /**
+         * Send email
+         */
+        // "use strict";
+        // const nodemailer = require("nodemailer");
+
+        // // async..await is not allowed in global scope, must use a wrapper
+        // async function sendEmail(){
+        //   // create reusable transporter object using the default SMTP transport
+        //   const transporter = nodemailer.createTransport({
+        //     host: "smtp.gmail.com",
+        //     port: 465,
+        //     secure: true, // true for 465, false for other ports
+        //     auth: {
+        //       user: 'spionit@gmail.com',
+        //       pass: 'ttrchecpoihufqcs'
+        //     }
+        //   });
+
+        //   // setup email data
+        //   const mailOptions = {
+        //     from: '"Babybook"', // sender address
+        //     to: `${newUser.email}`, // list of receivers
+        //     subject: "Bienvenue sur Babybook", // Subject line
+        //     text: "Merci pour votre inscription à Babybook", // plain text body
+        //     html: "<b>Alors ça c'est top ! :)</b>" // html body
+        //   };
+
+        //   // send mail with defined transport object
+        //   const info = await transporter.sendMail(mailOptions)
+
+        //   console.log("Message sent: %s", info.messageId);
+        // }
+
+        // sendEmail().catch(console.error);
+        // ********************** ^^
+
+        res.send("Name saved to database");
+      })
+      .catch(err => {
+        res.status(400).send("Unable to save to database");
       });
     }
-    sendDatas()
-    .then(function() {
-      // console.log(response);
-      res.send("inscription ok");
-    })
-    .catch(function(err) {
-      console.log('Caught an error!', err);
-    });
-  }
-  }
-})
-   
+  
+});
 
 /**
- * Login Parents
+ * login Parents
  */
-app.post('/loginParents', upload.array(), (req, res, next) => {
-  const datas = req.body;
-  console.log(datas);
-  function sendDatas() {
-    return new Promise(function(resolve, reject) {
-      //connection
-      MongoClient.connect(baseUrl, { useNewUrlParser: true }, function (error, db) {
-        if (error) throw error;
-        const database = db.db('babybook');
+// var regEmails = [];
+// app.post("/loginParents", (req, res) => {
+//   var user = new registered_emails(req.body);
+//   console.log(user);
+//   function findEmails() {
+//     return new Promise(function(resolve, reject) {
+//       registered_emails.find(function (err, response) {
+//         regEmails = response;
+//         resolve (regEmails);
+//         return regEmails;
+//       })
+//     })
+//   }
+//   findEmails()
+//   .then(function(regEmails) {
+//     console.log(regEmails);
+//     const emailExist = regEmails.filter(email => user.email === email);
+//     if (emailExist) {
+//       if (user.password === '') {
+//         //todo
+//         res.send('Connexion ok');
+//       }
+//     } else {
+//       res.send('Erreur de connexion')
+//     }
+//   })
+//   .catch(function(err) {
+//     res.status(400).send('Login impossible', err);
+//   });
+// })
 
-        database.collection("parents").find({'email': datas.email}).toArray(function (error, results) {
-          if (error) throw error;
-          resolve (results);
-          return results;
-        });
-      });
-    });
+app.post("/loginParents", (req, res) => {
+  console.log('*******************************');
+  var user = new registered_parents(req.body);
+  console.log('user : ',user);
+  function findEmails() {
+    return new Promise(function(resolve, reject) {
+      const returnedUser = registered_parents.find({'email': user.email});
+      resolve (returnedUser);
+    })
   }
-  sendDatas()
-    .then(function(results) {
-      if (results[0].password !== datas.password) {
-        res.send('L\'email ou le mot de passe est incorrect.')
+  findEmails()
+  .then(function(returnedUser) {
+    console.log('returnedUser', returnedUser[0]);
+    
+    if (returnedUser[0]) {
+      if (user.password === returnedUser[0].password) {
+        console.log('user ok mpd ok');
+
+        res.send('logged');
       } else {
-        res.send('ParentLogged');
+        console.log('user ok mdp PAS ok');
+        res.send('notLogged');
       }
-    })
-    .catch(function(err) {
-      console.log('Caught an error!', err);
-    });
+    } else {
+      console.log('user PAS ok');
+      res.send('notLogged');
+    }
+  })
+  .catch(function(err) {
+    res.status(400).send(err);
+  });
 })
 
 
 /**
- * Add Day type
+ * Listen PORT 3000
  */
-app.post('/newday', upload.array(), (req, res, next) => {
-  const datas = req.body;
-  function sendDatas() {
-    return new Promise(function(resolve, reject) {
-      //connection
-      MongoClient.connect(baseUrl, { useNewUrlParser: true }, function (error, db) {
-        if (error) throw error;
-        const database = db.db('babybook');
-
-        database.collection('addday').insertOne(datas)
-      });
-    });
-  }
-  sendDatas()
-    .then(function() {
-      res.send("modification journee ok");
-    })
-    .catch(function(err) {
-      console.log('Caught an error!', err);
-    });
-})
-
-
-// le server écoute le port
-app.listen(port);
-
-
+app.listen(port, () => {
+    console.log("Server listening on port " + port);
+});
 

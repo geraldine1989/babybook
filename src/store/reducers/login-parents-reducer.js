@@ -14,6 +14,7 @@ const initialState = {
 const HANDLE_CHANGE_INPUT = 'HANDLE_CHANGE_INPUT';
 export const HANDLE_LOGIN = 'HANDLE_LOGIN';
 export const LOGIN_RESPONSE = 'LOGIN_RESPONSE';
+export const HANDLE_LOGOUT = 'HANDLE_LOGOUT';
 
 /**
  * Traitements
@@ -64,6 +65,13 @@ const loginParentsReducer = (state = initialState, action = {}) => {
         }
       }
 
+    case HANDLE_LOGOUT:
+      return {
+        ...state,
+        logged: false,
+        parent: false,
+      }
+
     default:
       return state;
   }
@@ -84,6 +92,10 @@ export const handleChangeInputs = changes => ({
 export const loginResponse = answer => ({
   type: LOGIN_RESPONSE,
   answer,
+})
+
+export const handleLogout = () => ({
+  type: HANDLE_LOGOUT,
 })
 /**
  * Selectors

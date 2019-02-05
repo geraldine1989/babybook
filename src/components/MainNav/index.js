@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 // Local import
 import './style.scss';
 
-const MainNav = ({ parent }) => {
+const MainNav = ({ parent, handleLogout }) => {
   return (
     <div id="mainMenu">
       <div id="mainNav">
@@ -32,7 +32,7 @@ const MainNav = ({ parent }) => {
             </NavLink>
           </Dropdown.Item>
           <Dropdown.Item>
-            <NavLink exact to="/" >
+            <NavLink exact to="/" onClick={handleLogout}>
               Se déconnecter
             </NavLink>
           </Dropdown.Item>
