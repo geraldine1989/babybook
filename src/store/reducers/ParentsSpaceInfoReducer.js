@@ -50,6 +50,10 @@ export const ALLERGIES_RESPONSE = 'ALLERGIES_RESPONSE';
 export const PHONE_RESPONSE = 'PHONE_RESPONSE';
 
 export const GET_CHILD = 'GET_CHILD';
+export const GET_MEDS = 'GET_MEDS';
+export const GET_VACCINES = 'GET_VACCINES';
+export const GET_ALLERGIES = 'GET_ALLERGIES';
+export const GET_PHONE = 'GET_PHONE';
 
 /**
  * Traitements
@@ -119,6 +123,12 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         inputBirthDate: '',
       };
 
+    case CHILD_RESPONSE:
+      return {
+        ...state,
+        childList: action.datas,
+      };
+
     case REMOVE_CHILD:
       const deletedChild = state.childList.filter(deletedKid => deletedKid.id !== action.id);
 
@@ -127,16 +137,16 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         childList: deletedChild,
       };
 
-    case CHILD_RESPONSE:
-      return {
-        ...state,
-      };
-
 
     case INPUT_CHANGE_MEDS:
       return {
         ...state,
         inputMeds: action.inputMeds,
+      };
+
+    case GET_MEDS:
+      return {
+        ...state,
       };
 
     case ADD_MEDS:
@@ -153,6 +163,12 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         inputMeds: '',
       };
 
+    case MEDS_RESPONSE:
+      return {
+        ...state,
+        medsList: action.datas,
+      };
+
     case REMOVE_MEDS:
       const deletedMeds = state.medsList.filter(deletedMed => deletedMed.id !== action.id);
 
@@ -161,16 +177,16 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         medsList: deletedMeds,
       };
 
-    case MEDS_RESPONSE:
-      return {
-        ...state,
-      };
-
 
     case INPUT_CHANGE_VACCINES:
       return {
         ...state,
         inputVaccines: action.inputVaccines,
+      };
+
+    case GET_VACCINES:
+      return {
+        ...state,
       };
 
     case ADD_VACCINES:
@@ -187,6 +203,12 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         inputVaccines: '',
       };
 
+    case VACCINES_RESPONSE:
+      return {
+        ...state,
+        vaccinesList: action.datas,
+      };
+
     case REMOVE_VACCINES:
       const deletedVaccines = state.vaccinesList.filter(deletedVaccine => deletedVaccine.id !== action.id);
 
@@ -195,16 +217,16 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         vaccinesList: deletedVaccines,
       };
 
-    case VACCINES_RESPONSE:
-      return {
-        ...state,
-      };
-
 
     case INPUT_CHANGE_ALLERGIES:
       return {
         ...state,
         inputAllergies: action.inputAllergies,
+      };
+
+    case GET_ALLERGIES:
+      return {
+        ...state,
       };
 
     case ADD_ALLERGIES:
@@ -221,17 +243,18 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         inputAllergies: '',
       };
 
+    case ALLERGIES_RESPONSE:
+      return {
+        ...state,
+        allergiesList: action.datas,
+      };
+
     case REMOVE_ALLERGIES:
       const deletedAllergies = state.allergiesList.filter(deletedAllergie => deletedAllergie.id !== action.id);
 
       return {
         ...state,
         allergiesList: deletedAllergies,
-      };
-
-    case ALLERGIES_RESPONSE:
-      return {
-        ...state,
       };
 
 
@@ -245,6 +268,11 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         inputPhoneNumber: action.inputPhoneNumber,
+      };
+
+    case GET_PHONE:
+      return {
+        ...state,
       };
 
     case ADD_PHONE:
@@ -263,6 +291,12 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         inputPhoneNumber: '',
       };
 
+    case PHONE_RESPONSE:
+      return {
+        ...state,
+        phoneList: action.datas,
+      };
+
     case REMOVE_PHONE:
       const deletedPhones = state.phoneList.filter(deletedPhone => deletedPhone.id !== action.id);
 
@@ -271,10 +305,6 @@ const ParentsSpaceInfoReducer = (state = initialState, action = {}) => {
         phoneList: deletedPhones,
       };
 
-    case PHONE_RESPONSE:
-      return {
-        ...state,
-      };
 
     default:
       return state;

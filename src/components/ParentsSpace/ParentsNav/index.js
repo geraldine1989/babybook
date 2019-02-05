@@ -27,7 +27,7 @@ const ParentsNav = ({ handleGetContacts, handleGetTasks, getChild }) => {
           className="second-menu-item"
           name="Modifier les infos"
           // active={activeItem === 'Modifier les infos'}
-          // onClick={this.handleItemClick}
+          onClick={getChild}
           activeclassename="active"
         />
         <Menu.Item
