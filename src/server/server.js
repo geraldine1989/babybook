@@ -1,16 +1,21 @@
-const express = require('express');
-
-const app = express();
-const port = 3000;
-const bodyParser = require('body-parser');
+var express = require("express");
+var app = express();
+var port = 3000;
+var bodyParser = require('body-parser');
+//connect-mongo
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+// email validator
+var validator = require("email-validator");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', '*'); // remplacer '*' par l'adresse du site en prod
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  // res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('Access-Control-Allow-Methods', 'GET, POST');
   next();
 });
 
@@ -18,6 +23,9 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/babybook', { useNewUrlParser: true });
+app.use(session({
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
 
 /**
 * inscription
@@ -26,27 +34,29 @@ const registeredEmails = new mongoose.Schema({
   email: String,
   password: String,
   accessCode: String,
+  parent: Boolean,
 });
-const registered_emails = mongoose.model('registered_emails', registeredEmails);
+const registered_parents = mongoose.model('registered_parents', registeredParents);
 
 /**
-* Récupération de la liste de emails enregistrés
+* Récupération de la liste de parents enregistrés
 */
-let regEmails = [];
-app.get('/getEmails', (req, res) => {
-  function findEmails() {
+const regParents = [];
+app.get('/getParents', (req, res) => {
+  function findParents() {
     return new Promise(((resolve, reject) => {
-      registered_emails.find((err, response) => {
-        regEmails = response;
-        resolve (response);
-        return response;
+      registered_parents.find((err, response) => {
+        regParents = response;
+        resolve (regParents);
+        return regParents;
       });
     }));
   }
-  findEmails()
-    .then((response) => {
-      regEmails = response;
-      regEmails = regEmails.map(email => email.email);
+  findParents()
+    .then((regParents) => {
+      // regParents = response;
+      regParents = regParents.map(email => email.email);
+      res.status('200').send(regParents);
     })
     .catch((err) => {
       console.log('Caught an error!', err);
@@ -54,15 +64,14 @@ app.get('/getEmails', (req, res) => {
 });
 
 /**
-* Enregistrement d'un email
+* Enregistrement d'un parent
 */
-console.log(regEmails);
 
 app.post('/inscription', (req, res) => {
-  const newUser = new registered_emails(req.body);
-  console.log(regEmails);
+  const newUser = new registered_parents(req.body);
+  console.log(regParents);
   console.log(`newUserEmail : ${newUser.email}`);
-  const emailExist = regEmails.filter(email => newUser.email === email);
+  const emailExist = regParents.filter(email => newUser.email === email.email);
   console.log(emailExist);
   if (emailExist[0]) {
     res.send('notOk');
@@ -77,6 +86,42 @@ app.post('/inscription', (req, res) => {
       });
   }
 });
+
+/* login parents */
+
+app.post("/loginParents", (req, res) => {
+  console.log('*******************************');
+  var user = new registered_parents(req.body);
+  console.log('user : ',user);
+  function findEmails() {
+    return new Promise(function(resolve, reject) {
+      const returnedUser = registered_parents.find({'email': user.email});
+      resolve (returnedUser);
+    })
+  }
+  findEmails()
+  .then(function(returnedUser) {
+    console.log('returnedUser', returnedUser[0]);
+
+    if (returnedUser[0]) {
+      if (user.password === returnedUser[0].password) {
+        console.log('user ok mpd ok');
+
+        res.send('logged');
+      } else {
+        console.log('user ok mdp PAS ok');
+        res.send('notLogged');
+      }
+    } else {
+      console.log('user PAS ok');
+      res.send('notLogged');
+    }
+  })
+  .catch(function(err) {
+    res.status(400).send(err);
+  });
+})
+
 
 /**
  * infos parents - enfant
