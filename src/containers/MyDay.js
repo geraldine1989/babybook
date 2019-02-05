@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import MyDay from 'src/components/MyDay';
 
 
-import { handleAddNoteNoteNounou, AddNoteDaySubmitNounou, taskCheck, handleChangeInputTaskNounou } from 'src/store/reducers/myday';
+import { handleAddNoteNoteNounou, AddNoteDaySubmitNounou, taskCheck, handleChangeInputTaskNounou, addNoteTaskSubmitNounou } from 'src/store/reducers/myday';
 import { } from 'src/store/reducers/ParentsSpaceInfoReducer';
 // Fonction pour mapper le state du store vers les props
 
@@ -14,6 +14,8 @@ const mapStateToProps = state => ({
   nannyNote: state.myday.nannyNote,
   inputNoteNounou: state.myday.inputNoteNounou,
   childList: state.ParentsSpaceInfoReducer.childList,
+  //selctedInput: state.myday.itemList.selctedInput,
+
   
   
 
@@ -30,16 +32,16 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(AddNoteDaySubmitNounou(note));
   },
 
-  // handleAddNoteNoteTaskNounou: (modif) => {
-  //   dispatch(handleAddNoteNoteTaskNounou(modif));
-  // },
+  
   // changement input tache nounou
   handleChangeInputTaskNounou: (text, id) => {
     dispatch(handleChangeInputTaskNounou(text, id));
   },
-  // AddNoteNoteTaskNounou: (note, id) => {
-  //   dispatch(AddNoteNoteTaskNounou(note, id));
-  // },
+
+  /** Submit de la note pour la la tache par la nounou */
+  addNoteTaskSubmitNounou: (text, id) => {
+    dispatch(addNoteTaskSubmitNounou(text, id));
+  },
 
   taskCheck: (id) => {
     dispatch(taskCheck(id));
