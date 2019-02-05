@@ -147,11 +147,32 @@ app.post('/espace-parents/infos/add-child', (req, res) => {
  */
 
 const registeredMed = new mongoose.Schema({
+  id: String,
   name: String,
 });
 const Med = mongoose.model('med', registeredMed);
 
-app.post('/espace-parents/infos/meds', (req, res) => {
+/* Chargement de la liste des médicaments */
+app.get('/espace-parents/infos/get-med', (req, res) => {
+  function findRegisteredMed() {
+    return new Promise(((resolve, reject) => {
+      Med.find((err, response) => {
+        regMed = response;
+        resolve (regMed);
+        return regMed;
+      });
+    }));
+  }
+  findRegisteredMed()
+    .then((regMed) => {
+      res.status('200').send(regMed);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
+});
+/* Enregistrement d'un médicament dans la BDD*/
+app.post('/espace-parents/infos/add-meds', (req, res) => {
   const newMed = new Med(req.body);
   newMed.save()
     .then((item) => {
@@ -159,6 +180,24 @@ app.post('/espace-parents/infos/meds', (req, res) => {
     })
     .catch((err) => {
       res.status(400).send('Unable to save to database');
+    });
+
+  // Chargement de la nouvelle liste
+  function findRegisteredContacts() {
+    return new Promise(((resolve, reject) => {
+      Child.find((err, response) => {
+        regChild = response;
+        resolve (regChild);
+        return regChild;
+      });
+    }));
+  }
+  findRegisteredContacts()
+    .then((regContacts) => {
+      res.status('200').send(regContacts);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
     });
 });
 

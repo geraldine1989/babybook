@@ -370,6 +370,10 @@ export const medsResponse = datas => ({
   datas,
 });
 
+export const getMeds = () => ({
+  type: GET_MEDS,
+});
+
 
 export const handleChangeVaccinesItem = text => ({
   type: INPUT_CHANGE_VACCINES,
@@ -391,6 +395,10 @@ export const vaccinesResponse = datas => ({
   datas,
 });
 
+export const getVaccines = () => ({
+  type: GET_VACCINES,
+});
+
 
 export const handleChangeAllergiesItem = text => ({
   type: INPUT_CHANGE_ALLERGIES,
@@ -410,6 +418,10 @@ export const removeAllergies = id => ({
 export const allergiesResponse = datas => ({
   type: ALLERGIES_RESPONSE,
   datas,
+});
+
+export const getAllergies = () => ({
+  type: GET_ALLERGIES,
 });
 
 
@@ -436,6 +448,10 @@ export const removePhone = id => ({
 export const phoneResponse = datas => ({
   type: PHONE_RESPONSE,
   datas,
+});
+
+export const getPhone = () => ({
+  type: GET_PHONE,
 });
 
 
