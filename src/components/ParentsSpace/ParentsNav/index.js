@@ -1,12 +1,12 @@
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 /**
  * Local import
  */
 import './style.scss';
 
-const ParentsNav = ({ handleGetContacts, handleGetTasks, getChild }) => {
+const ParentsNav = ({ handleGetContacts, handleGetTasks, getChild, getMeds, getVaccines, getAllergies, getPhone }) => {
 
   return (
     <div id="parentsNav">
@@ -31,7 +31,7 @@ const ParentsNav = ({ handleGetContacts, handleGetTasks, getChild }) => {
           activeclassename="active"
         />
         <Menu.Item
-          as={Link}
+          as={NavLink}
           to="/espace-parents/contacts"
           className="second-menu-item"
           name="Gestion contacts"

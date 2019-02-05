@@ -20,7 +20,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/babybook', { useNewUrlParser: true });
 
 /**
-* var
+* inscription
 */
 const registeredEmails = new mongoose.Schema({
   email: String,
@@ -29,9 +29,6 @@ const registeredEmails = new mongoose.Schema({
 });
 const registered_emails = mongoose.model('registered_emails', registeredEmails);
 
-/**
-* les routes
-*/
 /**
 * Récupération de la liste de emails enregistrés
 */
@@ -57,7 +54,7 @@ app.get('/getEmails', (req, res) => {
 });
 
 /**
-* inscription
+* Enregistrement d'un email
 */
 console.log(regEmails);
 
@@ -123,8 +120,8 @@ app.post('/espace-parents/infos/add-child', (req, res) => {
       res.status(400).send('Unable to save to database');
     });
 
-  // Chargement de la nouvelle liste
-  function findRegisteredContacts() {
+  // Chargement de la nouvelle liste d'enfants
+  function findRegisteredChild() {
     return new Promise(((resolve, reject) => {
       Child.find((err, response) => {
         regChild = response;
@@ -133,9 +130,9 @@ app.post('/espace-parents/infos/add-child', (req, res) => {
       });
     }));
   }
-  findRegisteredContacts()
-    .then((regContacts) => {
-      res.status('200').send(regContacts);
+  findRegisteredChild()
+    .then((regChild) => {
+      res.status('200').send(regChild);
     })
     .catch((err) => {
       console.log('Caught an error!', err);
@@ -153,7 +150,7 @@ const registeredMed = new mongoose.Schema({
 const Med = mongoose.model('med', registeredMed);
 
 /* Chargement de la liste des médicaments */
-app.get('/espace-parents/infos/get-med', (req, res) => {
+app.get('/espace-parents/infos/get-meds', (req, res) => {
   function findRegisteredMed() {
     return new Promise(((resolve, reject) => {
       Med.find((err, response) => {
@@ -171,7 +168,7 @@ app.get('/espace-parents/infos/get-med', (req, res) => {
       console.log('Caught an error!', err);
     });
 });
-/* Enregistrement d'un médicament dans la BDD*/
+/* Enregistrement d'un médicament dans la BDD */
 app.post('/espace-parents/infos/add-meds', (req, res) => {
   const newMed = new Med(req.body);
   newMed.save()
@@ -182,13 +179,341 @@ app.post('/espace-parents/infos/add-meds', (req, res) => {
       res.status(400).send('Unable to save to database');
     });
 
-  // Chargement de la nouvelle liste
+  // Chargement de la nouvelle liste de médicaments
+  function findRegisteredMed() {
+    return new Promise(((resolve, reject) => {
+      Med.find((err, response) => {
+        regMed = response;
+        resolve (regMed);
+        return regMed;
+      });
+    }));
+  }
+  findRegisteredMed()
+    .then((regMed) => {
+      res.status('200').send(regMed);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
+});
+/* Suppression d'un médicament */
+app.delete('/espace-parents/infos/remove-meds', req, res) => {
+  function deleteRegisteredMeds(err, db) {
+    if (err) throw err;
+    var dbo = db.db("babybook");
+    // var myquery = { address: /^O/ };
+    dbo.collection("med").deleteMany(myquery, function(err, obj) {
+      if (err) throw err;
+      console.log(obj.result.n + " document(s) deleted");
+      db.close();
+    });
+  }
+};
+
+/**
+ * infos parents - santé - vaccins
+ */
+
+const registeredVaccine = new mongoose.Schema({
+  id: String,
+  name: String,
+});
+const Vaccine = mongoose.model('vaccine', registeredVaccine);
+
+/* Chargement de la liste des vaccins */
+app.get('/espace-parents/infos/get-vaccines', (req, res) => {
+  function findRegisteredVaccine() {
+    return new Promise(((resolve, reject) => {
+      Vaccine.find((err, response) => {
+        regVaccine = response;
+        resolve (regVaccine);
+        return regVaccine;
+      });
+    }));
+  }
+  findRegisteredVaccine()
+    .then((regVaccine) => {
+      res.status('200').send(regVaccine);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
+});
+/* Enregistrement d'un vaccin dans la BDD */
+app.post('/espace-parents/infos/add-vaccines', (req, res) => {
+  const newVaccine = new Vaccine(req.body);
+  newVaccine.save()
+    .then((item) => {
+      res.send('Name saved to database');
+    })
+    .catch((err) => {
+      res.status(400).send('Unable to save to database');
+    });
+
+  // Chargement de la nouvelle liste de médicaments
+  function findRegisteredVaccine() {
+    return new Promise(((resolve, reject) => {
+      Vaccine.find((err, response) => {
+        regVaccine = response;
+        resolve (regVaccine);
+        return regVaccine;
+      });
+    }));
+  }
+  findRegisteredVaccine()
+    .then((regVaccine) => {
+      res.status('200').send(regVaccine);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
+});
+
+/**
+ * infos parents - santé - allergies
+ */
+
+const registeredAllergie = new mongoose.Schema({
+  id: String,
+  name: String,
+});
+const Allergie = mongoose.model('allergie', registeredAllergie);
+
+/* Chargement de la liste des allergies */
+app.get('/espace-parents/infos/get-allergies', (req, res) => {
+  function findRegisteredAllergie() {
+    return new Promise(((resolve, reject) => {
+      Allergie.find((err, response) => {
+        regAllergie = response;
+        resolve (regAllergie);
+        return regAllergie;
+      });
+    }));
+  }
+  findRegisteredAllergie()
+    .then((regAllergie) => {
+      res.status('200').send(regAllergie);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
+});
+/* Enregistrement d'une allergie dans la BDD */
+app.post('/espace-parents/infos/add-allergies', (req, res) => {
+  const newAllergie = new Allergie(req.body);
+  newAllergie.save()
+    .then((item) => {
+      res.send('Name saved to database');
+    })
+    .catch((err) => {
+      res.status(400).send('Unable to save to database');
+    });
+
+  // Chargement de la nouvelle liste des allergies
+  function findRegisteredAllergie() {
+    return new Promise(((resolve, reject) => {
+      Allergie.find((err, response) => {
+        regAllergie = response;
+        resolve (regAllergie);
+        return regAllergie;
+      });
+    }));
+  }
+  findRegisteredAllergie()
+    .then((regAllergie) => {
+      res.status('200').send(regAllergie);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
+});
+
+/**
+ * infos parents - téléphones
+ */
+
+const registeredPhone = new mongoose.Schema({
+  id: String,
+  phonename: String,
+  phonenumber: String,
+});
+const Phone = mongoose.model('phone', registeredPhone);
+
+/* Chargement de la liste des téléphones */
+app.get('/espace-parents/infos/get-phone', (req, res) => {
+  function findRegisteredPhone() {
+    return new Promise(((resolve, reject) => {
+      Phone.find((err, response) => {
+        regPhone = response;
+        resolve (regPhone);
+        return regPhone;
+      });
+    }));
+  }
+  findRegisteredPhone()
+    .then((regPhone) => {
+      res.status('200').send(regPhone);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
+});
+/* Enregistrement d'un téléphone dans la BDD */
+app.post('/espace-parents/infos/add-phone', (req, res) => {
+  const newPhone = new Phone(req.body);
+  newPhone.save()
+    .then((item) => {
+      res.send('Name saved to database');
+    })
+    .catch((err) => {
+      res.status(400).send('Unable to save to database');
+    });
+
+  // Chargement de la nouvelle liste de téléphones
+  function findRegisteredPhone() {
+    return new Promise(((resolve, reject) => {
+      Phone.find((err, response) => {
+        regPhone = response;
+        resolve (regPhone);
+        return regPhone;
+      });
+    }));
+  }
+  findRegisteredPhone()
+    .then((regPhone) => {
+      res.status('200').send(regPhone);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
+});
+
+/** Ajout d'une tache */
+
+const addTaskFromParents = new mongoose.Schema({
+  name: String,
+  hour: String,
+  indic: String,
+  tododone: String,
+  id: String,
+});
+
+const add_task = mongoose.model('add_task', addTaskFromParents);
+
+/**
+ * Chargement de la liste des taches
+ */
+app.get('/espace-parents/journee-type', (req, res) => {
+  function findTasks() {
+    return new Promise(((resolve, reject) => {
+      add_task.find((err, response) => {
+        tasks = response;
+        resolve (tasks);
+        return tasks;
+      });
+    }));
+  }
+  findTasks()
+    .then((tasks) => {
+      console.log('tasks : ', tasks);
+      res.status('200').send(tasks);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
+});
+
+/**
+ * Enregistrement du nouveau contact
+ */
+app.post('/espace-parents/add-task', (req, res) => {
+  const newTask = new add_task(req.body);
+  newTask.save()
+    .then((item) => {
+      // res.send("Task saved to database");
+    })
+    .catch((err) => {
+      res.status(400).send('Unable to save to database');
+    });
+  /** Chargement de la nouvelle liste */
+  function findTasks() {
+    return new Promise(((resolve, reject) => {
+      add_task.find((err, response) => {
+        tasks = response;
+        resolve (tasks);
+        return tasks;
+      });
+    }));
+  }
+  findTasks()
+    .then((tasks) => {
+      console.log('tasks : ', tasks);
+      res.status('200').send(tasks);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
+});
+
+/** Ajout d'une note pour la journée */
+const addNoteFromParents = new mongoose.Schema({
+  note: String,
+});
+const add_note = mongoose.model('add_note', addNoteFromParents);
+
+app.post('/espace-parents/add-note-day-parents', (req, res) => {
+  const newNote = new add_note(req.body);
+  newNote.save()
+    .then((item) => {
+      console.log('la note a été sauvegardée');
+      res.send('Note save to database');
+    })
+    .catch((err) => {
+      res.status(400).send('Unable to save to database');
+    });
+});
+
+/** Ajout d'une note de la nanny pour la journée */
+const addNoteFromNanny = new mongoose.Schema({
+  nannyNote: String,
+});
+const add_note_nanny = mongoose.model('add_note_nanny', addNoteFromNanny);
+
+app.post('/myday/nannydaytask', (req, res) => {
+  const newNoteNanny = new add_note_nanny(req.body);
+  newNoteNanny.save()
+    .then((item) => {
+      console.log('la note de la nanny pour la journée a été sauvegardée');
+      res.send('Note save to database');
+    })
+    .catch((err) => {
+      res.status(400).send('Unable to save to database');
+    });
+});
+
+/**
+* gestion contacts espace parents
+*/
+
+const registeredContacts = new mongoose.Schema({
+  id: String,
+  email: String,
+  name: String,
+});
+
+const registered_contacts = mongoose.model("registered_contacts", registeredContacts);
+
+/**
+ * Chargement de la liste des contacts
+ */
+app.get('/espace-parents/contacts', (req, res) => {
   function findRegisteredContacts() {
     return new Promise(((resolve, reject) => {
-      Child.find((err, response) => {
-        regChild = response;
-        resolve (regChild);
-        return regChild;
+      registered_contacts.find((err, response) => {
+        regContacts = response;
+        resolve (regContacts);
+        return regContacts;
       });
     }));
   }
@@ -200,244 +525,38 @@ app.post('/espace-parents/infos/add-meds', (req, res) => {
       console.log('Caught an error!', err);
     });
 });
-
-/**
- * infos parents - santé - vaccins
- */
-
-const registeredVaccine = new mongoose.Schema({
-  name: String,
-});
-const Vaccine = mongoose.model('vaccine', registeredVaccine);
-
-app.post('/espace-parents/infos/vaccines', (req, res) => {
-  const newVaccine = new Vaccine(req.body);
-  newVaccine.save()
-    .then((item) => {
-      res.send('Name saved to database');
-    })
-    .catch((err) => {
-      res.status(400).send('Unable to save to database');
-    });
-});
-
-/**
- * infos parents - santé - allergies
- */
-
-const registeredAllergie = new mongoose.Schema({
-  name: String,
-});
-const Allergie = mongoose.model('allergie', registeredAllergie);
-
-app.post('/espace-parents/infos/allergies', (req, res) => {
-  const newAllergie = new Allergie(req.body);
-  newAllergie.save()
-    .then((item) => {
-      res.send('Name saved to database');
-    })
-    .catch((err) => {
-      res.status(400).send('Unable to save to database');
-    });
-});
-
-/**
- * infos parents - téléphones
- */
-
-const registeredPhone = new mongoose.Schema({
-  phonename: String,
-  phonenumber: String,
-});
-const Phone = mongoose.model('phone', registeredPhone);
-
-app.post('/espace-parents/infos/phone', (req, res) => {
-  const newPhone = new Phone(req.body);
-  newPhone.save()
-    .then((item) => {
-      res.send('Name saved to database');
-    })
-    .catch((err) => {
-      res.status(400).send('Unable to save to database');
-    });
-});
-
-/** Ajout d'une tache */
-
-var addTaskFromParents = new mongoose.Schema({
-    name: String,
-    hour: String,
-    indic: String,
-    tododone:String,
-    id: String,
-   });
-
-   var add_task = mongoose.model("add_task", addTaskFromParents);
-
-    /**
- * Chargement de la liste des taches
- */
-app.get("/espace-parents/journee-type", (req, res) => {
-  function findTasks() {
-    return new Promise(function(resolve, reject) {
-      add_task.find(function (err, response) {
-        tasks = response;
-        resolve (tasks);
-        return tasks;
-      })
-    })
-  }
-  findTasks()
-    .then(function(tasks) {
-    console.log('tasks : ', tasks);
-      res.status('200').send(tasks);
-  })
-    .catch(function(err) {
-    console.log('Caught an error!', err);
-  });
-  });
-
-/**
- * Enregistrement du nouveau contact
- */
-app.post("/espace-parents/add-task", (req, res) => {
-  var newTask = new add_task(req.body);
-  newTask.save()
-    .then(item => {
-      // res.send("Task saved to database");
-    })
-    .catch(err => {
-      res.status(400).send("Unable to save to database");
-    });
-  /**Chargement de la nouvelle liste */
-  function findTasks() {
-    return new Promise(function(resolve, reject) {
-      add_task.find(function (err, response) {
-        tasks = response;
-        resolve (tasks);
-        return tasks;
-      })
-    })
-  }
-  findTasks()
-  .then(function(tasks) {
-    console.log('tasks : ', tasks);
-    res.status('200').send(tasks);
-  })
-  .catch(function(err) {
-    console.log('Caught an error!', err);
-  });
-});
-
-    
-
-/** Ajout d'une note pour la journée */
-var addNoteFromParents = new mongoose.Schema({
-  note: String,
- });
- var add_note = mongoose.model("add_note", addNoteFromParents);
-
- 
-  app.post("/espace-parents/add-note-day-parents", (req, res) => {
-    var newNote = new add_note(req.body);
-    newNote.save()
-        .then(item => {
-          console.log('la note a été sauvegardée');
-          res.send("Note save to database");
-        })
-        .catch(err => {
-          res.status(400).send("Unable to save to database");
-        });
-      
-    });
-
-/** Ajout d'une note de la nanny pour la journée */
-var addNoteFromNanny = new mongoose.Schema({
-  nannyNote: String,
- });
- var add_note_nanny = mongoose.model("add_note_nanny", addNoteFromNanny);
-
- 
-  app.post("/myday/nannydaytask", (req, res) => {
-    var newNoteNanny = new add_note_nanny(req.body);
-    newNoteNanny.save()
-        .then(item => {
-          console.log('la note de la nanny pour la journée a été sauvegardée');
-          res.send("Note save to database");
-        })
-        .catch(err => {
-          res.status(400).send("Unable to save to database");
-        });
-      
-    });
-  // test
-  
-
- /**
- * gestion contacts espace parents
- */
-
-var registeredContacts = new mongoose.Schema({
-  id: String,
-  email: String,
-  name: String,
- });
-
-var registered_contacts = mongoose.model("registered_contacts", registeredContacts);
-
-/**
- * Chargement de la liste des contacts
- */
-app.get("/espace-parents/contacts", (req, res) => {
-  function findRegisteredContacts() {
-    return new Promise(function(resolve, reject) {
-      registered_contacts.find(function (err, response) {
-        regContacts = response;
-        resolve (regContacts);
-        return regContacts;
-      })
-    })
-  }
-  findRegisteredContacts()
-  .then(function(regContacts) {
-    res.status('200').send(regContacts);
-  })
-  .catch(function(err) {
-    console.log('Caught an error!', err);
-  });
-}); 
 /**
  * enregistrement d'un contact
  */
-app.post("/espace-parents/contacts/add-contact", (req, res) => {
-  var NewContact = new registered_contacts(req.body);
-  
-// Enregistrement du nouveau contact
-  NewContact.save()
-  .then(item => {
-    // res.send("Name saved in db");
-  })
-  .catch(err => {
-    res.status(400).send("Unable to save in db");
-  });
+app.post('/espace-parents/contacts/add-contact', (req, res) => {
+  const NewContact = new registered_contacts(req.body);
 
-// Chargement de la nouvelle liste
+  // Enregistrement du nouveau contact
+  NewContact.save()
+    .then((item) => {
+      // res.send("Name saved in db");
+    })
+    .catch((err) => {
+      res.status(400).send('Unable to save in db');
+    });
+
+  // Chargement de la nouvelle liste
   function findRegisteredContacts() {
-    return new Promise(function(resolve, reject) {
-      registered_contacts.find(function (err, response) {
+    return new Promise(((resolve, reject) => {
+      registered_contacts.find((err, response) => {
         regContacts = response;
         resolve (regContacts);
         return regContacts;
-      })
-    })
+      });
+    }));
   }
   findRegisteredContacts()
-  .then(function(regContacts) {
-    res.status('200').send(regContacts);
-  })
-  .catch(function(err) {
-    console.log('Caught an error!', err);
-  });
+    .then((regContacts) => {
+      res.status('200').send(regContacts);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
 });
 
 /**
