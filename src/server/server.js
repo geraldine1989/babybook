@@ -3,8 +3,8 @@ var app = express();
 var port = 3000;
 var bodyParser = require('body-parser');
 // connect-mongo
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
+// const session = require('express-session');
+// const MongoStore = require('connect-mongo')(session);
 // email validator
 var validator = require("email-validator");
 
@@ -24,12 +24,12 @@ mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/babybook", { useNewUrlParser: true });
 // const connection = mongoose.createConnection("mongodb://localhost:27017/babybook", { useNewUrlParser: true });
 
-app.use(session({
-  store: new MongoStore({ mongooseConnection: mongoose.connection }),
-  secret: 'Ereul9Aeng',
-  resave: false,
-  saveUninitialized: false,
-}));
+// app.use(session({
+//   store: new MongoStore({ mongooseConnection: mongoose.connection }),
+//   secret: 'Ereul9Aeng',
+//   resave: false,
+//   saveUninitialized: false,
+// }));
 
 /**
  * var
@@ -552,11 +552,11 @@ app.post('/espace-parents/infos/add-phone', (req, res) => {
 
 /** Ajout d'une tache */
 
-var addTaskFromParents = new mongoose.Schema({
+const addTaskFromParents = new mongoose.Schema({
     name: String,
     hour: String,
     indic: String,
-    tododone:String,
+    tododone: String,
     selctedInput: String,
     note: String,
     id: String,
@@ -592,30 +592,30 @@ app.get('/espace-parents/journee-type', (req, res) => {
  */
 app.post('/espace-parents/add-task', (req, res) => {
   const newTask = new add_task(req.body);
-  newTask.save()
-    .then((item) => {
-      // res.send("Task saved to database");
-    })
-    .catch((err) => {
-      res.status(400).send('Unable to save to database');
-    });
   /** Chargement de la nouvelle liste */
   function findTasks() {
-    return new Promise(((resolve, reject) => {
+    return new Promise(function(resolve, reject) {
       add_task.find((err, response) => {
         tasks = response;
         resolve (tasks);
         return tasks;
       });
-    }));
+    });
   }
-  findTasks()
-    .then((tasks) => {
-      console.log('tasks : ', tasks);
-      res.status('200').send(tasks);
+  /** Enregistrement d'une nouvelle tache */
+  newTask.save()
+    .then((item) => {
+      findTasks()
+        .then(function(tasks){
+          res.status('200').send(tasks);
+        })
+        .catch(function(err) {
+          console.log('Caught an error!', err);
+        })
+      // res.send("Task saved to database");
     })
     .catch((err) => {
-      console.log('Caught an error!', err);
+      res.status(400).send('Unable to save to database');
     });
 });
 
@@ -729,9 +729,9 @@ app.post("/espace-parents/contacts/remove-contact", (req, res) => {
 
 
 
-  registered_contacts.deleteOne({ 'id': [DeletdContact] }, function (err) {});
+  registered_contacts.deleteOne({ id: Object.keys(DeletdContact) }, function (err) {});
     // .then(item => {
-    //   // res.send("Name saved in db");
+    res.send("Name saved in db");
     //   console.log('pas statut deleteOne400');
       
     // })
