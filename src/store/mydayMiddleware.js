@@ -28,7 +28,7 @@ const mydayMiddleware = store => next => (action) => {
         id: uuidv4(),
       };
    
-      axios.post('http://localhost:3000/espace-parents/add-task', formDatas)
+      axios.post('http://95.142.175.219:3000/espace-parents/add-task', formDatas)
       .then((response) => {
         store.dispatch(addTaskResponse(response.data));
         console.log('ajout task ADD TASK : '+ response);
@@ -43,7 +43,7 @@ const mydayMiddleware = store => next => (action) => {
     /** Récupéation des taches */
     case HANDLE_GET_TASKS:
     console.log('coucou HANDLE GET TASK Middleware');
-      axios.get('http://localhost:3000/espace-parents/journee-type')
+      axios.get('http://95.142.175.219:3000/espace-parents/journee-type')
         .then((response) => {
           store.dispatch(addTaskResponse(response.data));
         })
@@ -62,7 +62,7 @@ const mydayMiddleware = store => next => (action) => {
       };
         
       
-      axios.post('http://localhost:3000/espace-parents/add-note-day-parents', formNoteDay)
+      axios.post('http://95.142.175.219:3000/espace-parents/add-note-day-parents', formNoteDay)
       .then((response) => {
         store.dispatch(addTaskResponse(response.data));
         console.log('ajout task ADD note : '+ response);
@@ -84,7 +84,7 @@ const mydayMiddleware = store => next => (action) => {
       };
         
       
-      axios.post('http://localhost:3000/myday/nannydaytask', formNoteNannyDay)
+      axios.post('http://95.142.175.219:3000/myday/nannydaytask', formNoteNannyDay)
       .then((response) => {
         store.dispatch(addTaskResponse(response.data));
         console.log('ajout ADD_NOTE_DAY_NANNY : '+ response);

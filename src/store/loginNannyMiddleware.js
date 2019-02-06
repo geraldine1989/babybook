@@ -17,7 +17,7 @@ const loginNannyMiddleware = store => next => (action) => {
     }
     // console.log(formDatas);
 
-      axios.post('http://localhost:3000/loginNanny', formDatas)
+      axios.post('http://95.142.175.219:3000/loginNanny', formDatas)
         .then((response) => {
           console.log(response);
           store.dispatch(loginResponseNanny(response.data));

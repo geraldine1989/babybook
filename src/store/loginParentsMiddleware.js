@@ -17,7 +17,7 @@ const loginParentsMiddleware = store => next => (action) => {
     }
     // console.log(formDatas);
 
-      axios.post('http://localhost:3000/loginParents', formDatas)
+      axios.post('http://95.142.175.219:3000/loginParents', formDatas)
         .then((response) => {
           console.log(response);
           store.dispatch(loginResponse(response.data));

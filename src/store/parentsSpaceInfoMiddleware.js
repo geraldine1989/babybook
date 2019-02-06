@@ -24,7 +24,7 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
   switch (action.type) {
 
     case GET_CHILD:
-      axios.get('http://localhost:3000/espace-parents/infos/get-child')
+      axios.get('http://95.142.175.219:3000/espace-parents/infos/get-child')
         .then((response) => {
           store.dispatch(childResponse(response.data));
         })
@@ -44,7 +44,7 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
         birthdate: inputBirthDate,
       };
 
-      axios.post('http://localhost:3000/espace-parents/infos/add-child', childDatas)
+      axios.post('http://95.142.175.219:3000/espace-parents/infos/add-child', childDatas)
         .then((response) => {
           console.log(response);
           store.dispatch(childResponse(response.data));
@@ -56,7 +56,7 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
       break;
 
     case GET_MEDS:
-      axios.get('http://localhost:3000/espace-parents/infos/get-meds')
+      axios.get('http://95.142.175.219:3000/espace-parents/infos/get-meds')
         .then((response) => {
           store.dispatch(medsResponse(response.data));
         })
@@ -74,7 +74,7 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
         name: inputMeds,
       };
 
-      axios.post('http://localhost:3000/espace-parents/infos/add-meds', medsDatas)
+      axios.post('http://95.142.175.219:3000/espace-parents/infos/add-meds', medsDatas)
         .then((response) => {
           console.log(response);
           store.dispatch(medsResponse(response.data));
@@ -86,7 +86,7 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
       break;
 
     case GET_VACCINES:
-      axios.get('http://localhost:3000/espace-parents/infos/get-vaccines')
+      axios.get('http://95.142.175.219:3000/espace-parents/infos/get-vaccines')
         .then((response) => {
           store.dispatch(vaccinesResponse(response.data));
         })
@@ -104,7 +104,7 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
         name: inputVaccines,
       };
 
-      axios.post('http://localhost:3000/espace-parents/infos/add-vaccines', vaccinesDatas)
+      axios.post('http://95.142.175.219:3000/espace-parents/infos/add-vaccines', vaccinesDatas)
         .then((response) => {
           console.log(response);
           store.dispatch(vaccinesResponse(response.data));
@@ -116,7 +116,7 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
       break;
 
     case GET_ALLERGIES:
-      axios.get('http://localhost:3000/espace-parents/infos/get-allergies')
+      axios.get('http://95.142.175.219:3000/espace-parents/infos/get-allergies')
         .then((response) => {
           store.dispatch(allergiesResponse(response.data));
         })
@@ -134,7 +134,7 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
         name: inputAllergies,
       };
 
-      axios.post('http://localhost:3000/espace-parents/infos/add-allergies', allergiesDatas)
+      axios.post('http://95.142.175.219:3000/espace-parents/infos/add-allergies', allergiesDatas)
         .then((response) => {
           console.log(response);
           store.dispatch(allergiesResponse(response.data));
@@ -146,7 +146,7 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
       break;
 
     case GET_PHONE:
-      axios.get('http://localhost:3000/espace-parents/infos/get-phone')
+      axios.get('http://95.142.175.219:3000/espace-parents/infos/get-phone')
         .then((response) => {
           store.dispatch(phoneResponse(response.data));
         })
@@ -165,7 +165,7 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
         phonenumber: inputPhoneNumber,
       };
 
-      axios.post('http://localhost:3000/espace-parents/infos/add-phone', phoneDatas)
+      axios.post('http://95.142.175.219:3000/espace-parents/infos/add-phone', phoneDatas)
         .then((response) => {
           console.log(response);
           store.dispatch(phoneResponse(response.data));

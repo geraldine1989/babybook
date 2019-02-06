@@ -17,7 +17,7 @@ const inscriptionMiddleware = store => next => (action) => {
   switch (action.type) {
     case HANDLE_GET_EMAILS:
       var emails = [];
-      axios.get('http://localhost:3000/getParents')
+      axios.get('http://95.142.175.219:3000/getParents')
       .then((response) => {
         console.log(response);
       })
@@ -69,7 +69,7 @@ const inscriptionMiddleware = store => next => (action) => {
           accessCode: hashAccessCode,
           parent: true,
         }
-        axios.post('http://localhost:3000/inscription', datas)
+        axios.post('http://95.142.175.219:3000/inscription', datas)
         .then((response) => {
           store.dispatch(inscriptionResponse(response.data));
         })
