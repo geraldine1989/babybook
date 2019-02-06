@@ -15,7 +15,7 @@ import LoginNanny from '../LoginNanny';
 /**
  * Code
  */
-const Home = ({ handleGetEmails }) => (
+const Home = ({ handleGetEmails, handleGetContacts }) => (
   <div id="home">
     <h2>
       Le journal de bébé pour le suivre pas à pas chaque jour.
@@ -25,7 +25,7 @@ const Home = ({ handleGetEmails }) => (
         <Button color="teal" content="Connexion Parents" className="homeButton" onClick={handleGetEmails} />
       </NavLink>
       <NavLink exact to="/login-nanny" className="homeLink">
-        <Button color="teal" content="Connexion Nanny" className="homeButton" onClick={handleGetEmails} />
+        <Button color="teal" content="Connexion Nanny" className="homeButton" onClick={handleGetContacts} />
       </NavLink>
       <NavLink exact to="/inscription" className="homeLink">
         <Button color="teal" content="Inscription" className="homeButton" onClick={handleGetEmails} />

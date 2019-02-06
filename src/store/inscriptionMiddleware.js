@@ -19,6 +19,7 @@ const inscriptionMiddleware = store => next => (action) => {
       var emails = [];
       axios.get('http://localhost:3000/getParents')
       .then((response) => {
+        console.log(response);
       })
       .catch((error) => {
         console.log(error);

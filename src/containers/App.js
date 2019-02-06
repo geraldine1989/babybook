@@ -13,6 +13,7 @@ import App from 'src/components/App';
 
 const mapStateToProps = state => ({
   logged: state.loginParentsReducer.logged,
+  // registered: state.inscriptionReducer.registered,
 });
 
 const mapDispatchToProps = () => ({});

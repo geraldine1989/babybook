@@ -4,18 +4,17 @@
 const initialState = {
   logged: false,
   parent: false,
-  parentEmail: '',
-  inputEmail: '',
-  inputPassword: '',
+  inputEmailNanny: '',
+  inputPasswordNanny: '',
 };
 
 /**
  * Types
  */
-const HANDLE_CHANGE_INPUT = 'HANDLE_CHANGE_INPUT';
-export const HANDLE_LOGIN = 'HANDLE_LOGIN';
-export const LOGIN_RESPONSE = 'LOGIN_RESPONSE';
-export const HANDLE_LOGOUT = 'HANDLE_LOGOUT';
+const HANDLE_CHANGE_INPUT = 'HANDLE_CHANGE_INPUT_NANNY';
+export const HANDLE_LOGIN = 'HANDLE_LOGIN_NANNY';
+export const LOGIN_RESPONSE = 'LOGIN_RESPONSE_NANNY';
+export const HANDLE_LOGOUT = 'HANDLE_LOGOUT_NANNY';
 
 /**
  * Traitements
@@ -25,9 +24,9 @@ export const HANDLE_LOGOUT = 'HANDLE_LOGOUT';
 /**
  * Reducer
  */
-const loginParentsReducer = (state = initialState, action = {}) => {
+const loginNannyReducer = (state = initialState, action = {}) => {
   let errors = {};
-  const { inputEmail, inputPassword } = state;
+  const { inputEmailNanny, inputPasswordNanny } = state;
 
   switch (action.type) {
     case HANDLE_CHANGE_INPUT:
@@ -47,8 +46,8 @@ const loginParentsReducer = (state = initialState, action = {}) => {
     
       return {
         ...state,
-        inputEmail,
-        inputPassword,
+        inputEmailNanny,
+        inputPasswordNanny,
       }
     
     case LOGIN_RESPONSE:
@@ -56,14 +55,13 @@ const loginParentsReducer = (state = initialState, action = {}) => {
         return {
           ...state,
           logged: true,
-          parentEmail: inputEmail,
           errorLogin: '',
         }
       } else {
         return {
           ...state,
           logged: false,
-          errorLogin: 'Votre email ou votre mot de passe est incorrect.',
+          errorLoginNanny: 'Votre email ou votre mot de passe est incorrect.',
         }
       }
 
@@ -82,21 +80,21 @@ const loginParentsReducer = (state = initialState, action = {}) => {
 /**
  * Action Creators
  */
-export const handleLogin = () => ({
+export const handleLoginNanny = () => ({
   type: HANDLE_LOGIN,
 });
 
-export const handleChangeInputs = changes => ({
+export const handleChangeInputsNanny = changes => ({
   type: HANDLE_CHANGE_INPUT,
   changes,
 });
 
-export const loginResponse = answer => ({
+export const loginResponseNanny = answer => ({
   type: LOGIN_RESPONSE,
   answer,
 })
 
-export const handleLogout = () => ({
+export const handleLogoutNanny = () => ({
   type: HANDLE_LOGOUT,
 })
 /**
@@ -106,4 +104,4 @@ export const handleLogout = () => ({
 /**
  * Export
  */
-export default loginParentsReducer;
+export default loginNannyReducer;

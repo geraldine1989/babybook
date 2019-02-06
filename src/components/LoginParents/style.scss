@@ -107,7 +107,12 @@
         height: 9vh;
         color: #2C1915;
         text-transform: uppercase;
-        
+      }
+
+      & label {
+        margin-left: 1em;
+        color: red;
+        margin-top: 1em;
       }
     }
   

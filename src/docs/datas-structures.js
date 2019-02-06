@@ -83,7 +83,7 @@
         },
       ],
     },
-   
+  ]
 
 // emails inscrits :
 let emails = [

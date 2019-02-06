@@ -10,6 +10,7 @@ import Home from 'src/components/Home';
 
 // Action Creators
 import { handleGetEmails } from 'src/store/reducers/inscription-reducer';
+import { handleGetContacts } from 'src/store/reducers/ParentsSpaceContactsReducer';
 
 const mapStateToProps = state => ({
   emails: state.inscriptionReducer.inputEmail,
@@ -19,6 +20,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   handleGetEmails: () => {
     dispatch(handleGetEmails());
+  },
+  handleGetContacts: () => {
+    dispatch(handleGetContacts());
   },
 });
 

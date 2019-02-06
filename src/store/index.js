@@ -3,6 +3,7 @@
  */
 import { createStore, applyMiddleware, compose } from 'redux';
 import loginParentsMiddleware from './loginParentsMiddleware';
+import loginNannyMiddleware from './loginNannyMiddleware';
 import inscriptionMiddleware from './inscriptionMiddleware';
 import parentsSpaceInfoMiddleware from './parentsSpaceInfoMiddleware';
 import mydayMiddleware from './mydayMiddleware';
@@ -18,7 +19,14 @@ import rootReducer from 'src/store/reducers';
  * Code
  */
 
-const appliedMiddlewares = applyMiddleware(inscriptionMiddleware, loginParentsMiddleware, mydayMiddleware, parentsSpaceContactsMiddleware, parentsSpaceInfoMiddleware);
+const appliedMiddlewares = applyMiddleware(
+  inscriptionMiddleware, 
+  loginParentsMiddleware, 
+  loginNannyMiddleware, 
+  mydayMiddleware, 
+  parentsSpaceContactsMiddleware, 
+  parentsSpaceInfoMiddleware
+);
 
 
 const devTools = [

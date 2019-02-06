@@ -15,6 +15,7 @@ const initialState = {
     errorConfirmPassword: '',
     errorAccessCode: '',
   },
+  // registered: false,
 };
 
 /**
@@ -73,7 +74,7 @@ const inscriptionReducer = (state = initialState, action = {}) => {
         }
       } else {
         console.log('redirect');
-        return <Redirect to="/login-parents" />
+        // return <Redirect to="/login-parents" />
       }
 
     default:

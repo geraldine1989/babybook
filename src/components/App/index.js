@@ -12,7 +12,7 @@ import MainNav from 'src/containers/MainNav';
 import Home from 'src/containers/Home';
 import InscriptionForm from 'src/containers/InscriptionForm';
 import LoginParents from 'src/containers/LoginParents';
-import LoginNanny from 'src/components/LoginNanny';
+import LoginNanny from 'src/containers/LoginNanny';
 import MyDay from 'src/containers/MyDay';
 import Informations from 'src/containers/Informations';
 import ParentsSpaceDayType from 'src/containers/ParentsSpaceDayType';

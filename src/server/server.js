@@ -25,7 +25,10 @@ mongoose.connect("mongodb://localhost:27017/babybook", { useNewUrlParser: true }
 // const connection = mongoose.createConnection("mongodb://localhost:27017/babybook", { useNewUrlParser: true });
 
 app.use(session({
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  secret: 'Ereul9Aeng',
+  resave: false,
+  saveUninitialized: false,
 }));
 
 /**
@@ -132,37 +135,6 @@ app.post("/inscription", (req, res) => {
 /**
  * login Parents
  */
-// var regEmails = [];
-// app.post("/loginParents", (req, res) => {
-//   var user = new registered_emails(req.body);
-//   console.log(user);
-//   function findEmails() {
-//     return new Promise(function(resolve, reject) {
-//       registered_emails.find(function (err, response) {
-//         regEmails = response;
-//         resolve (regEmails);
-//         return regEmails;
-//       })
-//     })
-//   }
-//   findEmails()
-//   .then(function(regEmails) {
-//     console.log(regEmails);
-//     const emailExist = regEmails.filter(email => user.email === email);
-//     if (emailExist) {
-//       if (user.password === '') {
-//         //todo
-//         res.send('Connexion ok');
-//       }
-//     } else {
-//       res.send('Erreur de connexion')
-//     }
-//   })
-//   .catch(function(err) {
-//     res.status(400).send('Login impossible', err);
-//   });
-// })
-
 app.post("/loginParents", (req, res) => {
   console.log('*******************************');
   var user = new registered_parents(req.body);
@@ -196,6 +168,41 @@ app.post("/loginParents", (req, res) => {
   });
 })
 
+/**
+ * login Nanny
+ */
+app.post("/loginNanny", (req, res) => {
+  console.log('*******************************');
+  var user = new registered_parents(req.body);
+  console.log('user : ',user);
+  function findEmails() {
+    return new Promise(function(resolve, reject) {
+      const returnedUser = registered_parents.find({'email': user.email});
+      resolve (returnedUser);
+    })
+  }
+  findEmails()
+  .then(function(returnedUser) {
+    console.log('returnedUser', returnedUser[0]);
+    
+    if (returnedUser[0]) {
+      if (user.password === returnedUser[0].password) {
+        console.log('user ok mpd ok');
+
+        res.send('logged');
+      } else {
+        console.log('user ok mdp PAS ok');
+        res.send('notLogged');
+      }
+    } else {
+      console.log('user PAS ok');
+      res.send('notLogged');
+    }
+  })
+  .catch(function(err) {
+    res.status(400).send(err);
+  });
+})
 /**
  * infos parents - enfant
  */
@@ -486,17 +493,6 @@ app.get("/espace-parents/contacts", (req, res) => {
  */
 app.post("/espace-parents/contacts/add-contact", (req, res) => {
   var NewContact = new registered_contacts(req.body);
-  
-// Enregistrement du nouveau contact
-  NewContact.save()
-  .then(item => {
-    // res.send("Name saved in db");
-  })
-  .catch(err => {
-    res.status(400).send("Unable to save in db");
-  });
-
-// Chargement de la nouvelle liste
   function findRegisteredContacts() {
     return new Promise(function(resolve, reject) {
       registered_contacts.find(function (err, response) {
@@ -506,13 +502,25 @@ app.post("/espace-parents/contacts/add-contact", (req, res) => {
       })
     })
   }
-  findRegisteredContacts()
+// Enregistrement du nouveau contact
+  NewContact.save()
+  .then(item => {
+    // res.send("Name saved in db");
+    findRegisteredContacts()
   .then(function(regContacts) {
     res.status('200').send(regContacts);
   })
   .catch(function(err) {
     console.log('Caught an error!', err);
   });
+  })
+  .catch(err => {
+    res.status(400).send("Unable to save in db");
+  });
+
+// Chargement de la nouvelle liste
+  
+  
 });
 
 /**
