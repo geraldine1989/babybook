@@ -9,16 +9,18 @@ import { Button, TextArea, Form, Icon, Input } from 'semantic-ui-react';
  * Local import
  */
 import './style.scss';
+import { ID } from 'postcss-selector-parser';
 
 /**
  * Code
  */
 /* eslint-disable no-case-declarations */
-const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, handleAddNoteNoteTaskNounou, AddNoteNoteTaskNounou, taskCheck }) => {
+const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, handleChangeInputTaskNounou, taskCheck, addNoteTaskSubmitNounou, selctedInput }) => {
   
   /** Input ajout note nounou journées */
   const handleAddNoteDayInputNounou = (event) => {
     const text = event.target.value;
+    console.log(event);
     handleAddNoteNoteNounou(text);
   };
 
@@ -28,26 +30,27 @@ const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNou
   };
 
   /** Je veux envoyer au store une fonction qui prenne en compte l'id et le event.target.value */
-  const handleAddNoteTaskInputNounou = (id, event) => () => {
-    // console.log(event.target);
-    // const { name, value } = event.target;
-    // const modif = {
-    //   [name]: value,
-    // };
-    // console.log('je suis dans le composant' + modif);
-    const modif = event.target.value;
-    console.log('element tapé ' + modif);
-    handleAddNoteNoteTaskNounou(id, modif);
+  const handleAddNoteTaskInputNounou = (event) => {
+    const id = event.target.getAttribute('datataskinput');
+    const text = event.target.value;
+    handleChangeInputTaskNounou(text, id);
   };
 
+  // SUBMIT DE LA NOTE DE LA TACHE PAR LA NOUNOU
+  const handleAddNoteTaskSubmitNounou = (event) => {
+    event.preventDefault();
+   const id = event.target.getAttribute('datatasksubmit');
+   const text = event.target.getAttribute('dataname');
+    
+    addNoteTaskSubmitNounou(text, id);
+  };
+
+  /** Gestion de la date */
   const dayDate = new Date();
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   
 
-  // const handleAddNoteTaskSubmitNounou = (event, id) => {
-  //   const text = event.target.value;
-  //   AddNoteNoteTaskNounou(text, id);
-  // };
+  
 
   /** Affichage par heure */
   const compare = (a, b) => {
@@ -82,7 +85,7 @@ const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNou
       </div>
       <div id="list">
         {
-          orderedTasks.map(task => 
+          orderedTasks.map(task =>
             <div
               className="task"
               key= {task.id}
@@ -99,15 +102,18 @@ const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNou
               <div className="time">{task.hour}</div>
               <div className="note">{task.indic}</div>
               
-              <form className="add-name-input"  /*onSubmit={handleAddNoteTaskSubmitNounou}*/>
+              <form className="add-name-input"  onSubmit={handleAddNoteTaskSubmitNounou} datatasksubmit={task.id} dataname={task.selctedInput} >
                 <input
                   name={task.selctedInput} 
+                  datataskinput = {task.id}
                   placeholder="Ajouter une note..." 
                   value= {task.selctedInput} 
-                  onChange={handleAddNoteTaskInputNounou(task.id)} />
-                <Button  className="add-task-button"  circular icon={<Icon  name="add" />} />
+                  onChange={handleAddNoteTaskInputNounou} />
+                <Button icon type="submit">
+                  <Icon name="add" />
+                </Button> 
               </form>  
-              <div className="note-nany"> Pas de notes de la nounou </div>
+              <div className="note-nany"> {task.note} </div>
             </div>       
           )
         }
@@ -139,12 +145,15 @@ MyDay.propTypes = {
   handleAddNoteNoteNounou: PropTypes.func.isRequired,
   AddNoteDaySubmitNounou: PropTypes.func.isRequired,
   nannyNote: PropTypes.string.isRequired,
-  handleAddNoteNoteTaskNounou: PropTypes.func.isRequired,
-  AddNoteNoteTaskNounou: PropTypes.func.isRequired,
+  handleChangeInputTaskNounou: PropTypes.func.isRequired,
   taskCheck: PropTypes.func.isRequired,
+  addNoteTaskSubmitNounou: PropTypes.func.isRequired,
+  selctedInput: PropTypes.string,
   
 };
-
+MyDay.defaultProps = {
+  selctedInput: '',
+};
 
 /**
  * Export

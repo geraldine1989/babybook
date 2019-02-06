@@ -94,11 +94,11 @@ export const handleChangeInputs = changes => ({
 export const loginResponse = answer => ({
   type: LOGIN_RESPONSE,
   answer,
-})
+});
 
 export const handleLogout = () => ({
   type: HANDLE_LOGOUT,
-})
+});
 /**
  * Selectors
  */

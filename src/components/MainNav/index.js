@@ -1,5 +1,5 @@
-import React from 'react'
-import { Accordion, Menu, Icon, Dropdown } from 'semantic-ui-react'
+import React from 'react';
+import { Accordion, Menu, Icon, Dropdown } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
 // Local import
@@ -10,7 +10,7 @@ const MainNav = ({ parent, handleLogout }) => {
     <div id="mainMenu">
       <div id="mainNav">
         <Dropdown item text="menu" simple className="accordionTitle">
-        <Dropdown.Menu className="accordionContent">
+          <Dropdown.Menu className="accordionContent">
           {/* { parent && <Dropdown.Item >
             <NavLink exact to="/espace-parents/journee-type" >
               Espace Parents

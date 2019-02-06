@@ -35,6 +35,7 @@ export const ADD_TASKS_RESPONSE = 'ADD_TASKS_RESPONSE';
 export const HANDLE_GET_TASKS = 'HANDLE_GET_TASKS';
 
 
+
 /**
  * Traitements
  */
@@ -50,7 +51,6 @@ const myday = (state = initialState, action = {}) => {
   const { inputHourTask } = state;
   const { inputNote } = state;
   const { inputNoteNounou } = state;
-  const { inputNoteNounouTask } = state;
   
   
   switch (action.type) {
@@ -79,7 +79,7 @@ const myday = (state = initialState, action = {}) => {
         name: inputTitle,
         hour: inputHourTask,
         indic: inputNoteTask,
-        note: inputNoteNounouTask,
+        note: '',
         selctedInput: '',
         tododone: 'list-button',
       };
@@ -128,14 +128,14 @@ const myday = (state = initialState, action = {}) => {
         inputNoteNounou: '',
       };
     
-      // state.contacts.filter(contact => contact.id !== action.id);
+      
     // note task nanny
     case CHANGE_INPUT_NOTE_NANY_TASK:
-    console.log(action);
-      const tableautask = itemList.filter(list => list.selctedInput === action.name);
+     
+      const tableautask = itemList.filter(list => list.id === action.id);
       const modifiedTask = { ...tableautask[0] };
       
-      modifiedTask.selctedInput = action.selctedInput;
+      modifiedTask.selctedInput = action.text;
       const newTasksList = itemList.map((list) => {
         if (list.id === action.id) {
           return modifiedTask;
@@ -147,11 +147,16 @@ const myday = (state = initialState, action = {}) => {
         itemList: newTasksList,
       };
 
-      /**    case ADD_NOTE_TASK_NANNY:
+    case ADD_NOTE_TASK_NANNY:
       const tableauListItem = itemList.filter(list => list.id === action.id);
       const selectList = { ...tableauListItem[0] };
-      selectList.note = inputNoteNounouTask;
-      let newList = itemList.map((task) => {
+      // selectList.note = itemList.selctedInput;
+      selectList.note = action.text;
+      selectList.selctedInput = '';
+      console.log('mon action : ', action);
+      console.log('note selectionnee : ', selectList);
+      console.log('liste recuperee de selectInput', itemList);
+      const newList = itemList.map((task) => {
         if (task.id === action.id) {
           return selectList;
         }
@@ -161,7 +166,7 @@ const myday = (state = initialState, action = {}) => {
         ...state,
         itemList: newList,
       };
-     */
+    
 
      /** Suppresion d'un tache */
      case REMOVE_TASK_DAY:
@@ -251,17 +256,18 @@ export const AddNoteDaySubmitNounou = note => ({
   note,
 });
 
-/** Note nanny task */
-export const handleAddNoteNoteTaskNounou = (id, modif) => ({
+/** Note input nanny task */
+export const handleChangeInputTaskNounou = (text, id) => ({
   type: CHANGE_INPUT_NOTE_NANY_TASK,
-  modif,
+  text,
   id,
 
 });
 
-export const AddNoteNoteTaskNounou = (note, id) => ({
+/** Note submit nanny task */
+export const addNoteTaskSubmitNounou = (text, id) => ({
   type: ADD_NOTE_TASK_NANNY,
-  note,
+  text,
   id,
 });
 

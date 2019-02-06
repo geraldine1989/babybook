@@ -2,15 +2,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 35vh;
   justify-content: space-between;
-  width: 80%;
+  width: 95%;
   margin: auto;
   margin-bottom: 3rem;
   background-color: white;
+  height: 35vh;
 
   & .homeLink {
-    width: 40%;
+    width: 60%;
     display: flex;
     justify-content: center;
     height: 30%;
@@ -29,6 +29,8 @@
   margin: auto;
   background-color: white;
   margin-top: 0em;
+  height: 100vh;
+  width: 80%;
   & h2 {
     color: #2C1915;
     font-style: italic;
@@ -38,7 +40,7 @@
     text-transform: uppercase;
     font-weight: bold;
     font-size: 2rem;
-    padding: 0.8em;
+    padding: 1.2em;
     margin-bottom: 1rem;
     margin-top: 0em;
   }
@@ -54,6 +56,7 @@
       text-align: center;
       color: #2C1915;
       font-size: 1.2rem;
+      padding: 1em;
       font-style: italic;
     }
   }
@@ -65,11 +68,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 35vh;
+   
     justify-content: space-between;
-    width: 80%;
+    width: 95%;
     margin: auto;
-    margin-bottom: 3rem;
+    
   
     & .homeLink {
       width: 85%;
@@ -88,32 +91,36 @@
   
   #home {
     margin: auto;
+    margin-bottom: 3em;
+    height: 100vh;
   
     & h2 {
       color: #2C1915;
       font-style: italic;
       margin: auto;
-      margin: 1rem;
       text-align: center;
       text-transform: uppercase;
       font-weight: bold;
       font-size: 1.2rem;
-      padding: 0.8em;
-      margin-bottom: 3rem;
+      padding: 1em;
+      margin-bottom: 2em;
+      margin-top: 0em;
     }
   
     & #complements {
-      width: 85%;
+      width: 95%;
       margin: auto;
       margin-top: 2.5rem;
       border-top : 1px solid #C2DE89;
       padding-top: 2rem;
+      
   
       & p {
         text-align: center;
         color: #2C1915;
         font-size: 1rem;
         font-style: italic;
+        padding: 1em;
       }
     }
   
