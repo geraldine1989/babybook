@@ -28,7 +28,6 @@
     "style-loader": "*",
     "stylelint": "*",
     "stylelint-config-recommended": "*",
-    "uglifyjs-webpack-plugin": "*",
     "webpack": "*",
     "webpack-cli": "*",
     "webpack-dev-server": "*"
@@ -46,11 +45,11 @@
   "dependencies": {
     "@babel/polyfill": "*",
     "axios": "^0.18.0",
+    "email-validator": "^2.0.4",
+    "hash.js": "^1.1.7",
     "luxon": "^1.10.0",
     "moment": "^2.24.0",
     "moments": "^0.0.2",
-    "email-validator": "^2.0.4",
-    "hash.js": "^1.1.7",
     "prop-types": "^15.6.2",
     "react": "*",
     "react-burger-menu": "^2.6.1",
@@ -62,6 +61,7 @@
     "redux-burger-menu": "^0.2.8",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.84.0",
+    "terser-webpack-plugin": "^1.2.2",
     "uuid": "^3.3.2",
     "webfontloader": "^1.6.28"
   }
