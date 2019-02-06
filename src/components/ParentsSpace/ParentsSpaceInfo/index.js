@@ -8,74 +8,6 @@ import './style.scss';
 import 'semantic-ui-css/semantic.min.css';
 import ParentsNav from 'src/containers/ParentsNav';
 
-/* Test Mongo DB */
-
-// const addInfos = (formDatas) => {
-//   const axios = ('axios');
-//   axios.post('http://localhost:3000/newday', formDatas)
-//     .then((response) => {
-//       console.log(response);
-//     })
-
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// };
-
-// const handleAddItemInList = (evt) => {
-//   evt.preventDefault();
-//   const formDatas = {
-//     firstName: 'Lilou',
-//     lastName: 'Dupont',
-//     birthDate: '19/08/2017',
-//     health: [
-//       {
-//         meds: [
-//           {
-//             name: 'Doliprane',
-//           },
-//           {
-//             name: 'Smecta',
-//           },
-//         ],
-//         vaccines: [
-//           {
-//             name: 'Rubéole: fait le 03/02/2017',
-//           },
-//           {
-//             name: 'Rage: fait le 03/02/2017',
-//           },
-//         ],
-//         allergies: [
-//           {
-//             name: 'Cacahuètes',
-//           },
-//         ],
-//       },
-//     ],
-//     phoneNumbers: [
-//       {
-//         name: 'Mère portable',
-//         phone: '06 11 22 33 44',
-//       },
-//       {
-//         name: 'Mère travail',
-//         phone: '01 11 77 33 44',
-//       },
-//       {
-//         name: 'Père portable',
-//         phone: '06 11 55 33 44',
-//       },
-//       {
-//         name: 'Docteur Mamour',
-//         phone: '01 11 22 33 42',
-//       },
-//     ],
-//   };
-
-//   addInfos(formDatas);
-// };
-
 /* Code */
 
 const ParentsSpaceInfo = ({
@@ -175,7 +107,26 @@ const ParentsSpaceInfo = ({
     evt.preventDefault();
     addPhone(inputPhoneNumber);
   };
-  
+
+  const handleDeleteChild = id => () => {
+    removeChild(id);
+  };
+
+  const handleDeleteMeds = id => () => {
+    removeMeds(id);
+  };
+
+  const handleDeleteVaccines = id => () => {
+    removeVaccines(id);
+  };
+
+  const handleDeleteAllergies = id => () => {
+    removeAllergies(id);
+  };
+
+  const handleDeletePhone = id => () => {
+    removePhone(id);
+  };
 
 
   return (
@@ -190,7 +141,7 @@ const ParentsSpaceInfo = ({
                 <Button
                   icon
                   type="submit"
-                  onClick={(child.id)}
+                  onClick={handleDeleteChild(child.id)}
                 >
                   <Icon name="delete" />
                 </Button>
@@ -236,7 +187,7 @@ const ParentsSpaceInfo = ({
                     <Button
                       icon
                       type="submit"
-                      onClick={(meds.id)}
+                      onClick={handleDeleteMeds(meds.id)}
                     >
                       <Icon name="delete" />
                     </Button>
@@ -251,7 +202,7 @@ const ParentsSpaceInfo = ({
                   <Input
                     value={inputMeds}
                     placeholder="Ajoutez un médicament"
-                    onChange={handleChangeForMedsItem}  
+                    onChange={handleChangeForMedsItem}
                   />
                 </Form.Field>
                 <Button icon type="submit">
@@ -268,7 +219,7 @@ const ParentsSpaceInfo = ({
                     <Button
                       icon
                       type="submit"
-                      onClick={(vaccines.id)}
+                      onClick={handleDeleteVaccines(vaccines.id)}
                     >
                       <Icon name="delete" />
                     </Button>
@@ -300,7 +251,7 @@ const ParentsSpaceInfo = ({
                     <Button
                       icon
                       type="submit"
-                      onClick={(allergies.id)}
+                      onClick={handleDeleteAllergies(allergies.id)}
                     >
                       <Icon name="delete" />
                     </Button>
@@ -335,7 +286,7 @@ const ParentsSpaceInfo = ({
                 <Button
                   icon
                   type="submit"
-                  onClick={(phone.id)}
+                  onClick={handleDeletePhone(phone.id)}
                 >
                   <Icon name="delete" />
                 </Button>

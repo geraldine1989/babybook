@@ -7,12 +7,16 @@ import {
   GET_CHILD,
   ADD_PHONE,
   phoneResponse,
+  GET_PHONE,
   ADD_MEDS,
   medsResponse,
+  GET_MEDS,
   ADD_VACCINES,
   vaccinesResponse,
+  GET_VACCINES,
   ADD_ALLERGIES,
   allergiesResponse,
+  GET_ALLERGIES,
 } from './reducers/ParentsSpaceInfoReducer';
 
 /* eslint-disable no-case-declarations */
@@ -51,17 +55,40 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
       next(action);
       break;
 
+    case GET_MEDS:
+      axios.get('http://localhost:3000/espace-parents/infos/get-meds')
+        .then((response) => {
+          store.dispatch(medsResponse(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      next(action);
+      break;
+
     case ADD_MEDS:
       const medsState = store.getState().ParentsSpaceInfoReducer;
       const { inputMeds } = medsState;
       const medsDatas = {
+        id: uuidv4(),
         name: inputMeds,
       };
 
-      axios.post('http://localhost:3000/espace-parents/infos/meds', medsDatas)
+      axios.post('http://localhost:3000/espace-parents/infos/add-meds', medsDatas)
         .then((response) => {
           console.log(response);
           store.dispatch(medsResponse(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      next(action);
+      break;
+
+    case GET_VACCINES:
+      axios.get('http://localhost:3000/espace-parents/infos/get-vaccines')
+        .then((response) => {
+          store.dispatch(vaccinesResponse(response.data));
         })
         .catch((error) => {
           console.log(error);
@@ -73,13 +100,25 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
       const vaccinesState = store.getState().ParentsSpaceInfoReducer;
       const { inputVaccines } = vaccinesState;
       const vaccinesDatas = {
+        id: uuidv4(),
         name: inputVaccines,
       };
 
-      axios.post('http://localhost:3000/espace-parents/infos/vaccines', vaccinesDatas)
+      axios.post('http://localhost:3000/espace-parents/infos/add-vaccines', vaccinesDatas)
         .then((response) => {
           console.log(response);
           store.dispatch(vaccinesResponse(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      next(action);
+      break;
+
+    case GET_ALLERGIES:
+      axios.get('http://localhost:3000/espace-parents/infos/get-allergies')
+        .then((response) => {
+          store.dispatch(allergiesResponse(response.data));
         })
         .catch((error) => {
           console.log(error);
@@ -91,13 +130,25 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
       const allergiesState = store.getState().ParentsSpaceInfoReducer;
       const { inputAllergies } = allergiesState;
       const allergiesDatas = {
+        id: uuidv4(),
         name: inputAllergies,
       };
 
-      axios.post('http://localhost:3000/espace-parents/infos/allergies', allergiesDatas)
+      axios.post('http://localhost:3000/espace-parents/infos/add-allergies', allergiesDatas)
         .then((response) => {
           console.log(response);
           store.dispatch(allergiesResponse(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      next(action);
+      break;
+
+    case GET_PHONE:
+      axios.get('http://localhost:3000/espace-parents/infos/get-phone')
+        .then((response) => {
+          store.dispatch(phoneResponse(response.data));
         })
         .catch((error) => {
           console.log(error);
@@ -109,11 +160,12 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
       const phoneState = store.getState().ParentsSpaceInfoReducer;
       const { inputPhoneName, inputPhoneNumber } = phoneState;
       const phoneDatas = {
+        id: uuidv4(),
         phonename: inputPhoneName,
         phonenumber: inputPhoneNumber,
       };
 
-      axios.post('http://localhost:3000/espace-parents/infos/phone', phoneDatas)
+      axios.post('http://localhost:3000/espace-parents/infos/add-phone', phoneDatas)
         .then((response) => {
           console.log(response);
           store.dispatch(phoneResponse(response.data));
