@@ -29,7 +29,7 @@ const parentsSpaceContactsMiddleware = store => next => (action) => {
       }
       console.log(formContacts);
 
-      axios.post('http://localhost:3000/espace-parents/contacts/add-contact', formContacts)
+      axios.post('http://95.142.175.219:3000/espace-parents/contacts/add-contact', formContacts)
         .then((response) => {
           store.dispatch(contactsResponse(response.data));
         })
