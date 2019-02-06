@@ -729,7 +729,8 @@ app.post("/espace-parents/contacts/remove-contact", (req, res) => {
 
 
 
-  registered_contacts.deleteOne({ 'id': [DeletdContact] }, function (err) {});
+  registered_contacts.deleteOne({ id: Object.keys(DeletdContact) }, function (err) {});
+  res.send();
     // .then(item => {
     //   // res.send("Name saved in db");
     //   console.log('pas statut deleteOne400');
