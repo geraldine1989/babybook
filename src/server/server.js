@@ -230,6 +230,7 @@ var addTaskFromParents = new mongoose.Schema({
     indic: String,
     tododone:String,
     selctedInput: String,
+    note: String,
     id: String,
    });
 
@@ -259,7 +260,7 @@ app.get("/espace-parents/journee-type", (req, res) => {
   });
 
 /**
- * Enregistrement du nouveau contact
+ * Enregistrement d'une nouvelle tache'
  */
 app.post("/espace-parents/add-task", (req, res) => {
   var newTask = new add_task(req.body);

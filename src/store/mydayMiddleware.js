@@ -5,6 +5,7 @@ import { ADD_TASK, addTaskResponse, ADD_NOTE, ADD_NOTE_DAY_NANNY, HANDLE_GET_TAS
 const mydayMiddleware = store => next => (action) => {
   const state = store.getState().myday;
       const { inputTitle, inputNoteTask, inputHourTask } = state;
+      const { itemList } = state;
       const { inputNote } = state;
       const { inputNoteNounou } = state;
   // Je veux vérifier si l'action que je reçois m'intéresse
@@ -23,6 +24,7 @@ const mydayMiddleware = store => next => (action) => {
         indic: inputNoteTask,
         tododone:'list-button',
         selctedInput: '',
+        note: '',
         id: uuidv4(),
       };
    
@@ -71,7 +73,7 @@ const mydayMiddleware = store => next => (action) => {
       });
       next(action);
       break;
-
+    /**  */
 
     /** Ajout d'une note de la nanny pour la journée */
     case ADD_NOTE_DAY_NANNY:
