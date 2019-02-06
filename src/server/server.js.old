@@ -7,6 +7,10 @@ const port = 3000;
 const baseUrl = "mongodb://localhost:27017/babybook";
 const MongoClient = require('mongodb').MongoClient;
 var registeredEmails = [];
+<<<<<<< HEAD
+var hash = require('hash.js');
+=======
+>>>>>>> d35e408e5eef048ec4a5164470a13412fc324498
 
 /**
  * Express
@@ -75,7 +79,11 @@ app.get('/getEmails', (req, res, next) => {
         if (error) throw error;
         const database = db.db('babybook');
 
+<<<<<<< HEAD
+        database.collection('registeredEmails').find().toArray(function(error, results) {
+=======
         database.collection('emails').find().toArray(function(error, results) {
+>>>>>>> d35e408e5eef048ec4a5164470a13412fc324498
           if (error) throw error;
           result = results[0];
           resolve (result);
@@ -87,7 +95,11 @@ app.get('/getEmails', (req, res, next) => {
   getRegisteredEmails()
     .then(function(response) {
       // const validity = checkEmail(value) ? "L'email existe déjà" : "L'email est valide";
+<<<<<<< HEAD
+      registeredEmails = response;
+=======
       registeredEmails = response
+>>>>>>> d35e408e5eef048ec4a5164470a13412fc324498
       // res.send(validity);
       console.log(registeredEmails);
       res.send();
@@ -116,7 +128,11 @@ app.post('/inscription', upload.array(), (req, res, next) => {
   for (key in registeredEmails) {
     if (datas.email === registeredEmails[key]) {
       console.log('email existant');
+<<<<<<< HEAD
+      const message = "Cet email est déjà utilisé.";
+=======
       const message = "inscription ok";
+>>>>>>> d35e408e5eef048ec4a5164470a13412fc324498
       res.send(message)
     } else {
     function sendDatas() {
@@ -126,12 +142,22 @@ app.post('/inscription', upload.array(), (req, res, next) => {
           if (error) throw error;
           const database = db.db('babybook');
           
+<<<<<<< HEAD
+          // database.collection('parents').insertOne(datas);
+          database.collection('registeredEmails').insertOne(datas);
+
+=======
           database.collection('parents').insertOne(datas)
+>>>>>>> d35e408e5eef048ec4a5164470a13412fc324498
         });
       });
     }
     sendDatas()
     .then(function() {
+<<<<<<< HEAD
+      // console.log(response);
+=======
+>>>>>>> d35e408e5eef048ec4a5164470a13412fc324498
       res.send("inscription ok");
     })
     .catch(function(err) {
@@ -168,7 +194,11 @@ app.post('/loginParents', upload.array(), (req, res, next) => {
       if (results[0].password !== datas.password) {
         res.send('L\'email ou le mot de passe est incorrect.')
       } else {
+<<<<<<< HEAD
+        res.send('ParentLogged');
+=======
         res.send('logged');
+>>>>>>> d35e408e5eef048ec4a5164470a13412fc324498
       }
     })
     .catch(function(err) {

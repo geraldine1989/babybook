@@ -1,16 +1,16 @@
-import React from 'react'
-import { Accordion, Menu, Icon, Dropdown } from 'semantic-ui-react'
+import React from 'react';
+import { Accordion, Menu, Icon, Dropdown } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
 // Local import
 import './style.scss';
 
-const MainNav = ({ parent }) => {
+const MainNav = ({ parent, handleLogout }) => {
   return (
     <div id="mainMenu">
       <div id="mainNav">
         <Dropdown item text="menu" simple className="accordionTitle">
-        <Dropdown.Menu className="accordionContent">
+          <Dropdown.Menu className="accordionContent">
           {/* { parent && <Dropdown.Item >
             <NavLink exact to="/espace-parents/journee-type" >
               Espace Parents
@@ -32,7 +32,7 @@ const MainNav = ({ parent }) => {
             </NavLink>
           </Dropdown.Item>
           <Dropdown.Item>
-            <NavLink exact to="/" >
+            <NavLink exact to="/" onClick={handleLogout}>
               Se déconnecter
             </NavLink>
           </Dropdown.Item>
