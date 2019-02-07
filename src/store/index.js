@@ -25,7 +25,7 @@ const appliedMiddlewares = applyMiddleware(
   loginNannyMiddleware, 
   mydayMiddleware, 
   parentsSpaceContactsMiddleware, 
-  parentsSpaceInfoMiddleware
+  parentsSpaceInfoMiddleware,
 );
 
 

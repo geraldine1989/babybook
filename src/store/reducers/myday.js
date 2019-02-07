@@ -31,10 +31,11 @@ const CHANGE_INPUT_NOTE_NANY_TASK = 'CHANGE_INPUT_NOTE_NANY_TASK';
 const ADD_NOTE_TASK_NANNY = 'ADD_NOTE_TASK_NANNY';
 export const REMOVE_TASK_DAY = 'REMOVE_TASK_DAY';
 export const TASK_CHECK = 'TASK_CHECK';
+/** Reponses pour le middleware */
 export const ADD_TASKS_RESPONSE = 'ADD_TASKS_RESPONSE';
 export const HANDLE_GET_TASKS = 'HANDLE_GET_TASKS';
-
-
+export const ADD_NOTE_PARENTS_RESPONSE = 'ADD_NOTE_PARENTS_RESPONSE';
+export const HANDLE_GET_NOTE_PARENTS = 'HANDLE_GET_NOTE_PARENTS';
 
 /**
  * Traitements
@@ -206,6 +207,17 @@ const myday = (state = initialState, action = {}) => {
         ...state,
         itemList: action.datas,
       };
+
+    /**  */
+    case ADD_NOTE_PARENTS_RESPONSE:
+      return {
+        ...state,
+        note: action.datas,
+      };
+    case HANDLE_GET_NOTE_PARENTS:
+      return {
+        ...state,
+      };
     default:
       return state;
   }
@@ -281,7 +293,7 @@ export const taskCheck = id => ({
   id,
 });
 
-/** Envoi pour la requete */
+      /** Envoi pour la requete */
 export const addTaskResponse = datas => ({
   type: ADD_TASKS_RESPONSE,
   datas,
@@ -291,6 +303,15 @@ export const handleGetTasks = () => ({
   type: HANDLE_GET_TASKS,
 });
 
+// ajout d'une tache pour la journée
+export const addNoteParentsResponse = datas => ({
+  type: ADD_NOTE_PARENTS_RESPONSE,
+  datas,
+});
+
+export const handleGetNoteParents = () => ({
+  type: HANDLE_GET_NOTE_PARENTS,
+});
 /**
  * Selectors
  */

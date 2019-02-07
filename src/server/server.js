@@ -550,7 +550,7 @@ app.post('/espace-parents/infos/add-phone', (req, res) => {
     });
 });
 
-/** Ajout d'une tache */
+/** -----------------------------Ajout d'une tache----------------------------- */
 
 const addTaskFromParents = new mongoose.Schema({
     name: String,
@@ -619,23 +619,68 @@ app.post('/espace-parents/add-task', (req, res) => {
     });
 });
 
-/** Ajout d'une note pour la journée */
+/** -----------------------------Ajout d'une note pour la journée -----------------------------*/
 const addNoteFromParents = new mongoose.Schema({
   note: String,
 });
 const add_note = mongoose.model('add_note', addNoteFromParents);
 
-app.post('/espace-parents/add-note-day-parents', (req, res) => {
-  const newNote = new add_note(req.body);
-  newNote.save()
-    .then((item) => {
-      console.log('la note a été sauvegardée');
-      res.send('Note save to database');
+/** Chargement de la la note  */
+app.get('/espace-parents/journal', (req, res) => {
+  function findNoteParents() {
+    
+    return new Promise(((resolve, reject) => {
+      add_note.find((err, response) => {
+        console.log('note chargée');
+        noteParents = response;
+        resolve (noteParents);
+        return noteParents;
+      });
+    }));
+  }
+  findNoteParents()
+    .then((noteParents) => {
+      console.log('note des parents : ', noteParents);
+      res.status('200').send(noteParents);
     })
     .catch((err) => {
-      res.status(400).send('Unable to save to database');
+      console.log('Caught an error!', err);
     });
 });
+/** Enregistrement de la note */
+app.post('/espace-parents/add-note-day-parents', (req, res) => {
+  const newNoteFromParents = new add_note(req.body);
+// Chargement de la nouvelle liste
+  function findNoteParents() {
+    return new Promise(function(resolve, reject) {
+console.log('note chargée')
+      add_note.find((err, response) => {
+        noteParents = response;
+        resolve (noteParents);
+        return noteParents;
+      });
+    });
+  }
+  newNoteFromParents.save()
+  .then((item) => {
+    findNoteParents()
+      .then(function(noteParents){
+        res.status('200').send(noteParents);
+        console.log('note sauvegardee');
+        console.log(noteParents);
+      })
+      .catch(function(err) {
+        console.log('Caught an error!', err);
+      })
+    // res.send("Task saved to database");
+  })
+  .catch((err) => {
+    res.status(400).send('Unable to save to database');
+  })
+});
+
+/** -----------------------------Ajout d'une note pour la journée nounou-----------------------------*/
+  
 
 /** Ajout d'une note de la nanny pour la journée */
 const addNoteFromNanny = new mongoose.Schema({

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import uuidv4 from 'uuid/v4';
-import { ADD_TASK, addTaskResponse, ADD_NOTE, ADD_NOTE_DAY_NANNY, HANDLE_GET_TASKS } from './reducers/myday';
+import { ADD_TASK, addTaskResponse, ADD_NOTE, ADD_NOTE_DAY_NANNY, HANDLE_GET_TASKS, addNoteParentsResponse, HANDLE_GET_NOTE_PARENTS } from './reducers/myday';
 
 const mydayMiddleware = store => next => (action) => {
   const state = store.getState().myday;
@@ -53,18 +53,18 @@ const mydayMiddleware = store => next => (action) => {
       next(action);
       break;
 
-    /** Ajout d'une note des parents pour la journée */
+    /** ----------------------------------Ajout d'une note des parents pour la journée ----------------------------------*/
+    // ajout d'une note
     case ADD_NOTE:
-    console.log('je suis dans le middleware');
-      
-      const formNoteDay = {      
+    console.log('je suis dans le middlewar');
+      const formNoteDay = {  
         note: inputNote,
       };
         
       
       axios.post('http://localhost:3000/espace-parents/add-note-day-parents', formNoteDay)
       .then((response) => {
-        store.dispatch(addTaskResponse(response.data));
+        store.dispatch(addNoteParentsResponse(response.data));
         console.log('ajout task ADD note : '+ response);
         
       })
@@ -73,9 +73,21 @@ const mydayMiddleware = store => next => (action) => {
       });
       next(action);
       break;
-    /**  */
 
-    /** Ajout d'une note de la nanny pour la journée */
+    // Récupération de la note des parents 
+    case HANDLE_GET_NOTE_PARENTS:
+    console.log('coucou HANDLE GET NOTE Middleware');
+      axios.get('http://localhost:3000/espace-parents/journal')
+        .then((response) => {
+          store.dispatch(addNoteParentsResponse(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      next(action);
+      break;
+
+    /** ---------------------------------- Ajout d'une note de la nanny pour la journée---------------------------------- */
     case ADD_NOTE_DAY_NANNY:
     console.log('je suis dans le middleware');
       
