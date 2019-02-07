@@ -579,7 +579,6 @@ app.get('/espace-parents/journee-type', (req, res) => {
   }
   findTasks()
     .then((tasks) => {
-      console.log('tasks : ', tasks);
       res.status('200').send(tasks);
     })
     .catch((err) => {
@@ -611,7 +610,6 @@ app.post('/espace-parents/add-task', (req, res) => {
   }
   findTasks()
     .then((tasks) => {
-      console.log('tasks : ', tasks);
       res.status('200').send(tasks);
     })
     .catch((err) => {
@@ -629,8 +627,7 @@ app.post('/espace-parents/add-note-day-parents', (req, res) => {
   const newNote = new add_note(req.body);
   newNote.save()
     .then((item) => {
-      console.log('la note a été sauvegardée');
-      console.log('la note est ', newNote.note);
+      
       res.send(newNote.note);
     })
     .catch((err) => {
@@ -664,6 +661,17 @@ app.post('/espace-parents/remove-task', (req, res) => {
   add_task.deleteOne({ id: Object.keys(DeletdTask) }, function (err) {});
   res.send();
 });
+
+/** --------------------------Ajout d'une note dans une tache-------------------------- */
+
+app.post('/add-task-nanny', (req, res) => {
+  var selectedTask = req.body;
+      add_task.find( {id: Object.keys(selectedTask)}, (err, response) => {
+        task = response;
+        console.log(task); 
+      });
+});
+
 
 /**
 * gestion contacts espace parents

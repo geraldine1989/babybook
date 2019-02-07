@@ -28,7 +28,7 @@ export const ADD_NOTE = 'ADD_NOTE';
 const CHANGE_INPUT_NOTE_NANY_DAY = 'CHANGE_INPUT_NOTE_NANY_DAY';
 export const ADD_NOTE_DAY_NANNY = 'ADD_NOTE_DAY_NANNY';
 const CHANGE_INPUT_NOTE_NANY_TASK = 'CHANGE_INPUT_NOTE_NANY_TASK';
-const ADD_NOTE_TASK_NANNY = 'ADD_NOTE_TASK_NANNY';
+export const ADD_NOTE_TASK_NANNY = 'ADD_NOTE_TASK_NANNY';
 export const REMOVE_TASK_DAY = 'REMOVE_TASK_DAY';
 export const TASK_CHECK = 'TASK_CHECK';
 
@@ -38,9 +38,8 @@ export const ADD_TASKS_RESPONSE = 'ADD_TASKS_RESPONSE';
 export const HANDLE_GET_TASKS = 'HANDLE_GET_TASKS';
 // ajout d'une note
 export const ADD_NOTE_RESPONSE = 'ADD_NOTE_RESPONSE';
-// Ajout d'une note de la journée par la nounou
-export const ADD_NOTE_NANNY_RESPONSE = 'ADD_NOTE_NANNY_RESPONSE';
-
+// ajout d'une note de la nanny
+// export const ADD_NOTE_NANNY_RESPONSE = 'ADD_NOTE_NANNY_RESPONSE';
 /**
  * Traitements
  */
@@ -217,11 +216,11 @@ const myday = (state = initialState, action = {}) => {
         ...state,
         note: action.datas,
       };
-    case ADD_NOTE_NANNY_RESPONSE:
-      return {
-        ...state,
-        nannyNote: action.datas,
-      };
+    // case ADD_NOTE_NANNY_RESPONSE:
+    //   return {
+    //     ...state,
+    //     nannyNote: action.datas,
+    //   };
 
 
     default:
@@ -314,10 +313,10 @@ export const addNoteResponse = datas => ({
   datas,
 });
 
-export const addNoteNannyResponse = datas => ({
-  type: ADD_NOTE_NANNY_RESPONSE,
-  datas,
-});
+// export const addNoteNannyResponse = datas => ({
+//   type: ADD_NOTE_NANNY_RESPONSE,
+//   datas,
+// });
 
 
 /**

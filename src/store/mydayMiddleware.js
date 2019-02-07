@@ -1,11 +1,11 @@
 import axios from 'axios';
 import uuidv4 from 'uuid/v4';
-import { ADD_TASK, addTaskResponse, ADD_NOTE, ADD_NOTE_DAY_NANNY, HANDLE_GET_TASKS, addNoteResponse, addNoteNannyResponse, REMOVE_TASK_DAY } from './reducers/myday';
+import { ADD_TASK, addTaskResponse, ADD_NOTE, ADD_NOTE_DAY_NANNY, HANDLE_GET_TASKS, addNoteResponse, addNoteNannyResponse, REMOVE_TASK_DAY, ADD_NOTE_TASK_NANNY } from './reducers/myday';
 
 const mydayMiddleware = store => next => (action) => {
   const state = store.getState().myday;
       const { inputTitle, inputNoteTask, inputHourTask } = state;
-      const { itemList } = state;
+      const { selctedInput } = state.itemList;
       const { inputNote } = state;
       const { inputNoteNounou } = state;
   // Je veux vérifier si l'action que je reçois m'intéresse
@@ -24,15 +24,14 @@ const mydayMiddleware = store => next => (action) => {
         indic: inputNoteTask,
         tododone:'list-button',
         selctedInput: '',
-        note: '',
+        note: selectedInput,
         id: uuidv4(),
       };
    
       axios.post('http://localhost:3000/espace-parents/add-task', formDatas)
       .then((response) => {
         store.dispatch(addTaskResponse(response.data));
-        console.log('ajout task ADD TASK : '+ response);
-        
+        console.log('ajout task ADD TASK : '+ response);       
       })
       .catch((error) => {
         console.log(error);
@@ -94,11 +93,20 @@ const mydayMiddleware = store => next => (action) => {
 
     /** --------------------------Suppression d'une tache-------------------------- */
     case REMOVE_TASK_DAY:
-      console.log('coucou REMOVE TASK Middleware');
       axios.post('http://localhost:3000/espace-parents/remove-task', action.id);
       next(action);
       break;
-
+    
+    /** --------------------------Ajout d'une note de la nounou pour une tache -------------------------- */
+    case ADD_NOTE_TASK_NANNY:
+    const formNannyAddTAsk = {
+      note: selectedInput,
+     };
+    
+    console.log('coucou ADD_NOTE_TASK_NANNY Middleware');
+      axios.post('http://localhost:3000/add-task-nanny', action.id, formNannyAddTAsk);
+      next(action);
+      break;
     default:
       next(action);
   }
