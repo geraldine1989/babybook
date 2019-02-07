@@ -332,15 +332,6 @@ app.get('/espace-parents/infos/get-meds', (req, res) => {
 /* Enregistrement d'un médicament dans la BDD */
 app.post('/espace-parents/infos/add-meds', (req, res) => {
   const newMed = new Med(req.body);
-  newMed.save()
-    .then((item) => {
-      res.send('Name saved to database');
-    })
-    .catch((err) => {
-      res.status(400).send('Unable to save to database');
-    });
-
-  // Chargement de la nouvelle liste de médicaments
   function findRegisteredMed() {
     return new Promise(((resolve, reject) => {
       Med.find((err, response) => {
@@ -350,31 +341,27 @@ app.post('/espace-parents/infos/add-meds', (req, res) => {
       });
     }));
   }
-  findRegisteredMed()
-    .then((regMed) => {
-      res.status('200').send(regMed);
+  newMed.save()
+    .then((item) => {
+      // Chargement de la nouvelle liste de médicaments
+      findRegisteredMed()
+        .then((regMed) => {
+          res.status('200').send(regMed);
+        })
+        .catch((err) => {
+          console.log('Caught an error!', err);
+        });
     })
     .catch((err) => {
-      console.log('Caught an error!', err);
+      res.status(400).send('Unable to save to database');
     });
 });
-/* Suppression d'un médicament */
-// app.delete('/espace-parents/infos/remove-meds', req, res) => {
-//   function deleteRegisteredMeds(err, db) {
-//     if (err) throw err;
-//     var dbo = db.db("babybook");
-//     // var myquery = { address: /^O/ };
-//     dbo.collection("med").deleteMany(myquery, function(err, obj) {
-//       if (err) throw err;
-//       console.log(obj.result.n + " document(s) deleted");
-//       db.close();
-//     });
-//   }
-// };
 
-/**
- * infos parents - santé - vaccins
- */
+app.post('/espace-parents/infos/remove-meds', (req, res) => {
+  const deletedMed = req.body;
+  Med.deleteOne({ id: Object.keys(deletedMed) }, function(err) {});
+  res.send();
+});
 
 const registeredVaccine = new mongoose.Schema({
   id: String,
@@ -404,15 +391,6 @@ app.get('/espace-parents/infos/get-vaccines', (req, res) => {
 /* Enregistrement d'un vaccin dans la BDD */
 app.post('/espace-parents/infos/add-vaccines', (req, res) => {
   const newVaccine = new Vaccine(req.body);
-  newVaccine.save()
-    .then((item) => {
-      res.send('Name saved to database');
-    })
-    .catch((err) => {
-      res.status(400).send('Unable to save to database');
-    });
-
-  // Chargement de la nouvelle liste de médicaments
   function findRegisteredVaccine() {
     return new Promise(((resolve, reject) => {
       Vaccine.find((err, response) => {
@@ -422,14 +400,28 @@ app.post('/espace-parents/infos/add-vaccines', (req, res) => {
       });
     }));
   }
-  findRegisteredVaccine()
-    .then((regVaccine) => {
-      res.status('200').send(regVaccine);
+  newVaccine.save()
+    .then((item) => {
+      // Chargement de la nouvelle liste de médicaments
+      findRegisteredVaccine()
+        .then((regVaccine) => {
+          res.status('200').send(regVaccine);
+        })
+        .catch((err) => {
+          console.log('Caught an error!', err);
+        });
     })
     .catch((err) => {
-      console.log('Caught an error!', err);
+      res.status(400).send('Unable to save to database');
     });
 });
+
+app.post('/espace-parents/infos/remove-vaccines', (req, res) => {
+  const deletedVaccine = req.body;
+  Vaccine.deleteOne({ id: Object.keys(deletedVaccine) }, function(err) {});
+  res.send();
+});
+
 
 /**
  * infos parents - santé - allergies
@@ -463,15 +455,6 @@ app.get('/espace-parents/infos/get-allergies', (req, res) => {
 /* Enregistrement d'une allergie dans la BDD */
 app.post('/espace-parents/infos/add-allergies', (req, res) => {
   const newAllergie = new Allergie(req.body);
-  newAllergie.save()
-    .then((item) => {
-      res.send('Name saved to database');
-    })
-    .catch((err) => {
-      res.status(400).send('Unable to save to database');
-    });
-
-  // Chargement de la nouvelle liste des allergies
   function findRegisteredAllergie() {
     return new Promise(((resolve, reject) => {
       Allergie.find((err, response) => {
@@ -481,13 +464,27 @@ app.post('/espace-parents/infos/add-allergies', (req, res) => {
       });
     }));
   }
-  findRegisteredAllergie()
-    .then((regAllergie) => {
-      res.status('200').send(regAllergie);
+  newAllergie.save()
+    .then((item) => {
+      // Chargement de la nouvelle liste des allergies
+      findRegisteredAllergie()
+        .then((regAllergie) => {
+          res.status('200').send(regAllergie);
+        })
+        .catch((err) => {
+          console.log('Caught an error!', err);
+        });
     })
     .catch((err) => {
-      console.log('Caught an error!', err);
+      res.status(400).send('Unable to save to database');
     });
+
+});
+
+app.post('/espace-parents/infos/remove-allergies', (req, res) => {
+  const deletedAllergy = req.body;
+  Allergie.deleteOne({ id: Object.keys(deletedAllergy) }, function(err) {});
+  res.send();
 });
 
 /**

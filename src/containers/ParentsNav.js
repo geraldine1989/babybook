@@ -36,6 +36,13 @@ const mapDispatchToProps = dispatch => ({
   handleGetTasks: () => {
     dispatch(handleGetTasks());
   },
+  handleGetInfos: () => {
+    dispatch(getChild());
+    dispatch(getMeds());
+    dispatch(getVaccines());
+    dispatch(getAllergies());
+    dispatch(getPhone());
+  },
 });
 
 // Container

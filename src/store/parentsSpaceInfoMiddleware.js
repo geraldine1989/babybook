@@ -17,6 +17,9 @@ import {
   ADD_ALLERGIES,
   allergiesResponse,
   GET_ALLERGIES,
+  REMOVE_MEDS,
+  REMOVE_VACCINES,
+  REMOVE_ALLERGIES,
 } from './reducers/ParentsSpaceInfoReducer';
 
 /* eslint-disable no-case-declarations */
@@ -56,6 +59,7 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
       break;
 
     case GET_MEDS:
+    console.log('coucou GET MEDS Middleware');
       axios.get('http://localhost:3000/espace-parents/infos/get-meds')
         .then((response) => {
           store.dispatch(medsResponse(response.data));
@@ -82,6 +86,12 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
         .catch((error) => {
           console.log(error);
         });
+      next(action);
+      break;
+
+    case REMOVE_MEDS:
+      console.log('coucou REMOVE MEDS Middleware');
+      axios.post('http://localhost:3000/espace-parents/infos/remove-meds', action.id);
       next(action);
       break;
 
@@ -115,6 +125,12 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
       next(action);
       break;
 
+    case REMOVE_VACCINES:
+      console.log('coucou REMOVE VACCINES Middleware');
+      axios.post('http://localhost:3000/espace-parents/infos/remove-vaccines', action.id);
+      next(action);
+      break;
+
     case GET_ALLERGIES:
       axios.get('http://localhost:3000/espace-parents/infos/get-allergies')
         .then((response) => {
@@ -142,6 +158,12 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
         .catch((error) => {
           console.log(error);
         });
+      next(action);
+      break;
+
+    case REMOVE_ALLERGIES:
+      console.log('coucou REMOVE ALLERGIES Middleware');
+      axios.post('http://localhost:3000/espace-parents/infos/remove-allergies', action.id);
       next(action);
       break;
 

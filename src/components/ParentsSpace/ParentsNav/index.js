@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
  */
 import './style.scss';
 
-const ParentsNav = ({ handleGetContacts, handleGetTasks, getChild, getMeds, getVaccines, getAllergies, getPhone }) => {
+const ParentsNav = ({ handleGetContacts, handleGetTasks, handleGetInfos, getChild, getMeds, getVaccines, getAllergies, getPhone }) => {
 
   return (
     <div id="parentsNav">
@@ -27,7 +27,7 @@ const ParentsNav = ({ handleGetContacts, handleGetTasks, getChild, getMeds, getV
           className="second-menu-item"
           name="Modifier les infos"
           // active={activeItem === 'Modifier les infos'}
-          onClick={getChild}
+          onClick={handleGetInfos}
           activeclassename="active"
         />
         <Menu.Item
