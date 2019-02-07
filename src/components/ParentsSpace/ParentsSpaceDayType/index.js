@@ -117,9 +117,7 @@ const ParentsSpaceDayType = ({ removeTaskDay, handleChangeTitleDay, inputTitle, 
                 <span>{task.hour}</span>
                 <span>{task.indic}</span>
                 <Icon name="delete" onClick={handleDeleteMyDayItem(task.id)} />
-                
-              </li>
-              
+              </li>         
             )
           }
           
