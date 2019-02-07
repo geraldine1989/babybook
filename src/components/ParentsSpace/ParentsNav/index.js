@@ -6,7 +6,15 @@ import { NavLink } from 'react-router-dom';
  */
 import './style.scss';
 
-const ParentsNav = ({ handleGetContacts, handleGetTasks, getChild, getMeds, getVaccines, getAllergies, getPhone }) => {
+const ParentsNav = ({ 
+  handleGetContacts, 
+  handleGetTasks, 
+  getChild, 
+  getMeds, 
+  getVaccines, 
+  getAllergies, 
+  getPhone 
+}) => {
 
   return (
     <div id="parentsNav">

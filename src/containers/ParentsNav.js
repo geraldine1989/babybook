@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
  */
 import ParentsNav from 'src/components/ParentsSpace/ParentsNav';
 import { handleGetContacts } from 'src/store/reducers/ParentsSpaceContactsReducer';
-import { getChild, getMeds, getVaccines, getAllergies, getPhone } from 'src/store/reducers/ParentsSpaceInfoReducer';
+import { getChild, getMeds, getVaccines, getAllergies, getPhone, getInfos } from 'src/store/reducers/ParentsSpaceInfoReducer';
 import { handleGetTasks } from 'src/store/reducers/myday';
 // Action Creators
 
@@ -35,6 +35,9 @@ const mapDispatchToProps = dispatch => ({
   },
   handleGetTasks: () => {
     dispatch(handleGetTasks());
+  },
+  getInfos: () => {
+    dispatch(getInfos());
   },
 });
 

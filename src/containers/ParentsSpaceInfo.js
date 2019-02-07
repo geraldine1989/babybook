@@ -118,6 +118,9 @@ const mapDispatchToProps = dispatch => ({
   removePhone: (id) => {
     dispatch(removePhone(id));
   },
+  getInfos: () => {
+    dispatch(getInfos());
+  },
 });
 
 // Container

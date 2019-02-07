@@ -17,6 +17,7 @@ import {
   ADD_ALLERGIES,
   allergiesResponse,
   GET_ALLERGIES,
+  GET_INFOS,
 } from './reducers/ParentsSpaceInfoReducer';
 
 /* eslint-disable no-case-declarations */
@@ -175,6 +176,15 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
         });
       next(action);
       break;
+    
+    case GET_INFOS:
+      axios.get('http://localhost:3000/espace-parents/infos/get-infos')
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
 
     default:
       next(action);
