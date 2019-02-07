@@ -62,7 +62,7 @@ const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNou
   };
   const orderedTasks = [
     ...list.sort(compare),
-  ];
+  ]; 
 
   /** Changer la couleur du bouton au check */
   const handleCheck = (id) => () => {

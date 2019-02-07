@@ -116,10 +116,13 @@ const ParentsSpaceDayType = ({ removeTaskDay, handleChangeTitleDay, inputTitle, 
                 <span>{task.name}</span>
                 <span>{task.hour}</span>
                 <span>{task.indic}</span>
-                <Icon name="delete" onClick={handleDeleteMyDayItem(task.id)} />  
-              </li>   
+                <Icon name="delete" onClick={handleDeleteMyDayItem(task.id)} />
+                
+              </li>
+              
             )
           }
+          
         </ul>
         <div id="add-item">
           <Form className="form-add-item" onSubmit={handleSubmitList}>
