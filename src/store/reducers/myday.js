@@ -28,14 +28,18 @@ export const ADD_NOTE = 'ADD_NOTE';
 const CHANGE_INPUT_NOTE_NANY_DAY = 'CHANGE_INPUT_NOTE_NANY_DAY';
 export const ADD_NOTE_DAY_NANNY = 'ADD_NOTE_DAY_NANNY';
 const CHANGE_INPUT_NOTE_NANY_TASK = 'CHANGE_INPUT_NOTE_NANY_TASK';
-const ADD_NOTE_TASK_NANNY = 'ADD_NOTE_TASK_NANNY';
+export const ADD_NOTE_TASK_NANNY = 'ADD_NOTE_TASK_NANNY';
 export const REMOVE_TASK_DAY = 'REMOVE_TASK_DAY';
 export const TASK_CHECK = 'TASK_CHECK';
+
+/** pour le server */
+// Ajout d'une tâche
 export const ADD_TASKS_RESPONSE = 'ADD_TASKS_RESPONSE';
 export const HANDLE_GET_TASKS = 'HANDLE_GET_TASKS';
-
-
-
+// ajout d'une note
+export const ADD_NOTE_RESPONSE = 'ADD_NOTE_RESPONSE';
+// ajout d'une note de la nanny
+// export const ADD_NOTE_NANNY_RESPONSE = 'ADD_NOTE_NANNY_RESPONSE';
 /**
  * Traitements
  */
@@ -112,6 +116,7 @@ const myday = (state = initialState, action = {}) => {
         note: inputNote,
         inputNote: '',
       };
+    
 
     // note day nanny
 
@@ -128,7 +133,7 @@ const myday = (state = initialState, action = {}) => {
         inputNoteNounou: '',
       };
     
-      
+
     // note task nanny
     case CHANGE_INPUT_NOTE_NANY_TASK:
      
@@ -206,6 +211,18 @@ const myday = (state = initialState, action = {}) => {
         ...state,
         itemList: action.datas,
       };
+    case ADD_NOTE_RESPONSE:
+      return {
+        ...state,
+        note: action.datas,
+      };
+    // case ADD_NOTE_NANNY_RESPONSE:
+    //   return {
+    //     ...state,
+    //     nannyNote: action.datas,
+    //   };
+
+
     default:
       return state;
   }
@@ -281,7 +298,7 @@ export const taskCheck = id => ({
   id,
 });
 
-/** Envoi pour la requete */
+/** ------------------Envoi pour la requete-------------------------- */
 export const addTaskResponse = datas => ({
   type: ADD_TASKS_RESPONSE,
   datas,
@@ -290,6 +307,17 @@ export const addTaskResponse = datas => ({
 export const handleGetTasks = () => ({
   type: HANDLE_GET_TASKS,
 });
+
+export const addNoteResponse = datas => ({
+  type: ADD_NOTE_RESPONSE,
+  datas,
+});
+
+// export const addNoteNannyResponse = datas => ({
+//   type: ADD_NOTE_NANNY_RESPONSE,
+//   datas,
+// });
+
 
 /**
  * Selectors

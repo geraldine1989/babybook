@@ -624,10 +624,11 @@ const add_note = mongoose.model('add_note', addNoteFromParents);
 
 app.post('/espace-parents/add-note-day-parents', (req, res) => {
   const newNote = new add_note(req.body);
+  add_note.deleteMany({}, function (err) {} );
   newNote.save()
     .then((item) => {
       console.log('la note a été sauvegardée');
-      res.send('Note save to database');
+      res.send(newNote.note);
     })
     .catch((err) => {
       res.status(400).send('Unable to save to database');
@@ -650,6 +651,23 @@ app.post('/myday/nannydaytask', (req, res) => {
     .catch((err) => {
       res.status(400).send('Unable to save to database');
     });
+});
+/** --------------------------Supression d'une tâche-------------------------- */
+app.post('/espace-parents/remove-task', (req, res) => {
+  var DeletdTask = req.body;
+  console.log('je suis dans le serveur je souhaite etre supprime');
+  console.log(DeletdTask);
+  add_task.deleteOne({ id: Object.keys(DeletdTask) }, function (err) {});
+  res.send();
+});
+
+/** --------------------------Ajout d'une note dans une tache-------------------------- */
+
+app.post('/add-task-nanny', (req, res) => {
+  var test1 = add_task.find({id: Object.keys(req.body)}, function(err) {});
+  var test2 = add_task[{id: Object.keys(req.body)}];
+  console.log('test1', test1);
+  console.log('hello je suis dans le serveur voici la note', test2);
 });
 
 /**
