@@ -597,7 +597,6 @@ app.post('/espace-parents/add-task', (req, res) => {
     return new Promise(((resolve, reject) => {
       add_task.find((err, response) => {
         tasks = response;
-        console.log('la nouvelle liste est ', tasks);
         resolve (tasks);
         return tasks;
       });
@@ -607,7 +606,6 @@ app.post('/espace-parents/add-task', (req, res) => {
     .then((item) => {
       findTasks()
         .then((tasks) => {
-          console.log('taches envoyées ', tasks);
           res.status('200').send(tasks);
         })
         .catch((err) => {
@@ -704,33 +702,16 @@ app.post('/espace-parents/remove-task', (req, res) => {
   res.send();
 });
 
-/** --------------------------Ajout d'une note dans une tache-------------------------- */
-
-app.post('/add-task-nanny', (req, res) => {
-  var test1 = add_task.find({id: Object.keys(req.body)}, function(err) {});
-  var test2 = add_task[{id: Object.keys(req.body)}];
-  console.log('test1', test1);
-  console.log('hello je suis dans le serveur voici la note', test2);
-});
-
-/** --------------------------Supression d'une tâche-------------------------- */
-app.post('/espace-parents/remove-task', (req, res) => {
-  var DeletdTask = req.body;
-  console.log('je suis dans le serveur je souhaite etre supprime');
-  console.log(DeletdTask);
-  add_task.deleteOne({ id: Object.keys(DeletdTask) }, function (err) {});
-  res.send();
-});
 
 /** --------------------------Ajout d'une note dans une tache-------------------------- */
 
 app.post('/add-task-nanny', (req, res) => {
-  console.log('note à ajouter : ', req.body);
   var selectedTask = req.body.id;
   function findTask(selectedTask) {
     return new Promise((resolve, reject) => {
       add_task.find({ id: selectedTask }, (err, response) => {
         foundTask = response;
+        console.log(foundTask);
         resolve (foundTask);
         return foundTask;
       });
@@ -738,8 +719,8 @@ app.post('/add-task-nanny', (req, res) => {
   }
   findTask(selectedTask)
   .then((foundTask) => {
+    console.log('problème : ', foundTask[0]);
     foundTask[0].note = req.body.text;
-    console.log(foundTask[0]);
     add_task.update({ id: selectedTask }, { $set: { note: foundTask[0].note }}, { overwrite: true }, function (err, res) {});
   })
   .catch((err) => {
