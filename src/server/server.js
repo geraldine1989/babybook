@@ -594,14 +594,6 @@ app.get('/espace-parents/journee-type', (req, res) => {
  */
 app.post('/espace-parents/add-task', (req, res) => {
   const newTask = new add_task(req.body);
-  newTask.save()
-    .then((item) => {
-      // res.send("Task saved to database");
-    })
-    .catch((err) => {
-      res.status(400).send('Unable to save to database');
-    });
-  /** Chargement de la nouvelle liste */
   function findTasks() {
     return new Promise(((resolve, reject) => {
       add_task.find((err, response) => {
@@ -611,14 +603,22 @@ app.post('/espace-parents/add-task', (req, res) => {
       });
     }));
   }
-  findTasks()
-    .then((tasks) => {
-      console.log('tasks : ', tasks);
-      res.status('200').send(tasks);
+  newTask.save()
+    .then((item) => {
+      // res.send("Task saved to database");
+      findTasks()
+        .then((tasks) => {
+          console.log('tasks : ', tasks);
+          res.status('200').send(tasks);
+        })
+        .catch((err) => {
+          console.log('Caught an error!', err);
+        });
     })
     .catch((err) => {
-      console.log('Caught an error!', err);
+      res.status(400).send('Unable to save to database');
     });
+  /** Chargement de la nouvelle liste */
 });
 
 /** Ajout d'une note pour la journée */
