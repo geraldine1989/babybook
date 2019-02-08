@@ -17,8 +17,8 @@ const ParentsNav = ({ handleGetContacts, handleGetTasks, handleGetInfos, getChil
           to="/espace-parents/journee-type"
           className="second-menu-item"
           name="Modifier journée type"
-          // active={activeItem === 'Modifier journée type'}
           onClick={handleGetTasks}
+          // active={activeItem === 'Modifier journée type'}
           activeclassename="active"
         />
         <Menu.Item

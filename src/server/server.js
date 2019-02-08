@@ -3,8 +3,8 @@ var app = express();
 var port = 3000;
 var bodyParser = require('body-parser');
 // connect-mongo
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
+// const session = require('express-session');
+// const MongoStore = require('connect-mongo')(session);
 // email validator
 var validator = require("email-validator");
 
@@ -22,14 +22,14 @@ app.use(function(req, res, next) {
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/babybook", { useNewUrlParser: true });
-// const connection = mongoose.createConnection("mongodb://localhost:27017/babybook", { useNewUrlParser: true });
+const connection = mongoose.createConnection("mongodb://localhost:27017/babybook", { useNewUrlParser: true });
 
-app.use(session({
-  store: new MongoStore({ mongooseConnection: mongoose.connection }),
-  secret: 'Ereul9Aeng',
-  resave: false,
-  saveUninitialized: false,
-}));
+// app.use(session({
+//   store: new MongoStore({ mongooseConnection: mongoose.connection }),
+//   secret: 'Ereul9Aeng',
+//   resave: false,
+//   saveUninitialized: false,
+// }));
 
 /**
  * var
@@ -552,14 +552,14 @@ app.post('/espace-parents/infos/remove-phones', (req, res) => {
   res.send();
 });
 
-/** Ajout d'une tache */
+/** --------------------------Ajout d'une tache--------------------------*/
 
 var addTaskFromParents = new mongoose.Schema({
     name: String,
     hour: String,
     indic: String,
     tododone:String,
-    selctedInput: String,
+    //selctedInput: String,
     note: String,
     id: String,
    });
@@ -581,7 +581,6 @@ app.get('/espace-parents/journee-type', (req, res) => {
   }
   findTasks()
     .then((tasks) => {
-      console.log('tasks : ', tasks);
       res.status('200').send(tasks);
     })
     .catch((err) => {
@@ -598,6 +597,7 @@ app.post('/espace-parents/add-task', (req, res) => {
     return new Promise(((resolve, reject) => {
       add_task.find((err, response) => {
         tasks = response;
+        console.log('la nouvelle liste est ', tasks);
         resolve (tasks);
         return tasks;
       });
@@ -605,10 +605,9 @@ app.post('/espace-parents/add-task', (req, res) => {
   }
   newTask.save()
     .then((item) => {
-      // res.send("Task saved to database");
       findTasks()
         .then((tasks) => {
-          console.log('tasks : ', tasks);
+          console.log('taches envoyées ', tasks);
           res.status('200').send(tasks);
         })
         .catch((err) => {
@@ -621,7 +620,7 @@ app.post('/espace-parents/add-task', (req, res) => {
   /** Chargement de la nouvelle liste */
 });
 
-/** Ajout d'une note pour la journée */
+/** --------------------------Ajout d'une note pour la journée-------------------------- */
 const addNoteFromParents = new mongoose.Schema({
   note: String,
 });
@@ -659,7 +658,7 @@ app.post('/espace-parents/add-note-day-parents', (req, res) => {
     });
 });
 
-/** Ajout d'une note de la nanny pour la journée */
+/** --------------------------Ajout d'une note de la nanny pour la journée-------------------------- */
 const addNoteFromNanny = new mongoose.Schema({
   nannyNote: String,
 });
@@ -712,6 +711,48 @@ app.post('/add-task-nanny', (req, res) => {
   var test2 = add_task[{id: Object.keys(req.body)}];
   console.log('test1', test1);
   console.log('hello je suis dans le serveur voici la note', test2);
+});
+
+/** --------------------------Supression d'une tâche-------------------------- */
+app.post('/espace-parents/remove-task', (req, res) => {
+  var DeletdTask = req.body;
+  console.log('je suis dans le serveur je souhaite etre supprime');
+  console.log(DeletdTask);
+  add_task.deleteOne({ id: Object.keys(DeletdTask) }, function (err) {});
+  res.send();
+});
+
+/** --------------------------Ajout d'une note dans une tache-------------------------- */
+
+app.post('/add-task-nanny', (req, res) => {
+  console.log('note à ajouter : ', req.body);
+  var selectedTask = req.body.id;
+  function findTask(selectedTask) {
+    return new Promise((resolve, reject) => {
+      add_task.find({ id: selectedTask }, (err, response) => {
+        foundTask = response;
+        resolve (foundTask);
+        return foundTask;
+      });
+    });
+  }
+  findTask(selectedTask)
+  .then((foundTask) => {
+    foundTask[0].note = req.body.text;
+    console.log(foundTask[0]);
+    add_task.update({ id: selectedTask }, { $set: { note: foundTask[0].note }}, { overwrite: true }, function (err, res) {});
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+});
+
+/** --------------------------checker une tache-------------------------- */
+app.post('/task-done', (req, res) => {
+  var CheckedTask = req.body.id;
+  console.log('Task checkee',CheckedTask);
+  
+  res.send();
 });
 
 /**

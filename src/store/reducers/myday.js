@@ -85,8 +85,8 @@ const myday = (state = initialState, action = {}) => {
         name: inputTitle,
         hour: inputHourTask,
         indic: inputNoteTask,
+        selectInput: '',
         note: '',
-        selctedInput: '',
         tododone: 'list-button',
       };
 
@@ -183,7 +183,7 @@ const myday = (state = initialState, action = {}) => {
       };
     
 
-     /** Suppresion d'un tache */
+     /** Suppression d'une tache */
      case REMOVE_TASK_DAY:
      const detetedTask = state.itemList.filter(list => list.id !== action.id);
       return {
@@ -191,7 +191,7 @@ const myday = (state = initialState, action = {}) => {
         itemList: detetedTask,
       };
 
-    /** Changer la classe du bouton si cheché */
+    /** Changer la classe du bouton si checké */
 
     case TASK_CHECK:
       const newTaskListCheched = itemList.map((task) => {

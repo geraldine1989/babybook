@@ -1,11 +1,11 @@
 import axios from 'axios';
 import uuidv4 from 'uuid/v4';
-import { ADD_TASK, addTaskResponse, ADD_NOTE, ADD_NOTE_DAY_NANNY, HANDLE_GET_TASKS, addNoteResponse, addNoteNannyResponse, REMOVE_TASK_DAY, ADD_NOTE_TASK_NANNY, HANDLE_GET_PARENTS_NOTE, HANDLE_GET_NANNY_DAY_NOTE } from './reducers/myday';
+import { ADD_TASK, addTaskResponse, ADD_NOTE, ADD_NOTE_DAY_NANNY, HANDLE_GET_TASKS, addNoteResponse, addNoteNannyResponse, REMOVE_TASK_DAY, ADD_NOTE_TASK_NANNY, HANDLE_GET_PARENTS_NOTE, HANDLE_GET_NANNY_DAY_NOTE, TASK_CHECK } from './reducers/myday';
 
 const mydayMiddleware = store => next => (action) => {
   const state = store.getState().myday;
       const { inputTitle, inputNoteTask, inputHourTask } = state;
-      const { itemList } = state;
+      const { selctedInput } = state.itemList;
       const { inputNote } = state;
       const { inputNoteNounou } = state;
   // Je veux vérifier si l'action que je reçois m'intéresse
@@ -23,7 +23,6 @@ const mydayMiddleware = store => next => (action) => {
         hour: inputHourTask,
         indic: inputNoteTask,
         tododone:'list-button',
-        selctedInput: '',
         note: '',
         id: uuidv4(),
       };
@@ -130,6 +129,29 @@ const mydayMiddleware = store => next => (action) => {
       axios.post('http://localhost:3000/add-task-nanny', action.id);
       next(action);
       break;
+    
+    /** --------------------------Ajout d'une note de la nounou pour une tache -------------------------- */
+    case ADD_NOTE_TASK_NANNY:
+      const formNannyAddTAsk = {
+        id: action.id,
+        text: action.text,
+        selctedInput: selctedInput,
+      };
+      
+      console.log('coucou ADD_NOTE_TASK_NANNY Middleware');
+        axios.post('http://localhost:3000/add-task-nanny', formNannyAddTAsk);
+        next(action);
+        
+        break;
+  /** --------------------------Task checkee -------------------------- */
+      case TASK_CHECK:
+      const formCheckTask = {
+        id: action.id,
+      }
+      axios.post('http://localhost:3000/task-done', formCheckTask);
+      next(action);
+      break;
+
     default:
       next(action);
   }
