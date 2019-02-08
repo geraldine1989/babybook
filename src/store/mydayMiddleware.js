@@ -1,6 +1,6 @@
 import axios from 'axios';
 import uuidv4 from 'uuid/v4';
-import { ADD_TASK, addTaskResponse, ADD_NOTE, ADD_NOTE_DAY_NANNY, HANDLE_GET_TASKS, addNoteResponse, addNoteNannyResponse, REMOVE_TASK_DAY, ADD_NOTE_TASK_NANNY } from './reducers/myday';
+import { ADD_TASK, addTaskResponse, ADD_NOTE, ADD_NOTE_DAY_NANNY, HANDLE_GET_TASKS, addNoteResponse, addNoteNannyResponse, REMOVE_TASK_DAY, ADD_NOTE_TASK_NANNY, HANDLE_GET_PARENTS_NOTE, HANDLE_GET_NANNY_DAY_NOTE } from './reducers/myday';
 
 const mydayMiddleware = store => next => (action) => {
   const state = store.getState().myday;
@@ -71,6 +71,18 @@ const mydayMiddleware = store => next => (action) => {
       next(action);
       break;
 
+    case HANDLE_GET_PARENTS_NOTE:
+      axios.get('http://localhost:3000/espace-parents/parents-note')
+        .then((response) => {
+          store.dispatch(addNoteResponse(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      next(action);
+      break;
+    
+
     /** --------------------------Ajout d'une note de la nanny pour la journée-------------------------- */
     case ADD_NOTE_DAY_NANNY:
     console.log('je suis dans le middleware');
@@ -88,6 +100,17 @@ const mydayMiddleware = store => next => (action) => {
       .catch((error) => {
         console.log(error);
       });
+      next(action);
+      break;
+
+      case HANDLE_GET_NANNY_DAY_NOTE:
+      axios.get('http://localhost:3000/myday/nanny-day-note')
+        .then((response) => {
+          store.dispatch(addNoteNannyResponse(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       next(action);
       break;
 

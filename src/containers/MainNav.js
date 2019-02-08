@@ -11,6 +11,7 @@ import MainNav from 'src/components/MainNav';
 import { handleLogout } from 'src/store/reducers/login-parents-reducer';
 import { handleGetTasks } from 'src/store/reducers/myday';
 import { getChild, getMeds, getVaccines, getAllergies, getPhone } from 'src/store/reducers/ParentsSpaceInfoReducer';
+import { handleGetParentsNote, handleGetNannyDayNote } from '../store/reducers/myday';
 
 // Action Creators
 
@@ -22,8 +23,10 @@ const mapDispatchToProps = dispatch => ({
   handleLogout: () => {
     dispatch(handleLogout());
   },
-  handleGetTasks: () => {
+  handleGetDay: () => {
     dispatch(handleGetTasks());
+    dispatch(handleGetParentsNote());
+    dispatch(handleGetNannyDayNote());
   },
   handleGetInfos: () => {
     dispatch(getChild());

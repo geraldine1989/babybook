@@ -38,8 +38,10 @@ export const ADD_TASKS_RESPONSE = 'ADD_TASKS_RESPONSE';
 export const HANDLE_GET_TASKS = 'HANDLE_GET_TASKS';
 // ajout d'une note
 export const ADD_NOTE_RESPONSE = 'ADD_NOTE_RESPONSE';
+export const HANDLE_GET_PARENTS_NOTE = 'HANDLE_GET_PARENTS_NOTE';
 // ajout d'une note de la nanny
-// export const ADD_NOTE_NANNY_RESPONSE = 'ADD_NOTE_NANNY_RESPONSE';
+export const ADD_NOTE_NANNY_RESPONSE = 'ADD_NOTE_NANNY_RESPONSE';
+export const HANDLE_GET_NANNY_DAY_NOTE = 'HANDLE_GET_NANNY_DAY_NOTE';
 /**
  * Traitements
  */
@@ -117,6 +119,10 @@ const myday = (state = initialState, action = {}) => {
         inputNote: '',
       };
     
+      case HANDLE_GET_PARENTS_NOTE:
+      return {
+        ...state,
+      };
 
     // note day nanny
 
@@ -133,6 +139,10 @@ const myday = (state = initialState, action = {}) => {
         inputNoteNounou: '',
       };
     
+    case HANDLE_GET_NANNY_DAY_NOTE:
+      return {
+        ...state,
+      };
 
     // note task nanny
     case CHANGE_INPUT_NOTE_NANY_TASK:
@@ -216,11 +226,11 @@ const myday = (state = initialState, action = {}) => {
         ...state,
         note: action.datas,
       };
-    // case ADD_NOTE_NANNY_RESPONSE:
-    //   return {
-    //     ...state,
-    //     nannyNote: action.datas,
-    //   };
+    case ADD_NOTE_NANNY_RESPONSE:
+      return {
+        ...state,
+        nannyNote: action.datas,
+      };
 
 
     default:
@@ -313,10 +323,18 @@ export const addNoteResponse = datas => ({
   datas,
 });
 
-// export const addNoteNannyResponse = datas => ({
-//   type: ADD_NOTE_NANNY_RESPONSE,
-//   datas,
-// });
+export const handleGetParentsNote = () => ({
+  type: HANDLE_GET_PARENTS_NOTE,
+});
+
+export const addNoteNannyResponse = datas => ({
+  type: ADD_NOTE_NANNY_RESPONSE,
+  datas,
+});
+
+export const handleGetNannyDayNote = () => ({
+  type: HANDLE_GET_NANNY_DAY_NOTE,
+});
 
 
 /**

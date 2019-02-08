@@ -273,15 +273,6 @@ app.get('/espace-parents/infos/get-child', (req, res) => {
 /* Enregistrement d'un enfant dans la BDD */
 app.post('/espace-parents/infos/add-child', (req, res) => {
   const newChild = new Child(req.body);
-  newChild.save()
-    .then((item) => {
-      res.send('Name saved to database');
-    })
-    .catch((err) => {
-      res.status(400).send('Unable to save to database');
-    });
-
-  // Chargement de la nouvelle liste d'enfants
   function findRegisteredChild() {
     return new Promise(((resolve, reject) => {
       Child.find((err, response) => {
@@ -291,13 +282,22 @@ app.post('/espace-parents/infos/add-child', (req, res) => {
       });
     }));
   }
-  findRegisteredChild()
-    .then((regChild) => {
-      res.status('200').send(regChild);
+  Child.deleteMany({}, function (err) {} );
+  newChild.save()
+    .then((item) => {
+      findRegisteredChild()
+        .then((regChild) => {
+          res.status('200').send(regChild);
+        })
+        .catch((err) => {
+          console.log('Caught an error!', err);
+        });
     })
     .catch((err) => {
-      console.log('Caught an error!', err);
+      res.status(400).send('Unable to save to database');
     });
+
+  // Chargement de la nouvelle liste d'enfants
 });
 
 /**
@@ -520,15 +520,6 @@ app.get('/espace-parents/infos/get-phone', (req, res) => {
 /* Enregistrement d'un téléphone dans la BDD */
 app.post('/espace-parents/infos/add-phone', (req, res) => {
   const newPhone = new Phone(req.body);
-  newPhone.save()
-    .then((item) => {
-      res.send('Name saved to database');
-    })
-    .catch((err) => {
-      res.status(400).send('Unable to save to database');
-    });
-
-  // Chargement de la nouvelle liste de téléphones
   function findRegisteredPhone() {
     return new Promise(((resolve, reject) => {
       Phone.find((err, response) => {
@@ -538,13 +529,27 @@ app.post('/espace-parents/infos/add-phone', (req, res) => {
       });
     }));
   }
-  findRegisteredPhone()
-    .then((regPhone) => {
-      res.status('200').send(regPhone);
+  newPhone.save()
+    .then((item) => {
+      findRegisteredPhone()
+        .then((regPhone) => {
+          res.status('200').send(regPhone);
+        })
+        .catch((err) => {
+          console.log('Caught an error!', err);
+        });
     })
     .catch((err) => {
-      console.log('Caught an error!', err);
+      res.status(400).send('Unable to save to database');
     });
+
+  // Chargement de la nouvelle liste de téléphones
+});
+
+app.post('/espace-parents/infos/remove-phones', (req, res) => {
+  const deletedPhone = req.body;
+  Phone.deleteOne({ id: Object.keys(deletedPhone) }, function(err) {});
+  res.send();
 });
 
 /** Ajout d'une tache */
@@ -622,6 +627,25 @@ const addNoteFromParents = new mongoose.Schema({
 });
 const add_note = mongoose.model('add_note', addNoteFromParents);
 
+app.get('/espace-parents/parents-note', (req, res) => {
+  function findParentsNote() {
+    return new Promise(((resolve, reject) => {
+      add_note.find((err, response) => {
+        parentsNote = response;
+        resolve (parentsNote);
+        return parentsNote;
+      });
+    }));
+  }
+  findParentsNote()
+    .then((parentsNote) => {
+      res.status('200').send(parentsNote[0].note);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
+});
+
 app.post('/espace-parents/add-note-day-parents', (req, res) => {
   const newNote = new add_note(req.body);
   add_note.deleteMany({}, function (err) {} );
@@ -641,12 +665,32 @@ const addNoteFromNanny = new mongoose.Schema({
 });
 const add_note_nanny = mongoose.model('add_note_nanny', addNoteFromNanny);
 
+app.get('/myday/nanny-day-note', (req, res) => {
+  function findNannyDayNote() {
+    return new Promise(((resolve, reject) => {
+      add_note_nanny.find((err, response) => {
+        nannyDayNote = response;
+        resolve (nannyDayNote);
+        return nannyDayNote;
+      });
+    }));
+  }
+  findNannyDayNote()
+    .then((nannyDayNote) => {
+      res.status('200').send(nannyDayNote[0].nannyNote);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
+});
+
 app.post('/myday/nannydaytask', (req, res) => {
   const newNoteNanny = new add_note_nanny(req.body);
+  add_note_nanny.deleteMany({}, function (err) {} );
   newNoteNanny.save()
     .then((item) => {
       console.log('la note de la nanny pour la journée a été sauvegardée');
-      res.send('Note save to database');
+      res.send(newNoteNanny.nannyNote);
     })
     .catch((err) => {
       res.status(400).send('Unable to save to database');

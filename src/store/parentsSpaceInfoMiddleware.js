@@ -20,6 +20,7 @@ import {
   REMOVE_MEDS,
   REMOVE_VACCINES,
   REMOVE_ALLERGIES,
+  REMOVE_PHONE,
 } from './reducers/ParentsSpaceInfoReducer';
 
 /* eslint-disable no-case-declarations */
@@ -195,6 +196,12 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
         .catch((error) => {
           console.log(error);
         });
+      next(action);
+      break;
+
+    case REMOVE_PHONE:
+      console.log('coucou REMOVE PHONE Middleware');
+      axios.post('http://localhost:3000/espace-parents/infos/remove-phones', action.id);
       next(action);
       break;
 
