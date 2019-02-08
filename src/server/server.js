@@ -665,11 +665,26 @@ app.post('/espace-parents/remove-task', (req, res) => {
 /** --------------------------Ajout d'une note dans une tache-------------------------- */
 
 app.post('/add-task-nanny', (req, res) => {
-  var selectedTask = req.body;
-      add_task.find( {id: Object.keys(selectedTask)}, (err, response) => {
-        task = response;
-        console.log(task); 
+  console.log('note à ajouter : ', req.body);
+  var selectedTask = req.body.id;
+  function findTask(selectedTask) {
+    return new Promise((resolve, reject) => {
+      add_task.find({ id: selectedTask }, (err, response) => {
+        foundTask = response;
+        resolve (foundTask);
+        return foundTask;
       });
+    });
+  }
+  findTask(selectedTask)
+  .then((foundTask) => {
+    foundTask[0].note = req.body.text;
+    console.log(foundTask[0]);
+    add_task.update({ id: selectedTask }, { $set: { note: foundTask[0].note }}, { overwrite: true }, function (err, res) {});
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 });
 
 

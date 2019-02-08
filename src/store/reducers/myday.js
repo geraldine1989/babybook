@@ -83,8 +83,8 @@ const myday = (state = initialState, action = {}) => {
         name: inputTitle,
         hour: inputHourTask,
         indic: inputNoteTask,
+        selectInput: '',
         note: '',
-        selctedInput: '',
         tododone: 'list-button',
       };
 

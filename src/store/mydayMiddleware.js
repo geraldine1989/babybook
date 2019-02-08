@@ -23,8 +23,7 @@ const mydayMiddleware = store => next => (action) => {
         hour: inputHourTask,
         indic: inputNoteTask,
         tododone:'list-button',
-        selctedInput: '',
-        note: selectedInput,
+        note: '',
         id: uuidv4(),
       };
    
@@ -99,14 +98,15 @@ const mydayMiddleware = store => next => (action) => {
     
     /** --------------------------Ajout d'une note de la nounou pour une tache -------------------------- */
     case ADD_NOTE_TASK_NANNY:
-    const formNannyAddTAsk = {
-      note: selectedInput,
-     };
-    
-    console.log('coucou ADD_NOTE_TASK_NANNY Middleware');
-      axios.post('http://localhost:3000/add-task-nanny', action.id, formNannyAddTAsk);
-      next(action);
-      break;
+      const formNannyAddTAsk = {
+        id: action.id, 
+        text: action.text,
+      };
+      
+      console.log('coucou ADD_NOTE_TASK_NANNY Middleware');
+        axios.post('http://localhost:3000/add-task-nanny', formNannyAddTAsk);
+        next(action);
+        break;
     default:
       next(action);
   }
