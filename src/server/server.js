@@ -704,7 +704,7 @@ app.post('/espace-parents/remove-task', (req, res) => {
 
 app.post('/add-task-nanny', (req, res) => {
   var selectedTask = req.body.id;
-  function findTask(selectedTask) {
+  function findCheckTask(selectedTask) {
     return new Promise((resolve, reject) => {
       add_task.find({ id: selectedTask }, (err, response) => {
         foundTask = response;
@@ -714,7 +714,7 @@ app.post('/add-task-nanny', (req, res) => {
       });
     });
   }
-  findTask(selectedTask)
+  findCheckTask(selectedTask)
   .then((foundTask) => {
     console.log('problème : ', foundTask[0]);
     foundTask[0].note = req.body.text;
@@ -729,6 +729,30 @@ app.post('/add-task-nanny', (req, res) => {
 app.post('/task-done', (req, res) => {
   var CheckedTask = req.body.id;
   console.log('Task checkee',CheckedTask);
+  function findTask(CheckedTask) {
+    return new Promise((resolve, reject) => {
+      add_task.find({ id: CheckedTask }, (err, response) => {
+        foundCheckTask = response;
+        console.log(foundCheckTask);
+        resolve (foundCheckTask);
+        return foundCheckTask;
+      });
+    });
+  }
+  findTask(CheckedTask)
+  .then((foundCheckTask) => {
+    console.log('problème : ', foundCheckTask[0]);
+    if (foundCheckTask[0].tododone === 'list-button' ) {
+      foundCheckTask[0].tododone = 'todo-done';
+      add_task.update({ id: CheckedTask }, { $set: { tododone: foundCheckTask[0].tododone }}, { overwrite: true }, function (err, res) {});
+    } else {
+      foundCheckTask[0].tododone = 'list-button';
+      add_task.update({ id: CheckedTask }, { $set: { tododone: foundCheckTask[0].tododone }}, { overwrite: true }, function (err, res) {});
+    }    
+  })
+  .catch((err) => {
+    console.log(err);
+  });
   
   res.send();
 });
