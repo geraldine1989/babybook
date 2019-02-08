@@ -1,6 +1,6 @@
 const datas = [
   {
-    email: "toto",
+    email: String,
     password: String,
     passwordNanny: String,
     baby: [
@@ -38,7 +38,7 @@ const datas = [
             phonenumber: String,
           },
         ],
-        myDay: 
+        myDay: [
           {
             itemList: [
               {
@@ -52,6 +52,7 @@ const datas = [
             ],
             nannyNote: String
           },
+        ],
         contacts: [
           {
             id: String,

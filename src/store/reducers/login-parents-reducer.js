@@ -47,6 +47,7 @@ const loginParentsReducer = (state = initialState, action = {}) => {
         return {
           ...state,
           logged: true,
+          parent: true,
           parentEmail: inputEmail,
           errorLogin: '',
         }

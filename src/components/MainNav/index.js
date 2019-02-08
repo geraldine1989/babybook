@@ -5,22 +5,22 @@ import { NavLink } from 'react-router-dom';
 // Local import
 import './style.scss';
 
-const MainNav = ({ parent, handleLogout, handleGetTasks, handleGetInfos, handleGetDay }) => {
+const MainNav = ({ parent, handleLogout, handleGetInfos, handleGetDay }) => {
   return (
     <div id="mainMenu">
       <div id="mainNav">
         <Dropdown item text="menu" simple className="accordionTitle">
           <Dropdown.Menu className="accordionContent">
-          {/* { parent && <Dropdown.Item >
+          {/* <Dropdown.Item >
+            <NavLink exact to="/espace-parents/journee-type" onClick={handleGetDay}>
+            Espace Parents
+            </NavLink>
+          </Dropdown.Item> */}
+          { parent && <Dropdown.Item >
             <NavLink exact to="/espace-parents/journee-type" >
               Espace Parents
             </NavLink>
-          </Dropdown.Item> } */}
-          <Dropdown.Item >
-            <NavLink exact to="/espace-parents/journee-type" onClick={handleGetDay}>
-              Espace Parents
-            </NavLink>
-          </Dropdown.Item>
+          </Dropdown.Item> }
           <Dropdown.Item>
             <NavLink exact to="/my-day/journal" onLoadStart={handleGetDay} onClick={handleGetDay}>
               Journal

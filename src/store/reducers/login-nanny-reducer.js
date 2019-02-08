@@ -60,7 +60,6 @@ const loginNannyReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         logged: false,
-        parent: false,
       }
 
     default:
