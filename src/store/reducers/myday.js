@@ -173,7 +173,7 @@ const myday = (state = initialState, action = {}) => {
       };
     
 
-     /** Suppresion d'un tache */
+     /** Suppression d'une tache */
      case REMOVE_TASK_DAY:
      const detetedTask = state.itemList.filter(list => list.id !== action.id);
       return {
@@ -181,7 +181,7 @@ const myday = (state = initialState, action = {}) => {
         itemList: detetedTask,
       };
 
-    /** Changer la classe du bouton si cheché */
+    /** Changer la classe du bouton si checké */
 
     case TASK_CHECK:
       const newTaskListCheched = itemList.map((task) => {
@@ -216,11 +216,6 @@ const myday = (state = initialState, action = {}) => {
         ...state,
         note: action.datas,
       };
-    // case ADD_NOTE_NANNY_RESPONSE:
-    //   return {
-    //     ...state,
-    //     nannyNote: action.datas,
-    //   };
 
 
     default:

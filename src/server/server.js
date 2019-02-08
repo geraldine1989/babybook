@@ -550,14 +550,14 @@ app.post('/espace-parents/infos/add-phone', (req, res) => {
     });
 });
 
-/** Ajout d'une tache */
+/** --------------------------Ajout d'une tache--------------------------*/
 
 var addTaskFromParents = new mongoose.Schema({
     name: String,
     hour: String,
     indic: String,
     tododone:String,
-    selctedInput: String,
+    //selctedInput: String,
     note: String,
     id: String,
    });
@@ -591,30 +591,31 @@ app.get('/espace-parents/journee-type', (req, res) => {
  */
 app.post('/espace-parents/add-task', (req, res) => {
   const newTask = new add_task(req.body);
-  newTask.save()
-    .then((item) => {
-      // res.send("Task saved to database");
-    })
-    .catch((err) => {
-      res.status(400).send('Unable to save to database');
-    });
-  /** Chargement de la nouvelle liste */
   function findTasks() {
     return new Promise(((resolve, reject) => {
       add_task.find((err, response) => {
         tasks = response;
+        console.log('la nouvelle liste est ', tasks);
         resolve (tasks);
         return tasks;
       });
     }));
   }
-  findTasks()
-    .then((tasks) => {
-      res.status('200').send(tasks);
+  newTask.save()
+    .then((item) => {
+      findTasks()
+        .then((tasks) => {
+          console.log('taches envoyées ', tasks);
+          res.status('200').send(tasks);
+        })
+        .catch((err) => {
+          console.log('Caught an error!', err);
+        });
     })
     .catch((err) => {
-      console.log('Caught an error!', err);
+      res.status(400).send('Unable to save to database');
     });
+  /** Chargement de la nouvelle liste */
 });
 
 /** --------------------------Ajout d'une note pour la journée-------------------------- */
@@ -687,6 +688,13 @@ app.post('/add-task-nanny', (req, res) => {
   });
 });
 
+/** --------------------------checker une tache-------------------------- */
+app.post('/task-done', (req, res) => {
+  var CheckedTask = req.body.id;
+  console.log('Task checkee',CheckedTask);
+  
+  res.send();
+});
 
 /**
 * gestion contacts espace parents

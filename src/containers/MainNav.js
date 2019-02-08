@@ -20,6 +20,8 @@ const mapDispatchToProps = dispatch => ({
   handleLogout: () => {
     dispatch(handleLogout());
   },
+  
+
 });
 
 // Container

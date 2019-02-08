@@ -16,40 +16,22 @@ import ParentsNav from 'src/containers/ParentsNav';
  * Code
  */
 
-/** Test mongo db */
 
-const addDayType = (formDatas) => {
-  const axios = require('axios');
-  axios.post('http://localhost:3000/newday', formDatas)
-    .then((response) => {
-      console.log(response);
-    })
-
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
-
-const handleAddItemInList = (evt) => {
-  evt.preventDefault();
-  const formDatas = {
-    date: '01/02/2000',
-    note: 'Ceci est une note des parents pour la journée.',
-    itemList: [
-      {
-        name: 'Biberon',
-        hour: '08:00',
-        indic: 'Mettre 3 dosettes avec 250 cl de lait',
-        note: 'Tototounet a tout bu !!!',
-      },
-    ],
-  };
-
-  addDayType(formDatas);
-};
-
-const ParentsSpaceDayType = ({ removeTaskDay, handleChangeTitleDay, inputTitle, handleChangeNoteTask, inputNoteTask, handleChangeHourTask, inputHourTask, addTask, list, handleAddNoteDay, inputNote, addNoteDayFromParents, id }) => {
+const ParentsSpaceDayType = ({
+  removeTaskDay,
+  handleChangeTitleDay,
+  inputTitle,
+  handleChangeNoteTask,
+  inputNoteTask,
+  handleChangeHourTask,
+  inputHourTask,
+  addTask,
+  list,
+  handleAddNoteDay,
+  inputNote,
+  addNoteDayFromParents,
+  id 
+}) => {
 
   /** Form ajout tache journee type */
   const handleChangeTitle = (event) => {
