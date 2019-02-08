@@ -26,7 +26,6 @@ export const HANDLE_LOGOUT = 'HANDLE_LOGOUT';
  * Reducer
  */
 const loginParentsReducer = (state = initialState, action = {}) => {
-  let errors = {};
   const { inputEmail, inputPassword } = state;
 
   switch (action.type) {
@@ -37,14 +36,6 @@ const loginParentsReducer = (state = initialState, action = {}) => {
       }
 
     case HANDLE_LOGIN:
-      console.log('HANDLE_LOGIN reducer');
-
-
-      if (!errors) {
-
-      };
-    
-    
       return {
         ...state,
         inputEmail,

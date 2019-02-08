@@ -7,7 +7,6 @@ function isEmpty(obj) {
       if(obj.hasOwnProperty(key))
           return false;
   }
-
   return JSON.stringify(obj) === JSON.stringify({});
 }
 
@@ -16,7 +15,6 @@ import { HANDLE_INSCRIPTION, HANDLE_GET_EMAILS, inscriptionResponse } from './re
 const inscriptionMiddleware = store => next => (action) => {
   switch (action.type) {
     case HANDLE_GET_EMAILS:
-      var emails = [];
       axios.get('http://localhost:3000/getParents')
       .then((response) => {
         console.log(response);

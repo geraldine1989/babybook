@@ -36,7 +36,6 @@ app.use(session({
 /**
  * var
  */
-
 var datasSchema = new mongoose.Schema ([
   {
     email: String,
@@ -121,7 +120,7 @@ var regParents = [];
 app.get("/getParents", (req, res) => {
   function findParents() {
     return new Promise(function(resolve, reject) {
-      datas.find(function (err, response) {
+      registered_parents.find(function (err, response) {
         regParents = response;
         resolve (regParents);
         return regParents;
@@ -146,7 +145,7 @@ app.get("/getParents", (req, res) => {
  ******************/
 
 app.post("/inscription", (req, res) => {
-  var newUser = new datas(req.body);
+  var newUser = new registered_parents(req.body);
   console.log('regParents : ', regParents);
   console.log('newUserEmail : ' + newUser.email);
   const emailExist = regParents.filter(email => newUser.email === email.email);
@@ -284,6 +283,30 @@ app.post("/loginNanny", (req, res) => {
  ***************************************************
  ***************************************************/
 
+// ********************
+// Chargement des infos
+// ********************
+
+app.get('/espace-parents/infos/get-infos', (req, res) => {
+  function findRegisteredChild() {
+    return new Promise(((resolve, reject) => {
+      Child.find((err, response) => {
+        infos = response;
+        resolve (infos);
+        return infos;
+      });
+    }));
+  }
+  findRegisteredChild()
+    .then((regChild) => {
+      res.status('200').send(regChild);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
+});
+
+var infos = [];
 const registeredChild = new mongoose.Schema({
   id: String,
   firstname: String,
@@ -299,7 +322,7 @@ const Child = mongoose.model('child', registeredChild);
 app.get('/espace-parents/infos/get-child', (req, res) => {
   function findRegisteredChild() {
     return new Promise(((resolve, reject) => {
-      Child.find((err, response) => {
+      datas.find((err, response) => {
         regChild = response;
         resolve (regChild);
         return regChild;
@@ -308,6 +331,7 @@ app.get('/espace-parents/infos/get-child', (req, res) => {
   }
   findRegisteredChild()
     .then((regChild) => {
+      console.log('regChild', regChild);
       res.status('200').send(regChild);
     })
     .catch((err) => {
@@ -320,14 +344,15 @@ app.get('/espace-parents/infos/get-child', (req, res) => {
 //*****************************************
 
 app.post('/espace-parents/infos/add-child', (req, res) => {
-  const newChild = new Child(req.body);
-  newChild.save()
-    .then((item) => {
-      res.send('Name saved to database');
-    })
-    .catch((err) => {
-      res.status(400).send('Unable to save to database');
-    });
+  const newChild = req.body;
+  console.log(newChild);
+  datas.updateOne({"baby": newChild})
+    // .then((item) => {
+    //   res.send('Name saved to database');
+    // })
+    // .catch((err) => {
+    //   res.status(400).send('Unable to save to database');
+    // });
 
   // Chargement de la nouvelle liste d'enfants
   function findRegisteredChild() {
@@ -341,6 +366,7 @@ app.post('/espace-parents/infos/add-child', (req, res) => {
   }
   findRegisteredChild()
     .then((regChild) => {
+      infos['regChild'] = regChild;
       res.status('200').send(regChild);
     })
     .catch((err) => {
@@ -371,6 +397,7 @@ app.get('/espace-parents/infos/get-meds', (req, res) => {
   }
   findRegisteredMed()
     .then((regMed) => {
+      infos['regMed'] = regMed;
       res.status('200').send(regMed);
     })
     .catch((err) => {
@@ -443,6 +470,7 @@ app.get('/espace-parents/infos/get-vaccines', (req, res) => {
   }
   findRegisteredVaccine()
     .then((regVaccine) => {
+      infos['regVaccine'] = regVaccine;
       res.status('200').send(regVaccine);
     })
     .catch((err) => {
@@ -503,6 +531,7 @@ app.get('/espace-parents/infos/get-allergies', (req, res) => {
   }
   findRegisteredAllergie()
     .then((regAllergie) => {
+      infos['regAllergie'] = regAllergie;
       res.status('200').send(regAllergie);
     })
     .catch((err) => {
@@ -564,6 +593,8 @@ app.get('/espace-parents/infos/get-phone', (req, res) => {
   }
   findRegisteredPhone()
     .then((regPhone) => {
+      infos['regPhone'] = regPhone;
+      console.log(infos);
       res.status('200').send(regPhone);
     })
     .catch((err) => {
@@ -573,32 +604,35 @@ app.get('/espace-parents/infos/get-phone', (req, res) => {
 
 /* Enregistrement d'un téléphone dans la BDD */
 app.post('/espace-parents/infos/add-phone', (req, res) => {
-  const newPhone = new Phone(req.body);
-  newPhone.save()
-    .then((item) => {
-      // res.send('Name saved to database');
-    })
-    .catch((err) => {
-      res.status(400).send('Unable to save to database');
-    });
+  var newPhone = req.body;
+  delete newPhone['_id'];
+  console.log('newPhone : ', newPhone);
+  datas.updateOne({"id": "de14fd4e-a575-4404-a18b-e413bfb4cdfe"}, {"lastname": "zoooooob"}, {overwrite: true},
+  function (err, success) {});
+    // .then((item) => {
+    //   // res.send('Name saved to database');
+    // })
+    // .catch((err) => {
+    //   res.status(400).send('Unable to save to database');
+    // });
 
   // Chargement de la nouvelle liste de téléphones
-  function findRegisteredPhone() {
-    return new Promise(((resolve, reject) => {
-      Phone.find((err, response) => {
-        regPhone = response;
-        resolve (regPhone);
-        return regPhone;
-      });
-    }));
-  }
-  findRegisteredPhone()
-    .then((regPhone) => {
-      res.status('200').send(regPhone);
-    })
-    .catch((err) => {
-      console.log('Caught an error!', err);
-    });
+  // function findRegisteredPhone() {
+  //   return new Promise(((resolve, reject) => {
+  //     Phone.find((err, response) => {
+  //       regPhone = response;
+  //       resolve (regPhone);
+  //       return regPhone;
+  //     });
+  //   }));
+  // }
+  // findRegisteredPhone()
+  //   .then((regPhone) => {
+  //     res.status('200').send(regPhone);
+  //   })
+  //   .catch((err) => {
+  //     console.log('Caught an error!', err);
+  //   });
 });
 
 /****************************
@@ -784,3 +818,4 @@ app.post("/espace-parents/contacts/remove-contact", (req, res) => {
 app.listen(port, () => {
   console.log('Server listening on port ' + port);
 });
+

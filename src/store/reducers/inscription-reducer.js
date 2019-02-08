@@ -49,7 +49,6 @@ const inscriptionReducer = (state = initialState, action = {}) => {
       }
 
     case HANDLE_INSCRIPTION:
-      console.log('HANDLE_INSCRIPTION reducer');
       if (action.err) {
         return {
           ...state,

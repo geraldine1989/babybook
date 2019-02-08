@@ -25,7 +25,6 @@ export const HANDLE_LOGOUT = 'HANDLE_LOGOUT_NANNY';
  * Reducer
  */
 const loginNannyReducer = (state = initialState, action = {}) => {
-  let errors = {};
   const { inputEmailNanny, inputPasswordNanny } = state;
 
   switch (action.type) {
@@ -36,14 +35,6 @@ const loginNannyReducer = (state = initialState, action = {}) => {
       }
 
     case HANDLE_LOGIN:
-      console.log('HANDLE_LOGIN reducer');
-
-
-      if (!errors) {
-
-      };
-    
-    
       return {
         ...state,
         inputEmailNanny,
