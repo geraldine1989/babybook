@@ -15,7 +15,19 @@ import { ID } from 'postcss-selector-parser';
  * Code
  */
 /* eslint-disable no-case-declarations */
-const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, handleChangeInputTaskNounou, taskCheck, addNoteTaskSubmitNounou, selctedInput }) => {
+const MyDay = ({
+  id,
+  childList,
+  list,
+  note,
+  inputNoteNounou,
+  handleAddNoteNoteNounou,
+  AddNoteDaySubmitNounou,
+  nannyNote,
+  handleChangeInputTaskNounou,
+  taskCheck,
+  addNoteTaskSubmitNounou,
+  selctedInput }) => {
   
   /** Input ajout note nounou journées */
   const handleAddNoteDayInputNounou = (event) => {

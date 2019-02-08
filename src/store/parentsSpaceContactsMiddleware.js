@@ -41,13 +41,8 @@ const parentsSpaceContactsMiddleware = store => next => (action) => {
 
     case REMOVE_CONTACT:
       console.log('coucou REMOVE CONTACT Middleware');
-      axios.post('http://localhost:3000/espace-parents/contacts/remove-contact', action.id)
-        .then((response) => {
-          // store.dispatch(contactsResponse(response.data));
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      axios.post('http://localhost:3000/espace-parents/contacts/remove-contact', action.id);
+
       next(action);
       break;
 

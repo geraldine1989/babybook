@@ -3,8 +3,8 @@ var app = express();
 var port = 3000;
 var bodyParser = require('body-parser');
 // connect-mongo
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
+// const session = require('express-session');
+// const MongoStore = require('connect-mongo')(session);
 // email validator
 var validator = require("email-validator");
 
@@ -22,14 +22,14 @@ app.use(function(req, res, next) {
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/babybook", { useNewUrlParser: true });
-// const connection = mongoose.createConnection("mongodb://localhost:27017/babybook", { useNewUrlParser: true });
+const connection = mongoose.createConnection("mongodb://localhost:27017/babybook", { useNewUrlParser: true });
 
-app.use(session({
-  store: new MongoStore({ mongooseConnection: mongoose.connection }),
-  secret: 'Ereul9Aeng',
-  resave: false,
-  saveUninitialized: false,
-}));
+// app.use(session({
+//   store: new MongoStore({ mongooseConnection: mongoose.connection }),
+//   secret: 'Ereul9Aeng',
+//   resave: false,
+//   saveUninitialized: false,
+// }));
 
 /**
  * var
@@ -273,15 +273,6 @@ app.get('/espace-parents/infos/get-child', (req, res) => {
 /* Enregistrement d'un enfant dans la BDD */
 app.post('/espace-parents/infos/add-child', (req, res) => {
   const newChild = new Child(req.body);
-  newChild.save()
-    .then((item) => {
-      res.send('Name saved to database');
-    })
-    .catch((err) => {
-      res.status(400).send('Unable to save to database');
-    });
-
-  // Chargement de la nouvelle liste d'enfants
   function findRegisteredChild() {
     return new Promise(((resolve, reject) => {
       Child.find((err, response) => {
@@ -291,12 +282,19 @@ app.post('/espace-parents/infos/add-child', (req, res) => {
       });
     }));
   }
-  findRegisteredChild()
-    .then((regChild) => {
-      res.status('200').send(regChild);
+  Child.deleteMany({}, function (err) {} );
+  newChild.save()
+    .then((item) => {
+      findRegisteredChild()
+        .then((regChild) => {
+          res.status('200').send(regChild);
+        })
+        .catch((err) => {
+          console.log('Caught an error!', err);
+        });
     })
     .catch((err) => {
-      console.log('Caught an error!', err);
+      res.status(400).send('Unable to save to database');
     });
 });
 
@@ -520,15 +518,6 @@ app.get('/espace-parents/infos/get-phone', (req, res) => {
 /* Enregistrement d'un téléphone dans la BDD */
 app.post('/espace-parents/infos/add-phone', (req, res) => {
   const newPhone = new Phone(req.body);
-  newPhone.save()
-    .then((item) => {
-      res.send('Name saved to database');
-    })
-    .catch((err) => {
-      res.status(400).send('Unable to save to database');
-    });
-
-  // Chargement de la nouvelle liste de téléphones
   function findRegisteredPhone() {
     return new Promise(((resolve, reject) => {
       Phone.find((err, response) => {
@@ -538,23 +527,37 @@ app.post('/espace-parents/infos/add-phone', (req, res) => {
       });
     }));
   }
-  findRegisteredPhone()
-    .then((regPhone) => {
-      res.status('200').send(regPhone);
+  newPhone.save()
+    .then((item) => {
+      findRegisteredPhone()
+        .then((regPhone) => {
+          res.status('200').send(regPhone);
+        })
+        .catch((err) => {
+          console.log('Caught an error!', err);
+        });
     })
     .catch((err) => {
-      console.log('Caught an error!', err);
+      res.status(400).send('Unable to save to database');
     });
+
+  // Chargement de la nouvelle liste de téléphones
 });
 
-/** Ajout d'une tache */
+app.post('/espace-parents/infos/remove-phones', (req, res) => {
+  const deletedPhone = req.body;
+  Phone.deleteOne({ id: Object.keys(deletedPhone) }, function(err) {});
+  res.send();
+});
+
+/** --------------------------Ajout d'une tache--------------------------*/
 
 var addTaskFromParents = new mongoose.Schema({
     name: String,
     hour: String,
     indic: String,
     tododone:String,
-    selctedInput: String,
+    //selctedInput: String,
     note: String,
     id: String,
    });
@@ -576,7 +579,6 @@ app.get('/espace-parents/journee-type', (req, res) => {
   }
   findTasks()
     .then((tasks) => {
-      console.log('tasks : ', tasks);
       res.status('200').send(tasks);
     })
     .catch((err) => {
@@ -589,14 +591,6 @@ app.get('/espace-parents/journee-type', (req, res) => {
  */
 app.post('/espace-parents/add-task', (req, res) => {
   const newTask = new add_task(req.body);
-  newTask.save()
-    .then((item) => {
-      // res.send("Task saved to database");
-    })
-    .catch((err) => {
-      res.status(400).send('Unable to save to database');
-    });
-  /** Chargement de la nouvelle liste */
   function findTasks() {
     return new Promise(((resolve, reject) => {
       add_task.find((err, response) => {
@@ -606,21 +600,45 @@ app.post('/espace-parents/add-task', (req, res) => {
       });
     }));
   }
-  findTasks()
-    .then((tasks) => {
-      console.log('tasks : ', tasks);
-      res.status('200').send(tasks);
+  newTask.save()
+    .then((item) => {
+      findTasks()
+        .then((tasks) => {
+          res.status('200').send(tasks);
+        })
+        .catch((err) => {
+          console.log('Caught an error!', err);
+        });
+    })
+    .catch((err) => {
+      res.status(400).send('Unable to save to database');
+    });
+});
+
+/** --------------------------Ajout d'une note pour la journée-------------------------- */
+const addNoteFromParents = new mongoose.Schema({
+  note: String,
+});
+const add_note = mongoose.model('add_note', addNoteFromParents);
+
+app.get('/espace-parents/parents-note', (req, res) => {
+  function findParentsNote() {
+    return new Promise(((resolve, reject) => {
+      add_note.find((err, response) => {
+        parentsNote = response;
+        resolve (parentsNote);
+        return parentsNote;
+      });
+    }));
+  }
+  findParentsNote()
+    .then((parentsNote) => {
+      res.status('200').send(parentsNote[0].note);
     })
     .catch((err) => {
       console.log('Caught an error!', err);
     });
 });
-
-/** Ajout d'une note pour la journée */
-const addNoteFromParents = new mongoose.Schema({
-  note: String,
-});
-const add_note = mongoose.model('add_note', addNoteFromParents);
 
 app.post('/espace-parents/add-note-day-parents', (req, res) => {
   const newNote = new add_note(req.body);
@@ -635,18 +653,38 @@ app.post('/espace-parents/add-note-day-parents', (req, res) => {
     });
 });
 
-/** Ajout d'une note de la nanny pour la journée */
+/** --------------------------Ajout d'une note de la nanny pour la journée-------------------------- */
 const addNoteFromNanny = new mongoose.Schema({
   nannyNote: String,
 });
 const add_note_nanny = mongoose.model('add_note_nanny', addNoteFromNanny);
 
+app.get('/myday/nanny-day-note', (req, res) => {
+  function findNannyDayNote() {
+    return new Promise(((resolve, reject) => {
+      add_note_nanny.find((err, response) => {
+        nannyDayNote = response;
+        resolve (nannyDayNote);
+        return nannyDayNote;
+      });
+    }));
+  }
+  findNannyDayNote()
+    .then((nannyDayNote) => {
+      res.status('200').send(nannyDayNote[0].nannyNote);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
+});
+
 app.post('/myday/nannydaytask', (req, res) => {
   const newNoteNanny = new add_note_nanny(req.body);
+  add_note_nanny.deleteMany({}, function (err) {} );
   newNoteNanny.save()
     .then((item) => {
       console.log('la note de la nanny pour la journée a été sauvegardée');
-      res.send('Note save to database');
+      res.send(newNoteNanny.nannyNote);
     })
     .catch((err) => {
       res.status(400).send('Unable to save to database');
@@ -661,13 +699,38 @@ app.post('/espace-parents/remove-task', (req, res) => {
   res.send();
 });
 
+
 /** --------------------------Ajout d'une note dans une tache-------------------------- */
 
 app.post('/add-task-nanny', (req, res) => {
-  var test1 = add_task.find({id: Object.keys(req.body)}, function(err) {});
-  var test2 = add_task[{id: Object.keys(req.body)}];
-  console.log('test1', test1);
-  console.log('hello je suis dans le serveur voici la note', test2);
+  var selectedTask = req.body.id;
+  function findTask(selectedTask) {
+    return new Promise((resolve, reject) => {
+      add_task.find({ id: selectedTask }, (err, response) => {
+        foundTask = response;
+        console.log(foundTask);
+        resolve (foundTask);
+        return foundTask;
+      });
+    });
+  }
+  findTask(selectedTask)
+  .then((foundTask) => {
+    console.log('problème : ', foundTask[0]);
+    foundTask[0].note = req.body.text;
+    add_task.update({ id: selectedTask }, { $set: { note: foundTask[0].note }}, { overwrite: true }, function (err, res) {});
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+});
+
+/** --------------------------checker une tache-------------------------- */
+app.post('/task-done', (req, res) => {
+  var CheckedTask = req.body.id;
+  console.log('Task checkee',CheckedTask);
+  
+  res.send();
 });
 
 /**

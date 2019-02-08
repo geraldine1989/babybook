@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 // Local import
 import './style.scss';
 
-const MainNav = ({ parent, handleLogout }) => {
+const MainNav = ({ parent, handleLogout, handleGetTasks, handleGetInfos, handleGetDay }) => {
   return (
     <div id="mainMenu">
       <div id="mainNav">
@@ -17,17 +17,17 @@ const MainNav = ({ parent, handleLogout }) => {
             </NavLink>
           </Dropdown.Item> } */}
           <Dropdown.Item >
-            <NavLink exact to="/espace-parents/journee-type" >
+            <NavLink exact to="/espace-parents/journee-type" onClick={handleGetDay}>
               Espace Parents
             </NavLink>
           </Dropdown.Item>
           <Dropdown.Item>
-            <NavLink exact to="/my-day/journal" >
+            <NavLink exact to="/my-day/journal" onLoadStart={handleGetDay} onClick={handleGetDay}>
               Journal
             </NavLink>
           </Dropdown.Item>
           <Dropdown.Item>
-            <NavLink exact to="/my-day/infos" >
+            <NavLink exact to="/my-day/infos" onClick={handleGetInfos}>
               Infos
             </NavLink>
           </Dropdown.Item>
