@@ -42,7 +42,7 @@ const LoginParents = ({
       <h2>Connexion parents</h2>
       <div id="formLoginParents">
         <Form>
-          <Form.Field>
+          <Form.Field className="inputlogin">
             <input 
               type="text" 
               name="inputEmail"
@@ -51,8 +51,9 @@ const LoginParents = ({
               onChange={handleChange}
             />
           </Form.Field>
-          <Form.Field>
+          <Form.Field className="inputlogin">
             <input 
+              
               type="text" 
               name="inputPassword"
               placeholder="Mot de passe" 
@@ -60,7 +61,7 @@ const LoginParents = ({
               onChange={handleChange}
             />
           </Form.Field>
-          <NavLink exact to="/espace-parents/journee-type">
+          <NavLink exact to="/espace-parents/journee-type" className="login-button">
             <Button name="btn" type="submit" onClick={handleSubmit}>Se connecter</Button>
           </NavLink>
           <label
