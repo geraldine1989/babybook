@@ -79,5 +79,9 @@
 @media all and (orientation: portrait) {
   #pageLoginParents {
     width: 100%;
+    & #formLoginParents {
+
+      width: 90%;
+    }
   } 
 }

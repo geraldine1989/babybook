@@ -45,7 +45,7 @@ const InscriptionForm = ({
           {/* <Form.Field>
             <input type="text" placeholder="Identifiant" value="" />
           </Form.Field> */}
-          <Form.Field>
+          <Form.Field className="inputlogin"> 
             <input 
               type="email" 
               placeholder="Adresse email" 
@@ -61,7 +61,7 @@ const InscriptionForm = ({
               {errorsForm.errorEmail}
             </label>
           </Form.Field>
-          <Form.Field>
+          <Form.Field className="inputlogin">
             <input 
               type="password" 
               placeholder="Mot de passe" 
@@ -77,7 +77,7 @@ const InscriptionForm = ({
               {errorsForm.errorPassword}
             </label>
           </Form.Field>
-          <Form.Field>
+          <Form.Field className="inputlogin">
             <input 
               type="password" 
               placeholder="Confirmer le mot de passe" 
@@ -93,7 +93,7 @@ const InscriptionForm = ({
               {errorsForm.errorConfirmPassword}
             </label>
           </Form.Field>
-          <Form.Field>
+          <Form.Field className="inputlogin">
             <input 
               type="text" 
               placeholder="Code d'accès" 
@@ -109,7 +109,7 @@ const InscriptionForm = ({
               {errorsForm.errorAccessCode}
             </label>
           </Form.Field>
-          <NavLink exact to="/login-parents">
+          <NavLink exact to="/login-parents" className="login-button">
             <Button type="submit" onClick={handleSubmit}>S'inscrire</Button>
           </NavLink>
         </Form>

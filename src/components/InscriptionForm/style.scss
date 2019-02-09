@@ -1,127 +1,148 @@
-#pageInscription {
-  display: flex;
-  flex-direction: column;
-  padding-top : 2em;
-  width: 60%;
-  margin: auto;
+// #pageInscription {
+//   display: flex;
+//   flex-direction: column;
+//   padding-top : 2em;
+//   width: 60%;
+//   margin: auto;
 
+
+//   & h2 {
+//     color: #2C1915;
+//     margin: auto;
+//     text-align: center;
+//     text-transform: uppercase;
+//     font-weight: bold;
+//     font-size: 2.5em;
+//     padding: 2em;
+
+//   }
+
+//   & #formInscription {
+
+//     align-items: center;
+//     margin-bottom: 2em;
+
+//     & input {
+//       padding: 1em;
+//       margin: 0.5em;
+//       justify-content: center;
+//       border-radius: 25px;
+//       border: 1px solid #D7E8F2;
+//     }
+
+//     & .novalid {
+//       border: 1px solid red;
+//     }
+
+//     & label {
+//       padding-left: 1em;
+//     }
+
+//     & input::placeholder {
+//       color: #2C1915;
+//       font-style: italic;
+//     }
+  
+//     & button {
+//       padding: 1em;
+//       margin: 0.5em; 
+//       align-self: center;
+//       width: 100%;
+//       border-radius: 25px;
+//       background-color: #C2DE89;
+//       height: 9vh;
+//       color: #2C1915;
+//       text-transform: uppercase;
+//     }
+
+//   }
+// }
+
+#pageInscription {
+  margin: auto;
+  background-color: white;
+  margin-top: 0em;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+ 
 
   & h2 {
-    color: #2C1915;
+    color: #666E72;
+    font-family: 'Catamaran', sans-serif;
     margin: auto;
     text-align: center;
-    text-transform: uppercase;
+    font-size: 1.6em;
     font-weight: bold;
-    font-size: 2.5em;
-    padding: 2em;
-
+    padding: 0.5em;
+    margin-bottom: 1em;
+    margin: 1em 0 1em 0;
+    width: 100%;
   }
 
   & #formInscription {
 
-    align-items: center;
-    margin-bottom: 2em;
-
-    & input {
-      padding: 1em;
-      margin: 0.5em;
-      justify-content: center;
-      border-radius: 25px;
-      border: 1px solid #D7E8F2;
-    }
-
-    & .novalid {
-      border: 1px solid red;
-    }
-
-    & label {
-      padding-left: 1em;
-    }
-
-    & input::placeholder {
-      color: #2C1915;
-      font-style: italic;
-    }
-  
-    & button {
-      padding: 1em;
-      margin: 0.5em; 
-      align-self: center;
+    align-items: start;
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    & form {
       width: 100%;
-      border-radius: 25px;
-      background-color: #C2DE89;
-      height: 9vh;
-      color: #2C1915;
-      text-transform: uppercase;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0;
+       & .inputlogin {
+         display: flex;
+         width: 100%;
+        & input {
+          display: flex;
+          padding: 1em;
+          width: 100%;
+          margin: 0.5em;
+          justify-content: center;
+          border-radius: 25px;
+          border: 2px solid #D7E8F2; 
+        }
+    
+        & input::placeholder {
+          color: gray;
+          font-style: italic;
+        }
+       }
+       & .login-button {
+         width: 100%;
+         display: flex;
+         justify-content: center;
+        & button {
+          padding: 1.5em;
+          margin: 0.5em; 
+          align-self: center;
+          width: 100%;
+          border-radius: 25px;
+          background-color: #C2DE89;
+          height: 9vh;
+          color: black;
+          text-transform: uppercase;
+        }
+       }
+  
+      & label {
+        margin-left: 1em;
+        margin-top: 1em;
+      }  
     }
-
   }
-
-
 }
 
 @media all and (orientation: portrait) {
   #pageInscription {
-    display: flex;
-    
-    flex-direction: column;
-    padding-top : 2em;
-    width: 90%;
-    margin: auto;
-        
-  
-  
-    & h2 {
-      color: #2C1915;
-      margin: auto;
-      text-align: center;
-      text-transform: uppercase;
-      font-weight: bold;
-      font-size: 1.5rem;
-      padding: 1rem;
-  
-    }
-  
+    width: 100%;
     & #formInscription {
-  
-      align-items: center;
-     
-  
-      & input {
-        padding: 1em;
-        margin: 0.5em;
-        justify-content: center;
-        border-radius: 25px;
-        border: 1px solid #D7E8F2; 
-      }
 
-      & .novalid {
-        border: 1px solid red;
-      }
-  
-      & label {
-        padding-left: 1em;
-      }
-      
-      & input::placeholder {
-        color: #2C1915;
-        font-style: italic;
-      }
-    
-      & button {
-        padding: 1em;
-        margin: 0.5em; 
-        align-self: center;
-        width: 100%;
-        border-radius: 25px;
-        background-color: #C2DE89;
-        height: 9vh;
-        color: #2C1915;
-        text-transform: uppercase;
-        
-      }
+      width: 90%;
     }
-  
-  
   } 
 }
+
