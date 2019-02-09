@@ -167,43 +167,6 @@ app.post("/loginParents", (req, res) => {
   });
 })
 
-
-/**
- * login Parents
- */
-app.post("/loginParents", (req, res) => {
-  console.log('*******************************');
-  var user = new registered_parents(req.body);
-  console.log('user : ',user);
-  function findEmails() {
-    return new Promise(function(resolve, reject) {
-      const returnedUser = registered_parents.find({'email': user.email});
-      resolve (returnedUser);
-    })
-  }
-  findEmails()
-  .then(function(returnedUser) {
-    console.log('returnedUser', returnedUser[0]);
-    
-    if (returnedUser[0]) {
-      if (user.password === returnedUser[0].password) {
-        console.log('user ok mpd ok');
-
-        res.send('logged');
-      } else {
-        console.log('user ok mdp PAS ok');
-        res.send('notLogged');
-      }
-    } else {
-      console.log('user PAS ok');
-      res.send('notLogged');
-    }
-  })
-  .catch(function(err) {
-    res.status(400).send(err);
-  });
-})
-
 /**
  * login Nanny
  */
