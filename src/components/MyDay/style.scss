@@ -18,13 +18,12 @@
     margin: auto;
 
     & #date {
-      display: inline-flex;
+      display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       align-items: baseline;
       width: 80%;
-     
       margin: auto;
-      
 
       & h2 {
         color: #666E72;
@@ -34,17 +33,20 @@
         font-size: 1.6em;
         font-weight: bold;
         padding: 0.5em;
-        margin-bottom: 1em;
-        margin: 1em 0 1em 0;
+        margin: 1em 0 0 0;
         width: 100%;
         }
 
       & h3 {
-        color : #4c2e27;
-        font-size: 2em;
+        color : black;
+        font-size: 1.6em;
         font-style: italic;   
-        padding: 0;        
+        padding: 0; 
+        text-align: center;
+        width: 100%;
+        margin-bottom: 1em;   
       }
+    
     }
 
     & .info-day{
@@ -256,8 +258,9 @@
       margin: auto;
   
       & #date {
-        display: inline-flex;
+        display: flex;
         justify-content: center;
+        flex-wrap: wrap;
         align-items: baseline;
         width: 80%;
         margin: auto;
@@ -270,17 +273,20 @@
           font-size: 1.6em;
           font-weight: bold;
           padding: 0.5em;
-          margin-bottom: 1em;
-          margin: 1em 0 1em 0;
+          margin: 1em 0 0 0;
           width: 100%;
           }
   
         & h3 {
-          color : #4c2e27;
-          font-size: 2em;
+          color : black;
+          font-size: 1.6em;
           font-style: italic;   
-          padding: 0;        
+          padding: 0; 
+          text-align: center;
+          width: 100%;
+          margin-bottom: 1em;   
         }
+      
       }
   
       & .info-day{
