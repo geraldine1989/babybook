@@ -121,7 +121,7 @@ const MyDay = ({
                   placeholder="Ajouter une note..." 
                   value= {task.selctedInput} 
                   onChange={handleAddNoteTaskInputNounou} />
-                <Button icon type="submit">
+                <Button icon type="submit" className= "add-task-button">
                   <Icon name="add" />
                 </Button> 
               </form>  
