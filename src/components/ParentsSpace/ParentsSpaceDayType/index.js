@@ -87,18 +87,17 @@ const ParentsSpaceDayType = ({
   ]; 
   
   return (
-    <div>
+    <div className="nav-info">
       <ParentsNav />
       <div id="day-type">
         <ul>
           {
             orderedTasks.map((task) => 
               <li key={task.id}>
-                <Icon name="smile outline" />
-                <span>{task.name}</span>
-                <span>{task.hour}</span>
-                <span>{task.indic}</span>
-                <Icon name="delete" onClick={handleDeleteMyDayItem(task.id)} />
+                <span className="tasktitle">{task.name}</span>
+                <span className="taskhour">{task.hour}</span>
+                <span className="tasknote">{task.indic}</span>
+                <Icon name="delete" onClick={handleDeleteMyDayItem(task.id)} className="close"/>
               </li>         
             )
           }
@@ -106,34 +105,37 @@ const ParentsSpaceDayType = ({
         </ul>
         <div id="add-item">
           <Form className="form-add-item" onSubmit={handleSubmitList}>
-            <Form.Field>
+            <Form.Field className="input-task-title" >
               <label> Titre </label>
               <input 
                 placeholder="Titre"
                 value={inputTitle}
-                onChange={handleChangeTitle}          
+                onChange={handleChangeTitle}
+                         
               />
             </Form.Field>
-            <Form.Field>
+            <Form.Field className="input-task-hour">
               <label> Heure </label>
               <input 
                 type="time" 
                 placeholder="Heure"
                 onChange={handlehour}
                 value={inputHourTask}
+                
               />
             </Form.Field>
-            <Form.Field>
+            <Form.Field className="input-task-note">
               <label> Note </label>
               <input
                 type="texte"
                 placeholder="Note"
                 value={inputNoteTask}
                 onChange={handleChangeNotesTask}
+                
               />
             </Form.Field>
             <Button icon type="submit" >
-              <Icon name="add" />
+              Ajouter cette tâche poure la journée
             </Button>
           </Form>
         </div>
@@ -142,7 +144,7 @@ const ParentsSpaceDayType = ({
           <Form className="form-add-note" onSubmit={handleAddNoteDaySubmit}>   
               <input placeholder='Ajoutez une note' value={inputNote} onChange={handleAddNoteDayInput} />
               <Button icon type="submit">
-                <Icon name="add" />
+                <Icon name="add"  />
               </Button>
           </Form>
         </div>
