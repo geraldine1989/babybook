@@ -17,12 +17,12 @@ const MainNav = ({ loggedParent, loggedNanny, handleLogoutParent, handleLogoutNa
             </NavLink>
           </Dropdown.Item> */}
           { loggedParent && <Dropdown.Item >
-            <NavLink exact to="/espace-parents/journee-type" >
+            <NavLink exact to="/espace-parents/journee-type" onClick={handleGetDay}>
               Espace Parents
             </NavLink>
           </Dropdown.Item> }
           <Dropdown.Item>
-            <NavLink exact to="/my-day/journal" onLoadStart={handleGetDay} onClick={handleGetDay}>
+            <NavLink exact to="/my-day/journal" onLoad={handleGetDay} onClick={handleGetDay}>
               Journal
             </NavLink>
           </Dropdown.Item>

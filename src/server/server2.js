@@ -685,6 +685,25 @@ app.get('/espace-parents/parents-note', (req, res) => {
     });
 });
 
+app.get('/espace-parents/parents-note', (req, res) => {
+  function findParentsNote() {
+    return new Promise(((resolve, reject) => {
+      add_note.find((err, response) => {
+        parentsNote = response;
+        resolve (parentsNote);
+        return parentsNote;
+      });
+    }));
+  }
+  findParentsNote()
+    .then((parentsNote) => {
+      res.status('200').send(parentsNote[0].note);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
+});
+
 app.post('/espace-parents/add-note-day-parents', (req, res) => {
   const newNote = new add_note(req.body);
   add_note.deleteMany({}, function (err) {} );
@@ -703,6 +722,25 @@ app.post('/espace-parents/add-note-day-parents', (req, res) => {
 //   nannyNote: String,
 // });
 // const add_note_nanny = mongoose.model('add_note_nanny', addNoteFromNanny);
+
+app.get('/myday/nanny-day-note', (req, res) => {
+  function findNannyDayNote() {
+    return new Promise(((resolve, reject) => {
+      add_note_nanny.find((err, response) => {
+        nannyDayNote = response;
+        resolve (nannyDayNote);
+        return nannyDayNote;
+      });
+    }));
+  }
+  findNannyDayNote()
+    .then((nannyDayNote) => {
+      res.status('200').send(nannyDayNote[0].nannyNote);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
+});
 
 app.get('/myday/nanny-day-note', (req, res) => {
   function findNannyDayNote() {
@@ -743,7 +781,6 @@ app.post('/espace-parents/remove-task', (req, res) => {
   add_task.deleteOne({ id: Object.keys(DeletdTask) }, function (err) {});
   res.send();
 });
-
 
 /** --------------------------Ajout d'une note dans une tache-------------------------- */
 

@@ -1,6 +1,8 @@
 /**
  * Initial State
  */
+
+
 const initialState = {
   loggedParent: false,
   signed: false,
@@ -44,6 +46,7 @@ const loginParentsReducer = (state = initialState, action = {}) => {
     
     case LOGIN_RESPONSE:
       if (action.answer === 'logged') {
+        
         return {
           ...state,
           loggedParent: true,
@@ -58,7 +61,7 @@ const loginParentsReducer = (state = initialState, action = {}) => {
           errorLogin: 'Votre email ou votre mot de passe est incorrect.',
         }
       }
-
+      
     case HANDLE_LOGOUT:
       return {
         ...state,

@@ -6,7 +6,6 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 /**
  * Local import
  */
-
 import HeaderLogo from 'src/components/HeaderLogo';
 import MainNav from 'src/containers/MainNav';
 import Home from 'src/containers/Home';
