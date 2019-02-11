@@ -54,13 +54,13 @@ const ParentsSpaceContacts = ({ addContact, contacts, inputName, inputEmail, han
             </Table.Row>
           </Table.Header>
 
-          <Table.Body>
+          <Table.Body className="table-body">
             { contactsList.map(contactList => (
-              <Table.Row key={contactList.id}>
-                <Table.Cell >
+              <Table.Row key={contactList.id} className="table-row">
+                <Table.Cell className="table-cell-name">
                   { contactList.name }
                 </Table.Cell>
-                <Table.Cell >
+                <Table.Cell className="table-cell-mail">
                   { contactList.email }
                 </Table.Cell>
                 <Table.Cell className="delete-contact">
