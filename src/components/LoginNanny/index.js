@@ -53,7 +53,7 @@ const LoginNanny = ({
           </Form.Field>
           <Form.Field className="inputlogin">
             <input 
-              type="text" 
+              type="password" 
               name="inputPasswordNanny"
               placeholder="Mot de passe" 
               value={inputPasswordNanny}

@@ -43,7 +43,6 @@ const loginNannyReducer = (state = initialState, action = {}) => {
     
     case LOGIN_RESPONSE:
       if (action.answer === 'logged') {
-        location = '/my-day/journal';
         return {
           ...state,
           loggedNanny: true,
@@ -60,6 +59,8 @@ const loginNannyReducer = (state = initialState, action = {}) => {
     case HANDLE_LOGOUT:
       return {
         ...state,
+        inputEmailNanny: '',
+        inputPasswordNanny: '',
         loggedNanny: false,
       }
 

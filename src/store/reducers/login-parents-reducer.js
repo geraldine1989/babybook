@@ -65,6 +65,8 @@ const loginParentsReducer = (state = initialState, action = {}) => {
     case HANDLE_LOGOUT:
       return {
         ...state,
+        inputEmail: '',
+        inputPassword: '',
         loggedParent: false,
       }
 
