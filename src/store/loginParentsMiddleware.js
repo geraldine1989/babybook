@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 var hash = require('hash.js')
 
 import { HANDLE_LOGIN, loginResponse } from './reducers/login-parents-reducer';
@@ -16,6 +17,13 @@ const loginParentsMiddleware = store => next => (action) => {
 
       axios.post('http://localhost:3000/loginParents', formDatas)
         .then((response) => {
+          // return {
+          //   ...state,
+          //   logged: true,
+          //   parent: true,
+          //   parentEmail: inputEmail,
+          //   errorLogin: '',
+          // }
           store.dispatch(loginResponse(response.data));
         })
         .catch((error) => {

@@ -11,18 +11,18 @@ const MainNav = ({ parent, handleLogout, handleGetTasks, handleGetInfos, handleG
       <div id="mainNav">
         <Dropdown item text="menu" simple className="accordionTitle">
           <Dropdown.Menu className="accordionContent">
-          {/* { parent && <Dropdown.Item >
-            <NavLink exact to="/espace-parents/journee-type" >
-              Espace Parents
-            </NavLink>
-          </Dropdown.Item> } */}
-          <Dropdown.Item >
+          { parent && <Dropdown.Item >
             <NavLink exact to="/espace-parents/journee-type" onClick={handleGetDay}>
               Espace Parents
             </NavLink>
-          </Dropdown.Item>
+          </Dropdown.Item> }
+          {/* <Dropdown.Item >
+            <NavLink exact to="/espace-parents/journee-type" onClick={handleGetDay}>
+              Espace Parents
+            </NavLink>
+          </Dropdown.Item> */}
           <Dropdown.Item>
-            <NavLink exact to="/my-day/journal" onLoadStart={handleGetDay} onClick={handleGetDay}>
+            <NavLink exact to="/my-day/journal" onLoad={handleGetDay} onClick={handleGetDay}>
               Journal
             </NavLink>
           </Dropdown.Item>

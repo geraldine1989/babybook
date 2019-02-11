@@ -20,6 +20,7 @@ const LoginParents = ({
   inputPassword,
   handleChangeInputs,
   handleLogin,
+  handleGetDay,
   errorLogin,
 }) => {
 
@@ -34,6 +35,7 @@ const LoginParents = ({
   const handleSubmit = (evt) => {
     evt.preventDefault();
     handleLogin();
+    handleGetDay();
   };
 
   return (
