@@ -8,7 +8,6 @@ import { withRouter } from 'react-router-dom';
  * Local import
  */
 import MainNav from 'src/components/MainNav';
-import LoginParents from 'src/components/LoginParents';
 import { handleLogout } from 'src/store/reducers/login-parents-reducer';
 import { handleGetTasks } from 'src/store/reducers/myday';
 import { getChild, getMeds, getVaccines, getAllergies, getPhone } from 'src/store/reducers/ParentsSpaceInfoReducer';
@@ -42,7 +41,7 @@ const mapDispatchToProps = dispatch => ({
 const MainNavContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(MainNav, LoginParents);
+)(MainNav);
 
 /**
  * Export
