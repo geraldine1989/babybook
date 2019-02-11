@@ -21,6 +21,7 @@ const LoginNanny = ({
   handleChangeInputsNanny,
   handleLoginNanny,
   errorLoginNanny,
+  handleGetDay,
 }) => {
 
   const handleChange = (event) => {
@@ -34,6 +35,7 @@ const LoginNanny = ({
   const handleSubmit = (evt) => {
     evt.preventDefault();
     handleLoginNanny();
+    handleGetDay();
   };
 
   return (
