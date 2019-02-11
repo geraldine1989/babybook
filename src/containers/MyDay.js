@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import MyDay from 'src/components/MyDay';
 
 
-import { handleAddNoteNoteNounou, AddNoteDaySubmitNounou, taskCheck, handleChangeInputTaskNounou, addNoteTaskSubmitNounou } from 'src/store/reducers/myday';
+import { handleAddNoteNoteNounou, AddNoteDaySubmitNounou, taskCheck, handleChangeInputTaskNounou, addNoteTaskSubmitNounou, regenerbutton } from 'src/store/reducers/myday';
 import { } from 'src/store/reducers/ParentsSpaceInfoReducer';
 // Fonction pour mapper le state du store vers les props
 
@@ -40,6 +40,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
   taskCheck: (id) => {
     dispatch(taskCheck(id));
+  },
+  regenerbutton: () => {
+    dispatch(regenerbutton());
   },
 });
 

@@ -31,6 +31,7 @@ const CHANGE_INPUT_NOTE_NANY_TASK = 'CHANGE_INPUT_NOTE_NANY_TASK';
 export const ADD_NOTE_TASK_NANNY = 'ADD_NOTE_TASK_NANNY';
 export const REMOVE_TASK_DAY = 'REMOVE_TASK_DAY';
 export const TASK_CHECK = 'TASK_CHECK';
+const REGENERE_LIST = 'REGENERE_LIST';
 
 /** pour le server */
 // Ajout d'une tâche
@@ -214,7 +215,26 @@ const myday = (state = initialState, action = {}) => {
         ...state,
         itemList: newTaskListCheched,
       };
+      
+      /** Régénérer une liste */
+    case REGENERE_LIST:
+      const regeretedList = state.itemList.map((list) => {
+        return {
+          ...list,
+          selectInput: '',
+          note: '',
+          tododone: 'list-button',
+        };
 
+      });
+
+      return {
+        ...state,
+        note: "Pas d'indications particulières pour cette journée",
+        nannyNote: 'Pas de notes de la part de la nounou',
+        itemList: regeretedList,
+      };
+     
       /** Envoi pour la requete */
     case ADD_TASKS_RESPONSE:
       return {
@@ -308,6 +328,10 @@ export const taskCheck = id => ({
   id,
 });
 
+/** Régénération de la liste  */
+export const regenerbutton = () => ({
+  type: REGENERE_LIST,
+});
 /** ------------------Envoi pour la requete-------------------------- */
 export const addTaskResponse = datas => ({
   type: ADD_TASKS_RESPONSE,

@@ -27,7 +27,9 @@ const MyDay = ({
   handleChangeInputTaskNounou,
   taskCheck,
   addNoteTaskSubmitNounou,
-  selctedInput }) => {
+  selctedInput,
+  regenerbutton,
+  }) => {
   
   /** Input ajout note nounou journées */
   const handleAddNoteDayInputNounou = (event) => {
@@ -82,6 +84,11 @@ const MyDay = ({
     taskCheck(id);
   };
 
+  /** Régéner les listes */
+  const handleregenerButton = () => {
+    regenerbutton();
+  };
+
   return (
     <div id="myday">
       <div id="intro">
@@ -96,7 +103,11 @@ const MyDay = ({
         </div>
       </div>
       <div id="list">
-        <div className="newdaydiv"><Button className="newdaybutton">Nouvelle journée</Button> </div>
+        <div className="newdaydiv">
+          <Button className="newdaybutton" onClick={handleregenerButton}>
+            Nouvelle journée
+          </Button>
+        </div>
         {
           orderedTasks.map(task =>
             <div
@@ -162,6 +173,7 @@ MyDay.propTypes = {
   taskCheck: PropTypes.func.isRequired,
   addNoteTaskSubmitNounou: PropTypes.func.isRequired,
   selctedInput: PropTypes.string,
+  regenerbutton: PropTypes.func.isRequired,
   
 };
 MyDay.defaultProps = {
