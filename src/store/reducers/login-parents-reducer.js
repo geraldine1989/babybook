@@ -18,6 +18,7 @@ const HANDLE_CHANGE_INPUT = 'HANDLE_CHANGE_INPUT';
 export const HANDLE_LOGIN = 'HANDLE_LOGIN';
 export const LOGIN_RESPONSE = 'LOGIN_RESPONSE';
 export const HANDLE_LOGOUT = 'HANDLE_LOGOUT';
+const GETDAY = 'GETDAY';
 
 /**
  * Traitements
@@ -43,7 +44,12 @@ const loginParentsReducer = (state = initialState, action = {}) => {
         inputEmail,
         inputPassword,
       }
-    
+
+      /** Affichage de la page */
+    case GETDAY:
+      return {
+        state,
+      };
     case LOGIN_RESPONSE:
       if (action.answer === 'logged') {
         
@@ -95,6 +101,10 @@ export const loginResponse = answer => ({
 
 export const handleLogout = () => ({
   type: HANDLE_LOGOUT,
+});
+
+export const handleGetDay = () => ({
+  type: GETDAY,
 });
 /**
  * Selectors

@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import LoginParents from 'src/components/LoginParents';
 
 // Action Creators
-import { handleChangeInputs, handleLogin } from 'src/store/reducers/login-parents-reducer';
+import { handleChangeInputs, handleLogin, handleGetDay } from 'src/store/reducers/login-parents-reducer';
 
 const mapStateToProps = state => ({
   inputEmail: state.loginParentsReducer.inputEmail,
@@ -23,6 +23,7 @@ const mapDispatchToProps = dispatch => ({
   },
   handleLogin: () => {
     dispatch(handleLogin());
+    dispatch(handleGetDay());
   },
 });
 
