@@ -8,7 +8,8 @@ import { withRouter } from 'react-router-dom';
  * Local import
  */
 import MainNav from 'src/components/MainNav';
-import { handleLogout } from 'src/store/reducers/login-parents-reducer';
+import { handleLogoutParent } from 'src/store/reducers/login-parents-reducer';
+import { handleLogoutNanny } from 'src/store/reducers/login-nanny-reducer';
 import { handleGetTasks } from 'src/store/reducers/myday';
 import { getChild, getMeds, getVaccines, getAllergies, getPhone } from 'src/store/reducers/ParentsSpaceInfoReducer';
 import { handleGetParentsNote, handleGetNannyDayNote } from '../store/reducers/myday';
@@ -16,12 +17,16 @@ import { handleGetParentsNote, handleGetNannyDayNote } from '../store/reducers/m
 // Action Creators
 
 const mapStateToProps = state => ({
-  parent: state.loginParentsReducer.parent,
+  loggedParent: state.loginParentsReducer.loggedParent,
+  loggedNanny: state.loginNannyReducer.loggedNanny,
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleLogout: () => {
-    dispatch(handleLogout());
+  handleLogoutParent: () => {
+    dispatch(handleLogoutParent());
+  },
+  handleLogoutNanny: () => {
+    dispatch(handleLogoutNanny());
   },
   handleGetDay: () => {
     dispatch(handleGetTasks());

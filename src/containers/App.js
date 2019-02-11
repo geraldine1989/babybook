@@ -13,9 +13,9 @@ import { StepTitle } from 'semantic-ui-react';
 // Action Creators
 
 const mapStateToProps = state => ({
-  logged: state.loginParentsReducer.logged,
-  parent: state.loginParentsReducer.parent
-  // registered: state.inscriptionReducer.registered,
+  loggedNanny: state.loginNannyReducer.loggedNanny,
+  loggedParent: state.loginParentsReducer.loggedParent,
+  signed: state.inscriptionReducer.signed
 });
 
 const mapDispatchToProps = () => ({});

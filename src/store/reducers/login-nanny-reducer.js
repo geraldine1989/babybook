@@ -2,8 +2,7 @@
  * Initial State
  */
 const initialState = {
-  logged: false,
-  parent: false,
+  loggedNanny: false,
   inputEmailNanny: '',
   inputPasswordNanny: '',
 };
@@ -15,6 +14,7 @@ const HANDLE_CHANGE_INPUT = 'HANDLE_CHANGE_INPUT_NANNY';
 export const HANDLE_LOGIN = 'HANDLE_LOGIN_NANNY';
 export const LOGIN_RESPONSE = 'LOGIN_RESPONSE_NANNY';
 export const HANDLE_LOGOUT = 'HANDLE_LOGOUT_NANNY';
+export const GET_CONTACTS = 'GET_CONTACTS';
 
 /**
  * Traitements
@@ -45,13 +45,13 @@ const loginNannyReducer = (state = initialState, action = {}) => {
       if (action.answer === 'logged') {
         return {
           ...state,
-          logged: true,
+          loggedNanny: true,
           errorLogin: '',
         }
       } else {
         return {
           ...state,
-          logged: false,
+          loggedNanny: false,
           errorLoginNanny: 'Votre email ou votre mot de passe est incorrect.',
         }
       }
@@ -59,7 +59,7 @@ const loginNannyReducer = (state = initialState, action = {}) => {
     case HANDLE_LOGOUT:
       return {
         ...state,
-        logged: false,
+        loggedNanny: false,
       }
 
     default:
@@ -86,6 +86,10 @@ export const loginResponseNanny = answer => ({
 
 export const handleLogoutNanny = () => ({
   type: HANDLE_LOGOUT,
+})
+
+export const getContacts = () => ({
+  type: GET_CONTACTS,
 })
 /**
  * Selectors

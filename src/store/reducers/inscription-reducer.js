@@ -5,6 +5,7 @@ import { Redirect } from 'react-router';
  * Initial State
  */
 const initialState = {
+  signed: false,
   inputEmail: '',
   inputPassword: '',
   inputConfirmPassword: '',
@@ -75,7 +76,10 @@ const inscriptionReducer = (state = initialState, action = {}) => {
         }
       } else {
         console.log('redirect');
-        window.location="/login-parents";
+        return {
+          ...state,
+          signed: true,
+        }
       }
 
     default:

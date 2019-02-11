@@ -2,7 +2,7 @@
  * Npm import
  */
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 /**
  * Local import
  */
@@ -28,22 +28,49 @@ import './app.scss';
 /**
  * Code
  */
-const App = ({ logged, parent }) => {
+const App = ({ loggedNanny, loggedParent, signed }) => {
 // ****************** vv DEV vv ************************
-return (
-  <div>
+// return (
+//   <div>
+//       <HeaderLogo />
+//       <MainNav />
+//       { signed && <Redirect to="/login-parents" /> }
+//       <Switch>
+//         <Route exact path="/" component={Home} />
+//         <Route exact path="/inscription" component={InscriptionForm} />
+//         <Route exact path="/login-parents" component={LoginParents} />
+//         <Route exact path="/login-nanny" component={LoginNanny} />
+//         <Route exact path="/my-day/journal" component={MyDay} />
+//         <Route exact path="/my-day/infos" component={Informations} />
+//         <Route exact path="/espace-parents/journee-type" component={ParentsSpaceDayType} />
+//         <Route exact path="/espace-parents/infos" component={ParentsSpaceInfo} />
+//         <Route exact path="/espace-parents/contacts" component={ParentsSpaceContacts} />
+//         <Route exact path="/mentions-legales" component={LegalMentions} />
+//         <Route exact path="/contact" component={Contact} />
+//         <Route component={NotFound} />
+//       </Switch>
+//       <Footer />
+//     </div>
+//   );
+// }
+// ****************** ^^ DEV ^^ ************************
+// ****************** vv PROD vv ************************
+  return (
+    <div>
       <HeaderLogo />
-      <MainNav />
+      { (loggedNanny || loggedParent) && <MainNav /> }
+      { signed && <Redirect to="/login-parents" /> }
+      { !signed && (loggedNanny || loggedParent) && <Redirect to="/my-day/journal" /> }
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/inscription" component={InscriptionForm} />
         <Route exact path="/login-parents" component={LoginParents} />
         <Route exact path="/login-nanny" component={LoginNanny} />
-        <Route exact path="/my-day/journal" component={MyDay} />
-        <Route exact path="/my-day/infos" component={Informations} />
-        <Route exact path="/espace-parents/journee-type" component={ParentsSpaceDayType} />
-        <Route exact path="/espace-parents/infos" component={ParentsSpaceInfo} />
-        <Route exact path="/espace-parents/contacts" component={ParentsSpaceContacts} />
+        {(loggedNanny || loggedParent) && <Route exact path="/my-day/journal" component={MyDay} />}
+        {(loggedNanny || loggedParent) && <Route exact path="/my-day/infos" component={Informations} />}
+        {loggedParent && <Route exact path="/espace-parents/journee-type" component={ParentsSpaceDayType} />}
+        {loggedParent && <Route exact path="/espace-parents/infos" component={ParentsSpaceInfo} />}
+        {loggedParent && <Route exact path="/espace-parents/contacts" component={ParentsSpaceContacts} />}
         <Route exact path="/mentions-legales" component={LegalMentions} />
         <Route exact path="/contact" component={Contact} />
         <Route component={NotFound} />
@@ -52,30 +79,6 @@ return (
     </div>
   );
 }
-// ****************** ^^ DEV ^^ ************************
-// ****************** vv PROD vv ************************
-// return (
-//   <div>
-//         <HeaderLogo />
-//         { logged && <MainNav /> }
-//         <Switch>
-//           <Route exact path="/" component={Home} />
-//           <Route exact path="/inscription" component={InscriptionForm} />
-//           <Route exact path="/login-parents" component={LoginParents} />
-//           <Route exact path="/login-nanny" component={LoginNanny} />
-//           {logged && <Route exact path="/my-day/journal" component={MyDay} />}
-//           {logged && <Route exact path="/my-day/infos" component={Informations} />}
-//           {logged && parent && <Route exact path="/espace-parents/journee-type" component={ParentsSpaceDayType} />}
-//           {logged && parent && <Route exact path="/espace-parents/infos" component={ParentsSpaceInfo} />}
-//           {logged && parent && <Route exact path="/espace-parents/contacts" component={ParentsSpaceContacts} />}
-//           <Route exact path="/mentions-legales" component={LegalMentions} />
-//           <Route exact path="/contact" component={Contact} />
-//           <Route component={NotFound} />
-//         </Switch>
-//         <Footer />
-//       </div>
-//     );
-//   }
 // ****************** ^^ PROD ^^ ************************
 
 /**

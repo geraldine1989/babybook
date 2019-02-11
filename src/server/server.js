@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 var port = 3000;
 var bodyParser = require('body-parser');
+var cookieSession = require('cookie-session')
 // connect-mongo
 // const session = require('express-session');
 // const MongoStore = require('connect-mongo')(session);
@@ -18,6 +19,7 @@ app.use(function(req, res, next) {
   // res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
+
 
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
@@ -151,7 +153,11 @@ app.post("/loginParents", (req, res) => {
     if (returnedUser[0]) {
       if (user.password === returnedUser[0].password) {
         console.log('user ok mpd ok');
-
+        // app.use(cookieSession({
+        //   name: 'session',
+        //   // Cookie Options
+        //   maxAge: 24 * 60 * 60 * 1000 // 24 hours
+        // }))
         res.send('logged');
       } else {
         console.log('user ok mdp PAS ok');
@@ -173,24 +179,28 @@ app.post("/loginParents", (req, res) => {
 app.post("/loginNanny", (req, res) => {
   console.log('*******************************');
   var user = new registered_contacts(req.body);
-  console.log('user : ',user);
+  console.log('user : ', user);
   function findContacts() {
     return new Promise(function(resolve, reject) {
-      const returnedUser = registered_contacts.find({'email': user.email});
-      resolve (returnedUser);
-      console.log(returnedUser);
+      const returnedUser = registered_contacts.find({'email': user.email}, function (err, res) {
+        console.log(res);
+        resolve (returnedUser);
+        console.log("returnedUser", returnedUser);
+      });
     })
   }
   function findAccessCode() {
     return new Promise(function(resolve, reject) {
-      const returnedAccessCode = registered_parents.find({'accessCode': user.email});
-      resolve (returnedAccessCode);
-      console.log(returnedAccessCode);
+      const returnedAccessCode = registered_parents.find({'parent': true}, function (err, res) {
+        console.log(res);
+        resolve (returnedAccessCode);
+        console.log("returnedAccessCode", returnedAccessCode);
+      });
     })
   }
   findContacts()
   .then(function(returnedUser) {
-    console.log('returnedUser', returnedUser[0]);
+    // console.log('returnedUser', returnedUser[0]);
     
     if (returnedUser[0]) {
       if (user.password === returnedUser[0].password) {
