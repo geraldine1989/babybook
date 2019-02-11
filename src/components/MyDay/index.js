@@ -96,6 +96,7 @@ const MyDay = ({
         </div>
       </div>
       <div id="list">
+        <div className="newdaydiv"><Button className="newdaybutton">Nouvelle journée</Button> </div>
         {
           orderedTasks.map(task =>
             <div
