@@ -22,7 +22,6 @@ const loginNannyMiddleware = store => next => (action) => {
         email: inputEmailNanny,
         password: hashPassword,
       }
-console.log(formDatas);
       axios.post('http://localhost:3000/loginNanny', formDatas)
         .then((response) => {
           store.dispatch(loginResponseNanny(response.data));
