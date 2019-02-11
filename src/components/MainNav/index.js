@@ -5,24 +5,24 @@ import { NavLink } from 'react-router-dom';
 // Local import
 import './style.scss';
 
-const MainNav = ({ parent, handleLogout, handleGetTasks, handleGetInfos, handleGetDay }) => {
+const MainNav = ({ loggedParent, loggedNanny, handleLogoutParent, handleLogoutNanny, handleGetInfos, handleGetDay }) => {
   return (
     <div id="mainMenu">
       <div id="mainNav">
         <Dropdown item text="menu" simple className="accordionTitle">
           <Dropdown.Menu className="accordionContent">
-          {/* { parent && <Dropdown.Item >
-            <NavLink exact to="/espace-parents/journee-type" >
-              Espace Parents
+          {/* <Dropdown.Item >
+            <NavLink exact to="/espace-parents/journee-type" onClick={handleGetDay}>
+            Espace Parents
             </NavLink>
-          </Dropdown.Item> } */}
-          <Dropdown.Item >
+          </Dropdown.Item> */}
+          { loggedParent && <Dropdown.Item >
             <NavLink exact to="/espace-parents/journee-type" onClick={handleGetDay}>
               Espace Parents
             </NavLink>
-          </Dropdown.Item>
+          </Dropdown.Item> }
           <Dropdown.Item>
-            <NavLink exact to="/my-day/journal" onLoadStart={handleGetDay} onClick={handleGetDay}>
+            <NavLink exact to="/my-day/journal" onLoad={handleGetDay} onClick={handleGetDay}>
               Journal
             </NavLink>
           </Dropdown.Item>
@@ -31,11 +31,16 @@ const MainNav = ({ parent, handleLogout, handleGetTasks, handleGetInfos, handleG
               Infos
             </NavLink>
           </Dropdown.Item>
-          <Dropdown.Item>
-            <NavLink exact to="/" onClick={handleLogout}>
+          { loggedParent && <Dropdown.Item>
+            <NavLink exact to="/" onClick={handleLogoutParent}>
               Se déconnecter
             </NavLink>
-          </Dropdown.Item>
+          </Dropdown.Item>}
+          { loggedNanny && <Dropdown.Item>
+            <NavLink exact to="/" onClick={handleLogoutNanny}>
+              Se déconnecter
+            </NavLink>
+          </Dropdown.Item>}
           </Dropdown.Menu>
         </Dropdown>
       </div>

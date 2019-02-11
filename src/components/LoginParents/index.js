@@ -20,6 +20,7 @@ const LoginParents = ({
   inputPassword,
   handleChangeInputs,
   handleLogin,
+  handleGetDay,
   errorLogin,
 }) => {
 
@@ -34,6 +35,7 @@ const LoginParents = ({
   const handleSubmit = (evt) => {
     evt.preventDefault();
     handleLogin();
+    handleGetDay();
   };
 
   return (
@@ -53,8 +55,7 @@ const LoginParents = ({
           </Form.Field>
           <Form.Field className="inputlogin">
             <input 
-              
-              type="text" 
+              type="password" 
               name="inputPassword"
               placeholder="Mot de passe" 
               value={inputPassword}
