@@ -721,6 +721,14 @@ app.post('/task-done', (req, res) => {
   
   res.send();
 });
+/** --------------------------nouvelle journée------------------------- */
+app.post('/new-day', (req, res) => {
+  console.log('je suis dans le rerveur je veux etre mis à jour');
+  add_task.updateMany({"__v": "0"}, { $set: { tododone: "list-button", note:""}}, { overwrite: true }, function (err, res) {});
+  add_note_nanny.updateMany({"__v": "0"}, { $set: { nannyNote: ""}}, { overwrite: true }, function (err, res) {});
+  add_note.updateMany({"__v": "0"}, { $set: { note: "Pas de notes particulières pour cette journée"}}, { overwrite: true }, function (err, res) {});
+  res.send();
+});
 
 /**
 * gestion contacts espace parents
@@ -753,6 +761,7 @@ app.get('/espace-parents/contacts', (req, res) => {
     })
     .catch((err) => {
       console.log('Caught an error!', err);
+      
     });
 });
 /**

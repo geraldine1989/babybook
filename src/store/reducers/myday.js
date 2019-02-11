@@ -31,7 +31,7 @@ const CHANGE_INPUT_NOTE_NANY_TASK = 'CHANGE_INPUT_NOTE_NANY_TASK';
 export const ADD_NOTE_TASK_NANNY = 'ADD_NOTE_TASK_NANNY';
 export const REMOVE_TASK_DAY = 'REMOVE_TASK_DAY';
 export const TASK_CHECK = 'TASK_CHECK';
-const REGENERE_LIST = 'REGENERE_LIST';
+export const REGENERE_LIST = 'REGENERE_LIST';
 
 /** pour le server */
 // Ajout d'une tâche

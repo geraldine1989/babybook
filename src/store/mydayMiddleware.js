@@ -1,6 +1,6 @@
 import axios from 'axios';
 import uuidv4 from 'uuid/v4';
-import { ADD_TASK, addTaskResponse, ADD_NOTE, ADD_NOTE_DAY_NANNY, HANDLE_GET_TASKS, addNoteResponse, addNoteNannyResponse, REMOVE_TASK_DAY, ADD_NOTE_TASK_NANNY, HANDLE_GET_PARENTS_NOTE, HANDLE_GET_NANNY_DAY_NOTE, TASK_CHECK } from './reducers/myday';
+import { ADD_TASK, addTaskResponse, ADD_NOTE, ADD_NOTE_DAY_NANNY, HANDLE_GET_TASKS, addNoteResponse, addNoteNannyResponse, REMOVE_TASK_DAY, ADD_NOTE_TASK_NANNY, HANDLE_GET_PARENTS_NOTE, HANDLE_GET_NANNY_DAY_NOTE, TASK_CHECK, REGENERE_LIST } from './reducers/myday';
 
 const mydayMiddleware = store => next => (action) => {
   const state = store.getState().myday;
@@ -8,6 +8,7 @@ const mydayMiddleware = store => next => (action) => {
       const { selctedInput } = state.itemList;
       const { inputNote } = state;
       const { inputNoteNounou } = state;
+      const { itemList } = state;
   // Je veux vérifier si l'action que je reçois m'intéresse
 
   switch (action.type) {
@@ -127,7 +128,6 @@ const mydayMiddleware = store => next => (action) => {
         selctedInput: selctedInput,
       };
       
-      console.log('coucou ADD_NOTE_TASK_NANNY Middleware');
         axios.post('http://localhost:3000/add-task-nanny', formNannyAddTAsk);
         next(action);
         
@@ -140,6 +140,17 @@ const mydayMiddleware = store => next => (action) => {
       axios.post('http://localhost:3000/task-done', formCheckTask);
       next(action);
       break;
+     /** ------------------------- nouvelle journée -------------------------- */
+    case REGENERE_LIST:
+     const formnewDay = {
+      inputNoteNounou: inputNoteNounou,
+      inputNote: inputNote,
+      itemList: itemList,
+     };
+     console.log('coucou REGENERE_LIST Middleware');
+     axios.post('http://localhost:3000/new-day', formnewDay);
+     next(action);
+     break;
 
     default:
       next(action);
