@@ -19,7 +19,8 @@ const InscriptionForm = ({
   inputEmail,
   inputPassword, 
   inputConfirmPassword, 
-  inputAccessCode, 
+  inputAccessCode,
+  inputConfirmAccessCode,
   handleChangeInputs, 
   handleInscription,
   errorsForm,
@@ -93,9 +94,12 @@ const InscriptionForm = ({
               {errorsForm.errorConfirmPassword}
             </label>
           </Form.Field>
+          <p>
+            Le code d'accès est le code que vous donnerez à vos contacts pour qu'ils accèdent au journal de votre enfant.
+          </p>
           <Form.Field>
             <input 
-              type="text" 
+              type="password" 
               placeholder="Code d'accès" 
               name="inputAccessCode" 
               value={inputAccessCode}
@@ -107,6 +111,22 @@ const InscriptionForm = ({
               className={!errorsForm.errorAccessCode ? 'hidden' : 'block'}
             >
               {errorsForm.errorAccessCode}
+            </label>
+          </Form.Field>
+          <Form.Field>
+            <input 
+              type="password" 
+              placeholder="Confirmer le code d'accès" 
+              name="inputConfirmAccessCode" 
+              value={inputConfirmAccessCode}
+              onChange={handleChange}
+              className={!errorsForm.errorConfirmAccessCode ? 'valid' : 'novalid'}
+            />
+            <label
+              htmlFor="inputConfirmAccessCode"
+              className={!errorsForm.errorConfirmAccessCode ? 'hidden' : 'block'}
+            >
+              {errorsForm.errorConfirmAccessCode}
             </label>
           </Form.Field>
           <NavLink exact to="/login-parents">

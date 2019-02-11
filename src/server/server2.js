@@ -286,48 +286,49 @@ app.post("/loginNanny", (req, res) => {
  * infos parents - enfant
  */
 
-const registeredChild = new mongoose.Schema({
-  id: String,
-  firstname: String,
-  lastname: String,
-  birthdate: Date,
-});
-const Child = mongoose.model('child', registeredChild);
+// const registeredChild = new mongoose.Schema({
+//   id: String,
+//   firstname: String,
+//   lastname: String,
+//   birthdate: Date,
+// });
+// const Child = mongoose.model('child', registeredChild);
 
 /* Chargement de la liste des enfants */
 app.get('/espace-parents/infos/get-child', (req, res) => {
-  function findRegisteredChild() {
-    return new Promise(((resolve, reject) => {
-      Child.find((err, response) => {
-        regChild = response;
-        resolve (regChild);
-        return regChild;
-      });
-    }));
-  }
-  findRegisteredChild()
-    .then((regChild) => {
-      res.status('200').send(regChild);
-    })
-    .catch((err) => {
-      console.log('Caught an error!', err);
-    });
+  // function findRegisteredChild() {
+  //   return new Promise(((resolve, reject) => {
+  //     Child.find((err, response) => {
+  //       regChild = response;
+  //       resolve (regChild);
+  //       return regChild;
+  //     });
+  //   }));
+  // }
+  // findRegisteredChild()
+  //   .then((regChild) => {
+  //     res.status('200').send(regChild);
+  //   })
+  //   .catch((err) => {
+  //     console.log('Caught an error!', err);
+  //   });
 });
 /* Enregistrement d'un enfant dans la BDD */
 app.post('/espace-parents/infos/add-child', (req, res) => {
   const newChild = req.body;
-  function findRegisteredChild() {
-    return new Promise(((resolve, reject) => {
-      datas.find({}, (err, response) => {
-        regChild = response;
-        resolve (regChild);
-        return regChild;
-      });
-    }));
-  }
-  Child.deleteMany({}, function (err) {} );
+  console.log(newChild);
+  // function findRegisteredChild() {
+  //   return new Promise(((resolve, reject) => {
+  //     datas.find({}, (err, response) => {
+  //       regChild = response;
+  //       resolve (regChild);
+  //       return regChild;
+  //     });
+  //   }));
+  // }
+  // Child.deleteMany({}, function (err) {} );
   // datas.findOneAndUpdate({email: "me@me.com"}, {$set: {"identity": newChild}}, {upsert: true}, function (err, res) {});
-  datas.findOneAndUpdate({email: "me@me.com"}, {"baby.identity": newChild}, function (err, res) {});
+  datas.findOneAndUpdate({email: "me@me.com", }, {$set:{"baby":  {identity: newChild}}}, function (err, res) {});
     // .then((item) => {
     //   findRegisteredChild()
     //     .then((regChild) => {
@@ -346,11 +347,11 @@ app.post('/espace-parents/infos/add-child', (req, res) => {
  * infos parents - santé - médicaments
  */
 
-const registeredMed = new mongoose.Schema({
-  id: String,
-  name: String,
-});
-const Med = mongoose.model('med', registeredMed);
+// const registeredMed = new mongoose.Schema({
+//   id: String,
+//   name: String,
+// });
+// const Med = mongoose.model('med', registeredMed);
 
 /* Chargement de la liste des médicaments */
 app.get('/espace-parents/infos/get-meds', (req, res) => {
@@ -405,11 +406,11 @@ app.post('/espace-parents/infos/remove-meds', (req, res) => {
   res.send();
 });
 
-const registeredVaccine = new mongoose.Schema({
-  id: String,
-  name: String,
-});
-const Vaccine = mongoose.model('vaccine', registeredVaccine);
+// const registeredVaccine = new mongoose.Schema({
+//   id: String,
+//   name: String,
+// });
+// const Vaccine = mongoose.model('vaccine', registeredVaccine);
 
 /* Chargement de la liste des vaccins */
 app.get('/espace-parents/infos/get-vaccines', (req, res) => {
@@ -469,11 +470,11 @@ app.post('/espace-parents/infos/remove-vaccines', (req, res) => {
  * infos parents - santé - allergies
  */
 
-const registeredAllergie = new mongoose.Schema({
-  id: String,
-  name: String,
-});
-const Allergie = mongoose.model('allergie', registeredAllergie);
+// const registeredAllergie = new mongoose.Schema({
+//   id: String,
+//   name: String,
+// });
+// const Allergie = mongoose.model('allergie', registeredAllergie);
 
 /* Chargement de la liste des allergies */
 app.get('/espace-parents/infos/get-allergies', (req, res) => {
@@ -533,12 +534,12 @@ app.post('/espace-parents/infos/remove-allergies', (req, res) => {
  * infos parents - téléphones
  */
 
-const registeredPhone = new mongoose.Schema({
-  id: String,
-  phonename: String,
-  phonenumber: String,
-});
-const Phone = mongoose.model('phone', registeredPhone);
+// const registeredPhone = new mongoose.Schema({
+//   id: String,
+//   phonename: String,
+//   phonenumber: String,
+// });
+// const Phone = mongoose.model('phone', registeredPhone);
 
 /* Chargement de la liste des téléphones */
 app.get('/espace-parents/infos/get-phone', (req, res) => {
@@ -596,17 +597,17 @@ app.post('/espace-parents/infos/remove-phones', (req, res) => {
 
 /** --------------------------Ajout d'une tache--------------------------*/
 
-var addTaskFromParents = new mongoose.Schema({
-    name: String,
-    hour: String,
-    indic: String,
-    tododone:String,
-    //selctedInput: String,
-    note: String,
-    id: String,
-   });
+// var addTaskFromParents = new mongoose.Schema({
+//     name: String,
+//     hour: String,
+//     indic: String,
+//     tododone:String,
+//     //selctedInput: String,
+//     note: String,
+//     id: String,
+//    });
 
-const add_task = mongoose.model('add_task', addTaskFromParents);
+// const add_task = mongoose.model('add_task', addTaskFromParents);
 
 /**
  * Chargement de la liste des taches
@@ -660,10 +661,10 @@ app.post('/espace-parents/add-task', (req, res) => {
 });
 
 /** --------------------------Ajout d'une note pour la journée-------------------------- */
-const addNoteFromParents = new mongoose.Schema({
-  note: String,
-});
-const add_note = mongoose.model('add_note', addNoteFromParents);
+// const addNoteFromParents = new mongoose.Schema({
+//   note: String,
+// });
+// const add_note = mongoose.model('add_note', addNoteFromParents);
 
 app.get('/espace-parents/parents-note', (req, res) => {
   function findParentsNote() {
@@ -698,10 +699,10 @@ app.post('/espace-parents/add-note-day-parents', (req, res) => {
 });
 
 /** --------------------------Ajout d'une note de la nanny pour la journée-------------------------- */
-const addNoteFromNanny = new mongoose.Schema({
-  nannyNote: String,
-});
-const add_note_nanny = mongoose.model('add_note_nanny', addNoteFromNanny);
+// const addNoteFromNanny = new mongoose.Schema({
+//   nannyNote: String,
+// });
+// const add_note_nanny = mongoose.model('add_note_nanny', addNoteFromNanny);
 
 app.get('/myday/nanny-day-note', (req, res) => {
   function findNannyDayNote() {
@@ -781,13 +782,13 @@ app.post('/task-done', (req, res) => {
 * gestion contacts espace parents
 */
 
-const registeredContacts = new mongoose.Schema({
-  id: String,
-  email: String,
-  name: String,
-});
+// const registeredContacts = new mongoose.Schema({
+//   id: String,
+//   email: String,
+//   name: String,
+// });
 
-const registered_contacts = mongoose.model("registered_contacts", registeredContacts);
+// const registered_contacts = mongoose.model("registered_contacts", registeredContacts);
 
 /**
  * Chargement de la liste des contacts
@@ -814,7 +815,8 @@ app.get('/espace-parents/contacts', (req, res) => {
  * enregistrement d'un contact
  */
 app.post("/espace-parents/contacts/add-contact", (req, res) => {
-  var NewContact = req.body;
+  var newContact = req.body;
+
     function findRegisteredContacts() {
     return new Promise(function(resolve, reject) {
       datas.find("contacts", function (err, response) {
@@ -825,8 +827,9 @@ app.post("/espace-parents/contacts/add-contact", (req, res) => {
     });
   }
 // Enregistrement du nouveau contact
-console.log(NewContact);
-  datas.findOneAndUpdate("baby", {$push: {contacts: NewContact}}, function (err, res) {})
+console.log(datas);
+  // datas.findOneAndUpdate({email: "me@me.com", }, {$set:{"baby":  {identity: newChild}}}, function (err, res) {});
+  datas.updateOne({email: "me@me.com"}, {"baby": {"contacts": newContact}}, function (err, res) {});
     // .then(item => {
     //   // Chargement de la nouvelle liste
     //   findRegisteredContacts()

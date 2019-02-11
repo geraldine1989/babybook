@@ -26,7 +26,7 @@ const inscriptionMiddleware = store => next => (action) => {
     case HANDLE_INSCRIPTION:
       const state = store.getState().inscriptionReducer;
 
-      const { inputEmail, inputPassword, inputConfirmPassword, inputAccessCode, errorsForm } = state;
+      const { inputEmail, inputPassword, inputConfirmPassword, inputAccessCode, inputConfirmAccessCode, errorsForm } = state;
       var emailValid = validator.validate(inputEmail);
       let errors = {};
       if (!emailValid) {
@@ -51,6 +51,12 @@ const inscriptionMiddleware = store => next => (action) => {
         errors = {
           ...errors,
           errorAccessCode: 'Le code d\'accès doit comporter au moins 8 caractères et être différent de votre mot de passe',
+        }
+      }
+      if (inputConfirmAccessCode !== inputAccessCode) {
+        errors = {
+          ...errors,
+          errorConfirmAccessCode: 'Vos codes d\'accès ne correspondent pas.',
         }
       }
 

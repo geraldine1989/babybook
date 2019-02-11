@@ -34,74 +34,6 @@ const connection = mongoose.createConnection("mongodb://localhost:27017/babybook
 /**
  * var
  */
-var datasSchema = new mongoose.Schema ([
-  {
-    email: String,
-    password: String,
-    accessCode: String,
-    baby: [
-      {
-        id: String,
-        firstname: String,
-        lastname: String,
-        birthdate: String,
-        health: [
-          {
-            medics: [
-              {
-                id: String,
-                name: String,
-              },
-            ],
-            vaccins: [
-              {
-                id: String,
-                name: String,
-              },
-            ],
-            allergies: [
-              {
-                id: String,
-                name: String,
-              },
-            ],
-          }
-        ],
-        phoneDatas: [
-          {
-            id: String,
-            phonename: String,
-            phonenumber: String,
-          },
-        ],
-        myDay: [
-          {
-            itemList: [
-              {
-                id: String,
-                tododone: Boolean,
-                name: String,
-                hour: String,
-                indic: String,
-                note: String,
-              },
-            ],
-            nannyNote: String
-          },
-        ],
-        contacts: [
-          {
-            id: String,
-            name: String,
-            email: String,
-          },
-        ],
-      },
-    ],
-  },
-]);
-var datas = mongoose.model("datas", datasSchema);
-
 var registeredParents = new mongoose.Schema({
   email: String,
   password: String,
@@ -143,7 +75,7 @@ app.get("/getParents", (req, res) => {
  */
 
 app.post("/inscription", (req, res) => {
-  var newUser = new datas(req.body);
+  var newUser = new registered_parents(req.body);
   console.log('regParents : ', regParents);
   console.log('newUserEmail : ' + newUser.email);
   const emailExist = regParents.filter(email => newUser.email === email.email);

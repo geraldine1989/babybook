@@ -53,7 +53,7 @@ const LoginParents = ({
           </Form.Field>
           <Form.Field>
             <input 
-              type="text" 
+              type="password" 
               name="inputPassword"
               placeholder="Mot de passe" 
               value={inputPassword}
