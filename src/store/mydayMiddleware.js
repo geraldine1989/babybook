@@ -142,13 +142,7 @@ const mydayMiddleware = store => next => (action) => {
       break;
      /** ------------------------- nouvelle journée -------------------------- */
     case REGENERE_LIST:
-     const formnewDay = {
-      inputNoteNounou: inputNoteNounou,
-      inputNote: inputNote,
-      itemList: itemList,
-     };
-     console.log('coucou REGENERE_LIST Middleware');
-     axios.post('http://localhost:3000/new-day', formnewDay);
+     axios.post('http://localhost:3000/new-day');
      next(action);
      break;
 

@@ -7,7 +7,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    margin-bottom: 2em;
+    margin-bottom: 5em;
     margin-top: 2em;
     width: 70%;
 
@@ -171,7 +171,6 @@
         & .form-add-note {
         display: flex;
         justify-content: center;
-        border: 1px solid #D7E8F2;
         width: 100%;
           & .field {
             width: 100%;
