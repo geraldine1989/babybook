@@ -2,7 +2,8 @@ var express = require("express");
 var app = express();
 var port = 3000;
 var bodyParser = require('body-parser');
-var cookieSession = require('cookie-session')
+var hash = require('hash.js');
+// var cookieSession = require('cookie-session')
 // connect-mongo
 // const session = require('express-session');
 // const MongoStore = require('connect-mongo')(session);
@@ -212,8 +213,6 @@ app.post("/loginNanny", (req, res) => {
       console.log("AccessCode en base : ", returnedAccessCode[0].accessCode);
       if (userEnBase) {
         console.log("login : user.password : ", user.password);
-        // const hashPassword = hash.sha256().update(user.password).digest('hex');
-        // console.log("hashPassword", hashPassword);
         if (user.password === returnedAccessCode[0].accessCode) {
           console.log('user ok mpd ok');
     
@@ -228,8 +227,7 @@ app.post("/loginNanny", (req, res) => {
       }
     })
     .catch(function(err) {
-      console.log('400 findAccessCode')
-      // res.status(400).send(err);
+      res.status(400).send(err);
     });
   })
   .catch(function(err) {

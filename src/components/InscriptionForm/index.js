@@ -114,7 +114,7 @@ const InscriptionForm = ({
               {errorsForm.errorAccessCode}
             </label>
           </Form.Field>
-          <Form.Field>
+          <Form.Field className="inputlogin">
             <input 
               type="password" 
               placeholder="Confirmer le code d'accès" 

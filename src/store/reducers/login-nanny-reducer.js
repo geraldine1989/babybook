@@ -59,6 +59,8 @@ const loginNannyReducer = (state = initialState, action = {}) => {
     case HANDLE_LOGOUT:
       return {
         ...state,
+        inputEmailNanny: '',
+        inputPasswordNanny: '',
         loggedNanny: false,
       }
 
