@@ -10,9 +10,9 @@ const initialState = {
   inputNoteTask: '',
   inputHourTask: '00:00',
   inputNote: '',
-  note: "Pas d'indications particulières pour cette journée",
+  note: "Pas d'indication particulière pour cette journée",
   inputNoteNounou: '',
-  nannyNote: 'Pas de notes de la part de la nounou',
+  nannyNote: 'Pas de note de la part de la nounou',
   inputatNannyTask: '',
 };
 

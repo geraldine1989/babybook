@@ -145,11 +145,11 @@ const MyDay = ({
       <div id="info-plus">
         <div id="particular-note">
           <div id="particular-note-title">
-          Notes complémentaires
+          Note complémentaire
           </div>
           <p>{nannyNote}</p>
           <Form className="form-add-note-day" onSubmit={handleAddNoteDaySubmitNounou}>   
-            <input placeholder='Ajoutez une note' value={inputNoteNounou} onChange={handleAddNoteDayInputNounou} />
+            <input placeholder='Ajouter une note' value={inputNoteNounou} onChange={handleAddNoteDayInputNounou} />
             <Button icon type="submit">
               <Icon name="add" />
             </Button>

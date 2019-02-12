@@ -135,7 +135,7 @@ const ParentsSpaceDayType = ({
               />
             </Form.Field>
             <Button icon type="submit" >
-              Ajouter cette tâche poure la journée
+              Ajouter cette tâche pour la journée
             </Button>
           </Form>
         </div>
