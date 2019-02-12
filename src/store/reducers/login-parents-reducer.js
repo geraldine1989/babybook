@@ -1,9 +1,11 @@
 /**
  * Initial State
  */
+
+
 const initialState = {
-  logged: false,
-  parent: false,
+  loggedParent: false,
+  signed: false,
   parentEmail: '',
   inputEmail: '',
   inputPassword: '',
@@ -26,7 +28,6 @@ export const HANDLE_LOGOUT = 'HANDLE_LOGOUT';
  * Reducer
  */
 const loginParentsReducer = (state = initialState, action = {}) => {
-  let errors = {};
   const { inputEmail, inputPassword } = state;
 
   switch (action.type) {
@@ -37,14 +38,6 @@ const loginParentsReducer = (state = initialState, action = {}) => {
       }
 
     case HANDLE_LOGIN:
-      console.log('HANDLE_LOGIN reducer');
-
-
-      if (!errors) {
-
-      };
-    
-    
       return {
         ...state,
         inputEmail,
@@ -53,25 +46,28 @@ const loginParentsReducer = (state = initialState, action = {}) => {
     
     case LOGIN_RESPONSE:
       if (action.answer === 'logged') {
+        
         return {
           ...state,
-          logged: true,
+          loggedParent: true,
+          signed: false,
           parentEmail: inputEmail,
           errorLogin: '',
         }
       } else {
         return {
           ...state,
-          logged: false,
+          loggedParent: false,
           errorLogin: 'Votre email ou votre mot de passe est incorrect.',
         }
       }
-
+      
     case HANDLE_LOGOUT:
       return {
         ...state,
-        logged: false,
-        parent: false,
+        inputEmail: '',
+        inputPassword: '',
+        loggedParent: false,
       }
 
     default:
@@ -96,7 +92,7 @@ export const loginResponse = answer => ({
   answer,
 });
 
-export const handleLogout = () => ({
+export const handleLogoutParent = () => ({
   type: HANDLE_LOGOUT,
 });
 /**

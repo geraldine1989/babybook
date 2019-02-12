@@ -19,7 +19,8 @@ const InscriptionForm = ({
   inputEmail,
   inputPassword, 
   inputConfirmPassword, 
-  inputAccessCode, 
+  inputAccessCode,
+  inputConfirmAccessCode,
   handleChangeInputs, 
   handleInscription,
   errorsForm,
@@ -45,7 +46,7 @@ const InscriptionForm = ({
           {/* <Form.Field>
             <input type="text" placeholder="Identifiant" value="" />
           </Form.Field> */}
-          <Form.Field>
+          <Form.Field className="inputlogin"> 
             <input 
               type="email" 
               placeholder="Adresse email" 
@@ -61,7 +62,7 @@ const InscriptionForm = ({
               {errorsForm.errorEmail}
             </label>
           </Form.Field>
-          <Form.Field>
+          <Form.Field className="inputlogin">
             <input 
               type="password" 
               placeholder="Mot de passe" 
@@ -77,7 +78,7 @@ const InscriptionForm = ({
               {errorsForm.errorPassword}
             </label>
           </Form.Field>
-          <Form.Field>
+          <Form.Field className="inputlogin">
             <input 
               type="password" 
               placeholder="Confirmer le mot de passe" 
@@ -93,9 +94,13 @@ const InscriptionForm = ({
               {errorsForm.errorConfirmPassword}
             </label>
           </Form.Field>
-          <Form.Field>
+          
+          <p>
+            Le code d'accès est le code que vous donnerez à vos contacts pour qu'ils accèdent au journal de votre enfant.
+          </p>
+          <Form.Field className="inputlogin">
             <input 
-              type="text" 
+              type="password" 
               placeholder="Code d'accès" 
               name="inputAccessCode" 
               value={inputAccessCode}
@@ -109,7 +114,23 @@ const InscriptionForm = ({
               {errorsForm.errorAccessCode}
             </label>
           </Form.Field>
-          <NavLink exact to="/login-parents">
+          <Form.Field className="inputlogin">
+            <input 
+              type="password" 
+              placeholder="Confirmer le code d'accès" 
+              name="inputConfirmAccessCode" 
+              value={inputConfirmAccessCode}
+              onChange={handleChange}
+              className={!errorsForm.errorConfirmAccessCode ? 'valid' : 'novalid'}
+            />
+            <label
+              htmlFor="inputConfirmAccessCode"
+              className={!errorsForm.errorConfirmAccessCode ? 'hidden' : 'block'}
+            >
+              {errorsForm.errorConfirmAccessCode}
+            </label>
+          </Form.Field>
+          <NavLink exact to="/login-parents" className="login-button">
             <Button type="submit" onClick={handleSubmit}>S'inscrire</Button>
           </NavLink>
         </Form>

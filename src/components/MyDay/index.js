@@ -15,7 +15,21 @@ import { ID } from 'postcss-selector-parser';
  * Code
  */
 /* eslint-disable no-case-declarations */
-const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNounou, AddNoteDaySubmitNounou, nannyNote, handleChangeInputTaskNounou, taskCheck, addNoteTaskSubmitNounou, selctedInput }) => {
+const MyDay = ({
+  id,
+  childList,
+  list,
+  note,
+  inputNoteNounou,
+  handleAddNoteNoteNounou,
+  AddNoteDaySubmitNounou,
+  nannyNote,
+  handleChangeInputTaskNounou,
+  taskCheck,
+  addNoteTaskSubmitNounou,
+  selctedInput,
+  regenerbutton,
+  }) => {
   
   /** Input ajout note nounou journées */
   const handleAddNoteDayInputNounou = (event) => {
@@ -70,6 +84,11 @@ const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNou
     taskCheck(id);
   };
 
+  /** Régéner les listes */
+  const handleregenerButton = () => {
+    regenerbutton();
+  };
+
   return (
     <div id="myday">
       <div id="intro">
@@ -84,6 +103,11 @@ const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNou
         </div>
       </div>
       <div id="list">
+        <div className="newdaydiv">
+          <Button className="newdaybutton" onClick={handleregenerButton}>
+            Nouvelle journée
+          </Button>
+        </div>
         {
           orderedTasks.map(task =>
             <div
@@ -109,7 +133,7 @@ const MyDay = ({id, childList, list, note, inputNoteNounou, handleAddNoteNoteNou
                   placeholder="Ajouter une note..." 
                   value= {task.selctedInput} 
                   onChange={handleAddNoteTaskInputNounou} />
-                <Button icon type="submit">
+                <Button icon type="submit" className= "add-task-button">
                   <Icon name="add" />
                 </Button> 
               </form>  
@@ -149,6 +173,7 @@ MyDay.propTypes = {
   taskCheck: PropTypes.func.isRequired,
   addNoteTaskSubmitNounou: PropTypes.func.isRequired,
   selctedInput: PropTypes.string,
+  regenerbutton: PropTypes.func.isRequired,
   
 };
 MyDay.defaultProps = {

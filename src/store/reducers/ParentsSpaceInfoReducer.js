@@ -54,6 +54,7 @@ export const GET_MEDS = 'GET_MEDS';
 export const GET_VACCINES = 'GET_VACCINES';
 export const GET_ALLERGIES = 'GET_ALLERGIES';
 export const GET_PHONE = 'GET_PHONE';
+export const GET_INFOS = 'GET_INFOS';
 
 /**
  * Traitements
@@ -452,6 +453,10 @@ export const phoneResponse = datas => ({
 
 export const getPhone = () => ({
   type: GET_PHONE,
+});
+
+export const getInfos = () => ({
+  type: GET_INFOS,
 });
 
 

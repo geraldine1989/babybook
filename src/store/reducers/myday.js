@@ -28,14 +28,21 @@ export const ADD_NOTE = 'ADD_NOTE';
 const CHANGE_INPUT_NOTE_NANY_DAY = 'CHANGE_INPUT_NOTE_NANY_DAY';
 export const ADD_NOTE_DAY_NANNY = 'ADD_NOTE_DAY_NANNY';
 const CHANGE_INPUT_NOTE_NANY_TASK = 'CHANGE_INPUT_NOTE_NANY_TASK';
-const ADD_NOTE_TASK_NANNY = 'ADD_NOTE_TASK_NANNY';
+export const ADD_NOTE_TASK_NANNY = 'ADD_NOTE_TASK_NANNY';
 export const REMOVE_TASK_DAY = 'REMOVE_TASK_DAY';
 export const TASK_CHECK = 'TASK_CHECK';
+export const REGENERE_LIST = 'REGENERE_LIST';
+
+/** pour le server */
+// Ajout d'une tâche
 export const ADD_TASKS_RESPONSE = 'ADD_TASKS_RESPONSE';
 export const HANDLE_GET_TASKS = 'HANDLE_GET_TASKS';
-
-
-
+// ajout d'une note
+export const ADD_NOTE_RESPONSE = 'ADD_NOTE_RESPONSE';
+export const HANDLE_GET_PARENTS_NOTE = 'HANDLE_GET_PARENTS_NOTE';
+// ajout d'une note de la nanny
+export const ADD_NOTE_NANNY_RESPONSE = 'ADD_NOTE_NANNY_RESPONSE';
+export const HANDLE_GET_NANNY_DAY_NOTE = 'HANDLE_GET_NANNY_DAY_NOTE';
 /**
  * Traitements
  */
@@ -79,8 +86,8 @@ const myday = (state = initialState, action = {}) => {
         name: inputTitle,
         hour: inputHourTask,
         indic: inputNoteTask,
+        selectInput: '',
         note: '',
-        selctedInput: '',
         tododone: 'list-button',
       };
 
@@ -112,6 +119,11 @@ const myday = (state = initialState, action = {}) => {
         note: inputNote,
         inputNote: '',
       };
+    
+      case HANDLE_GET_PARENTS_NOTE:
+      return {
+        ...state,
+      };
 
     // note day nanny
 
@@ -128,7 +140,11 @@ const myday = (state = initialState, action = {}) => {
         inputNoteNounou: '',
       };
     
-      
+    case HANDLE_GET_NANNY_DAY_NOTE:
+      return {
+        ...state,
+      };
+
     // note task nanny
     case CHANGE_INPUT_NOTE_NANY_TASK:
      
@@ -168,7 +184,7 @@ const myday = (state = initialState, action = {}) => {
       };
     
 
-     /** Suppresion d'un tache */
+     /** Suppression d'une tache */
      case REMOVE_TASK_DAY:
      const detetedTask = state.itemList.filter(list => list.id !== action.id);
       return {
@@ -176,7 +192,7 @@ const myday = (state = initialState, action = {}) => {
         itemList: detetedTask,
       };
 
-    /** Changer la classe du bouton si cheché */
+    /** Changer la classe du bouton si checké */
 
     case TASK_CHECK:
       const newTaskListCheched = itemList.map((task) => {
@@ -199,13 +215,44 @@ const myday = (state = initialState, action = {}) => {
         ...state,
         itemList: newTaskListCheched,
       };
+      
+      /** Régénérer une liste */
+    case REGENERE_LIST:
+      const regeretedList = state.itemList.map((list) => {
+        return {
+          ...list,
+          selectInput: '',
+          note: '',
+          tododone: 'list-button',
+        };
 
+      });
+
+      return {
+        ...state,
+        note: "Pas d'indications particulières pour cette journée",
+        nannyNote: 'Pas de notes de la part de la nounou',
+        itemList: regeretedList,
+      };
+     
       /** Envoi pour la requete */
     case ADD_TASKS_RESPONSE:
       return {
         ...state,
         itemList: action.datas,
       };
+    case ADD_NOTE_RESPONSE:
+      return {
+        ...state,
+        note: action.datas,
+      };
+    case ADD_NOTE_NANNY_RESPONSE:
+      return {
+        ...state,
+        nannyNote: action.datas,
+      };
+
+
     default:
       return state;
   }
@@ -281,7 +328,11 @@ export const taskCheck = id => ({
   id,
 });
 
-/** Envoi pour la requete */
+/** Régénération de la liste  */
+export const regenerbutton = () => ({
+  type: REGENERE_LIST,
+});
+/** ------------------Envoi pour la requete-------------------------- */
 export const addTaskResponse = datas => ({
   type: ADD_TASKS_RESPONSE,
   datas,
@@ -290,6 +341,25 @@ export const addTaskResponse = datas => ({
 export const handleGetTasks = () => ({
   type: HANDLE_GET_TASKS,
 });
+
+export const addNoteResponse = datas => ({
+  type: ADD_NOTE_RESPONSE,
+  datas,
+});
+
+export const handleGetParentsNote = () => ({
+  type: HANDLE_GET_PARENTS_NOTE,
+});
+
+export const addNoteNannyResponse = datas => ({
+  type: ADD_NOTE_NANNY_RESPONSE,
+  datas,
+});
+
+export const handleGetNannyDayNote = () => ({
+  type: HANDLE_GET_NANNY_DAY_NOTE,
+});
+
 
 /**
  * Selectors

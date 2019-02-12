@@ -17,6 +17,11 @@ import {
   ADD_ALLERGIES,
   allergiesResponse,
   GET_ALLERGIES,
+  GET_INFOS,
+  REMOVE_MEDS,
+  REMOVE_VACCINES,
+  REMOVE_ALLERGIES,
+  REMOVE_PHONE,
 } from './reducers/ParentsSpaceInfoReducer';
 
 /* eslint-disable no-case-declarations */
@@ -85,6 +90,12 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
       next(action);
       break;
 
+    case REMOVE_MEDS:
+      console.log('coucou REMOVE MEDS Middleware');
+      axios.post('http://95.142.175.219:3000/espace-parents/infos/remove-meds', action.id);
+      next(action);
+      break;
+
     case GET_VACCINES:
       axios.get('http://95.142.175.219:3000/espace-parents/infos/get-vaccines')
         .then((response) => {
@@ -112,6 +123,12 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
         .catch((error) => {
           console.log(error);
         });
+      next(action);
+      break;
+
+    case REMOVE_VACCINES:
+      console.log('coucou REMOVE VACCINES Middleware');
+      axios.post('http://95.142.175.219:3000/espace-parents/infos/remove-vaccines', action.id);
       next(action);
       break;
 
@@ -145,6 +162,12 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
       next(action);
       break;
 
+    case REMOVE_ALLERGIES:
+      console.log('coucou REMOVE ALLERGIES Middleware');
+      axios.post('http://95.142.175.219:3000/espace-parents/infos/remove-allergies', action.id);
+      next(action);
+      break;
+
     case GET_PHONE:
       axios.get('http://95.142.175.219:3000/espace-parents/infos/get-phone')
         .then((response) => {
@@ -173,6 +196,21 @@ const parentsSpaceInfoMiddleware = store => next => (action) => {
         .catch((error) => {
           console.log(error);
         });
+      next(action);
+      break;
+    
+    case GET_INFOS:
+      axios.get('http://95.142.175.219:3000/espace-parents/infos/get-infos')
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+
+    case REMOVE_PHONE:
+      console.log('coucou REMOVE PHONE Middleware');
+      axios.post('http://95.142.175.219:3000/espace-parents/infos/remove-phones', action.id);
       next(action);
       break;
 

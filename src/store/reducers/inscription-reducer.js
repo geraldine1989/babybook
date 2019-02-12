@@ -5,15 +5,18 @@ import { Redirect } from 'react-router';
  * Initial State
  */
 const initialState = {
+  signed: false,
   inputEmail: '',
   inputPassword: '',
   inputConfirmPassword: '',
   inputAccessCode: '',
+  inputConfirmAccessCode: '',
   errorsForm: {
     errorEmail: '',
     errorPassword: '',
     errorConfirmPassword: '',
     errorAccessCode: '',
+    errorConfirmAccessCode: '',
   },
   // registered: false,
 };
@@ -49,7 +52,6 @@ const inscriptionReducer = (state = initialState, action = {}) => {
       }
 
     case HANDLE_INSCRIPTION:
-      console.log('HANDLE_INSCRIPTION reducer');
       if (action.err) {
         return {
           ...state,
@@ -74,7 +76,10 @@ const inscriptionReducer = (state = initialState, action = {}) => {
         }
       } else {
         console.log('redirect');
-        // return <Redirect to="/login-parents" />
+        return {
+          ...state,
+          signed: true,
+        }
       }
 
     default:

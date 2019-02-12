@@ -1,42 +1,47 @@
 #modif-informations {
-  padding: 2em;
-  margin-bottom: 5em;
-  width: 80%;
-  margin: auto;
-  margin-bottom: 5rem;
+  display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 2em;
+    margin: auto;
+    width: 70%;
 
   & h2 {
-    color: #2C1915;
+    color: #666E72;
+    font-family: 'Catamaran', sans-serif;
     margin: auto;
     text-align: center;
-    text-transform: uppercase;
+    font-size: 1.6em;
     font-weight: bold;
-    font-size: 2em;
-    padding: 0.8em;
+    padding: 0.5em;
     margin-bottom: 1em;
+    margin: 1em 0 1em 0;
+    width: 100%;
   }
 
   & #modif-child {
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    width: 80%;
+    width: 100%;
     margin-bottom: 2.5em;
 
     & h3 {
-      width: 100%;
-      display: block;
-      color: #4c2e27;
-      font-size: 2em;
-      margin-bottom: 0.3em;
+      color: #666E72;
+        font-family: 'Catamaran', sans-serif;
+        margin: auto;
+        text-align: left;
+        font-size: 1.3em;
+        font-weight: bold;
+        padding: 0.5em;
+        margin-bottom: 1em;
+        margin: 1em 0 1em 0;
+        width: 100%;
     }
 
     & button {
       background-color: white;
-      border: 2px solid #2C1915;
-      font-size: 0.7em;
-      border-radius: 25px;
-      color: #2C1915;
+
     }
 
     & #modif-child-form {
@@ -46,8 +51,8 @@
       flex-direction: column;
 
       & .ui input {
-        border: 1px solid #D7E8F2;
-        background: #D7E8F2;
+        border: 2px solid #D7E8F2;
+        background: white;
         border-radius: 15px;
         padding: 1em;
       }
@@ -60,8 +65,10 @@
         align-self: center;
         background-color: white;
         border: 2px solid #C2DE89;
-        border-radius: 25px;
+        border-radius: 15px;
         color: #C2DE89;
+        font-size: 1em;
+        width: 100%;
       }
     }
   }
@@ -70,21 +77,26 @@
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    width: 80%;
-    margin-bottom: 2.5em;
+    width: 100%;
+    margin-bottom: 2em;
 
     & h3 {
-      width: 100%;
-      display: block;
-      color: #4c2e27;
-      font-size: 2em;
-      margin-bottom: 0.3em;
+      color: #666E72;
+        font-family: 'Catamaran', sans-serif;
+        margin: auto;
+        text-align: left;
+        font-size: 1.3em;
+        font-weight: bold;
+        padding: 0.5em;
+        margin: 1em 0 1em 0;
+        width: 100%;
     }
 
     & #cards {
       display: flex;
       justify-content: space-around;
       align-items: baseline;
+      margin : auto;
       width: 100%;
       flex-wrap: wrap;
 
@@ -95,8 +107,8 @@
         flex-direction: column;
 
         & .ui input {
-          border: 1px solid #D7E8F2;
-          background: #D7E8F2;
+          border: 2px solid #D7E8F2;
+          background: white;
           border-radius: 15px;
         }
 
@@ -108,8 +120,10 @@
           align-self: center;
           background-color: white;
           border: 2px solid #C2DE89;
+          font-size: 1em;
           border-radius: 25px;
           color: #C2DE89;
+          margin-bottom: 1em;
         }
       }
 
@@ -120,10 +134,10 @@
         justify-content: center;
 
         & .header {
-          color: #4c2e27;
+          color: gray;
           text-align: center;
           font-size: 1em;
-          text-transform: uppercase;
+          font-weight: bold;
         }
 
         & .delete-item {
@@ -132,6 +146,7 @@
 
           & li {
             display: flex;
+            align-items: baseline;
             width: 100%;
             margin-bottom: 0.5em;
             margin-top: 0;
@@ -140,10 +155,6 @@
           
           & button {
             background-color: white;
-            border: 2px solid #2C1915;
-            font-size: 0.7em;
-            border-radius: 25px;
-            color: #2C1915;
           }
         }
       }
@@ -154,24 +165,35 @@
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    width: 80%;
+    width: 100%;
     margin-bottom: 2.5em;
-
     & h3 {
+      color: #666E72;
+        font-family: 'Catamaran', sans-serif;
+        margin: auto;
+        text-align: left;
+        font-size: 1.3em;
+        font-weight: bold;
+        padding: 0.5em;
+        margin: 1em 0 1em 0;
+        width: 100%;
+    }
+    
+    & .num-ul {
+      display: flex;
+      flex-wrap: wrap;
       width: 100%;
-      display: block;
-      color: #4c2e27;
-      font-size: 2em;
-      margin-bottom: 0.3em;
+      align-items: baseline;
+      & .num-li {
+        width: 100%;
+        display : flex;
+        justify-content: space-between;
+        & button {
+          background-color: white;
+        }
+      }
     }
-
-    & button {
-      background-color: white;
-      border: 2px solid #2C1915;
-      font-size: 0.7em;
-      border-radius: 25px;
-      color: #2C1915;
-    }
+    
 
     & #modif-numeros-form {
       width: 100%;
@@ -191,11 +213,15 @@
       }
 
       & button {
+        display: flex;
+        width: 100%;
+        justify-content: center;
         align-self: center;
         background-color: white;
         border: 2px solid #C2DE89;
         border-radius: 25px;
         color: #C2DE89;
+        margin-bottom: 5em;
       }
     }
   }
@@ -208,162 +234,239 @@
     justify-content: space-between;
   }
 
-  // & .add-item {
-  //   display: flex;
-  //   flex-wrap: wrap;
-  //   padding: 0.5em;
-  //   justify-content: space-between;
-  //   align-items: baseline;
-  // }
-
 }
 
 
 // format portable
 @media all and (orientation: portrait) {
-
   #modif-informations {
-    padding: 1em;
-    margin-bottom: 5em;
-    width: 100%;
-    margin: auto;
-
+    display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 2em;
+      margin: auto;
+      width: 90%;
+  
     & h2 {
+      color: #666E72;
+      font-family: 'Catamaran', sans-serif;
       margin: auto;
       text-align: center;
-      text-transform: uppercase;
+      font-size: 1.6em;
       font-weight: bold;
-      font-size: 2em;
-      padding: 0.8em;
+      padding: 0.5em;
       margin-bottom: 1em;
+      margin: 1em 0 1em 0;
+      width: 100%;
     }
-
+  
     & #modif-child {
       margin: auto;
       display: flex;
       flex-wrap: wrap;
-      width: 80%;
+      width: 100%;
       margin-bottom: 2.5em;
-
+  
       & h3 {
-        width: 100%;
-        display: block;
-        font-size: 2em;
-        margin-bottom: 0.3em;
+        color: #666E72;
+          font-family: 'Catamaran', sans-serif;
+          margin: auto;
+          text-align: left;
+          font-size: 1.3em;
+          font-weight: bold;
+          padding: 0.5em;
+          margin-bottom: 1em;
+          margin: 1em 0 1em 0;
+          width: 100%;
       }
-
-      & #modif-child-name {
+  
+      & button {
+        background-color: white;
+  
+      }
+  
+      & #modif-child-form {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
-
+  
         & .ui input {
+          border: 2px solid #D7E8F2;
+          background: white;
           border-radius: 15px;
           padding: 1em;
         }
-      }
-
-      & #modif-birthdate {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-
-        & .ui input {
+  
+        & .ui input::placeholder {
+          color: gray;
+        }
+  
+        & button {
+          align-self: center;
+          background-color: white;
+          border: 2px solid #C2DE89;
           border-radius: 15px;
-          padding: 1em;
+          color: #C2DE89;
+          font-size: 1em;
         }
       }
     }
-
+  
     & #modif-health {
       margin: auto;
       display: flex;
+      flex-wrap: wrap;
       width: 100%;
-      margin-bottom: 1em;
-
+      margin-bottom: 2em;
+  
       & h3 {
-        width: 100%;
-        display: block;
-        font-size: 2em;
-        margin-bottom: 1em;
+        color: #666E72;
+          font-family: 'Catamaran', sans-serif;
+          margin: auto;
+          text-align: left;
+          font-size: 1.3em;
+          font-weight: bold;
+          padding: 0.5em;
+          margin: 1em 0 1em 0;
+          width: 100%;
       }
-
+  
       & #cards {
         display: flex;
         justify-content: space-around;
         align-items: baseline;
-        width: 100%;
+        margin : auto;
+        width: 95%;
         flex-wrap: wrap;
-
+  
         & .add-sante {
           width: 100%;
-
-          & input {
+          display: flex;
+          flex-wrap: wrap;
+          flex-direction: column;
+  
+          & .ui input {
+            border: 1px solid #D7E8F2;
+            background: #D7E8F2;
             border-radius: 15px;
           }
+  
+          & .ui input::placeholder {
+            color: rgb(112, 112, 112);
+          }
+          
+          & button {
+            align-self: center;
+            background-color: white;
+            border: 2px solid #C2DE89;
+            font-size: 1em;
+            border-radius: 25px;
+            color: #C2DE89;
+            margin-bottom: 1em;
+          }
         }
-
+  
         & .cards-item {
           display: flex;
           flex-wrap: wrap;
-          width: 90%;
+          width: 100%;
           justify-content: center;
-          margin-bottom: 2em;
-
+          border-top: 1px dotted #D7E8F2;
+  
           & .header {
+            color: gray;
             text-align: center;
             font-size: 1em;
-            text-transform: uppercase;
+            font-weight: bold;
           }
-
+  
           & .delete-item {
             display: flex;
             width: 100%;
-
+  
             & li {
               display: flex;
+              align-items: baseline;
               width: 100%;
               margin-bottom: 0.5em;
               margin-top: 0;
               padding: 0;
             }
-          }
-
-          & button {
-            font-size: 0.7em;
-            border-radius: 25px;
-            color: #C2DE89;
+            
+            & button {
+              background-color: white;
+            }
           }
         }
       }
     }
-
+  
     & #modif-numeros {
       margin: auto;
       display: flex;
       flex-wrap: wrap;
-      width: 90%;
+      width: 100%;
       margin-bottom: 2.5em;
-
       & h3 {
-        width: 100%;
-        display: block;
-        font-size: 2em;
-        margin-bottom: 0.3em;
+        color: #666E72;
+          font-family: 'Catamaran', sans-serif;
+          margin: auto;
+          text-align: left;
+          font-size: 1.3em;
+          font-weight: bold;
+          padding: 0.5em;
+          margin: 1em 0 1em 0;
+          width: 100%;
       }
-
-      & #modif-numeros-div {
+      
+      & .num-ul {
+        display: flex;
+        flex-wrap: wrap;
         width: 100%;
-
+        align-items: baseline;
+        & .num-li {
+          width: 100%;
+          display : flex;
+          justify-content: space-between;
+          & button {
+            background-color: white;
+          }
+        }
+      }
+      
+  
+      & #modif-numeros-form {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+  
         & .ui input {
+          border: 1px solid #D7E8F2;
+          background: #D7E8F2;
           border-radius: 15px;
           padding: 1em;
         }
+  
+        & .ui input::placeholder {
+          color: rgb(90, 90, 90);
+        }
+  
+        & button {
+          display: flex;
+          width: 100%;
+          justify-content: center;
+          align-self: center;
+          background-color: white;
+          border: 2px solid #C2DE89;
+          border-radius: 25px;
+          color: #C2DE89;
+          margin-bottom: 5em;
+        }
       }
     }
-
+  
     & .delete-item {
       display: flex;
       flex-wrap: wrap;
@@ -371,17 +474,7 @@
       align-items: baseline;
       justify-content: space-between;
     }
-
-    & .add-item {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 0.5em;
-      justify-content: space-between;
-      align-items: baseline;
-
-      & Button {
-        margin: 0.5em;
-      }
-    }
+  
   }
+  
 }

@@ -2,8 +2,6 @@ var express = require("express");
 var app = express();
 var port = 3000;
 var bodyParser = require('body-parser');
-var hash = require('hash.js');
-// var cookieSession = require('cookie-session')
 // connect-mongo
 // const session = require('express-session');
 // const MongoStore = require('connect-mongo')(session);
@@ -21,7 +19,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/babybook", { useNewUrlParser: true });
@@ -37,6 +34,78 @@ const connection = mongoose.createConnection("mongodb://localhost:27017/babybook
 /**
  * var
  */
+var datasSchema = new mongoose.Schema ([
+  {
+    email: String,
+    password: String,
+    accessCode: String,
+    baby: [
+      {
+        identity: [
+          {
+            id: String,
+            firstname: String,
+            lastname: String,
+            birthdate: String,
+          },
+        ],
+        health: [
+          {
+            medics: [
+              {
+                id: String,
+                name: String,
+              },
+            ],
+            vaccins: [
+              {
+                id: String,
+                name: String,
+              },
+            ],
+            allergies: [
+              {
+                id: String,
+                name: String,
+              },
+            ],
+          }
+        ],
+        phoneDatas: [
+          {
+            id: String,
+            phonename: String,
+            phonenumber: String,
+          },
+        ],
+        myDay: [
+          {
+            itemList: [
+              {
+                id: String,
+                tododone: Boolean,
+                name: String,
+                hour: String,
+                indic: String,
+                note: String,
+              },
+            ],
+            nannyNote: String
+          },
+        ],
+        contacts: [
+          {
+            id: String,
+            name: String,
+            email: String,
+          },
+        ],
+      },
+    ],
+  },
+]);
+var datas = mongoose.model("datas", datasSchema);
+
 var registeredParents = new mongoose.Schema({
   email: String,
   password: String,
@@ -78,7 +147,7 @@ app.get("/getParents", (req, res) => {
  */
 
 app.post("/inscription", (req, res) => {
-  var newUser = new registered_parents(req.body);
+  var newUser = new datas(req.body);
   console.log('regParents : ', regParents);
   console.log('newUserEmail : ' + newUser.email);
   const emailExist = regParents.filter(email => newUser.email === email.email);
@@ -139,11 +208,11 @@ app.post("/inscription", (req, res) => {
 
 app.post("/loginParents", (req, res) => {
   console.log('*******************************');
-  var user = new registered_parents(req.body);
+  var user = req.body;
   console.log('user : ',user);
   function findEmails() {
     return new Promise(function(resolve, reject) {
-      const returnedUser = registered_parents.find({'email': user.email});
+      const returnedUser = datas.find({'email': user.email});
       resolve (returnedUser);
     })
   }
@@ -154,11 +223,7 @@ app.post("/loginParents", (req, res) => {
     if (returnedUser[0]) {
       if (user.password === returnedUser[0].password) {
         console.log('user ok mpd ok');
-        // app.use(cookieSession({
-        //   name: 'session',
-        //   // Cookie Options
-        //   maxAge: 24 * 60 * 60 * 1000 // 24 hours
-        // }))
+
         res.send('logged');
       } else {
         console.log('user ok mdp PAS ok');
@@ -174,135 +239,119 @@ app.post("/loginParents", (req, res) => {
   });
 })
 
-
-
 /**
  * login Nanny
  */
 app.post("/loginNanny", (req, res) => {
   console.log('*******************************');
-  var user = req.body;
-  console.log('user : ', user);
+  var user = new registered_contacts(req.body);
+  console.log('user : ',user);
   function findContacts() {
     return new Promise(function(resolve, reject) {
-      const returnedUser = registered_contacts.find({'email': user.email}, function (err, res) {
-        // console.log(res);
-        resolve (returnedUser);
-        console.log(returnedUser[0]);
-        return returnedUser;
-        // console.log("returnedUser", returnedUser);
-      });
+      const returnedUser = registered_contacts.find({'email': user.email});
+      resolve (returnedUser);
+      console.log(returnedUser);
     })
   }
   function findAccessCode() {
     return new Promise(function(resolve, reject) {
-      const returnedAccessCode = registered_parents.find({'parent': true}, function (err, res) {
-        // console.log(res);
-        resolve (returnedAccessCode);
-        return returnedAccessCode;
-        // console.log("returnedAccessCode", returnedAccessCode);
-      });
+      const returnedAccessCode = registered_parents.find({'accessCode': user.email});
+      resolve (returnedAccessCode);
+      console.log(returnedAccessCode);
     })
   }
   findContacts()
   .then(function(returnedUser) {
-    console.log('contact en base : ', returnedUser[0]);
-    const userEnBase = returnedUser[0];
-    findAccessCode()
-    .then(function(returnedAccessCode) {
-      console.log("AccessCode en base : ", returnedAccessCode[0].accessCode);
-      if (userEnBase) {
-        console.log("login : user.password : ", user.password);
-        if (user.password === returnedAccessCode[0].accessCode) {
-          console.log('user ok mpd ok');
+    console.log('returnedUser', returnedUser[0]);
     
-          res.send('logged');
-        } else {
-          console.log('user ok mdp PAS ok');
-          res.send('notLogged');
-        }
+    if (returnedUser[0]) {
+      if (user.password === returnedUser[0].password) {
+        console.log('user ok mpd ok');
+
+        res.send('logged');
       } else {
-        console.log('user PAS ok');
+        console.log('user ok mdp PAS ok');
         res.send('notLogged');
       }
-    })
-    .catch(function(err) {
-      res.status(400).send(err);
-    });
+    } else {
+      console.log('user PAS ok');
+      res.send('notLogged');
+    }
   })
   .catch(function(err) {
     res.status(400).send(err);
   });
-
 })
 /**
  * infos parents - enfant
  */
 
-const registeredChild = new mongoose.Schema({
-  id: String,
-  firstname: String,
-  lastname: String,
-  birthdate: Date,
-});
-const Child = mongoose.model('child', registeredChild);
+// const registeredChild = new mongoose.Schema({
+//   id: String,
+//   firstname: String,
+//   lastname: String,
+//   birthdate: Date,
+// });
+// const Child = mongoose.model('child', registeredChild);
 
 /* Chargement de la liste des enfants */
 app.get('/espace-parents/infos/get-child', (req, res) => {
-  function findRegisteredChild() {
-    return new Promise(((resolve, reject) => {
-      Child.find((err, response) => {
-        regChild = response;
-        resolve (regChild);
-        return regChild;
-      });
-    }));
-  }
-  findRegisteredChild()
-    .then((regChild) => {
-      res.status('200').send(regChild);
-    })
-    .catch((err) => {
-      console.log('Caught an error!', err);
-    });
+  // function findRegisteredChild() {
+  //   return new Promise(((resolve, reject) => {
+  //     Child.find((err, response) => {
+  //       regChild = response;
+  //       resolve (regChild);
+  //       return regChild;
+  //     });
+  //   }));
+  // }
+  // findRegisteredChild()
+  //   .then((regChild) => {
+  //     res.status('200').send(regChild);
+  //   })
+  //   .catch((err) => {
+  //     console.log('Caught an error!', err);
+  //   });
 });
 /* Enregistrement d'un enfant dans la BDD */
 app.post('/espace-parents/infos/add-child', (req, res) => {
-  const newChild = new Child(req.body);
-  function findRegisteredChild() {
-    return new Promise(((resolve, reject) => {
-      Child.find((err, response) => {
-        regChild = response;
-        resolve (regChild);
-        return regChild;
-      });
-    }));
-  }
-  Child.deleteMany({}, function (err) {} );
-  newChild.save()
-    .then((item) => {
-      findRegisteredChild()
-        .then((regChild) => {
-          res.status('200').send(regChild);
-        })
-        .catch((err) => {
-          console.log('Caught an error!', err);
-        });
-    })
-    .catch((err) => {
-      res.status(400).send('Unable to save to database');
-    });
+  const newChild = req.body;
+  console.log(newChild);
+  // function findRegisteredChild() {
+  //   return new Promise(((resolve, reject) => {
+  //     datas.find({}, (err, response) => {
+  //       regChild = response;
+  //       resolve (regChild);
+  //       return regChild;
+  //     });
+  //   }));
+  // }
+  // Child.deleteMany({}, function (err) {} );
+  // datas.findOneAndUpdate({email: "me@me.com"}, {$set: {"identity": newChild}}, {upsert: true}, function (err, res) {});
+  datas.findOneAndUpdate({email: "me@me.com", }, {$set:{"baby":  {identity: newChild}}}, function (err, res) {});
+    // .then((item) => {
+    //   findRegisteredChild()
+    //     .then((regChild) => {
+    //       res.status('200').send(regChild);
+    //     })
+    //     .catch((err) => {
+    //       console.log('Caught an error!', err);
+    //     });
+    // })
+    // .catch((err) => {
+    //   res.status(400).send('Unable to save to database');
+    // });
 });
 
 /**
  * infos parents - santé - médicaments
  */
 
-const registeredMed = new mongoose.Schema({
-  id: String,
-  name: String,
-});
-const Med = mongoose.model('med', registeredMed);
+// const registeredMed = new mongoose.Schema({
+//   id: String,
+//   name: String,
+// });
+// const Med = mongoose.model('med', registeredMed);
 
 /* Chargement de la liste des médicaments */
 app.get('/espace-parents/infos/get-meds', (req, res) => {
@@ -357,11 +406,11 @@ app.post('/espace-parents/infos/remove-meds', (req, res) => {
   res.send();
 });
 
-const registeredVaccine = new mongoose.Schema({
-  id: String,
-  name: String,
-});
-const Vaccine = mongoose.model('vaccine', registeredVaccine);
+// const registeredVaccine = new mongoose.Schema({
+//   id: String,
+//   name: String,
+// });
+// const Vaccine = mongoose.model('vaccine', registeredVaccine);
 
 /* Chargement de la liste des vaccins */
 app.get('/espace-parents/infos/get-vaccines', (req, res) => {
@@ -421,11 +470,11 @@ app.post('/espace-parents/infos/remove-vaccines', (req, res) => {
  * infos parents - santé - allergies
  */
 
-const registeredAllergie = new mongoose.Schema({
-  id: String,
-  name: String,
-});
-const Allergie = mongoose.model('allergie', registeredAllergie);
+// const registeredAllergie = new mongoose.Schema({
+//   id: String,
+//   name: String,
+// });
+// const Allergie = mongoose.model('allergie', registeredAllergie);
 
 /* Chargement de la liste des allergies */
 app.get('/espace-parents/infos/get-allergies', (req, res) => {
@@ -485,12 +534,12 @@ app.post('/espace-parents/infos/remove-allergies', (req, res) => {
  * infos parents - téléphones
  */
 
-const registeredPhone = new mongoose.Schema({
-  id: String,
-  phonename: String,
-  phonenumber: String,
-});
-const Phone = mongoose.model('phone', registeredPhone);
+// const registeredPhone = new mongoose.Schema({
+//   id: String,
+//   phonename: String,
+//   phonenumber: String,
+// });
+// const Phone = mongoose.model('phone', registeredPhone);
 
 /* Chargement de la liste des téléphones */
 app.get('/espace-parents/infos/get-phone', (req, res) => {
@@ -548,17 +597,17 @@ app.post('/espace-parents/infos/remove-phones', (req, res) => {
 
 /** --------------------------Ajout d'une tache--------------------------*/
 
-var addTaskFromParents = new mongoose.Schema({
-    name: String,
-    hour: String,
-    indic: String,
-    tododone:String,
-    //selctedInput: String,
-    note: String,
-    id: String,
-   });
+// var addTaskFromParents = new mongoose.Schema({
+//     name: String,
+//     hour: String,
+//     indic: String,
+//     tododone:String,
+//     //selctedInput: String,
+//     note: String,
+//     id: String,
+//    });
 
-const add_task = mongoose.model('add_task', addTaskFromParents);
+// const add_task = mongoose.model('add_task', addTaskFromParents);
 
 /**
  * Chargement de la liste des taches
@@ -612,10 +661,29 @@ app.post('/espace-parents/add-task', (req, res) => {
 });
 
 /** --------------------------Ajout d'une note pour la journée-------------------------- */
-const addNoteFromParents = new mongoose.Schema({
-  note: String,
+// const addNoteFromParents = new mongoose.Schema({
+//   note: String,
+// });
+// const add_note = mongoose.model('add_note', addNoteFromParents);
+
+app.get('/espace-parents/parents-note', (req, res) => {
+  function findParentsNote() {
+    return new Promise(((resolve, reject) => {
+      add_note.find((err, response) => {
+        parentsNote = response;
+        resolve (parentsNote);
+        return parentsNote;
+      });
+    }));
+  }
+  findParentsNote()
+    .then((parentsNote) => {
+      res.status('200').send(parentsNote[0].note);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
 });
-const add_note = mongoose.model('add_note', addNoteFromParents);
 
 app.get('/espace-parents/parents-note', (req, res) => {
   function findParentsNote() {
@@ -650,10 +718,29 @@ app.post('/espace-parents/add-note-day-parents', (req, res) => {
 });
 
 /** --------------------------Ajout d'une note de la nanny pour la journée-------------------------- */
-const addNoteFromNanny = new mongoose.Schema({
-  nannyNote: String,
+// const addNoteFromNanny = new mongoose.Schema({
+//   nannyNote: String,
+// });
+// const add_note_nanny = mongoose.model('add_note_nanny', addNoteFromNanny);
+
+app.get('/myday/nanny-day-note', (req, res) => {
+  function findNannyDayNote() {
+    return new Promise(((resolve, reject) => {
+      add_note_nanny.find((err, response) => {
+        nannyDayNote = response;
+        resolve (nannyDayNote);
+        return nannyDayNote;
+      });
+    }));
+  }
+  findNannyDayNote()
+    .then((nannyDayNote) => {
+      res.status('200').send(nannyDayNote[0].nannyNote);
+    })
+    .catch((err) => {
+      console.log('Caught an error!', err);
+    });
 });
-const add_note_nanny = mongoose.model('add_note_nanny', addNoteFromNanny);
 
 app.get('/myday/nanny-day-note', (req, res) => {
   function findNannyDayNote() {
@@ -695,12 +782,11 @@ app.post('/espace-parents/remove-task', (req, res) => {
   res.send();
 });
 
-
 /** --------------------------Ajout d'une note dans une tache-------------------------- */
 
 app.post('/add-task-nanny', (req, res) => {
   var selectedTask = req.body.id;
-  function findCheckTask(selectedTask) {
+  function findTask(selectedTask) {
     return new Promise((resolve, reject) => {
       add_task.find({ id: selectedTask }, (err, response) => {
         foundTask = response;
@@ -710,7 +796,7 @@ app.post('/add-task-nanny', (req, res) => {
       });
     });
   }
-  findCheckTask(selectedTask)
+  findTask(selectedTask)
   .then((foundTask) => {
     console.log('problème : ', foundTask[0]);
     foundTask[0].note = req.body.text;
@@ -725,39 +811,7 @@ app.post('/add-task-nanny', (req, res) => {
 app.post('/task-done', (req, res) => {
   var CheckedTask = req.body.id;
   console.log('Task checkee',CheckedTask);
-  function findTask(CheckedTask) {
-    return new Promise((resolve, reject) => {
-      add_task.find({ id: CheckedTask }, (err, response) => {
-        foundCheckTask = response;
-        console.log(foundCheckTask);
-        resolve (foundCheckTask);
-        return foundCheckTask;
-      });
-    });
-  }
-  findTask(CheckedTask)
-  .then((foundCheckTask) => {
-    console.log('problème : ', foundCheckTask[0]);
-    if (foundCheckTask[0].tododone === 'list-button' ) {
-      foundCheckTask[0].tododone = 'todo-done';
-      add_task.update({ id: CheckedTask }, { $set: { tododone: foundCheckTask[0].tododone }}, { overwrite: true }, function (err, res) {});
-    } else {
-      foundCheckTask[0].tododone = 'list-button';
-      add_task.update({ id: CheckedTask }, { $set: { tododone: foundCheckTask[0].tododone }}, { overwrite: true }, function (err, res) {});
-    }    
-  })
-  .catch((err) => {
-    console.log(err);
-  });
   
-  res.send();
-});
-/** --------------------------nouvelle journée------------------------- */
-app.post('/new-day', (req, res) => {
-  console.log('je suis dans le rerveur je veux etre mis à jour');
-  add_task.updateMany({"__v": "0"}, { $set: { tododone: "list-button", note:""}}, { overwrite: true }, function (err, res) {});
-  add_note_nanny.updateMany({"__v": "0"}, { $set: { nannyNote: ""}}, { overwrite: true }, function (err, res) {});
-  add_note.updateMany({"__v": "0"}, { $set: { note: "Pas de notes particulières pour cette journée"}}, { overwrite: true }, function (err, res) {});
   res.send();
 });
 
@@ -765,13 +819,13 @@ app.post('/new-day', (req, res) => {
 * gestion contacts espace parents
 */
 
-const registeredContacts = new mongoose.Schema({
-  id: String,
-  email: String,
-  name: String,
-});
+// const registeredContacts = new mongoose.Schema({
+//   id: String,
+//   email: String,
+//   name: String,
+// });
 
-const registered_contacts = mongoose.model("registered_contacts", registeredContacts);
+// const registered_contacts = mongoose.model("registered_contacts", registeredContacts);
 
 /**
  * Chargement de la liste des contacts
@@ -792,17 +846,17 @@ app.get('/espace-parents/contacts', (req, res) => {
     })
     .catch((err) => {
       console.log('Caught an error!', err);
-      
     });
 });
 /**
  * enregistrement d'un contact
  */
 app.post("/espace-parents/contacts/add-contact", (req, res) => {
-  var NewContact = new registered_contacts(req.body);
+  var newContact = req.body;
+
     function findRegisteredContacts() {
     return new Promise(function(resolve, reject) {
-      registered_contacts.find(function (err, response) {
+      datas.find("contacts", function (err, response) {
         regContacts = response;
         resolve (regContacts);
         return regContacts;
@@ -810,20 +864,23 @@ app.post("/espace-parents/contacts/add-contact", (req, res) => {
     });
   }
 // Enregistrement du nouveau contact
-  NewContact.save()
-    .then(item => {
-      // Chargement de la nouvelle liste
-      findRegisteredContacts()
-        .then(function(regContacts) {
-          res.status('200').send(regContacts);
-        })
-        .catch(function(err) {
-          console.log('Caught an error!', err);
-        });
-    })
-    .catch(err => {
-      res.status(400).send("Unable to save in db");
-    });
+console.log(datas);
+  // datas.findOneAndUpdate({email: "me@me.com", }, {$set:{"baby":  {identity: newChild}}}, function (err, res) {});
+  datas.updateOne({email: "me@me.com"}, {"baby": {"contacts": newContact}}, function (err, res) {});
+    // .then(item => {
+    //   // Chargement de la nouvelle liste
+    //   findRegisteredContacts()
+    //     .then(function(regContacts) {
+    //       console.log(regContacts);
+    //       res.status('200').send(regContacts);
+    //     })
+    //     .catch(function(err) {
+    //       console.log('Caught an error!', err);
+    //     });
+    // })
+    // .catch(err => {
+    //   res.status(400).send("Unable to save in db");
+    // });
 });
 
 // Supprimer un contact

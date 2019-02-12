@@ -1,11 +1,19 @@
 import axios from 'axios';
 var hash = require('hash.js')
 
-import { HANDLE_LOGIN, loginResponseNanny } from './reducers/login-nanny-reducer';
+import { HANDLE_LOGIN, loginResponseNanny, GET_CONTACTS } from './reducers/login-nanny-reducer';
 
 const loginNannyMiddleware = store => next => (action) => {
-  // Je veux vérifier si l'action que je reçois m'intéresse
   switch (action.type) {
+    case GET_CONTACTS:
+    axios.post('http://95.142.175.219:3000/espace-parents/contacts')
+    .then((response) => {
+      console.log(response);
+      store.dispatch(contactsResponse(response.data));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
     case HANDLE_LOGIN:
     console.log('HANDLE_LOGIN middleware');
     const state = store.getState().loginNannyReducer;
@@ -19,13 +27,11 @@ const loginNannyMiddleware = store => next => (action) => {
 
       axios.post('http://95.142.175.219:3000/loginNanny', formDatas)
         .then((response) => {
-          console.log(response);
           store.dispatch(loginResponseNanny(response.data));
         })
         .catch((error) => {
           console.log(error);
         });
-    
 
     default:
       next(action);

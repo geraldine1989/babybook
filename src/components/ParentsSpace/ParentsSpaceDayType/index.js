@@ -16,40 +16,22 @@ import ParentsNav from 'src/containers/ParentsNav';
  * Code
  */
 
-/** Test mongo db */
 
-const addDayType = (formDatas) => {
-  const axios = require('axios');
-  axios.post('http://localhost:3000/newday', formDatas)
-    .then((response) => {
-      console.log(response);
-    })
-
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
-
-const handleAddItemInList = (evt) => {
-  evt.preventDefault();
-  const formDatas = {
-    date: '01/02/2000',
-    note: 'Ceci est une note des parents pour la journée.',
-    itemList: [
-      {
-        name: 'Biberon',
-        hour: '08:00',
-        indic: 'Mettre 3 dosettes avec 250 cl de lait',
-        note: 'Tototounet a tout bu !!!',
-      },
-    ],
-  };
-
-  addDayType(formDatas);
-};
-
-const ParentsSpaceDayType = ({ removeTaskDay, handleChangeTitleDay, inputTitle, handleChangeNoteTask, inputNoteTask, handleChangeHourTask, inputHourTask, addTask, list, handleAddNoteDay, inputNote, addNoteDayFromParents, id }) => {
+const ParentsSpaceDayType = ({
+  removeTaskDay,
+  handleChangeTitleDay,
+  inputTitle,
+  handleChangeNoteTask,
+  inputNoteTask,
+  handleChangeHourTask,
+  inputHourTask,
+  addTask,
+  list,
+  handleAddNoteDay,
+  inputNote,
+  addNoteDayFromParents,
+  id 
+}) => {
 
   /** Form ajout tache journee type */
   const handleChangeTitle = (event) => {
@@ -105,55 +87,55 @@ const ParentsSpaceDayType = ({ removeTaskDay, handleChangeTitleDay, inputTitle, 
   ]; 
   
   return (
-    <div>
+    <div className="nav-info">
       <ParentsNav />
       <div id="day-type">
         <ul>
           {
             orderedTasks.map((task) => 
               <li key={task.id}>
-                <Icon name="smile outline" />
-                <span>{task.name}</span>
-                <span>{task.hour}</span>
-                <span>{task.indic}</span>
-                <Icon name="delete" onClick={handleDeleteMyDayItem(task.id)} />
-                
-              </li>
-              
+                <span className="tasktitle">{task.name}</span>
+                <span className="taskhour">{task.hour}</span>
+                <span className="tasknote">{task.indic}</span>
+                <Icon name="delete" onClick={handleDeleteMyDayItem(task.id)} className="close"/>
+              </li>         
             )
           }
           
         </ul>
         <div id="add-item">
           <Form className="form-add-item" onSubmit={handleSubmitList}>
-            <Form.Field>
+            <Form.Field className="input-task-title" >
               <label> Titre </label>
               <input 
                 placeholder="Titre"
                 value={inputTitle}
-                onChange={handleChangeTitle}          
+                onChange={handleChangeTitle}
+                         
               />
             </Form.Field>
-            <Form.Field>
+            <Form.Field className="input-task-hour">
               <label> Heure </label>
               <input 
                 type="time" 
                 placeholder="Heure"
                 onChange={handlehour}
                 value={inputHourTask}
+                
               />
             </Form.Field>
-            <Form.Field>
+            <Form.Field className="input-task-note">
               <label> Note </label>
               <input
                 type="texte"
                 placeholder="Note"
                 value={inputNoteTask}
                 onChange={handleChangeNotesTask}
+                
               />
             </Form.Field>
             <Button icon type="submit" >
-              <Icon name="add" />
+              Ajouter cette tâche poure la journée
             </Button>
           </Form>
         </div>
@@ -162,7 +144,7 @@ const ParentsSpaceDayType = ({ removeTaskDay, handleChangeTitleDay, inputTitle, 
           <Form className="form-add-note" onSubmit={handleAddNoteDaySubmit}>   
               <input placeholder='Ajoutez une note' value={inputNote} onChange={handleAddNoteDayInput} />
               <Button icon type="submit">
-                <Icon name="add" />
+                <Icon name="add"  />
               </Button>
           </Form>
         </div>
