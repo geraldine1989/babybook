@@ -59,17 +59,17 @@ const App = ({ loggedNanny, loggedParent, signed }) => {
       <HeaderLogo />
       { (loggedNanny || loggedParent) && <MainNav /> }
       { signed && <Redirect to="/login-parents" /> }
-      { !signed && (loggedNanny || loggedParent) && <Redirect to="/my-day/journal" /> }
+      { (loggedNanny || loggedParent) && <Redirect to="/my-day/journal" /> }
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/inscription" component={InscriptionForm} />
         <Route exact path="/login-parents" component={LoginParents} />
         <Route exact path="/login-nanny" component={LoginNanny} />
-        {(loggedNanny || loggedParent) && <Route exact path="/my-day/journal" component={MyDay} />}
-        {(loggedNanny || loggedParent) && <Route exact path="/my-day/infos" component={Informations} />}
-        {loggedParent && <Route exact path="/espace-parents/journee-type" component={ParentsSpaceDayType} />}
-        {loggedParent && <Route exact path="/espace-parents/infos" component={ParentsSpaceInfo} />}
-        {loggedParent && <Route exact path="/espace-parents/contacts" component={ParentsSpaceContacts} />}
+        { (loggedNanny || loggedParent) && <Route exact path="/my-day/journal" component={MyDay} /> }
+        { (loggedNanny || loggedParent) && <Route exact path="/my-day/infos" component={Informations} /> }
+        { loggedParent && <Route exact path="/espace-parents/journee-type" component={ParentsSpaceDayType} /> }
+        { loggedParent && <Route exact path="/espace-parents/infos" component={ParentsSpaceInfo} /> }
+        { loggedParent && <Route exact path="/espace-parents/contacts" component={ParentsSpaceContacts} /> }
         <Route exact path="/mentions-legales" component={LegalMentions} />
         <Route exact path="/contact" component={Contact} />
         <Route component={NotFound} />

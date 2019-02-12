@@ -2,7 +2,8 @@ var express = require("express");
 var app = express();
 var port = 3000;
 var bodyParser = require('body-parser');
-var cookieSession = require('cookie-session')
+var hash = require('hash.js');
+// var cookieSession = require('cookie-session')
 // connect-mongo
 // const session = require('express-session');
 // const MongoStore = require('connect-mongo')(session);
@@ -180,47 +181,59 @@ app.post("/loginParents", (req, res) => {
  */
 app.post("/loginNanny", (req, res) => {
   console.log('*******************************');
-  var user = new registered_contacts(req.body);
+  var user = req.body;
   console.log('user : ', user);
   function findContacts() {
     return new Promise(function(resolve, reject) {
       const returnedUser = registered_contacts.find({'email': user.email}, function (err, res) {
-        console.log(res);
+        // console.log(res);
         resolve (returnedUser);
-        console.log("returnedUser", returnedUser);
+        console.log(returnedUser[0]);
+        return returnedUser;
+        // console.log("returnedUser", returnedUser);
       });
     })
   }
   function findAccessCode() {
     return new Promise(function(resolve, reject) {
       const returnedAccessCode = registered_parents.find({'parent': true}, function (err, res) {
-        console.log(res);
+        // console.log(res);
         resolve (returnedAccessCode);
-        console.log("returnedAccessCode", returnedAccessCode);
+        return returnedAccessCode;
+        // console.log("returnedAccessCode", returnedAccessCode);
       });
     })
   }
   findContacts()
   .then(function(returnedUser) {
-    // console.log('returnedUser', returnedUser[0]);
+    console.log('contact en base : ', returnedUser[0]);
+    const userEnBase = returnedUser[0];
+    findAccessCode()
+    .then(function(returnedAccessCode) {
+      console.log("AccessCode en base : ", returnedAccessCode[0].accessCode);
+      if (userEnBase) {
+        console.log("login : user.password : ", user.password);
+        if (user.password === returnedAccessCode[0].accessCode) {
+          console.log('user ok mpd ok');
     
-    if (returnedUser[0]) {
-      if (user.password === returnedUser[0].password) {
-        console.log('user ok mpd ok');
-
-        res.send('logged');
+          res.send('logged');
+        } else {
+          console.log('user ok mdp PAS ok');
+          res.send('notLogged');
+        }
       } else {
-        console.log('user ok mdp PAS ok');
+        console.log('user PAS ok');
         res.send('notLogged');
       }
-    } else {
-      console.log('user PAS ok');
-      res.send('notLogged');
-    }
+    })
+    .catch(function(err) {
+      res.status(400).send(err);
+    });
   })
   .catch(function(err) {
     res.status(400).send(err);
   });
+
 })
 /**
  * infos parents - enfant

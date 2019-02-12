@@ -10,6 +10,7 @@ import LoginNanny from 'src/components/LoginNanny';
 
 // Action Creators
 import { handleChangeInputsNanny, handleLoginNanny } from 'src/store/reducers/login-nanny-reducer';
+import { handleGetTasks, handleGetParentsNote, handleGetNannyDayNote } from 'src/store/reducers/myday';
 
 const mapStateToProps = state => ({
   inputEmailNanny: state.loginNannyReducer.inputEmailNanny,
@@ -23,6 +24,11 @@ const mapDispatchToProps = dispatch => ({
   },
   handleLoginNanny: () => {
     dispatch(handleLoginNanny());
+  },
+  handleGetDay: () => {
+    dispatch(handleGetTasks());
+    dispatch(handleGetParentsNote());
+    dispatch(handleGetNannyDayNote());
   },
 });
 
