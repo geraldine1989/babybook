@@ -10,6 +10,7 @@ import LoginParents from 'src/components/LoginParents';
 
 // Action Creators
 import { handleChangeInputs, handleLogin } from 'src/store/reducers/login-parents-reducer';
+import { handleGetTasks, handleGetParentsNote, handleGetNannyDayNote } from 'src/store/reducers/myday';
 
 const mapStateToProps = state => ({
   inputEmail: state.loginParentsReducer.inputEmail,
@@ -23,6 +24,11 @@ const mapDispatchToProps = dispatch => ({
   },
   handleLogin: () => {
     dispatch(handleLogin());
+  },
+  handleGetDay: () => {
+    dispatch(handleGetTasks());
+    dispatch(handleGetParentsNote());
+    dispatch(handleGetNannyDayNote());
   },
 });
 

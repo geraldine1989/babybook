@@ -16,6 +16,7 @@ const mapStateToProps = state => ({
   inputPassword: state.inscriptionReducer.inputPassword,
   inputConfirmPassword: state.inscriptionReducer.inputConfirmPassword,
   inputAccessCode: state.inscriptionReducer.inputAccessCode,
+  inputConfirmAccessCode: state.inscriptionReducer.inputConfirmAccessCode,
   errorsForm: state.inscriptionReducer.errorsForm,
 });
 

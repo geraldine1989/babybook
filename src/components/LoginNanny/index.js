@@ -21,6 +21,7 @@ const LoginNanny = ({
   handleChangeInputsNanny,
   handleLoginNanny,
   errorLoginNanny,
+  handleGetDay,
 }) => {
 
   const handleChange = (event) => {
@@ -34,6 +35,7 @@ const LoginNanny = ({
   const handleSubmit = (evt) => {
     evt.preventDefault();
     handleLoginNanny();
+    handleGetDay();
   };
 
   return (
@@ -42,7 +44,7 @@ const LoginNanny = ({
       <h2>Connexion Nounou</h2>
       <div id="formLoginNanny">
         <Form>
-          <Form.Field>
+          <Form.Field className="inputlogin">
             <input 
               type="text" 
               name="inputEmailNanny"
@@ -51,16 +53,16 @@ const LoginNanny = ({
               onChange={handleChange}
             />
           </Form.Field>
-          <Form.Field>
+          <Form.Field className="inputlogin">
             <input 
-              type="text" 
+              type="password" 
               name="inputPasswordNanny"
               placeholder="Mot de passe" 
               value={inputPasswordNanny}
               onChange={handleChange}
             />
           </Form.Field>
-          <NavLink exact to="/my-day">
+          <NavLink exact to="/my-day" className="login-button">
             <Button name="btn" type="submit" onClick={handleSubmit}>Se connecter</Button>
           </NavLink>
           <label

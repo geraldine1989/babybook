@@ -18,7 +18,7 @@ import LoginNanny from '../LoginNanny';
 const Home = ({ handleGetEmails, handleGetContacts }) => (
   <div id="home">
     <h2>
-      Le journal de bébé pour le suivre pas à pas chaque jour.
+      Le journal de bébé pour le suivre pas à pas chaque jour
     </h2>
     <div id="nav">
       <NavLink exact to="/login-parents" className="homeLink">

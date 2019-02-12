@@ -280,9 +280,9 @@ const ParentsSpaceInfo = ({
 
         <div id="modif-numeros">
           <h3>Numéros utiles</h3>
-          <ul>
+          <ul className="num-ul">
             {phoneList.map(phone => (
-              <li key={phone.id}>{phone.phonename} : {phone.phonenumber}
+              <li key={phone.id} className="num-li">{phone.phonename} : {phone.phonenumber} 
                 <Button
                   icon
                   type="submit"
