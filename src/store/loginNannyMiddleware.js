@@ -6,7 +6,7 @@ import { HANDLE_LOGIN, loginResponseNanny, GET_CONTACTS } from './reducers/login
 const loginNannyMiddleware = store => next => (action) => {
   switch (action.type) {
     case GET_CONTACTS:
-    axios.post('http://95.142.175.219:3000/espace-parents/contacts')
+    axios.post('http://92.243.19.193:3000/espace-parents/contacts')
     .then((response) => {
       console.log(response);
       store.dispatch(contactsResponse(response.data));
@@ -25,7 +25,7 @@ const loginNannyMiddleware = store => next => (action) => {
     }
     // console.log(formDatas);
 
-      axios.post('http://95.142.175.219:3000/loginNanny', formDatas)
+      axios.post('http://92.243.19.193:3000/loginNanny', formDatas)
         .then((response) => {
           store.dispatch(loginResponseNanny(response.data));
         })

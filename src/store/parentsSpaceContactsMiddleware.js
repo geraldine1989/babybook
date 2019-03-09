@@ -8,7 +8,7 @@ const parentsSpaceContactsMiddleware = store => next => (action) => {
 
     case HANDLE_GET_CONTACTS:
       console.log('coucou HANDLE GET CONTACT Middleware');
-      axios.get('http://95.142.175.219:3000/espace-parents/contacts')
+      axios.get('http://92.243.19.193:3000/espace-parents/contacts')
         .then((response) => {
           store.dispatch(contactsResponse(response.data));
         })
@@ -29,7 +29,7 @@ const parentsSpaceContactsMiddleware = store => next => (action) => {
       }
       console.log(formContacts);
 
-      axios.post('http://95.142.175.219:3000/espace-parents/contacts/add-contact', formContacts)
+      axios.post('http://92.243.19.193:3000/espace-parents/contacts/add-contact', formContacts)
         .then((response) => {
           store.dispatch(contactsResponse(response.data));
         })
@@ -41,7 +41,7 @@ const parentsSpaceContactsMiddleware = store => next => (action) => {
 
     case REMOVE_CONTACT:
       console.log('coucou REMOVE CONTACT Middleware');
-      axios.post('http://95.142.175.219:3000/espace-parents/contacts/remove-contact', action.id);
+      axios.post('http://92.243.19.193:3000/espace-parents/contacts/remove-contact', action.id);
         
       next(action);
       break;

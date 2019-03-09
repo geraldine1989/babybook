@@ -28,7 +28,7 @@ const mydayMiddleware = store => next => (action) => {
         id: uuidv4(),
       };
    
-      axios.post('http://95.142.175.219:3000/espace-parents/add-task', formDatas)
+      axios.post('http://92.243.19.193:3000/espace-parents/add-task', formDatas)
       .then((response) => {
         store.dispatch(addTaskResponse(response.data));
         console.log('ajout task ADD TASK : '+ response);       
@@ -42,7 +42,7 @@ const mydayMiddleware = store => next => (action) => {
     /** Récupéation des taches */
     case HANDLE_GET_TASKS:
     console.log('coucou HANDLE GET TASK Middleware');
-      axios.get('http://95.142.175.219:3000/espace-parents/journee-type')
+      axios.get('http://92.243.19.193:3000/espace-parents/journee-type')
         .then((response) => {
           store.dispatch(addTaskResponse(response.data));
         })
@@ -61,7 +61,7 @@ const mydayMiddleware = store => next => (action) => {
       };
         
       
-      axios.post('http://95.142.175.219:3000/espace-parents/add-note-day-parents', formNoteDay)
+      axios.post('http://92.243.19.193:3000/espace-parents/add-note-day-parents', formNoteDay)
       .then((response) => {
         store.dispatch(addNoteResponse(response.data));
         console.log('ajout task ADD note : '+ response);  
@@ -73,7 +73,7 @@ const mydayMiddleware = store => next => (action) => {
       break;
 
     case HANDLE_GET_PARENTS_NOTE:
-      axios.get('http://95.142.175.219:3000/espace-parents/parents-note')
+      axios.get('http://92.243.19.193:3000/espace-parents/parents-note')
         .then((response) => {
           store.dispatch(addNoteResponse(response.data));
         })
@@ -93,7 +93,7 @@ const mydayMiddleware = store => next => (action) => {
       };
         
       
-      axios.post('http://95.142.175.219:3000/myday/nannydaytask', formNoteNannyDay)
+      axios.post('http://92.243.19.193:3000/myday/nannydaytask', formNoteNannyDay)
       .then((response) => {
         store.dispatch(addNoteNannyResponse(response.data));
         console.log('ajout ADD_NOTE_DAY_NANNY : '+ response);     
@@ -105,7 +105,7 @@ const mydayMiddleware = store => next => (action) => {
       break;
 
       case HANDLE_GET_NANNY_DAY_NOTE:
-      axios.get('http://95.142.175.219:3000/myday/nanny-day-note')
+      axios.get('http://92.243.19.193:3000/myday/nanny-day-note')
         .then((response) => {
           store.dispatch(addNoteNannyResponse(response.data));
         })
@@ -117,7 +117,7 @@ const mydayMiddleware = store => next => (action) => {
 
     /** --------------------------Suppression d'une tache-------------------------- */
     case REMOVE_TASK_DAY:
-      axios.post('http://95.142.175.219:3000/espace-parents/remove-task', action.id);
+      axios.post('http://92.243.19.193:3000/espace-parents/remove-task', action.id);
       next(action);
       break;
     
@@ -129,7 +129,7 @@ const mydayMiddleware = store => next => (action) => {
         selctedInput: selctedInput,
       };
       
-        axios.post('http://95.142.175.219:3000/add-task-nanny', formNannyAddTAsk);
+        axios.post('http://92.243.19.193:3000/add-task-nanny', formNannyAddTAsk);
         next(action);
         
         break;
@@ -138,12 +138,12 @@ const mydayMiddleware = store => next => (action) => {
       const formCheckTask = {
         id: action.id,
       }
-      axios.post('http://95.142.175.219:3000/task-done', formCheckTask);
+      axios.post('http://92.243.19.193:3000/task-done', formCheckTask);
       next(action);
       break;
      /** ------------------------- nouvelle journée -------------------------- */
     case REGENERE_LIST:
-     axios.post('http://95.142.175.219:3000/new-day');
+     axios.post('http://92.243.19.193:3000/new-day');
      next(action);
      break;
 

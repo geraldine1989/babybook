@@ -15,8 +15,7 @@ import { HANDLE_INSCRIPTION, HANDLE_GET_EMAILS, inscriptionResponse } from './re
 const inscriptionMiddleware = store => next => (action) => {
   switch (action.type) {
     case HANDLE_GET_EMAILS:
-      var emails = [];
-      axios.get('http://95.142.175.219:3000/getParents')
+      axios.get('http://localhost:3000/getParents')
       .then((response) => {
         console.log(response);
       })
@@ -26,10 +25,9 @@ const inscriptionMiddleware = store => next => (action) => {
       break;
     case HANDLE_INSCRIPTION:
       const state = store.getState().inscriptionReducer;
-
-      const { inputEmail, inputPassword, inputConfirmPassword, inputAccessCode, inputConfirmAccessCode, errorsForm } = state;
+      const { inputEmail, inputPassword, inputConfirmPassword, inputAccessCode, inputConfirmAccessCode } = state;
       var emailValid = validator.validate(inputEmail);
-      let errors = {};
+      var errors = {};
       if (!emailValid) {
         errors = {
           ...errors,
@@ -74,7 +72,7 @@ const inscriptionMiddleware = store => next => (action) => {
           accessCode: hashAccessCode,
           parent: true,
         }
-        axios.post('http://95.142.175.219:3000/inscription', datas)
+        axios.post('http://localhost:3000/inscription', datas)
         .then((response) => {
           store.dispatch(inscriptionResponse(response.data));
         })
