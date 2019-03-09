@@ -15,7 +15,7 @@ const loginParentsMiddleware = store => next => (action) => {
         password: hashPassword,
       }
 
-      axios.post('http://localhost:3000/loginParents', formDatas)
+      axios.post('http://92.243.19.193:3000/loginParents', formDatas)
         .then((response) => {
           store.dispatch(loginResponse(response.data));
         })
